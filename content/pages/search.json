@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "title": "SEO and AI search that gets you found",
+    "description": "Technical, on-page, and local SEO plus Generative Engine Optimisation (GEO) so you rank on Google and get cited by AI search engines. Australian search intent, E-E-A-T content."
+  },
+  "hero": {
+    "eyebrow": "Search",
+    "heading": "SEO and AI search that gets you found.",
+    "sub": "Search is splitting in two. Customers still Google you — but they also ask AI search engines and Google's AI Overviews. We do the technical, on-page, and local SEO that keeps you ranking, and the Generative Engine Optimisation (GEO) that gets you cited in AI answers. Australian search intent, E-E-A-T content, and reporting you can actually read.",
+    "primaryCta": { "label": "Get a free quote", "href": "/contact" },
+    "secondaryCta": { "label": "Book a discovery call →", "href": "/contact" }
+  },
+  "included": {
+    "heading": "What's included",
+    "items": [
+      "Technical SEO and on-page optimisation",
+      "GEO for AI search engines and Google AI Overviews",
+      "Local SEO and Google Business Profile management",
+      "Done-for-you articles, written to E-E-A-T standards (1,200–1,800 words)",
+      "Monthly rank tracking and reporting via SE Ranking and Google Search Console"
+    ]
+  },
+  "platforms": {
+    "label": "Tools we use",
+    "items": ["SE Ranking", "Google Search Console", "Google Business Profile"]
+  },
+  "howItWorks": "Search and SEO run as a monthly subscription with a minimum initial period of six months, then continue month-to-month (30 days' notice to cancel). Month one is an onboarding sprint, billed as the subscription plus a separate onboarding fee.",
+  "relatedWork": {
+    "client": "Solar Set",
+    "tag": "SEO & GEO",
+    "headline": "Niche SEO retainer for a competitive solar trades market.",
+    "outcome": "Steady ranking gains and qualified enquiries, month on month.",
+    "href": "/work/solar-set"
+  },
+  "faq": [
+    { "question": "How much does AI search and SEO cost?", "answer": "Search and SEO programs run as a monthly subscription with a six-month minimum initial period, then continue month-to-month with 30 days' notice to cancel — with a lower-cost, no-onboarding-fee option if you only need your Google Business Profile managed. Get a free quote for pricing specific to your business and goals." },
+    { "question": "What is AI Search (GEO)?", "answer": "AI Search, or Generative Engine Optimisation (GEO), is the practice of optimising your website so it can be found, understood, and cited by AI search engines and Google's AI Overviews. It builds on traditional Google SEO and is becoming essential as more customers search through AI rather than a list of blue links." }
+  ],
+  "ctaBand": {
+    "heading": "No price lists. Just an honest quote.",
+    "button": { "label": "Get a free quote", "href": "/contact" }
+  }
+}

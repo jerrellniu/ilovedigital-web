@@ -1,0 +1,52 @@
+{
+  "name": "I Love Digital",
+  "tagline": "We make websites, and Google simple.",
+  "phone": "1300 944 890",
+  "abn": "95703245254",
+  "email": "jerrell@ilovedigital.com.au",
+  "location": "Gold Coast, Queensland, Australia",
+  "socials": [
+    { "label": "Facebook", "href": "#" },
+    { "label": "LinkedIn", "href": "#" },
+    { "label": "Instagram", "href": "#" },
+    { "label": "TikTok", "href": "#" }
+  ],
+  "nav": [
+    { "label": "Work", "href": "/work" },
+    { "label": "About", "href": "/about" },
+    { "label": "Insights", "href": "/insights" },
+    { "label": "Contact", "href": "/contact" }
+  ],
+  "services": [
+    { "label": "Websites", "href": "/websites" },
+    { "label": "Search", "href": "/search" },
+    { "label": "Social", "href": "/social" },
+    { "label": "AI", "href": "/ai" }
+  ],
+  "footer": {
+    "usefulLinks": [
+      { "label": "About", "href": "/about" },
+      { "label": "Work", "href": "/work" },
+      { "label": "Websites", "href": "/websites" },
+      { "label": "Search", "href": "/search" },
+      { "label": "Social", "href": "/social" },
+      { "label": "AI", "href": "/ai" },
+      { "label": "Contact", "href": "/contact" },
+      { "label": "Client Portal", "href": "#" }
+    ],
+    "resources": [
+      { "label": "Blog", "href": "/insights" },
+      { "label": "Squarespace CSS Code Library", "href": "#" },
+      { "label": "Free Google Business Profile Review", "href": "#" },
+      { "label": "Free Website Copy Template Pack", "href": "#" },
+      { "label": "Free SEO Checklist for Beginners", "href": "#" },
+      { "label": "5 Tips For A Website That Converts", "href": "#" }
+    ],
+    "resourcesNote": "Lead-magnet links pending a migrate/refresh/sunset decision."
+  },
+  "legal": [
+    { "label": "Terms of Use", "href": "/terms" },
+    { "label": "Privacy Policy", "href": "/privacy" }
+  ],
+  "cookieNotice": "By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively."
+}

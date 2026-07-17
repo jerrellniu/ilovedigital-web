@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "title": "About Jerrell Niu — Founder, I Love Digital",
+    "description": "Jerrell Niu runs I Love Digital from the Gold Coast, building modern websites and AI-powered SEO for Queensland businesses."
+  },
+  "hero": {
+    "eyebrow": "About",
+    "heading": "Hi, I'm Jerrell.",
+    "sub": "I run I Love Digital from the Gold Coast — built on two decades across product management, technology, and business, not just a design portfolio. When you work with I Love Digital, you work with me."
+  },
+  "story": {
+    "heading": "Two decades before \"I Love Digital.\"",
+    "paragraphs": [
+      "I Love Digital isn't my first career — it's the one that pulled everything else together. I spent seven years as Product Manager, then Executive Board Member, at Coding Labs, leading product vision across web and mobile applications, working directly with customers, stakeholders and engineers, and growing the engineering team by 500% in three years. In that time I helped build and launch a scouting app for an NRL team, a workflow tool for aviation engineers, and a booking app for caravan travellers — and partnered with universities to build a graduate engineering pipeline.",
+      "Before that, I ran the recruitment side of the business — as General Manager and Executive Career Consultant at 99 Resumes, then in technical recruitment leadership roles at MCS Consulting and Vanarden Mining Oil & Gas. Earlier still, I spent six years in commercial finance. It's an unusual mix, but it means I've sat on both sides of the table — running teams, hiring them, financing them, and eventually building the products they use.",
+      "I Love Digital started in 2024, bringing all of that together: product thinking, hands-on design and development, and a genuine understanding of how a small-to-medium business actually runs."
+    ]
+  },
+  "whatIBring": {
+    "heading": "Product thinking, not just a website build.",
+    "paragraphs": [
+      "Most website builds start and end with design. Mine start with the same questions I used to ask as a product manager: who is this for, what are they trying to do, and what's actually stopping them? I design in Figma and Adobe XD, build hands-on in HTML, CSS, and JavaScript across Squarespace, Shopify, and WordPress, and use tools like Hotjar and Google Search Console to see how a site actually performs, not just how it looks.",
+      "That product-management background also shapes how I run projects — clear scoping, honest timelines, and reporting you can actually understand, because I've been the person who had to explain outcomes to a board."
+    ]
+  },
+  "beliefs": {
+    "heading": "How I work, in four lines.",
+    "items": [
+      { "title": "Direct communication.", "body": "You deal with me, not a middleman. Questions answered within one business day." },
+      { "title": "Transparent pricing.", "body": "Clear quotes, scoped to your project, in Australian dollars. No surprises." },
+      { "title": "Australian businesses first.", "body": "Built for Queensland trades and service businesses, with local search intent and Australian English throughout." },
+      { "title": "Long-term support.", "body": "This is where most agencies vanish. I stick around to keep things working and improving." }
+    ]
+  },
+  "tech": {
+    "heading": "The toolkit.",
+    "sub": "Built on two decades of product and technical experience — not a single-platform shortcut.",
+    "groups": [
+      { "label": "Design", "items": ["Figma", "Adobe XD", "Affinity Photo"] },
+      { "label": "Build", "items": ["Squarespace", "Shopify", "WordPress", "HTML", "CSS", "JavaScript"] },
+      { "label": "Operations", "items": ["Notion", "Google Workspace", "Loom", "TablePlus", "cPanel"] },
+      { "label": "Marketing & SEO", "items": ["SE Ranking", "Google Search Console", "MailerLite", "Hotjar"] },
+      { "label": "Finance", "items": ["Xero"] }
+    ]
+  },
+  "outsideWork": {
+    "heading": "Off the clock.",
+    "paragraph": "Outside of work, I coach basketball on the Gold Coast — Head Coach at Varsity Vipers Basketball Club since 2017, and an Association Coach with Gold Coast Basketball. A few of the teams I've coached have gone on to win state championships, and I was named GC Basketball's 2023 Team of the Year and Varsity Vipers' 2019 Club Man of the Year. I've also served as Club Secretary and Club Delegate since 2019. I think a good client relationship works a lot like a good team: clear roles, honest feedback, and everyone pulling in the same direction."
+  },
+  "faq": [
+    { "question": "How did a product manager end up running a digital studio?", "answer": "Product management, recruitment, and finance all come down to the same thing: understanding what a business actually needs, then delivering it without the noise. I Love Digital is that experience applied directly to websites, search, social, and AI — with the hands-on design and development skills to build it myself." },
+    { "question": "Do you only work with businesses in industries you've worked in before?", "answer": "No. I've worked across software, recruitment, mining and resources, and finance, and I bring that range to every client — but the businesses I work best with are Queensland trades and service businesses, regardless of their specific industry." },
+    { "question": "Do you work alone, or is there a team?", "answer": "It's just me. For specialist work outside my skill set, I bring in trusted contractors on a project basis — but I stay the single point of contact throughout." }
+  ],
+  "finalCta": {
+    "heading": "Want to work together?",
+    "sub": "Start with a 15-minute call. No pressure, no pitch — just a real conversation about your business.",
+    "button": { "label": "Book a discovery call", "href": "/contact" }
+  }
+}

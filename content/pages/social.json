@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "Social that sounds like you",
+    "description": "Done-for-you social media across Instagram, Facebook, and TikTok — strategy, content, and scheduling matched to your brand. For Queensland businesses."
+  },
+  "hero": {
+    "eyebrow": "Social",
+    "heading": "Social that sounds like you.",
+    "sub": "Done-for-you social media that matches your brand, not a template. We handle the strategy, the content, and the scheduling across Instagram, Facebook, and TikTok — so your feed stays active and on-message while you run your business.",
+    "primaryCta": { "label": "Get a free quote", "href": "/contact" },
+    "secondaryCta": { "label": "Book a discovery call →", "href": "/contact" }
+  },
+  "included": {
+    "heading": "What's included",
+    "items": [
+      "Strategy and monthly content calendars",
+      "Captions, reel scripts, and on-brand assets",
+      "Scheduling and engagement",
+      "Monthly analytics and a clear read on what's working"
+    ]
+  },
+  "platforms": {
+    "label": "Platforms",
+    "items": ["Instagram", "Facebook", "TikTok"]
+  },
+  "relatedWork": {
+    "client": "Butchers Pride",
+    "tag": "Social",
+    "headline": "Social and Google Business Profile management for a premium butcher.",
+    "outcome": "Done-for-you content and local discovery driving foot traffic.",
+    "href": "/work/butchers-pride"
+  },
+  "faq": [
+    { "question": "How much does social media management cost?", "answer": "Social packages are quoted to the number of platforms and posts you need, always done-for-you and matched to your brand. Get a free quote and we'll scope it properly." }
+  ],
+  "ctaBand": {
+    "heading": "No price lists. Just an honest quote.",
+    "button": { "label": "Get a free quote", "href": "/contact" }
+  }
+}

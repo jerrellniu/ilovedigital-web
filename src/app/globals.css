@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-base text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-heading font-bold tracking-tight;
+    line-height: 1.1;
+  }
+  ::selection {
+    background: #1CBFD4;
+    color: #06222a;
+  }
+}
+
+@layer components {
+  /* Consistent section rhythm: 120px desktop / 60px mobile */
+  .section-y {
+    @apply py-[60px] md:py-[120px];
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-content px-6;
+  }
+  .eyebrow {
+    @apply mb-4 inline-block font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan;
+  }
+}

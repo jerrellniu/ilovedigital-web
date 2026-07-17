@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "title": "Websites that get found and get bookings",
+    "description": "Custom, fast, modern websites with brand identity to match — built to be understood by Google and cited by AI. For Queensland trades and service businesses."
+  },
+  "hero": {
+    "eyebrow": "Websites",
+    "heading": "Websites that get found and get bookings.",
+    "sub": "Your website is the first thing a customer judges you on, and increasingly the first thing an AI engine reads about you. We design and build fast, modern, custom websites — with the brand identity to match — structured to be understood by Google, cited by AI, and easy for your next customer to act on.",
+    "primaryCta": { "label": "Get a free quote", "href": "/contact" },
+    "secondaryCta": { "label": "Book a discovery call →", "href": "/contact" }
+  },
+  "included": {
+    "heading": "What's included",
+    "items": [
+      "Custom design — no off-the-shelf templates",
+      "Brand identity: logos, brand guidelines, business cards, and multi-brand systems",
+      "Fast loading and mobile-perfect on every screen",
+      "Core SEO and structured data built in from day one",
+      "Clear calls to action and conversion-focused layout",
+      "Training so you can update the site yourself",
+      "Managed hosting and ongoing support available"
+    ]
+  },
+  "platforms": {
+    "label": "Platforms we build on",
+    "items": ["Squarespace", "WordPress", "Shopify", "Framer", "Webflow", "Wix"]
+  },
+  "note": "Brand and visual identity sit within our website work — they can be part of a build or quoted on their own.",
+  "relatedWork": {
+    "client": "The Boxing Shop",
+    "tag": "Web",
+    "headline": "Shopify Dawn rebuild for a Gold Coast combat sports retailer.",
+    "outcome": "Modern ecommerce, mobile-perfect, built to convert.",
+    "href": "/work/the-boxing-shop"
+  },
+  "faq": [
+    { "question": "How much does a new website cost?", "answer": "Website pricing depends on the size of the site, the platform, and what's included — so we don't publish a fixed price list. Tell us a bit about your project and we'll come back with a clear, itemised quote. It's free, with no obligation." },
+    { "question": "Do you do branding and logos?", "answer": "Yes. Brand identity can be included in a website build or quoted on its own — anything from a simple logo refresh through to a full brand strategy and design package. Get a free quote and we'll scope it to what you actually need." },
+    { "question": "Do you offer website hosting and maintenance?", "answer": "Yes, as a monthly subscription, billed separately from any website build or retainer. Get a free quote and we'll include the right hosting tier for your platform and traffic." }
+  ],
+  "ctaBand": {
+    "heading": "No price lists. Just an honest quote.",
+    "button": { "label": "Get a free quote", "href": "/contact" }
+  }
+}

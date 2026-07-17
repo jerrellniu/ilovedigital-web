@@ -1,0 +1,174 @@
+{
+  "meta": {
+    "title": "Modern Websites and AI-Powered SEO for Queensland Businesses",
+    "description": "People-first Queensland digital studio. Modern websites, AI search and SEO, social, and consulting for trades and service businesses ready to grow. Direct, fast, simple."
+  },
+  "hero": {
+    "eyebrow": "A people-first digital studio on the Gold Coast",
+    "heading": "We make websites, and Google simple.",
+    "sub": "Modern websites and AI search visibility for Queensland trades and service businesses ready to grow. We rebuild outdated sites to be found by AI, ranked on Google, and ready to turn visitors into bookings.",
+    "primaryCta": { "label": "Book a discovery call", "href": "/contact" },
+    "secondaryCta": { "label": "Get a free website audit →", "href": "/audit" }
+  },
+  "stats": [
+    { "value": "50+", "label": "Projects delivered" },
+    { "value": "100%", "label": "Queensland-based" },
+    { "value": "24hr", "label": "Response time" }
+  ],
+  "pillarsIntro": {
+    "eyebrow": "What we do",
+    "heading": "Four services. Built for how Queensland businesses grow.",
+    "sub": "Each one stands on its own. Together, they compound."
+  },
+  "pillars": [
+    {
+      "key": "websites",
+      "name": "Websites",
+      "heading": "Websites that get found and get bookings.",
+      "oneLiner": "Custom-designed, fast-loading websites — with the brand identity to match — on Shopify, Squarespace, WordPress, or Framer, built to be found by humans and AI.",
+      "bullets": [
+        "Custom design and brand identity (logos, brand systems)",
+        "Fast loading, mobile-perfect",
+        "Optimised for Google and AI search",
+        "Easy to update yourself"
+      ],
+      "href": "/websites"
+    },
+    {
+      "key": "search",
+      "name": "Search",
+      "heading": "SEO and AI search that gets you found.",
+      "oneLiner": "Technical and local SEO plus Generative Engine Optimisation (GEO) — so you show up on Google and in answers from AI search engines.",
+      "bullets": [
+        "Technical and on-page SEO",
+        "GEO for AI search engines and Google AI Overviews",
+        "Local SEO and Google Business Profile",
+        "Monthly reporting with SE Ranking"
+      ],
+      "href": "/search"
+    },
+    {
+      "key": "social",
+      "name": "Social",
+      "heading": "Social that sounds like you.",
+      "oneLiner": "Done-for-you social media across Instagram, Facebook, and TikTok — written to match your brand, not a template.",
+      "bullets": [
+        "Strategy and content calendars",
+        "Captions, scripts, and assets",
+        "Scheduling and engagement",
+        "Monthly analytics"
+      ],
+      "href": "/social"
+    },
+    {
+      "key": "ai",
+      "name": "AI",
+      "heading": "AI tools and automation that save you time.",
+      "oneLiner": "Custom AI strategy, workflow automation, and senior technical direction — including fractional CTO support — for businesses that want expert thinking without a full-time hire.",
+      "bullets": [
+        "AI strategy and workflow automation (Zapier, Make, custom GPTs)",
+        "Agentic workflows and process optimisation",
+        "Fractional CTO and technical direction",
+        "Training so your team can run with it"
+      ],
+      "href": "/ai"
+    }
+  ],
+  "featuredWork": {
+    "eyebrow": "Recent work",
+    "heading": "Real work. Real Queensland businesses.",
+    "sub": "A snapshot of what we've shipped in the past 12 months.",
+    "cards": [
+      {
+        "client": "The Boxing Shop",
+        "tag": "Web",
+        "headline": "Shopify Dawn rebuild for a Gold Coast combat sports retailer.",
+        "outcome": "Modern ecommerce, mobile-perfect, built to convert.",
+        "href": "/work/the-boxing-shop"
+      },
+      {
+        "client": "Solar Set",
+        "tag": "SEO & GEO",
+        "headline": "Niche SEO retainer for a competitive solar trades market.",
+        "outcome": "Steady ranking gains and qualified enquiries, month on month.",
+        "href": "/work/solar-set"
+      },
+      {
+        "client": "Butchers Pride",
+        "tag": "Social",
+        "headline": "Social and GBP management for a premium butcher.",
+        "outcome": "Done-for-you content and local discovery driving foot traffic.",
+        "href": "/work/butchers-pride"
+      },
+      {
+        "client": "GC Connected Homes",
+        "tag": "Brand",
+        "headline": "Brand identity and business card design for a smart home installer.",
+        "outcome": "A brand system that lifts a trades business into the premium tier.",
+        "href": "/work/gc-connected-homes-brand"
+      }
+    ],
+    "footerCta": { "label": "See all case studies →", "href": "/work" }
+  },
+  "testimonials": {
+    "heading": "What clients say",
+    "sub": "Real feedback from Queensland business owners we've worked with.",
+    "items": [
+      {
+        "quote": "Jerrell has been providing organic socials to my business since December. His expertise, his ability to research and form conclusions, and the strategies have produced organic leads and engagement.",
+        "author": "Phil S — Bondi"
+      },
+      {
+        "quote": "I Love Digital has been a great experience for me. Their professionalism and outstanding service towards detail and support is unmatched. I highly recommend I Love Digital to anyone looking at generating new leads and promoting their business digitally.",
+        "author": "Leon S — Robina"
+      },
+      {
+        "quote": "Jerrell and the team at I Love Digital are awesome. Extremely knowledgeable with great communication. Would highly recommend.",
+        "author": "Jay S — Burleigh"
+      }
+    ]
+  },
+  "founder": {
+    "eyebrow": "About",
+    "heading": "Product thinking. Two decades in the making.",
+    "paragraphs": [
+      "I'm Jerrell. I run I Love Digital from the Gold Coast — solo. No big team, no account managers, no offshore handoff. You talk to the person doing the work.",
+      "Before this, I spent years as a product manager growing an engineering team and shipping web and mobile products, and before that in recruitment and finance. That background is why projects here get scoped properly, run on clear timelines, and reported on the way a board would expect — not just designed to look nice."
+    ],
+    "cta": { "label": "Learn more about my background →", "href": "/about" }
+  },
+  "process": {
+    "eyebrow": "Process",
+    "heading": "Simple from the first call.",
+    "sub": "No complicated onboarding. No marketing jargon. Just four clear steps.",
+    "steps": [
+      { "title": "Discovery call", "body": "A 15-minute conversation about your business, your goals, and what's not working. No pitch." },
+      { "title": "Strategy and proposal", "body": "A clear plan and a transparent quote. You'll know exactly what you're getting and what it costs." },
+      { "title": "Build and launch", "body": "I get to work. You get regular updates. We launch when you're 100% happy." },
+      { "title": "Ongoing support", "body": "This is where most agencies disappear. I stick around to keep things working and improving." }
+    ],
+    "cta": { "label": "Start with a discovery call →", "href": "/contact" }
+  },
+  "audit": {
+    "heading": "Get a free website audit.",
+    "sub": "Not ready to commit to a project? Send us your URL. Within 3 business days you'll get back a 5-minute Loom walkthrough and a written PDF report covering technical issues, urgent fixes, and a 3-month action plan. No obligation. No catch.",
+    "button": "Request my audit",
+    "belowLink": { "label": "Or see the full audit details →", "href": "/audit" }
+  },
+  "faq": {
+    "heading": "Frequently asked questions",
+    "items": [
+      { "question": "What does I Love Digital do?", "answer": "I Love Digital is a people-first Queensland digital studio that designs and builds websites and brand identities, runs AI search and SEO campaigns, manages social media, and offers tech consulting for Australian trades and service businesses." },
+      { "question": "Where is I Love Digital based?", "answer": "I Love Digital is based on the Gold Coast in Queensland, Australia. We work with clients across Queensland and Australia, with a focus on Gold Coast and Brisbane service businesses." },
+      { "question": "Who do you work with?", "answer": "We work primarily with Queensland trades and service businesses turning over $500,000 or more annually, with 3 to 50 employees — including solar installers, electricians, builders, retailers, and professional services." },
+      { "question": "What's different about working with I Love Digital?", "answer": "I Love Digital is run solo by Jerrell Niu, backed by two decades of product management, technology, and business experience. Clients work directly with the person doing the work, get faster turnarounds than a traditional agency, and pay less than they would for equivalent senior talent at a larger studio." },
+      { "question": "How much does a new website cost?", "answer": "Website pricing depends on platform, complexity, and ongoing requirements, so we don't publish a fixed price — get a free quote and we'll come back with clear, itemised pricing. Onboarding fees are always separate from any monthly retainer, and everything is quoted in Australian dollars." },
+      { "question": "What is AI Search (GEO)?", "answer": "GEO (Generative Engine Optimisation) is the practice of optimising a website so it can be found, understood, and cited by AI search engines and Google's AI Overviews. It sits on top of traditional SEO and is becoming critical as more searches move to AI platforms." }
+    ]
+  },
+  "finalCta": {
+    "heading": "Ready to talk?",
+    "sub": "A 15-minute call. No pressure, no pitch, just a real conversation about your business.",
+    "button": { "label": "Book a discovery call", "href": "/contact" }
+  }
+}

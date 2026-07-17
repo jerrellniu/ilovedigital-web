@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "AI tools and automation that save you time",
+    "description": "Custom AI strategy, workflow automation, and fractional CTO direction for growing Queensland businesses that want senior technical thinking without a full-time hire."
+  },
+  "hero": {
+    "eyebrow": "AI",
+    "heading": "AI tools and automation that save you time.",
+    "sub": "Sometimes what you need isn't a website — it's someone senior to tell you what to build, what to automate, and what to fix. AI gives growing Queensland businesses custom AI strategy, workflow automation, and practical technical direction — including fractional CTO support — without the cost of a full-time technical hire.",
+    "primaryCta": { "label": "Get a free quote", "href": "/contact" },
+    "secondaryCta": { "label": "Book a discovery call →", "href": "/contact" }
+  },
+  "included": {
+    "heading": "What's included",
+    "items": [
+      "AI strategy and workflow automation (Zapier, Make, custom GPTs)",
+      "Agentic workflows and process optimisation",
+      "Fractional CTO and technical direction",
+      "IT, systems, and integrations",
+      "Training so your team can run with it"
+    ]
+  },
+  "howItWorks": "AI runs month-to-month or in short blocks, scoped to what you need.",
+  "relatedWork": null,
+  "relatedWorkNote": "The AI pillar has no published case study yet — add one before launch (known content gap).",
+  "faq": [
+    { "question": "Do you offer CTO or tech consulting?", "answer": "Yes, under our AI service — fractional CTO direction, AI and automation strategy, IT, and project management, scoped month-to-month or in short blocks. Get a free quote for a plan tailored to what you need." },
+    { "question": "Why are your prices lower than a traditional agency?", "answer": "There's no agency overhead and no offshore handoff. I Love Digital is run solo by Jerrell, backed by two decades of product, technology, and business experience, so you get senior-level work direct from the person doing it — without paying for layers of account managers. Get a free quote and see for yourself." }
+  ],
+  "ctaBand": {
+    "heading": "No price lists. Just an honest quote.",
+    "button": { "label": "Get a free quote", "href": "/contact" }
+  }
+}

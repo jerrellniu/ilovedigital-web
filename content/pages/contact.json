@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "title": "Contact — Book a Call or Send a Message",
+    "description": "Book a 15-minute call or send a message. A direct line to Jerrell, no middlemen. Gold Coast digital studio serving Queensland and Australia."
+  },
+  "hero": {
+    "eyebrow": "Contact",
+    "heading": "Let's talk.",
+    "sub": "Book a 15-minute call or send a message — either way, it comes straight to me. No call centres, no middlemen, no automated runaround."
+  },
+  "book": {
+    "heading": "Book a 15-minute call",
+    "sub": "Pick a time that suits you. We'll talk through your business, what's not working, and whether we're a good fit. No pitch.",
+    "embedUrl": "https://portal.ilovedigital.com.au/15-min-call"
+  },
+  "message": {
+    "heading": "Prefer to write?",
+    "sub": "Send a message and I'll get back to you within one business day.",
+    "fields": [
+      { "name": "name", "label": "Your name", "type": "text", "required": true },
+      { "name": "email", "label": "Email", "type": "email", "required": true },
+      { "name": "business", "label": "Business name", "type": "text", "required": true },
+      { "name": "message", "label": "Message", "type": "textarea", "required": true }
+    ],
+    "button": "Send message"
+  },
+  "responseCallout": "24-hour response, weekdays. You'll always hear back from a real person — me.",
+  "faq": [
+    { "question": "Do you work with clients outside Queensland?", "answer": "Yes. I'm based on the Gold Coast and most clients are in Queensland, but I work with businesses across Australia. Everything is handled remotely, with calls over Google Meet when we need face time." },
+    { "question": "What happens on a discovery call?", "answer": "It's a 15-minute, no-pressure conversation about your business, your goals, and what's not working. There's no pitch. If we're a good fit, the next step is a clear plan and a transparent quote. If we're not, I'll happily point you in the right direction." },
+    { "question": "How quickly will you get back to me?", "answer": "Within one business day, every time. You deal with me directly, so there's no queue and no account manager in between." }
+  ]
+}
