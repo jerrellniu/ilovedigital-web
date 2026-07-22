@@ -1,6 +1,6 @@
 [
-  { "client": "The Boxing Shop", "tag": "Web", "headline": "Shopify Dawn rebuild for a combat sports retailer.", "outcome": "Modern ecommerce, mobile-perfect, built to convert.", "href": "/work/the-boxing-shop" },
-  { "client": "Homelessness QLD", "tag": "Web", "headline": "WordPress (Divi) restructure for a not-for-profit.", "outcome": "Clearer structure, easier to maintain, better findability.", "href": "/work/homelessness-qld" },
+  { "client": "The Boxing Shop", "tag": "Web", "headline": "Shopify Dawn rebuild for a combat sports retailer.", "outcome": "Modern ecommerce, mobile-perfect, built to convert.", "href": "/work/the-boxing-shop", "image": "/images/work/the-boxing-shop.jpg" },
+  { "client": "Homelessness QLD", "tag": "Web", "headline": "WordPress (Divi) restructure for a not-for-profit.", "outcome": "Clearer structure, easier to maintain, better findability.", "href": "/work/homelessness-qld", "image": "/images/work/homelessness-qld.jpg" },
   { "client": "Toni Gunn", "tag": "Web", "headline": "Squarespace build for a personal brand.", "outcome": "A polished, on-brand site ready to grow.", "href": "/work/toni-gunn" },
   { "client": "Solar Set", "tag": "Search", "headline": "SEO retainer in a competitive solar market.", "outcome": "Steady ranking gains and qualified enquiries, month on month.", "href": "/work/solar-set" },
   { "client": "Evolved Solar and Electrical", "tag": "Search", "headline": "Combined web and SEO for a solar and electrical trade.", "outcome": "A faster site and a search footprint to match.", "href": "/work/evolved-solar" },

@@ -58,6 +58,8 @@ export interface CaseStudyCardData {
   headline: string;
   outcome: string;
   href: string;
+  /** 16:10 thumbnail under public/. Falls back to the gradient placeholder when absent. */
+  image?: string;
 }
 
 export interface Testimonial {

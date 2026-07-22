@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Button from '@/components/Button';
 import Markdown from '@/components/Markdown';
@@ -15,6 +16,8 @@ interface CaseFm {
   timeline?: string;
   headline: string;
   outcome: string;
+  /** 16:10 hero screenshot under public/. Section is omitted when absent. */
+  image?: string;
 }
 
 export function generateStaticParams() {
@@ -61,6 +64,20 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <h1 className="mt-5 max-w-[22ch] text-[clamp(2.2rem,4.5vw,3.4rem)]">{fm.headline}</h1>
         <p className="mt-5 max-w-[52ch] text-[1.15rem] text-muted">{fm.outcome}</p>
       </section>
+
+      {fm.image ? (
+        <section className="container-wide pb-12">
+          <Image
+            src={fm.image}
+            alt={`${fm.client} website`}
+            width={1200}
+            height={750}
+            priority
+            sizes="(min-width: 1280px) 1200px, 100vw"
+            className="w-full rounded-2xl"
+          />
+        </section>
+      ) : null}
 
       <section className="container-wide pb-12">
         <div className="grid gap-6 rounded-2xl bg-surface p-8 sm:grid-cols-2 lg:grid-cols-4">
