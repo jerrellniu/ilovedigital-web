@@ -56,7 +56,8 @@ export interface CaseStudyCardData {
   client: string;
   tag: string;
   headline: string;
-  outcome: string;
+  /** Supporting line under the headline. Omitted when the headline says it all. */
+  outcome?: string;
   /**
    * Always set in the content files. Cleared at load time by the loaders in
    * `src/lib/content.ts` when the linked case study isn't published, so the card
