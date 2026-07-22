@@ -57,7 +57,12 @@ export interface CaseStudyCardData {
   tag: string;
   headline: string;
   outcome: string;
-  href: string;
+  /**
+   * Always set in the content files. Cleared at load time by the loaders in
+   * `src/lib/content.ts` when the linked case study isn't published, so the card
+   * renders unlinked instead of pointing at a 404.
+   */
+  href?: string;
   /** 16:10 thumbnail under public/. Falls back to the gradient placeholder when absent. */
   image?: string;
   /** Build platform (Shopify, WordPress, NextJS, Wix, Squarespace). Pill is omitted when absent. */

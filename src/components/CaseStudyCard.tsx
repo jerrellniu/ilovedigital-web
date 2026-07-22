@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { CaseStudyCardData } from '@/types/content';
 
+const SHELL = 'group block overflow-hidden rounded-2xl border border-transparent bg-surface';
+const INTERACTIVE = 'transition hover:-translate-y-1 hover:border-cyan/40';
+
 export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
-  return (
-    <Link
-      href={data.href}
-      className="group block overflow-hidden rounded-2xl border border-transparent bg-surface transition hover:-translate-y-1 hover:border-cyan/40"
-    >
+  const body = (
+    <>
       {/* Gradient placeholder until a case study has a real 16:10 image. */}
       <div className="relative flex aspect-[16/10] items-end overflow-hidden bg-[#20222c] bg-[linear-gradient(135deg,rgba(28,191,212,0.22),rgba(192,132,252,0.22))] p-4">
         {data.image ? (
@@ -34,8 +34,22 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
         <div className="font-heading text-lg font-bold">{data.client}</div>
         <div className="mt-2 font-body text-[1.05rem] font-semibold">{data.headline}</div>
         <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome}</div>
-        <div className="mt-4 font-body font-semibold text-cyan">View case study →</div>
+        {data.href ? (
+          <div className="mt-4 font-body font-semibold text-cyan">View case study →</div>
+        ) : null}
       </div>
+    </>
+  );
+
+  // No href means the case study isn't published yet. Render the card as plain
+  // content — the work still shows, but there's nothing to click through to.
+  if (!data.href) {
+    return <div className={SHELL}>{body}</div>;
+  }
+
+  return (
+    <Link href={data.href} className={`${SHELL} ${INTERACTIVE}`}>
+      {body}
     </Link>
   );
 }
