@@ -19,9 +19,16 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
             className="object-cover object-top"
           />
         ) : null}
-        <span className="relative rounded-full border border-cyan/40 bg-deep/70 px-3 py-1.5 text-xs font-semibold text-cyan backdrop-blur">
-          {data.tag}
-        </span>
+        <div className="relative flex flex-wrap gap-2">
+          <span className="rounded-full border border-cyan/40 bg-deep/70 px-3 py-1.5 text-xs font-semibold text-cyan backdrop-blur">
+            {data.tag}
+          </span>
+          {data.platform ? (
+            <span className="rounded-full border border-white/20 bg-deep/70 px-3 py-1.5 text-xs font-semibold text-muted backdrop-blur">
+              {data.platform}
+            </span>
+          ) : null}
+        </div>
       </div>
       <div className="p-6">
         <div className="font-heading text-lg font-bold">{data.client}</div>

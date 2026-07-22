@@ -60,6 +60,8 @@ export interface CaseStudyCardData {
   href: string;
   /** 16:10 thumbnail under public/. Falls back to the gradient placeholder when absent. */
   image?: string;
+  /** Build platform (Shopify, WordPress, NextJS, Wix, Squarespace). Pill is omitted when absent. */
+  platform?: string;
 }
 
 export interface Testimonial {

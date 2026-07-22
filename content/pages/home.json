@@ -82,6 +82,7 @@
       {
         "client": "The Boxing Shop",
         "tag": "Web",
+        "platform": "Shopify",
         "headline": "Shopify Dawn rebuild for a Gold Coast combat sports retailer.",
         "outcome": "Modern ecommerce, mobile-perfect, built to convert.",
         "href": "/work/the-boxing-shop",
@@ -89,7 +90,7 @@
       },
       {
         "client": "Solar Set",
-        "tag": "SEO & GEO",
+        "tag": "Search",
         "headline": "Niche SEO retainer for a competitive solar trades market.",
         "outcome": "Steady ranking gains and qualified enquiries, month on month.",
         "href": "/work/solar-set"
@@ -102,11 +103,12 @@
         "href": "/work/butchers-pride"
       },
       {
-        "client": "GC Connected Homes",
-        "tag": "Brand",
-        "headline": "Brand identity and business card design for a smart home installer.",
-        "outcome": "A brand system that lifts a trades business into the premium tier.",
-        "href": "/work/gc-connected-homes-brand"
+        "client": "Toni Gunn",
+        "tag": "Web",
+        "platform": "Squarespace",
+        "headline": "Squarespace build for a personal brand.",
+        "outcome": "A polished, on-brand site ready to grow.",
+        "href": "/work/toni-gunn"
       }
     ],
     "footerCta": { "label": "See all case studies →", "href": "/work" }
