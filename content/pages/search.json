@@ -27,10 +27,11 @@
   "howItWorks": "Search and SEO run as a monthly subscription with a minimum initial period of six months, then continue month-to-month (30 days' notice to cancel). Month one is an onboarding sprint, billed as the subscription plus a separate onboarding fee.",
   "relatedWork": {
     "client": "Solar Set",
-    "tag": "SEO & GEO",
-    "headline": "Niche SEO retainer for a competitive solar trades market.",
+    "tag": "Search",
+    "headline": "Grow leads and enquiries for leading commercial solar company",
     "outcome": "Steady ranking gains and qualified enquiries, month on month.",
-    "href": "/work/solar-set"
+    "href": "/work/solar-set",
+    "image": "/images/work/solar-set.jpg"
   },
   "faq": [
     { "question": "How much does AI search and SEO cost?", "answer": "Search and SEO programs run as a monthly subscription with a six-month minimum initial period, then continue month-to-month with 30 days' notice to cancel — with a lower-cost, no-onboarding-fee option if you only need your Google Business Profile managed. Get a free quote for pricing specific to your business and goals." },

@@ -18,6 +18,8 @@ interface CaseFm {
   outcome: string;
   /** 16:10 hero screenshot under public/. Section is omitted when absent. */
   image?: string;
+  /** Alt text for `image`. Defaults to "<client> website". */
+  imageAlt?: string;
 }
 
 export function generateStaticParams() {
@@ -69,7 +71,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <section className="container-wide pb-12">
           <Image
             src={fm.image}
-            alt={`${fm.client} website`}
+            alt={fm.imageAlt ?? `${fm.client} website`}
             width={1200}
             height={750}
             priority

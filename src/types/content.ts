@@ -65,6 +65,11 @@ export interface CaseStudyCardData {
   href?: string;
   /** 16:10 thumbnail under public/. Falls back to the gradient placeholder when absent. */
   image?: string;
+  /**
+   * Alt text for `image`. Defaults to "<client> website" — set this whenever the
+   * thumbnail is not a website screenshot (a social feed, brand collateral, print).
+   */
+  imageAlt?: string;
   /** Build platform (Shopify, WordPress, NextJS, Wix, Squarespace). Pill is omitted when absent. */
   platform?: string;
 }

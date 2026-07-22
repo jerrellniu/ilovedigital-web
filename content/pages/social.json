@@ -26,9 +26,11 @@
   "relatedWork": {
     "client": "Butchers Pride",
     "tag": "Social",
-    "headline": "Social and Google Business Profile management for a premium butcher.",
+    "headline": "Done-for-you social content for a premium cooking sauce business",
     "outcome": "Done-for-you content and local discovery driving foot traffic.",
-    "href": "/work/butchers-pride"
+    "href": "/work/butchers-pride",
+    "image": "/images/work/butchers-pride.jpg",
+    "imageAlt": "Butchers Pride Instagram feed"
   },
   "faq": [
     { "question": "How much does social media management cost?", "answer": "Social packages are quoted to the number of platforms and posts you need, always done-for-you and matched to your brand. Get a free quote and we'll scope it properly." }

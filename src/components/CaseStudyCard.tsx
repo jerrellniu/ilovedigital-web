@@ -13,7 +13,7 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
         {data.image ? (
           <Image
             src={data.image}
-            alt={`${data.client} website`}
+            alt={data.imageAlt ?? `${data.client} website`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover object-top"

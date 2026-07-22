@@ -83,7 +83,7 @@
         "client": "The Boxing Shop",
         "tag": "Web",
         "platform": "Shopify",
-        "headline": "Shopify Dawn rebuild for a Gold Coast combat sports retailer.",
+        "headline": "Rebuild for Brisbane boxing gym in Shopify",
         "outcome": "Modern ecommerce, mobile-perfect, built to convert.",
         "href": "/work/the-boxing-shop",
         "image": "/images/work/the-boxing-shop.jpg"
@@ -91,24 +91,28 @@
       {
         "client": "Solar Set",
         "tag": "Search",
-        "headline": "Niche SEO retainer for a competitive solar trades market.",
+        "headline": "Grow leads and enquiries for leading commercial solar company",
         "outcome": "Steady ranking gains and qualified enquiries, month on month.",
-        "href": "/work/solar-set"
+        "href": "/work/solar-set",
+        "image": "/images/work/solar-set.jpg"
       },
       {
         "client": "Butchers Pride",
         "tag": "Social",
-        "headline": "Social and GBP management for a premium butcher.",
+        "headline": "Done-for-you social content for a premium cooking sauce business",
         "outcome": "Done-for-you content and local discovery driving foot traffic.",
-        "href": "/work/butchers-pride"
+        "href": "/work/butchers-pride",
+        "image": "/images/work/butchers-pride.jpg",
+        "imageAlt": "Butchers Pride Instagram feed"
       },
       {
         "client": "Toni Gunn",
         "tag": "Web",
         "platform": "Squarespace",
-        "headline": "Squarespace build for a personal brand.",
+        "headline": "New website for prominent therapist and mentor",
         "outcome": "A polished, on-brand site ready to grow.",
-        "href": "/work/toni-gunn"
+        "href": "/work/toni-gunn",
+        "image": "/images/work/toni-gunn.jpg"
       }
     ],
     "footerCta": { "label": "See all case studies →", "href": "/work" }
