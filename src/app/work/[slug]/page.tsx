@@ -16,6 +16,8 @@ interface CaseFm {
   timeline?: string;
   headline: string;
   outcome: string;
+  /** Build platform. Renders as a neutral pill beside the tag; omitted when absent. */
+  platform?: string;
   /** 16:10 hero screenshot under public/. Section is omitted when absent. */
   image?: string;
   /** Alt text for `image`. Defaults to "<client> website". */
@@ -60,9 +62,16 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         ]}
       />
       <section className="container-wide section-y">
-        <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-xs font-semibold text-cyan">
-          {fm.tag}
-        </span>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-xs font-semibold text-cyan">
+            {fm.tag}
+          </span>
+          {fm.platform ? (
+            <span className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-muted">
+              {fm.platform}
+            </span>
+          ) : null}
+        </div>
         <h1 className="mt-5 max-w-[22ch] text-[clamp(2.2rem,4.5vw,3.4rem)]">{fm.headline}</h1>
         <p className="mt-5 max-w-[52ch] text-[1.15rem] text-muted">{fm.outcome}</p>
       </section>
