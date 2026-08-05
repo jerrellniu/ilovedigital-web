@@ -1,11 +1,62 @@
 [
+  { "source": "/home", "destination": "/", "permanent": true },
+  { "source": "/links", "destination": "/", "permanent": true },
+  { "source": "/404", "destination": "/", "permanent": true },
+  { "source": "/040391355937", "destination": "/", "permanent": true },
+
   { "source": "/portfolio", "destination": "/work", "permanent": true },
   { "source": "/blog", "destination": "/insights", "permanent": true },
+  { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+  { "source": "/terms-of-use", "destination": "/terms", "permanent": true },
+
   { "source": "/services", "destination": "/websites", "permanent": true },
   { "source": "/web-design-services", "destination": "/websites", "permanent": true },
   { "source": "/website-support", "destination": "/websites", "permanent": true },
+  { "source": "/gold-coast-wordpress-developers", "destination": "/websites", "permanent": true },
+  { "source": "/gold-coast-sports-club-website-design", "destination": "/websites", "permanent": true },
+  { "source": "/online-store-websites", "destination": "/websites", "permanent": true },
+  { "source": "/managed-wordpress-hosting", "destination": "/websites", "permanent": true },
+  { "source": "/health-medical-digital-solutions", "destination": "/websites", "permanent": true },
+  { "source": "/property-digital-solutions", "destination": "/websites", "permanent": true },
+  { "source": "/online-growth-services", "destination": "/websites", "permanent": true },
+
   { "source": "/discover-our-seo-services", "destination": "/search", "permanent": true },
   { "source": "/services/google-business-profile-setup", "destination": "/search", "permanent": true },
-  { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
-  { "source": "/terms-of-use", "destination": "/terms", "permanent": true }
+  { "source": "/local-visibility-pack", "destination": "/search", "permanent": true },
+  { "source": "/content-strategy-for-growth", "destination": "/search", "permanent": true },
+
+  { "source": "/email-marketing-for-growth", "destination": "/social", "permanent": true },
+
+  { "source": "/blog/a-seo-checklist-for-beginners", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
+  { "source": "/blog/when-should-your-redesign-your-website", "destination": "/insights/when-to-redesign-your-website", "permanent": true },
+  { "source": "/blog/10-web-design-trends-in-2025", "destination": "/insights/web-design-trends-2026", "permanent": true },
+  { "source": "/blog/a-guide-to-writing-great-copy", "destination": "/insights/writing-great-website-copy", "permanent": true },
+  { "source": "/blog/6-types-of-logos-how-to-choose-the-perfect-one", "destination": "/insights/6-types-of-logos", "permanent": true },
+  { "source": "/blog/googles-february-2026-discover-core-update-what-australian-publishers-and-businesses-need-to-know", "destination": "/insights/google-february-2026-discover-core-update", "permanent": true },
+  { "source": "/blog/css-hack-1-shrink-the-logo-on-scroll-without-crying-into-your-coffee", "destination": "/insights/css-hack-shrink-logo-on-scroll", "permanent": true },
+  { "source": "/blog/introduction-getting-started-with-css-in-squarespace", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
+  { "source": "/blog/google-workspace-vs-microsoft-365-best-email-platform", "destination": "/insights/google-workspace-vs-microsoft-365", "permanent": true },
+  { "source": "/blog/a-guide-to-increasing-your-website-traffic", "destination": "/insights/increasing-website-traffic", "permanent": true },
+  { "source": "/blog/guide-to-a-winning-digital-marketing-strategy", "destination": "/insights/winning-digital-marketing-strategy", "permanent": true },
+  { "source": "/blog/a-better-way-to-product-development", "destination": "/insights", "permanent": true },
+  { "source": "/blog/d7bff3lok0ma8lbcv78vjg57rrunn8", "destination": "/insights", "permanent": true },
+
+  { "source": "/portfolio/gcconnectedhomes-website-design", "destination": "/work/gc-connected-homes", "permanent": true },
+  { "source": "/portfolio/trigahex-shopify-redesign", "destination": "/work/trigahex", "permanent": true },
+  { "source": "/portfolio/onyx-academy-website-refresh", "destination": "/work", "permanent": true },
+  { "source": "/portfolio/vipers-basketball-club", "destination": "/work", "permanent": true },
+
+  { "source": "/beginners-seo-checklist", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
+  { "source": "/squarespace-css-library", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
+  { "source": "/website-copy-template-pack", "destination": "/insights/writing-great-website-copy", "permanent": true },
+  { "source": "/5-tips-for-a-website-that-converts", "destination": "/websites", "permanent": true },
+
+  { "source": "/store", "destination": "/insights", "permanent": true },
+  { "source": "/store/for-businesses", "destination": "/insights", "permanent": true },
+  { "source": "/store/for-designers", "destination": "/insights", "permanent": true },
+  { "source": "/store/free-resources", "destination": "/insights", "permanent": true },
+  { "source": "/store/p/website-copy-template-pack", "destination": "/insights/writing-great-website-copy", "permanent": true },
+  { "source": "/store/p/beginners-seo-checklist", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
+  { "source": "/store/p/squarespace-css-library", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
+  { "source": "/store/p/5-tips-for-a-website-that-converts", "destination": "/websites", "permanent": true }
 ]

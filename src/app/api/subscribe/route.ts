@@ -9,6 +9,13 @@ const GROUPS: Record<string, string | undefined> = {
   contact: process.env.ML_GROUP_CONTACT,
 };
 
+// Whatever comes back from here is read by a real visitor: the form renders the
+// error text verbatim. Never return a configuration detail or an upstream error
+// message — give the person a way to reach us instead, so an enquiry is redirected
+// rather than lost.
+const FALLBACK =
+  'Sorry, the form could not be sent just now. Please email jerrell@ilovedigital.com.au or call 1300 944 890 and we will come straight back to you.';
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -18,10 +25,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'A valid email is required.' }, { status: 400 });
     }
     if (!process.env.MAILERLITE_API_KEY) {
-      return NextResponse.json(
-        { error: 'MailerLite is not configured yet. Set MAILERLITE_API_KEY.' },
-        { status: 501 }
-      );
+      console.error('[subscribe] MAILERLITE_API_KEY is not set — submission not delivered:', {
+        type,
+        email,
+      });
+      return NextResponse.json({ error: FALLBACK }, { status: 503 });
     }
 
     const fields: Record<string, string> = {};
@@ -35,6 +43,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true });
   } catch (e) {
-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
+    // Log the real reason for us; show the visitor something they can act on.
+    console.error('[subscribe] submission failed:', e);
+    return NextResponse.json({ error: FALLBACK }, { status: 500 });
   }
 }
