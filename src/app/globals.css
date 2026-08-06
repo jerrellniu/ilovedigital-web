@@ -24,8 +24,13 @@
   .section-y {
     @apply py-[60px] md:py-[120px];
   }
+  /* Page gutter, stepped rather than doubled at one breakpoint:
+     24px phones / 32px large phones / 48px tablets / 64px laptops up.
+     Mobile stays at 24px deliberately — a 64px gutter on a 390px screen
+     spends a third of the viewport on empty margin. Above max-w-content
+     the layout centres and the gutters grow past 64px on their own. */
   .container-wide {
-    @apply mx-auto w-full max-w-content px-6;
+    @apply mx-auto w-full max-w-content px-6 sm:px-8 md:px-12 lg:px-16;
   }
   .eyebrow {
     @apply mb-4 inline-block font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan;
