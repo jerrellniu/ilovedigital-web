@@ -102,7 +102,7 @@ export default function HomePage() {
               width={800}
               height={800}
               priority={false}
-              className="w-full max-w-xs"
+              className="portrait-fade w-full max-w-sm"
             />
           ) : (
             <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">

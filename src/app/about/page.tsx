@@ -32,7 +32,7 @@ export default function AboutPage() {
             width={800}
             height={800}
             priority
-            className="w-full max-w-sm md:justify-self-end"
+            className="portrait-fade w-full max-w-sm md:justify-self-end"
           />
         ) : (
           <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">

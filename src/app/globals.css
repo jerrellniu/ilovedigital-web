@@ -32,6 +32,13 @@
   .container-wide {
     @apply mx-auto w-full max-w-content px-6 sm:px-8 md:px-12 lg:px-16;
   }
+  /* Softens the hard bottom edge of the founder cut-out, where the source
+     asset crops mid-torso, so the portrait dissolves into the section
+     instead of ending on a straight line. Safari still needs the prefix. */
+  .portrait-fade {
+    -webkit-mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 78%, transparent 100%);
+  }
   .eyebrow {
     @apply mb-4 inline-block font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan;
   }
