@@ -31,18 +31,6 @@
     {
       "label": "Work",
       "href": "/work"
-    },
-    {
-      "label": "About",
-      "href": "/about"
-    },
-    {
-      "label": "Insights",
-      "href": "/insights"
-    },
-    {
-      "label": "Contact",
-      "href": "/contact"
     }
   ],
   "services": [
@@ -72,6 +60,10 @@
       {
         "label": "Work",
         "href": "/work"
+      },
+      {
+        "label": "Insights",
+        "href": "/insights"
       },
       {
         "label": "Websites",

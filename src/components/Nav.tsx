@@ -18,9 +18,15 @@ export default function Nav({ site }: { site: SiteContent }) {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex">
-          <Link href="/work" className="text-[15px] font-medium text-muted hover:text-ink">
-            Work
-          </Link>
+          {site.nav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="text-[15px] font-medium text-muted hover:text-ink"
+            >
+              {item.label}
+            </Link>
+          ))}
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -48,15 +54,6 @@ export default function Nav({ site }: { site: SiteContent }) {
               </div>
             ) : null}
           </div>
-          <Link href="/about" className="text-[15px] font-medium text-muted hover:text-ink">
-            About
-          </Link>
-          <Link href="/insights" className="text-[15px] font-medium text-muted hover:text-ink">
-            Insights
-          </Link>
-          <Link href="/contact" className="text-[15px] font-medium text-muted hover:text-ink">
-            Contact
-          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -86,15 +83,16 @@ export default function Nav({ site }: { site: SiteContent }) {
       {/* Mobile menu */}
       {mobileOpen ? (
         <div className="border-t border-white/10 px-6 pb-6 pt-2 md:hidden">
-          <Link href="/work" className="block py-3 text-muted">Work</Link>
+          {site.nav.map((item) => (
+            <Link key={item.href} href={item.href} className="block py-3 text-muted">
+              {item.label}
+            </Link>
+          ))}
           {site.services.map((s) => (
             <Link key={s.href} href={s.href} className="block py-3 pl-3 text-muted">
               {s.label}
             </Link>
           ))}
-          <Link href="/about" className="block py-3 text-muted">About</Link>
-          <Link href="/insights" className="block py-3 text-muted">Insights</Link>
-          <Link href="/contact" className="block py-3 text-muted">Contact</Link>
           <a
             href={site.booking.href}
             target="_blank"
