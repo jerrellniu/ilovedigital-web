@@ -35,6 +35,8 @@ export interface HeroBlock {
   eyebrow?: string;
   heading: string;
   sub: string;
+  image?: string;
+  imageAlt?: string;
   primaryCta?: CtaLink;
   secondaryCta?: CtaLink;
 }
@@ -94,7 +96,14 @@ export interface HomeContent {
   pillars: Pillar[];
   featuredWork: { eyebrow: string; heading: string; sub: string; cards: CaseStudyCardData[]; footerCta: CtaLink };
   testimonials: { heading: string; sub: string; items: Testimonial[] };
-  founder: { eyebrow: string; heading: string; paragraphs: string[]; cta: CtaLink };
+  founder: {
+    eyebrow: string;
+    heading: string;
+    image?: string;
+    imageAlt?: string;
+    paragraphs: string[];
+    cta: CtaLink;
+  };
   process: { eyebrow: string; heading: string; sub: string; steps: ProcessStep[]; cta: CtaLink };
   audit: { heading: string; sub: string; button: string; belowLink: CtaLink };
   faq: { heading: string; items: Faq[] };

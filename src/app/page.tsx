@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import StatsBar from '@/components/StatsBar';
@@ -94,9 +95,20 @@ export default function HomePage() {
       {/* Founder */}
       <section className="bg-deep">
         <div className="container-wide section-y grid items-center gap-14 md:grid-cols-[0.8fr_1.2fr]">
-          <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
-            Founder portrait
-          </div>
+          {home.founder.image ? (
+            <Image
+              src={home.founder.image}
+              alt={home.founder.imageAlt ?? ''}
+              width={800}
+              height={800}
+              priority={false}
+              className="w-full max-w-xs"
+            />
+          ) : (
+            <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
+              Founder portrait
+            </div>
+          )}
           <div>
             <span className="eyebrow">{home.founder.eyebrow}</span>
             <h2 className="max-w-[20ch] text-[clamp(1.9rem,3.4vw,3rem)]">{home.founder.heading}</h2>

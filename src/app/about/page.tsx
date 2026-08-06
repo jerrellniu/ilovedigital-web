@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Button from '@/components/Button';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/JsonLd';
@@ -24,9 +25,20 @@ export default function AboutPage() {
           <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{about.hero.heading}</h1>
           <p className="mt-6 max-w-[46ch] text-[1.15rem] text-muted">{about.hero.sub}</p>
         </div>
-        <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">
-          Photo of Jerrell
-        </div>
+        {about.hero.image ? (
+          <Image
+            src={about.hero.image}
+            alt={about.hero.imageAlt ?? ''}
+            width={800}
+            height={800}
+            priority
+            className="w-full max-w-sm md:justify-self-end"
+          />
+        ) : (
+          <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">
+            Photo of Jerrell
+          </div>
+        )}
       </section>
 
       {/* Story */}
