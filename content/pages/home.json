@@ -7,7 +7,7 @@
     "eyebrow": "A people-first digital studio on the Gold Coast",
     "heading": "We make websites, and Google simple.",
     "sub": "Modern websites and AI search visibility for Queensland trades and service businesses ready to grow. We rebuild outdated sites to be found by AI, ranked on Google, and ready to turn visitors into bookings.",
-    "primaryCta": { "label": "Book a discovery call", "href": "/contact" },
+    "primaryCta": { "label": "Book a call with Jerrell", "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7" },
     "secondaryCta": { "label": "Get a free website audit →", "href": "/audit" }
   },
   "stats": [
@@ -176,6 +176,6 @@
   "finalCta": {
     "heading": "Ready to talk?",
     "sub": "A 15-minute call. No pressure, no pitch, just a real conversation about your business.",
-    "button": { "label": "Book a discovery call", "href": "/contact" }
+    "button": { "label": "Book a call with Jerrell", "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7" }
   }
 }

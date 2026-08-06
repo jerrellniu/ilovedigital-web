@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Button from '@/components/Button';
 import WorkGrid from '@/components/WorkGrid';
 import Breadcrumbs from '@/components/Breadcrumbs';
-import { getWorkIndex } from '@/lib/content';
+import { getSite, getWorkIndex } from '@/lib/content';
 
 const items = getWorkIndex();
+const site = getSite();
 
 export const metadata: Metadata = {
   title: 'Our Work — Case Studies in Web, SEO, Social, and Brand',
@@ -34,7 +35,7 @@ export default function WorkPage() {
         <div className="container-wide section-y text-center">
           <h2 className="text-[clamp(1.8rem,3.2vw,2.6rem)]">Your business could be here next.</h2>
           <div className="mt-8">
-            <Button href="/contact">Book a discovery call</Button>
+            <Button href={site.booking.href}>{site.booking.label}</Button>
           </div>
         </div>
       </section>

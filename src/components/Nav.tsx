@@ -60,12 +60,14 @@ export default function Nav({ site }: { site: SiteContent }) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/contact"
+          <a
+            href={site.booking.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden rounded-[10px] bg-cyan px-[18px] py-2.5 font-body text-[15px] font-semibold text-[#06222a] hover:brightness-110 md:inline-flex"
           >
-            Book a discovery call
-          </Link>
+            {site.booking.label}
+          </a>
           <button
             type="button"
             className="md:hidden"
@@ -93,12 +95,14 @@ export default function Nav({ site }: { site: SiteContent }) {
           <Link href="/about" className="block py-3 text-muted">About</Link>
           <Link href="/insights" className="block py-3 text-muted">Insights</Link>
           <Link href="/contact" className="block py-3 text-muted">Contact</Link>
-          <Link
-            href="/contact"
+          <a
+            href={site.booking.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-3 inline-flex w-full justify-center rounded-[10px] bg-cyan px-5 py-3 font-semibold text-[#06222a]"
           >
-            Book a discovery call
-          </Link>
+            {site.booking.label}
+          </a>
         </div>
       ) : null}
     </header>

@@ -18,6 +18,7 @@ export interface SiteContent {
   abn: string;
   email: string;
   location: string;
+  booking: CtaLink;
   socials: { label: string; href: string }[];
   nav: CtaLink[];
   services: CtaLink[];

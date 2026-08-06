@@ -13,7 +13,13 @@ export default function Hero({ hero }: { hero: HeroBlock }) {
             <Button href={hero.primaryCta.href}>{hero.primaryCta.label}</Button>
           ) : null}
           {hero.secondaryCta ? (
-            <a href={hero.secondaryCta.href} className="font-body font-semibold text-cyan">
+            <a
+              href={hero.secondaryCta.href}
+              {...(/^https?:\/\//.test(hero.secondaryCta.href)
+                ? { target: '_blank', rel: 'noopener noreferrer' }
+                : {})}
+              className="font-body font-semibold text-cyan"
+            >
               {hero.secondaryCta.label}
             </a>
           ) : null}

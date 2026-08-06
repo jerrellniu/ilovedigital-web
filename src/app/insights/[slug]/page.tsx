@@ -6,7 +6,9 @@ import Markdown from '@/components/Markdown';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getCollectionSlugs, getEntry } from '@/lib/mdx';
-import { getInsightsIndex } from '@/lib/content';
+import { getInsightsIndex, getSite } from '@/lib/content';
+
+const site = getSite();
 import { articleSchema } from '@/lib/schema';
 
 interface PostFm {
@@ -108,7 +110,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">Want this handled for you?</h2>
         <div className="mt-8 flex justify-center gap-4">
           <Button href="/audit">Get a free website audit</Button>
-          <Button href="/contact" variant="outline">Book a discovery call</Button>
+          <Button href={site.booking.href} variant="outline">{site.booking.label}</Button>
         </div>
       </section>
     </>

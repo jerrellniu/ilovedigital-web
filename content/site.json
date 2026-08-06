@@ -5,6 +5,10 @@
   "abn": "95703245254",
   "email": "jerrell@ilovedigital.com.au",
   "location": "Gold Coast, Queensland, Australia",
+  "booking": {
+    "label": "Book a call with Jerrell",
+    "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7"
+  },
   "socials": [
     {
       "label": "Facebook",

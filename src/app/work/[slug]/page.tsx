@@ -6,7 +6,9 @@ import Markdown from '@/components/Markdown';
 import CaseStudyCard from '@/components/CaseStudyCard';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getCollectionSlugs, getEntry } from '@/lib/mdx';
-import { getWorkIndex } from '@/lib/content';
+import { getSite, getWorkIndex } from '@/lib/content';
+
+const site = getSite();
 
 interface CaseFm {
   client: string;
@@ -121,7 +123,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       <section className="container-wide section-y text-center">
         <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">Want results like this?</h2>
         <div className="mt-8">
-          <Button href="/contact">Book a discovery call</Button>
+          <Button href={site.booking.href}>{site.booking.label}</Button>
         </div>
       </section>
     </>
