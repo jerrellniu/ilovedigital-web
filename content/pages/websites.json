@@ -1,19 +1,25 @@
 {
   "meta": {
     "title": "Websites that get found and get bookings",
-    "description": "Custom, fast, modern websites with brand identity to match — built to be understood by Google and cited by AI. For Queensland trades and service businesses."
+    "description": "Custom, fast, modern websites with brand identity to match \u2014 built to be understood by Google and cited by AI. For Queensland trades and service businesses."
   },
   "hero": {
     "eyebrow": "Websites",
-    "heading": "Websites that get found and get bookings.",
-    "sub": "Your website is the first thing a customer judges you on, and increasingly the first thing an AI engine reads about you. We design and build fast, modern, custom websites — with the brand identity to match — structured to be understood by Google, cited by AI, and easy for your next customer to act on.",
-    "primaryCta": { "label": "Get a free quote", "href": "/contact" },
-    "secondaryCta": { "label": "Book a call with Jerrell →", "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7" }
+    "heading": "Fast, stunning websites that show off your business.",
+    "sub": "Your website is the first thing a customer judges you on, and increasingly the first thing an AI engine reads about you. We design and build fast, modern, custom websites \u2014 with the brand identity to match \u2014 structured to be understood by Google, cited by AI, and easy for your next customer to act on.",
+    "primaryCta": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Book a call with Jerrell \u2192",
+      "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7"
+    }
   },
   "included": {
     "heading": "What's included",
     "items": [
-      "Custom design — no off-the-shelf templates",
+      "Custom design \u2014 no off-the-shelf templates",
       "Brand identity: logos, brand guidelines, business cards, and multi-brand systems",
       "Fast loading and mobile-perfect on every screen",
       "Core SEO and structured data built in from day one",
@@ -23,25 +29,43 @@
     ]
   },
   "platforms": {
-    "label": "Platforms we build on",
-    "items": ["Squarespace", "WordPress", "Shopify", "Framer", "Webflow", "Wix"]
+    "label": "Custom coded, or on your platform of choice",
+    "items": [
+      "Squarespace",
+      "WordPress",
+      "Shopify",
+      "Webflow",
+      "Wix"
+    ]
   },
-  "note": "Brand and visual identity sit within our website work — they can be part of a build or quoted on their own.",
+  "note": "Brand and visual identity sit within our website work \u2014 they can be part of a build or quoted on their own.",
   "relatedWork": {
     "client": "The Boxing Shop",
     "tag": "Web",
     "headline": "3 websites consolidation and Shopify rebuild for Brisbane boxing gym",
-    "outcome": "One fast, unified Shopify store instead of three — easier to manage, easier to buy from.",
+    "outcome": "One fast, unified Shopify store instead of three \u2014 easier to manage, easier to buy from.",
     "href": "/work/the-boxing-shop",
     "image": "/images/work/the-boxing-shop.jpg"
   },
   "faq": [
-    { "question": "How much does a new website cost?", "answer": "Website pricing depends on the size of the site, the platform, and what's included — so we don't publish a fixed price list. Tell us a bit about your project and we'll come back with a clear, itemised quote. It's free, with no obligation." },
-    { "question": "Do you do branding and logos?", "answer": "Yes. Brand identity can be included in a website build or quoted on its own — anything from a simple logo refresh through to a full brand strategy and design package. Get a free quote and we'll scope it to what you actually need." },
-    { "question": "Do you offer website hosting and maintenance?", "answer": "Yes, as a monthly subscription, billed separately from any website build or retainer. Get a free quote and we'll include the right hosting tier for your platform and traffic." }
+    {
+      "question": "How much does a new website cost?",
+      "answer": "Website pricing depends on the size of the site, the platform, and what's included \u2014 so we don't publish a fixed price list. Tell us a bit about your project and we'll come back with a clear, itemised quote. It's free, with no obligation."
+    },
+    {
+      "question": "Do you do branding and logos?",
+      "answer": "Yes. Brand identity can be included in a website build or quoted on its own \u2014 anything from a simple logo refresh through to a full brand strategy and design package. Get a free quote and we'll scope it to what you actually need."
+    },
+    {
+      "question": "Do you offer website hosting and maintenance?",
+      "answer": "Yes, as a monthly subscription, billed separately from any website build or retainer. Get a free quote and we'll include the right hosting tier for your platform and traffic."
+    }
   ],
   "ctaBand": {
     "heading": "No price lists. Just an honest quote.",
-    "button": { "label": "Get a free quote", "href": "/contact" }
+    "button": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    }
   }
 }
