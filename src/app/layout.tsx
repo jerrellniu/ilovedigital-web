@@ -4,6 +4,7 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CookieNotice from '@/components/CookieNotice';
+import { Analytics } from '@vercel/analytics/next';
 import { getSite } from '@/lib/content';
 
 const jakarta = Plus_Jakarta_Sans({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer site={site} />
         <CookieNotice text={site.cookieNotice} />
+        <Analytics />
       </body>
     </html>
   );
