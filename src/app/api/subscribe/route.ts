@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import { subscribe } from '@/lib/mailerlite';
+import { notify } from '@/lib/notify';
 
 // Maps a form "type" to a MailerLite group. The group is what triggers the
-// automation in MailerLite (internal notification + auto-reply), per the workflow.
+// subscriber-facing auto-reply automation in MailerLite. MailerLite cannot email
+// anyone but the subscriber, so the internal notification is sent from here.
 const GROUPS: Record<string, string | undefined> = {
   newsletter: process.env.ML_GROUP_NEWSLETTER,
   audit: process.env.ML_GROUP_AUDIT,
@@ -14,7 +16,7 @@ const GROUPS: Record<string, string | undefined> = {
 // message — give the person a way to reach us instead, so an enquiry is redirected
 // rather than lost.
 const FALLBACK =
-  'Sorry, the form could not be sent just now. Please email jerrell@ilovedigital.com.au or call 1300 944 890 and we will come straight back to you.';
+  'Sorry, the form could not be sent just now. Please email hello@ilovedigital.com.au or call 1300 944 890 and we will come straight back to you.';
 
 export async function POST(req: Request) {
   try {
@@ -40,6 +42,12 @@ export async function POST(req: Request) {
 
     const groupId = GROUPS[type];
     await subscribe({ email, fields, groups: groupId ? [groupId] : undefined });
+
+    // Awaited deliberately. Serverless functions can be frozen the moment the
+    // response is returned, so a floating promise here would be killed before
+    // the request reaches Resend. notify() never throws, so a notification
+    // failure cannot turn a captured lead into an error for the visitor.
+    await notify({ type, email, fields });
 
     return NextResponse.json({ ok: true });
   } catch (e) {
