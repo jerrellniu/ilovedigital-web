@@ -1,17 +1,22 @@
 // Server-only internal notification. Sends a plain-text email to the studio
-// whenever a form is submitted, via the Resend API.
+// whenever a form is submitted, over Google Workspace SMTP.
 //
 // This exists because MailerLite automations can only email the subscriber —
 // there is no internal notification step. Without this, a form submission is
 // captured but nobody is told about it until someone opens MailerLite.
 //
-// Requires RESEND_API_KEY. NOTIFY_TO and NOTIFY_FROM have sensible defaults so
-// a missing value degrades to the right address rather than throwing.
+// Workspace rather than a transactional provider: this is a handful of plain
+// emails a month to our own inbox. Workspace is already paid for, needs no
+// sending domain, and adds no second reputation to manage.
+//
+// Requires SMTP_USER and SMTP_PASSWORD. SMTP_PASSWORD must be a Google app
+// password, not the account password — that requires 2-Step Verification on
+// the account. NOTIFY_TO defaults to the same mailbox we send from.
 
-const API = 'https://api.resend.com/emails';
+import nodemailer from 'nodemailer';
 
-const TO = process.env.NOTIFY_TO || 'hello@ilovedigital.com.au';
-const FROM = process.env.NOTIFY_FROM || 'website@ilovedigital.com.au';
+const HOST = 'smtp.gmail.com';
+const PORT = 465; // implicit TLS
 
 const LABELS: Record<string, string> = {
   newsletter: 'Newsletter signup',
@@ -31,16 +36,20 @@ export interface NotifyParams {
  * they show up in the Vercel runtime logs.
  */
 export async function notify({ type, email, fields }: NotifyParams): Promise<void> {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    console.error('[notify] RESEND_API_KEY is not set — no internal notification sent:', {
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASSWORD;
+
+  if (!user || !pass) {
+    console.error('[notify] SMTP_USER or SMTP_PASSWORD is not set — no internal notification sent:', {
       type,
       email,
     });
     return;
   }
 
+  const to = process.env.NOTIFY_TO || user;
   const label = LABELS[type] ?? type;
+
   const lines = [
     `${label} from ilovedigital.com.au`,
     '',
@@ -51,24 +60,24 @@ export async function notify({ type, email, fields }: NotifyParams): Promise<voi
   ];
 
   try {
-    const res = await fetch(API, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${key}`,
-      },
-      body: JSON.stringify({
-        from: `I Love Digital website <${FROM}>`,
-        to: [TO],
-        reply_to: email,
-        subject: `${label} — ${email}`,
-        text: lines.join('\n'),
-      }),
+    // Gmail requires the envelope sender to be the authenticated mailbox (or a
+    // verified "Send mail as" alias), so `from` is derived from SMTP_USER rather
+    // than configured separately. Reply-to is the enquirer, so replying to the
+    // notification goes straight back to them.
+    const transport = nodemailer.createTransport({
+      host: HOST,
+      port: PORT,
+      secure: true,
+      auth: { user, pass },
     });
 
-    if (!res.ok) {
-      console.error(`[notify] Resend ${res.status}:`, await res.text());
-    }
+    await transport.sendMail({
+      from: `"I Love Digital website" <${user}>`,
+      to,
+      replyTo: email,
+      subject: `${label} — ${email}`,
+      text: lines.join('\n'),
+    });
   } catch (e) {
     console.error('[notify] internal notification failed:', e);
   }

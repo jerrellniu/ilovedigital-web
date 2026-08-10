@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import { subscribe } from '@/lib/mailerlite';
 import { notify } from '@/lib/notify';
 
+// nodemailer needs Node built-ins, so this route must not be pushed to Edge.
+export const runtime = 'nodejs';
+
 // Maps a form "type" to a MailerLite group. The group is what triggers the
 // subscriber-facing auto-reply automation in MailerLite. MailerLite cannot email
 // anyone but the subscriber, so the internal notification is sent from here.
