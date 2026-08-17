@@ -11,6 +11,18 @@ export interface Faq {
   answer: string;
 }
 
+/**
+ * A Google Calendar appointment schedule. `href` is the public booking page,
+ * `embedUrl` is the same URL with `?gv=true` so it renders inside an iframe.
+ * Both are stored rather than derived, so a schedule that needs a different
+ * query string later does not require a code change.
+ */
+export interface BookingSchedule {
+  label: string;
+  href: string;
+  embedUrl: string;
+}
+
 export interface SiteContent {
   name: string;
   tagline: string;
@@ -19,6 +31,10 @@ export interface SiteContent {
   email: string;
   location: string;
   booking: CtaLink;
+  schedules: {
+    discovery15: BookingSchedule;
+    meeting30: BookingSchedule;
+  };
   socials: { label: string; href: string }[];
   nav: CtaLink[];
   services: CtaLink[];

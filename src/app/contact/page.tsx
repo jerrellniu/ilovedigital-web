@@ -3,6 +3,7 @@ import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ContactForm from '@/components/forms/ContactForm';
+import BookingEmbed from '@/components/BookingEmbed';
 import { getContact, getSite } from '@/lib/content';
 import { faqPageSchema } from '@/lib/schema';
 
@@ -29,10 +30,11 @@ export default function ContactPage() {
         <div className="rounded-2xl bg-surface p-8">
           <h2 className="text-[1.4rem]">{contact.book.heading}</h2>
           <p className="mt-3 text-muted">{contact.book.sub}</p>
-          {/* TODO: embed Google Calendar appointment schedule */}
-          <div className="mt-6 flex h-64 items-center justify-center rounded-xl border border-dashed border-white/15 text-sm text-faint">
-            Google Calendar booking embed
-          </div>
+          <BookingEmbed
+            src={site.schedules.discovery15.embedUrl}
+            fallbackHref={site.schedules.discovery15.href}
+            title={site.schedules.discovery15.label}
+          />
         </div>
 
         {/* Message form — TODO: wire to MailerLite */}

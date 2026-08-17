@@ -7,7 +7,19 @@
   "location": "Gold Coast, Queensland, Australia",
   "booking": {
     "label": "Book a call with Jerrell",
-    "href": "https://calendar.app.google/noDsozbsi8Y2pbUW7"
+    "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
+  },
+  "schedules": {
+    "discovery15": {
+      "label": "15-minute discovery call",
+      "href": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2VDWwoN-9od8yTBHTf7Hs50YA_xXMqEsofVEaG5JxR_ejI1RLsaHuOEtSNdoYGaCsELIS3EXhr",
+      "embedUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2VDWwoN-9od8yTBHTf7Hs50YA_xXMqEsofVEaG5JxR_ejI1RLsaHuOEtSNdoYGaCsELIS3EXhr?gv=true"
+    },
+    "meeting30": {
+      "label": "30-minute meeting",
+      "href": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1UcgqcW53Nzdd9TzlPEbaMuJnS-Vs8lYXm7yRQKJWfRIIOmCnpU2FAkX1qh8CYmlZwT6YAAuMA",
+      "embedUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1UcgqcW53Nzdd9TzlPEbaMuJnS-Vs8lYXm7yRQKJWfRIIOmCnpU2FAkX1qh8CYmlZwT6YAAuMA?gv=true"
+    }
   },
   "socials": [
     {

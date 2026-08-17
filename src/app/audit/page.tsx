@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import AuditForm from '@/components/forms/AuditForm';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import BookingEmbed from '@/components/BookingEmbed';
+import { getSite } from '@/lib/content';
+
+const site = getSite();
 
 export const metadata: Metadata = {
   title: 'Free Website Audit — Loom Walkthrough + PDF Report',
@@ -60,6 +64,23 @@ export default function AuditPage() {
               <p className="text-[0.94rem] text-muted">{s.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* Booking. Second path for anyone who would rather talk than wait three days. */}
+      <section className="bg-deep">
+        <div className="container-wide section-y">
+          <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">Rather talk it through?</h2>
+          <p className="mt-4 max-w-[52ch] text-muted">
+            Grab 15 minutes and we&apos;ll go over your site together. No pitch, no obligation.
+          </p>
+          <div className="mx-auto max-w-[820px]">
+            <BookingEmbed
+              src={site.schedules.discovery15.embedUrl}
+              fallbackHref={site.schedules.discovery15.href}
+              title={site.schedules.discovery15.label}
+            />
+          </div>
         </div>
       </section>
     </>

@@ -103,7 +103,15 @@ doc to match if not already done.
    `ML_GROUP_CONTACT`. Without them the endpoint returns 501 (forms still render). Add these
    in Vercel → Project → Settings → Environment Variables. Build the matching MailerLite groups
    + automations. Contact "message" is stored on a `message` field — confirm that field exists.
-3. Embed the Google Calendar 15-min appointment on `/contact` and `/audit`.
+3. ~~Embed the Google Calendar 15-min appointment on `/contact` and `/audit`.~~ **Done** —
+   `src/components/BookingEmbed.tsx` renders an appointment schedule in an iframe, with a
+   visible "open in a new tab" fallback because the embed is third-party and fails silently
+   as an empty box when blocked. Schedule URLs live in `content/site.json` under `schedules`
+   (`discovery15`, `meeting30`), typed by `BookingSchedule`. The 15-minute schedule is
+   embedded on `/contact` and at the foot of `/audit`; the 30-minute one is recorded but not
+   yet placed. Note the embed URL must be the public
+   `/calendar/appointments/schedules/...?gv=true` form — the `/u/0/` variant Google shows
+   while signed in is account-scoped and will not load for a visitor.
 4. ~~Logo.~~ **Done** — `src/components/Logo.tsx` inlines the real supplied "i♡digital" vector;
    text paths use `currentColor` (white on the dark theme), the heart keeps its brand gradient.
    Original black vector at `public/logo.svg`. **Still TODO:** real imagery for case-study
