@@ -24,7 +24,15 @@ const FALLBACK =
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { email, type = 'newsletter', name, business, website, message } = body ?? {};
+    const { email, type = 'newsletter', name, business, website, message, hp } = body ?? {};
+
+    // Honeypot. Only a bot fills this — the field is off-screen and untabbable.
+    // Answer 200 so the bot sees a success and doesn't retry with the field
+    // cleared, but do nothing: no subscriber, no notification.
+    if (typeof hp === 'string' && hp.trim() !== '') {
+      console.warn('[subscribe] honeypot triggered — submission dropped:', { type });
+      return NextResponse.json({ ok: true });
+    }
 
     if (!email || typeof email !== 'string') {
       return NextResponse.json({ error: 'A valid email is required.' }, { status: 400 });
