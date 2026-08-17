@@ -25,20 +25,25 @@ export default function ContactPage() {
         <p className="mt-6 max-w-[52ch] text-[1.15rem] text-muted">{contact.hero.sub}</p>
       </section>
 
-      <section className="container-wide grid gap-10 pb-[60px] md:grid-cols-2 md:pb-[120px]">
-        {/* Book */}
+      {/* Booking gets its own full-width row. Google's embed collapses to a
+          cramped single column with internal scrolling below ~700px, which
+          buried the time slots when this shared a two-column grid. */}
+      <section className="container-wide pb-10">
         <div className="rounded-2xl bg-surface p-8">
           <h2 className="text-[1.4rem]">{contact.book.heading}</h2>
-          <p className="mt-3 text-muted">{contact.book.sub}</p>
+          <p className="mt-3 max-w-[60ch] text-muted">{contact.book.sub}</p>
           <BookingEmbed
             src={site.schedules.discovery15.embedUrl}
             fallbackHref={site.schedules.discovery15.href}
             title={site.schedules.discovery15.label}
           />
         </div>
+      </section>
 
-        {/* Message form — TODO: wire to MailerLite */}
-        <div className="rounded-2xl bg-surface p-8">
+      {/* Message form. Capped rather than full-bleed — inputs stretched to the
+          full container read as a data-entry screen, not a note to a person. */}
+      <section className="container-wide pb-[60px] md:pb-[120px]">
+        <div className="max-w-[720px] rounded-2xl bg-surface p-8">
           <h2 className="text-[1.4rem]">{contact.message.heading}</h2>
           <p className="mt-3 text-muted">{contact.message.sub}</p>
           <ContactForm />
