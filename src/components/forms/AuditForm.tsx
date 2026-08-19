@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSubscribe } from './useSubscribe';
 import Honeypot from './Honeypot';
+import Turnstile from './Turnstile';
 
 const inputCls =
   'min-w-[200px] flex-1 rounded-[10px] border border-white/10 bg-surface px-[18px] py-[15px] text-ink placeholder:text-faint focus:border-cyan focus:outline-none';
@@ -19,6 +20,8 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
     concern: '',
     hp: '',
   });
+
+  const [token, setToken] = useState('');
 
   const ns = full ? 'audit-full' : 'audit';
 
@@ -44,6 +47,7 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
           business: form.business,
           message: form.concern,
           hp: form.hp,
+          token,
           type: 'audit',
         });
       }}
@@ -127,6 +131,8 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
           />
         </>
       ) : null}
+
+      <Turnstile onToken={setToken} />
 
       <button
         type="submit"

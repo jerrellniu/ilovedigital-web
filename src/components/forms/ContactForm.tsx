@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSubscribe } from './useSubscribe';
 import Honeypot from './Honeypot';
+import Turnstile from './Turnstile';
 
 const inputCls =
   'w-full rounded-[10px] border border-white/10 bg-base px-4 py-3 text-ink placeholder:text-faint focus:border-cyan focus:outline-none';
@@ -10,6 +11,8 @@ const inputCls =
 export default function ContactForm() {
   const { status, message, submit } = useSubscribe();
   const [form, setForm] = useState({ name: '', email: '', business: '', message: '', hp: '' });
+  // Kept out of `form` so the Turnstile callback cannot race a keystroke.
+  const [token, setToken] = useState('');
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -26,7 +29,7 @@ export default function ContactForm() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        submit({ ...form, type: 'contact' });
+        submit({ ...form, token, type: 'contact' });
       }}
       className="relative mt-6 space-y-4"
     >
@@ -98,6 +101,8 @@ export default function ContactForm() {
           className={inputCls}
         />
       </div>
+
+      <Turnstile onToken={setToken} />
 
       <button
         type="submit"
