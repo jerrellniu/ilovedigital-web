@@ -1,12 +1,92 @@
 [
-  { "client": "The Boxing Shop", "tag": "Web", "platform": "Shopify", "headline": "3 websites consolidation and Shopify rebuild for Brisbane boxing gym", "outcome": "One fast, unified Shopify store instead of three — easier to manage, easier to buy from.", "href": "/work/the-boxing-shop", "image": "/images/work/the-boxing-shop.jpg" },
-  { "client": "Homelessness Qld", "tag": "Web", "platform": "WordPress", "headline": "Large website restructure and WordPress build for peak body", "outcome": "A full restructure that makes it easier for people in crisis to find help, and easier for the team to keep updated.", "href": "/work/homelessness-qld", "image": "/images/work/homelessness-qld.jpg" },
-  { "client": "Toni Gunn", "tag": "Web", "platform": "Squarespace", "headline": "New brand and website for clinical supervisor and therapist", "outcome": "A polished identity and site that reflects the trust clients place in her practice.", "href": "/work/toni-gunn", "image": "/images/work/toni-gunn.jpg" },
-  { "client": "Solar Set", "tag": "Search", "headline": "Breaking into residential solar without losing their commercial rankings", "outcome": "Number one for commercial solar on the Gold Coast, top three in the Google Map Pack, and a five-figure saving.", "href": "/work/solar-set", "image": "/images/work/solar-set.jpg" },
-  { "client": "Evolved Solar & Electrical", "tag": "Web + Search", "platform": "Squarespace", "headline": "New website and search strategy for a premium residential solar installer", "outcome": "A faster site paired with a search presence that brings in the right enquiries.", "href": "/work/evolved-solar", "image": "/images/work/evolved-solar.jpg" },
-  { "client": "GC Connected Homes", "tag": "Search", "headline": "A website redesign and a search presence for a Gold Coast smart home installer", "outcome": "A site that finally says what they do, and 175 per cent more visits from Google.", "href": "/work/gc-connected-homes", "image": "/images/work/gc-connected-homes.jpg" },
-  { "client": "Butchers Pride", "tag": "Social", "headline": "From no social presence to 1,482 followers in five months", "outcome": "A brand-new audience, a content system Phil still uses, and a Google listing brought back from suspension.", "href": "/work/butchers-pride", "image": "/images/work/butchers-pride.jpg", "imageAlt": "Butchers Pride Instagram feed" },
-  { "client": "Trigahex", "tag": "Web", "platform": "Shopify", "headline": "Shopify store built to sell for a Queensland game manufacturer", "outcome": "A six-month sales goal hit in a few weeks.", "href": "/work/trigahex", "image": "/images/work/trigahex.jpg" },
-  { "client": "Varsity Vipers", "tag": "Web + Search", "platform": "Next.js", "headline": "New website and search presence for Queensland's largest junior basketball club", "outcome": "A modern hub for programs, fixtures, and sign-ups — easy for families to find.", "href": "/work/varsity-vipers", "image": "/images/work/varsity-vipers.jpg" },
-  { "client": "Olga's Hair Beautique", "tag": "Search", "headline": "Local search visibility for a growing Nerang hair salon", "outcome": "Stronger local visibility and a steady stream of new client enquiries.", "href": "/work/olgas-hair-beautique", "image": "/images/work/olgas-hair-beautique.jpg" }
+  {
+    "client": "The Boxing Shop",
+    "tag": "Web",
+    "platform": "Shopify",
+    "headline": "3 websites consolidation and Shopify rebuild for Brisbane boxing gym",
+    "outcome": "One fast, unified Shopify store instead of three \u2014 easier to manage, easier to buy from.",
+    "href": "/work/the-boxing-shop",
+    "image": "/images/work/the-boxing-shop.jpg"
+  },
+  {
+    "client": "Homelessness Qld",
+    "tag": "Web",
+    "platform": "WordPress",
+    "headline": "Large website restructure and WordPress build for peak body",
+    "outcome": "A full restructure that makes it easier for people in crisis to find help, and easier for the team to keep updated.",
+    "href": "/work/homelessness-qld",
+    "image": "/images/work/homelessness-qld.jpg"
+  },
+  {
+    "client": "Toni Gunn",
+    "tag": "Web",
+    "platform": "Squarespace",
+    "headline": "New brand and website for clinical supervisor and therapist",
+    "outcome": "A polished identity and site that reflects the trust clients place in her practice.",
+    "href": "/work/toni-gunn",
+    "image": "/images/work/toni-gunn.jpg"
+  },
+  {
+    "client": "Gold Coast solar installer",
+    "tag": "Search",
+    "headline": "\"A long term strategy that has delivered more organic leads\"",
+    "outcome": "Holly C. \u2014 five-star Google review",
+    "href": "/work/solar-set",
+    "image": "/images/work/solar-set.jpg",
+    "imageAlt": "Gold Coast solar installer website"
+  },
+  {
+    "client": "Evolved Solar & Electrical",
+    "tag": "Web + Search",
+    "platform": "Squarespace",
+    "headline": "New website and search strategy for a premium residential solar installer",
+    "outcome": "A faster site paired with a search presence that brings in the right enquiries.",
+    "href": "/work/evolved-solar",
+    "image": "/images/work/evolved-solar.jpg"
+  },
+  {
+    "client": "Gold Coast smart home installer",
+    "tag": "Search",
+    "headline": "\"It's also performing better than ever\"",
+    "outcome": "Alex D. \u2014 five-star Google review",
+    "href": "/work/gc-connected-homes",
+    "image": "/images/work/gc-connected-homes.jpg",
+    "imageAlt": "Gold Coast smart home installer website"
+  },
+  {
+    "client": "Small-batch sauce brand",
+    "tag": "Social",
+    "headline": "\"Produced organic leads and engagement\"",
+    "outcome": "Phil S. \u2014 five-star Google review",
+    "href": "/work/butchers-pride",
+    "image": "/images/work/butchers-pride.jpg",
+    "imageAlt": "Small-batch sauce brand Instagram feed"
+  },
+  {
+    "client": "Queensland game maker",
+    "tag": "Web",
+    "platform": "Shopify",
+    "headline": "\"We smashed those numbers in just a few weeks\"",
+    "outcome": "Erica W. \u2014 five-star Google review",
+    "href": "/work/trigahex",
+    "image": "/images/work/trigahex.jpg",
+    "imageAlt": "Queensland game maker online store"
+  },
+  {
+    "client": "Varsity Vipers",
+    "tag": "Web + Search",
+    "platform": "Next.js",
+    "headline": "New website and search presence for Queensland's largest junior basketball club",
+    "outcome": "A modern hub for programs, fixtures, and sign-ups \u2014 easy for families to find.",
+    "href": "/work/varsity-vipers",
+    "image": "/images/work/varsity-vipers.jpg"
+  },
+  {
+    "client": "Olga's Hair Beautique",
+    "tag": "Search",
+    "headline": "Local search visibility for a growing Nerang hair salon",
+    "outcome": "Stronger local visibility and a steady stream of new client enquiries.",
+    "href": "/work/olgas-hair-beautique",
+    "image": "/images/work/olgas-hair-beautique.jpg"
+  }
 ]
