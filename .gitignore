@@ -29,3 +29,6 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# Bridge quarantine — files the remote device could not delete
+_to_delete/
