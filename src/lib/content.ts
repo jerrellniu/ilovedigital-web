@@ -43,8 +43,16 @@ export function getServicePage(
   slug: 'websites' | 'search' | 'social' | 'consulting'
 ): ServicePageContent {
   const page = readJson<ServicePageContent>(`pages/${slug}.json`);
-  if (page.relatedWork) {
-    page.relatedWork = linkOnlyPublished([page.relatedWork])[0];
+  if (page.relatedWorkTag) {
+    // A card tagged "Web + Search" belongs on both pillar pages, so match on the
+    // parts rather than the whole string.
+    const wanted = page.relatedWorkTag.toLowerCase();
+    page.relatedWork = getWorkIndex().filter((c) =>
+      c.tag
+        .split('+')
+        .map((t) => t.trim().toLowerCase())
+        .includes(wanted)
+    );
   }
   return page;
 }

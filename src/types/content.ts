@@ -138,7 +138,15 @@ export interface ServicePageContent {
   platforms?: { label: string; items: string[] };
   note?: string;
   howItWorks?: string;
-  relatedWork?: CaseStudyCardData | null;
+  /**
+   * Pillar tag to pull case studies for, e.g. "Web". Matched against each card's
+   * tag, which may be combined ("Web + Search"), so a combined project shows on
+   * both pillar pages. Resolved from content/work/index.json at load time.
+   */
+  relatedWorkTag?: string;
+  /** Resolved at load time from `relatedWorkTag`. Never set this in the JSON. */
+  relatedWork?: CaseStudyCardData[];
+  /** Shown when the tag matches nothing, so the section is never silently empty. */
   relatedWorkNote?: string;
   faq: Faq[];
   ctaBand: { heading: string; button: CtaLink };

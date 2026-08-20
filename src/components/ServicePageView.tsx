@@ -38,12 +38,14 @@ export default function ServicePageView({ content }: { content: ServicePageConte
         ) : null}
       </section>
 
-      {content.relatedWork ? (
+      {content.relatedWork?.length ? (
         <section className="bg-deep">
           <div className="container-wide section-y">
             <h2 className="mb-8 text-[clamp(1.6rem,2.6vw,2.2rem)]">Related work</h2>
-            <div className="max-w-md">
-              <CaseStudyCard data={content.relatedWork} />
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {content.relatedWork.map((c, i) => (
+                <CaseStudyCard key={`${c.href ?? c.client}-${i}`} data={c} />
+              ))}
             </div>
           </div>
         </section>
