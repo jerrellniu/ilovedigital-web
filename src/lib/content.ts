@@ -40,7 +40,7 @@ export function getHome(): HomeContent {
 }
 
 export function getServicePage(
-  slug: 'websites' | 'search' | 'social' | 'ai'
+  slug: 'websites' | 'search' | 'social' | 'consulting'
 ): ServicePageContent {
   const page = readJson<ServicePageContent>(`pages/${slug}.json`);
   if (page.relatedWork) {

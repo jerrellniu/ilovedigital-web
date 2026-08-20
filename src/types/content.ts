@@ -39,9 +39,8 @@ export interface SiteContent {
   nav: CtaLink[];
   services: CtaLink[];
   footer: {
-    usefulLinks: CtaLink[];
-    resources: CtaLink[];
-    resourcesNote?: string;
+    /** Footer link columns, rendered in order. */
+    groups: { heading: string; links: CtaLink[] }[];
   };
   legal: CtaLink[];
   cookieNotice: string;

@@ -59,57 +59,70 @@
       "href": "/social"
     },
     {
-      "label": "AI",
-      "href": "/ai"
+      "label": "Consulting",
+      "href": "/consulting"
     }
   ],
   "footer": {
-    "usefulLinks": [
+    "groups": [
       {
-        "label": "About",
-        "href": "/about"
+        "heading": "Company",
+        "links": [
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Work",
+            "href": "/work"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "/privacy"
+          },
+          {
+            "label": "Terms of Use",
+            "href": "/terms"
+          }
+        ]
       },
       {
-        "label": "Work",
-        "href": "/work"
+        "heading": "Services",
+        "links": [
+          {
+            "label": "Websites",
+            "href": "/websites"
+          },
+          {
+            "label": "Search",
+            "href": "/search"
+          },
+          {
+            "label": "Social",
+            "href": "/social"
+          },
+          {
+            "label": "Consulting",
+            "href": "/consulting"
+          }
+        ]
       },
       {
-        "label": "Insights",
-        "href": "/insights"
-      },
-      {
-        "label": "Websites",
-        "href": "/websites"
-      },
-      {
-        "label": "Search",
-        "href": "/search"
-      },
-      {
-        "label": "Social",
-        "href": "/social"
-      },
-      {
-        "label": "AI",
-        "href": "/ai"
-      },
-      {
-        "label": "Contact",
-        "href": "/contact"
-      },
-      {
-        "label": "Client Portal",
-        "href": "https://portal.ilovedigital.com.au"
-      }
-    ],
-    "resources": [
-      {
-        "label": "Blog",
-        "href": "/insights"
-      },
-      {
-        "label": "Free Website Audit",
-        "href": "/audit"
+        "heading": "Resources",
+        "links": [
+          {
+            "label": "Insights",
+            "href": "/insights"
+          },
+          {
+            "label": "Free Website Audit",
+            "href": "/audit"
+          }
+        ]
       }
     ]
   },

@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/websites',
     '/search',
     '/social',
-    '/ai',
+    '/consulting',
     '/work',
     '/about',
     '/insights',

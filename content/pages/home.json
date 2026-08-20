@@ -76,9 +76,9 @@
       "href": "/social"
     },
     {
-      "key": "ai",
-      "name": "AI",
-      "heading": "AI tools and automation that save you time.",
+      "key": "consulting",
+      "name": "Consulting",
+      "heading": "Senior technical direction, without a full-time hire.",
       "oneLiner": "Custom AI strategy, workflow automation, and senior technical direction \u2014 including fractional CTO support \u2014 for businesses that want expert thinking without a full-time hire.",
       "bullets": [
         "AI strategy and workflow automation (Zapier, Make, custom GPTs)",
@@ -86,7 +86,7 @@
         "Fractional CTO and technical direction",
         "Training so your team can run with it"
       ],
-      "href": "/ai"
+      "href": "/consulting"
     }
   ],
   "featuredWork": {

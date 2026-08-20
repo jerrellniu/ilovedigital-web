@@ -1,0 +1,267 @@
+diff --git a/public/images/README.md b/public/images/README.md
+new file mode 100644
+index 0000000..e72b7bb
+--- /dev/null
++++ b/public/images/README.md
+@@ -0,0 +1,71 @@
++# Site images — conventions
++
++Every image the site serves lives here, under `public/images/`, and is committed to the
++repo. Next.js serves these off Vercel's CDN and optimises them at request time via
++`next/image` (resize, WebP/AVIF, lazy-load). You supply one good-quality source file per
++slot; the framework handles the rest.
++
++Full-resolution originals (shoots, exports, source files) are archived in Google Drive —
++**not** committed here. Only the web-ready file for each slot goes in the repo.
++
++## Folders
++
++| Folder                 | What goes here                                              |
++| ---------------------- | ---------------------------------------------------------- |
++| `public/images/work/`     | Case-study card thumbnails (one per case study)         |
++| `public/images/insights/` | Blog-post card thumbnails (one per post)                |
++| `public/images/founder/`  | Jerrell portrait + candid photos                        |
++
++## Naming
++
++Name each file after the slug or slot it fills, lower-case with hyphens:
++
++- Case study: `public/images/work/<work-slug>.jpg` — e.g. `the-boxing-shop.jpg`
++  (slugs come from `content/work/index.json` → the last segment of `href`).
++- Blog post: `public/images/insights/<post-slug>.jpg` — e.g. `complete-seo-checklist-2026.jpg`
++  (slugs come from `content/insights/index.json` → `slug`).
++- Founder: `public/images/founder/jerrell-portrait.jpg` and `jerrell-candid.jpg`.
++
++## Specs
++
++| Slot                    | Ratio | Export size (px) | Format |
++| ----------------------- | ----- | ---------------- | ------ |
++| Case-study card         | 16:10 | 1200 × 750       | JPG    |
++| Blog-post card          | 16:10 | 1200 × 750       | JPG    |
++| Founder portrait (About hero, Home founder block) | 4:5 | 1000 × 1250 | JPG |
++| Founder candid (About "Off the clock") | 4:3 | 1200 × 900 | JPG |
++| Logo                    | vector | —               | SVG (`public/logo.svg`) |
++
++Export JPG at ~80% quality. Keep each file under ~400 KB before commit; `next/image`
++compresses further on the fly. Use PNG only where transparency is required.
++
++## How to switch a slot on
++
++Each image slot is optional in the content files and falls back to a brand gradient when
++empty, so the site never shows a broken image. To turn a real image on, drop the file in
++the right folder and add its path to the matching content record.
++
++**Case study** — in `content/work/index.json` (and, for the four Home cards,
++`content/pages/home.json` → `featuredWork.cards`), add an `image` key:
++
++```json
++{
++  "client": "The Boxing Shop",
++  "tag": "Web",
++  "headline": "Shopify Dawn rebuild for a Gold Coast combat sports retailer.",
++  "outcome": "Modern ecommerce, mobile-perfect, built to convert.",
++  "href": "/work/the-boxing-shop",
++  "image": "/images/work/the-boxing-shop.jpg"
++}
++```
++
++**Blog post** — in `content/insights/index.json`, add an `image` key to the post record.
++
++**Founder** — in `content/pages/about.json` set `hero.image` and `outsideWork.image`; in
++`content/pages/home.json` set `founder.image`. Example:
++
++```json
++"hero": { "eyebrow": "About", "heading": "Hi, I'm Jerrell.", "sub": "…", "image": "/images/founder/jerrell-portrait.jpg" }
++```
++
++Paths are site-absolute (they start with `/images/...`, not `public/`).
+diff --git a/public/images/founder/.gitkeep b/public/images/founder/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/images/insights/.gitkeep b/public/images/insights/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/images/work/.gitkeep b/public/images/work/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/src/app/about/page.tsx b/src/app/about/page.tsx
+index 5a8949c..664680f 100644
+--- a/src/app/about/page.tsx
++++ b/src/app/about/page.tsx
+@@ -1,4 +1,5 @@
+ import type { Metadata } from 'next';
++import Image from 'next/image';
+ import Button from '@/components/Button';
+ import FaqAccordion from '@/components/FaqAccordion';
+ import JsonLd from '@/components/JsonLd';
+@@ -24,8 +25,18 @@ export default function AboutPage() {
+           <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{about.hero.heading}</h1>
+           <p className="mt-6 max-w-[46ch] text-[1.15rem] text-muted">{about.hero.sub}</p>
+         </div>
+-        <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">
+-          Photo of Jerrell
++        <div className="relative flex aspect-[4/5] max-w-sm items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">
++          {about.hero.image ? (
++            <Image
++              src={about.hero.image}
++              alt="Jerrell Niu, founder of I Love Digital"
++              fill
++              sizes="(max-width: 768px) 90vw, 384px"
++              className="object-cover"
++            />
++          ) : (
++            'Photo of Jerrell'
++          )}
+         </div>
+       </section>
+ 
+@@ -90,8 +101,18 @@ export default function AboutPage() {
+           <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">{about.outsideWork.heading}</h2>
+           <p className="mt-5 max-w-[60ch] text-[1.05rem] text-muted">{about.outsideWork.paragraph}</p>
+         </div>
+-        <div className="flex aspect-[4/3] items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
+-          Photo
++        <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
++          {about.outsideWork.image ? (
++            <Image
++              src={about.outsideWork.image}
++              alt="Jerrell Niu coaching basketball on the Gold Coast"
++              fill
++              sizes="(max-width: 768px) 90vw, 40vw"
++              className="object-cover"
++            />
++          ) : (
++            'Photo'
++          )}
+         </div>
+       </section>
+ 
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 36b6e3c..7c846b3 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -1,5 +1,6 @@
+ import type { Metadata } from 'next';
+ import Link from 'next/link';
++import Image from 'next/image';
+ import Button from '@/components/Button';
+ import StatsBar from '@/components/StatsBar';
+ import SectionHeading from '@/components/SectionHeading';
+@@ -94,8 +95,18 @@ export default function HomePage() {
+       {/* Founder */}
+       <section className="bg-deep">
+         <div className="container-wide section-y grid items-center gap-14 md:grid-cols-[0.8fr_1.2fr]">
+-          <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
+-            Founder portrait
++          <div className="relative flex aspect-[4/5] max-w-xs items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
++            {home.founder.image ? (
++              <Image
++                src={home.founder.image}
++                alt="Jerrell Niu, founder of I Love Digital"
++                fill
++                sizes="(max-width: 768px) 80vw, 320px"
++                className="object-cover"
++              />
++            ) : (
++              'Founder portrait'
++            )}
+           </div>
+           <div>
+             <span className="eyebrow">{home.founder.eyebrow}</span>
+diff --git a/src/components/CaseStudyCard.tsx b/src/components/CaseStudyCard.tsx
+index b466129..a7a5701 100644
+--- a/src/components/CaseStudyCard.tsx
++++ b/src/components/CaseStudyCard.tsx
+@@ -1,4 +1,5 @@
+ import Link from 'next/link';
++import Image from 'next/image';
+ import type { CaseStudyCardData } from '@/types/content';
+ 
+ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
+@@ -7,9 +8,19 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
+       href={data.href}
+       className="group block overflow-hidden rounded-2xl border border-transparent bg-surface transition hover:-translate-y-1 hover:border-cyan/40"
+     >
+-      {/* TODO: replace gradient placeholder with a real 16:10 case-study image */}
+-      <div className="relative flex aspect-[16/10] items-end bg-[linear-gradient(135deg,rgba(28,191,212,0.22),rgba(192,132,252,0.22)),#20222c] p-4">
+-        <span className="rounded-full border border-cyan/40 bg-deep/70 px-3 py-1.5 text-xs font-semibold text-cyan backdrop-blur">
++      {/* Real 16:10 image when `data.image` is set (see public/images/README.md);
++          brand gradient as the fallback so an empty slot never breaks. */}
++      <div className="relative flex aspect-[16/10] items-end overflow-hidden bg-[linear-gradient(135deg,rgba(28,191,212,0.22),rgba(192,132,252,0.22)),#20222c] p-4">
++        {data.image && (
++          <Image
++            src={data.image}
++            alt={`${data.client} — ${data.headline}`}
++            fill
++            sizes="(max-width: 768px) 100vw, 50vw"
++            className="object-cover transition duration-500 group-hover:scale-[1.03]"
++          />
++        )}
++        <span className="relative rounded-full border border-cyan/40 bg-deep/70 px-3 py-1.5 text-xs font-semibold text-cyan backdrop-blur">
+           {data.tag}
+         </span>
+       </div>
+diff --git a/src/components/InsightsGrid.tsx b/src/components/InsightsGrid.tsx
+index af162ec..dc56da0 100644
+--- a/src/components/InsightsGrid.tsx
++++ b/src/components/InsightsGrid.tsx
+@@ -2,6 +2,7 @@
+ 
+ import { useState } from 'react';
+ import Link from 'next/link';
++import Image from 'next/image';
+ 
+ interface Post {
+   title: string;
+@@ -9,6 +10,9 @@ interface Post {
+   excerpt: string;
+   readTime: string;
+   slug: string;
++  /** Optional 16:10 thumbnail, e.g. "/images/insights/complete-seo-checklist-2026.jpg".
++   *  Falls back to a brand gradient when omitted. See public/images/README.md. */
++  image?: string;
+ }
+ 
+ const FILTERS = ['All', 'Web', 'SEO', 'Brand', 'Tools'] as const;
+@@ -42,7 +46,17 @@ export default function InsightsGrid({ posts }: { posts: Post[] }) {
+             href={`/insights/${p.slug}`}
+             className="group block overflow-hidden rounded-2xl border border-transparent bg-surface transition hover:-translate-y-1 hover:border-cyan/40"
+           >
+-            <div className="aspect-[16/10] bg-[linear-gradient(135deg,rgba(28,191,212,0.18),rgba(192,132,252,0.18)),#20222c]" />
++            <div className="relative aspect-[16/10] overflow-hidden bg-[linear-gradient(135deg,rgba(28,191,212,0.18),rgba(192,132,252,0.18)),#20222c]">
++              {p.image && (
++                <Image
++                  src={p.image}
++                  alt={p.title}
++                  fill
++                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
++                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
++                />
++              )}
++            </div>
+             <div className="p-6">
+               <span className="text-xs font-semibold uppercase tracking-wide text-cyan">
+                 {p.category}
+diff --git a/src/types/content.ts b/src/types/content.ts
+index 4dece92..6b9d9c8 100644
+--- a/src/types/content.ts
++++ b/src/types/content.ts
+@@ -58,6 +58,9 @@ export interface CaseStudyCardData {
+   headline: string;
+   outcome: string;
+   href: string;
++  /** Optional 16:10 thumbnail, e.g. "/images/work/the-boxing-shop.jpg". Falls back
++   *  to a brand gradient when omitted. See public/images/README.md. */
++  image?: string;
+ }
+ 
+ export interface Testimonial {
+@@ -78,7 +81,7 @@ export interface HomeContent {
+   pillars: Pillar[];
+   featuredWork: { eyebrow: string; heading: string; sub: string; cards: CaseStudyCardData[]; footerCta: CtaLink };
+   testimonials: { heading: string; sub: string; items: Testimonial[] };
+-  founder: { eyebrow: string; heading: string; paragraphs: string[]; cta: CtaLink };
++  founder: { eyebrow: string; heading: string; paragraphs: string[]; cta: CtaLink; image?: string };
+   process: { eyebrow: string; heading: string; sub: string; steps: ProcessStep[]; cta: CtaLink };
+   audit: { heading: string; sub: string; button: string; belowLink: CtaLink };
+   faq: { heading: string; items: Faq[] };

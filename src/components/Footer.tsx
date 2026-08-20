@@ -8,9 +8,9 @@ export default function Footer({ site }: { site: SiteContent }) {
   return (
     <footer className="border-t border-white/10 bg-deep pb-9 pt-16">
       <div className="container-wide">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-[1.6fr_1fr_1fr_1fr]">
           {/* Brand */}
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <Link href="/" aria-label="I Love Digital — home" className="inline-block">
               <Logo height={40} />
             </Link>
@@ -29,45 +29,27 @@ export default function Footer({ site }: { site: SiteContent }) {
             </Link>
           </div>
 
-          {/* Useful links */}
-          <div>
-            <h5 className="mb-4 font-body text-[0.8rem] font-semibold uppercase tracking-[0.1em] text-faint">
-              Useful links
-            </h5>
-            {site.footer.usefulLinks.map((l) => (
-              <Link key={l.label} href={l.href} className="block py-1.5 text-[0.94rem] text-muted hover:text-cyan">
-                {l.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h5 className="mb-4 font-body text-[0.8rem] font-semibold uppercase tracking-[0.1em] text-faint">
-              Resources
-            </h5>
-            {site.footer.resources.map((l) => (
-              <Link key={l.label} href={l.href} className="block py-1.5 text-[0.94rem] text-muted hover:text-cyan">
-                {l.label}
-              </Link>
-            ))}
-            {site.footer.resourcesNote ? (
-              <p className="mt-3 text-[0.75rem] text-faint">{site.footer.resourcesNote}</p>
-            ) : null}
-          </div>
+          {/* Link columns */}
+          {site.footer.groups.map((group) => (
+            <nav key={group.heading} aria-label={group.heading}>
+              <h5 className="mb-4 font-body text-[0.8rem] font-semibold uppercase tracking-[0.1em] text-faint">
+                {group.heading}
+              </h5>
+              {group.links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="block py-1.5 text-[0.94rem] text-muted hover:text-cyan"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          ))}
         </div>
 
-        <div className="mt-12 flex flex-wrap justify-between gap-3 border-t border-white/10 pt-6 text-[0.85rem] text-faint">
-          <span>
-            {site.name} · ABN {site.abn} · © {year} All rights reserved
-          </span>
-          <span className="flex gap-4">
-            {site.legal.map((l) => (
-              <Link key={l.label} href={l.href} className="hover:text-cyan">
-                {l.label}
-              </Link>
-            ))}
-          </span>
+        <div className="mt-12 border-t border-white/10 pt-6 text-[0.85rem] text-faint">
+          {site.name} · ABN {site.abn} · © {year} All rights reserved
         </div>
       </div>
     </footer>

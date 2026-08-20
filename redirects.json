@@ -6,6 +6,7 @@
 
   { "source": "/portfolio", "destination": "/work", "permanent": true },
   { "source": "/blog", "destination": "/insights", "permanent": true },
+  { "source": "/ai", "destination": "/consulting", "permanent": true },
   { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
   { "source": "/terms-of-use", "destination": "/terms", "permanent": true },
 

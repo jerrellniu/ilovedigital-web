@@ -1,0 +1,11 @@
+[
+  { "source": "/portfolio", "destination": "/work", "permanent": true },
+  { "source": "/blog", "destination": "/insights", "permanent": true },
+  { "source": "/services", "destination": "/websites", "permanent": true },
+  { "source": "/web-design-services", "destination": "/websites", "permanent": true },
+  { "source": "/website-support", "destination": "/websites", "permanent": true },
+  { "source": "/discover-our-seo-services", "destination": "/search", "permanent": true },
+  { "source": "/services/google-business-profile-setup", "destination": "/search", "permanent": true },
+  { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+  { "source": "/terms-of-use", "destination": "/terms", "permanent": true }
+]

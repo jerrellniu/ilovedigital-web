@@ -1,0 +1,198 @@
+From 26f9d4098462d862eca468673f4f1c7028597eb3 Mon Sep 17 00:00:00 2001
+From: Jerrell Niu <jerrell@ilovedigital.com.au>
+Date: Thu, 6 Aug 2026 00:32:55 +0000
+Subject: [PATCH 1/2] Step the page gutter and widen the content column
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+.container-wide was mx-auto max-w-content px-6. On a viewport near the
+content width that left a 24px gutter, so copy and images ran almost to the
+edge of the window — visible on /websites at laptop widths.
+
+Gutter now steps rather than jumping at a single breakpoint:
+px-6 sm:px-8 md:px-12 lg:px-16 — 24 / 32 / 48 / 64px. Mobile stays at 24px
+deliberately; 64px on a 390px screen spends a third of the viewport on empty
+margin. max-w-content goes 1200px -> 1320px.
+
+Note on the numbers: max-width is a border-box value, so the padding sits
+inside it. A 1320px max-width with a 64px gutter gives a 1192px content
+column, not 1320px. That is up from 1152px before. If the intent is a
+1320px *column*, the token needs to be 1448px.
+
+Measured on a production build across 11 viewports from 375px to 2560px:
+gutter 24 / 24 / 32 / 48 / 48 / 64 / 64 / 64 / 124 / 268 / 684px at
+375, 390, 640, 768, 834, 1024, 1280, 1320, 1440, 1728 and 2560. Nothing
+falls below 24px, and the layout centres from 1448px up.
+
+One utility, so every section, the nav and the footer move together.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ src/app/globals.css | 7 ++++++-
+ tailwind.config.ts  | 2 +-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 69c47d0..b497b6a 100644
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -24,8 +24,13 @@
+   .section-y {
+     @apply py-[60px] md:py-[120px];
+   }
++  /* Page gutter, stepped rather than doubled at one breakpoint:
++     24px phones / 32px large phones / 48px tablets / 64px laptops up.
++     Mobile stays at 24px deliberately — a 64px gutter on a 390px screen
++     spends a third of the viewport on empty margin. Above max-w-content
++     the layout centres and the gutters grow past 64px on their own. */
+   .container-wide {
+-    @apply mx-auto w-full max-w-content px-6;
++    @apply mx-auto w-full max-w-content px-6 sm:px-8 md:px-12 lg:px-16;
+   }
+   .eyebrow {
+     @apply mb-4 inline-block font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan;
+diff --git a/tailwind.config.ts b/tailwind.config.ts
+index 8a42a92..1215a34 100644
+--- a/tailwind.config.ts
++++ b/tailwind.config.ts
+@@ -24,7 +24,7 @@ const config: Config = {
+         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+       },
+       maxWidth: {
+-        content: '1200px',
++        content: '1320px',
+       },
+     },
+   },
+-- 
+2.43.0
+
+
+From 10468230eb9729eda6a6d79000f7e9a42b970f76 Mon Sep 17 00:00:00 2001
+From: Jerrell Niu <jerrell@ilovedigital.com.au>
+Date: Thu, 6 Aug 2026 00:32:55 +0000
+Subject: [PATCH 2/2] Trim the main menu to Work and Services
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+About, Insights and Contact come out of the header and live in the footer
+menu. The header is now Work, the Services dropdown with the four pillars,
+and the booking CTA.
+
+Nav.tsx had the links hardcoded while content/site.json already carried a
+`nav` array that nothing read. Both menus now render from site.json, so the
+header is editable as content rather than code — which is what CLAUDE.md
+asks for, and what made this a two-file change instead of a hunt.
+
+Insights was missing from the footer entirely; it was only reachable as
+"Blog" under Resources. Added to the footer's main column beside About,
+Work and Contact.
+
+Verified on a production build at 390, 1280 and 1440: the header renders
+Work and Services and nothing else, on desktop and in the mobile menu.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ content/site.json      | 16 ++++------------
+ src/components/Nav.tsx | 30 ++++++++++++++----------------
+ 2 files changed, 18 insertions(+), 28 deletions(-)
+
+diff --git a/content/site.json b/content/site.json
+index 27ceb2a..92668d7 100644
+--- a/content/site.json
++++ b/content/site.json
+@@ -31,18 +31,6 @@
+     {
+       "label": "Work",
+       "href": "/work"
+-    },
+-    {
+-      "label": "About",
+-      "href": "/about"
+-    },
+-    {
+-      "label": "Insights",
+-      "href": "/insights"
+-    },
+-    {
+-      "label": "Contact",
+-      "href": "/contact"
+     }
+   ],
+   "services": [
+@@ -73,6 +61,10 @@
+         "label": "Work",
+         "href": "/work"
+       },
++      {
++        "label": "Insights",
++        "href": "/insights"
++      },
+       {
+         "label": "Websites",
+         "href": "/websites"
+diff --git a/src/components/Nav.tsx b/src/components/Nav.tsx
+index e5322a7..a9dfdcf 100644
+--- a/src/components/Nav.tsx
++++ b/src/components/Nav.tsx
+@@ -18,9 +18,15 @@ export default function Nav({ site }: { site: SiteContent }) {
+ 
+         {/* Desktop nav */}
+         <nav className="hidden items-center gap-8 md:flex">
+-          <Link href="/work" className="text-[15px] font-medium text-muted hover:text-ink">
+-            Work
+-          </Link>
++          {site.nav.map((item) => (
++            <Link
++              key={item.href}
++              href={item.href}
++              className="text-[15px] font-medium text-muted hover:text-ink"
++            >
++              {item.label}
++            </Link>
++          ))}
+           <div
+             className="relative"
+             onMouseEnter={() => setServicesOpen(true)}
+@@ -48,15 +54,6 @@ export default function Nav({ site }: { site: SiteContent }) {
+               </div>
+             ) : null}
+           </div>
+-          <Link href="/about" className="text-[15px] font-medium text-muted hover:text-ink">
+-            About
+-          </Link>
+-          <Link href="/insights" className="text-[15px] font-medium text-muted hover:text-ink">
+-            Insights
+-          </Link>
+-          <Link href="/contact" className="text-[15px] font-medium text-muted hover:text-ink">
+-            Contact
+-          </Link>
+         </nav>
+ 
+         <div className="flex items-center gap-4">
+@@ -86,15 +83,16 @@ export default function Nav({ site }: { site: SiteContent }) {
+       {/* Mobile menu */}
+       {mobileOpen ? (
+         <div className="border-t border-white/10 px-6 pb-6 pt-2 md:hidden">
+-          <Link href="/work" className="block py-3 text-muted">Work</Link>
++          {site.nav.map((item) => (
++            <Link key={item.href} href={item.href} className="block py-3 text-muted">
++              {item.label}
++            </Link>
++          ))}
+           {site.services.map((s) => (
+             <Link key={s.href} href={s.href} className="block py-3 pl-3 text-muted">
+               {s.label}
+             </Link>
+           ))}
+-          <Link href="/about" className="block py-3 text-muted">About</Link>
+-          <Link href="/insights" className="block py-3 text-muted">Insights</Link>
+-          <Link href="/contact" className="block py-3 text-muted">Contact</Link>
+           <a
+             href={site.booking.href}
+             target="_blank"
+-- 
+2.43.0
+

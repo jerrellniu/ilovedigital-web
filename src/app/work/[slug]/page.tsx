@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Button from '@/components/Button';
 import Markdown from '@/components/Markdown';
+import ReviewQuote, { type Review } from '@/components/ReviewQuote';
 import CaseStudyCard from '@/components/CaseStudyCard';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getCollectionSlugs, getEntry } from '@/lib/mdx';
@@ -24,6 +25,8 @@ interface CaseFm {
   image?: string;
   /** Alt text for `image`. Defaults to "<client> website". */
   imageAlt?: string;
+  /** Verbatim client review, rendered above the body. Section omitted when absent. */
+  review?: Review;
 }
 
 export function generateStaticParams() {
@@ -102,6 +105,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           ))}
         </div>
       </section>
+
+      {fm.review ? (
+        <section className="container-wide pb-12">
+          <ReviewQuote review={fm.review} />
+        </section>
+      ) : null}
 
       <section className="container-wide pb-[60px] md:pb-[120px]">
         <Markdown>{entry.content}</Markdown>

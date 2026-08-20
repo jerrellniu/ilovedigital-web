@@ -1,0 +1,376 @@
+From 20d6325655170ad2f3694cba2170360ab5961871 Mon Sep 17 00:00:00 2001
+From: Jerrell Niu <jerrell@ilovedigital.com.au>
+Date: Wed, 5 Aug 2026 23:14:08 +0000
+Subject: [PATCH] Complete the redirect map, fail forms gracefully, fix the
+ footer
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The domain moved off Squarespace this morning, so every old URL that is
+not mapped is now a live 404 on a domain whose URLs have been indexed for
+years.
+
+Redirects: built from the live Squarespace sitemap — 53 URLs, 52 entries.
+The 13 blog posts, 4 portfolio pages, the lead magnets, the /store tree,
+/home, /links and about ten orphan service pages were all unmapped and
+all 404ing. Verified end to end: every source 308s and every destination
+returns 200.
+
+Detail-page targets are resolved at build time against the MDX on disk,
+using the same draft rule as src/lib/mdx.ts. Every case study and article
+is currently published: false, so those 19 redirects send to /work and
+/insights rather than passing an old URL's ranking into a 404. Each one
+starts pointing at its real page on the build after published: true is
+set — nothing to remember later. The build logs which are falling back.
+
+/api/subscribe returned its own configuration error to the browser, and
+the form renders that text verbatim: a visitor submitting the audit form
+was shown "MailerLite is not configured yet. Set MAILERLITE_API_KEY." It
+now logs the reason server-side and gives the visitor the email address
+and phone number, so an enquiry is redirected rather than lost while the
+MailerLite keys are outstanding. 501 -> 503, which is the accurate code
+for a dependency that is not available yet.
+
+Footer: ten anchors on every page pointed at "#" — the four social
+profiles, the client portal and five resource links — and the footer
+published an internal note to visitors, "Lead-magnet links pending a
+migrate/refresh/sunset decision." Social URLs taken from the live
+Squarespace site; Client Portal points at portal.ilovedigital.com.au. The
+lead-magnet links are removed rather than left dead, since the pages
+behind them die with the Squarespace subscription and the
+migrate-or-sunset call has not been made. Put them back when the offers
+are rebuilt.
+
+Verified: build clean, 17 routes, all 52 redirects resolve to a 200,
+form endpoint returns the fallback message, no "#" anchors remain.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01M4yaxVrqtmVb9KJyjzD1kp
+---
+ content/site.json              | 127 +++++++++++++++++++++++++--------
+ next.config.mjs                |  43 +++++++++--
+ redirects.json                 |  55 +++++++++++++-
+ src/app/api/subscribe/route.ts |  20 ++++--
+ 4 files changed, 204 insertions(+), 41 deletions(-)
+
+diff --git a/content/site.json b/content/site.json
+index d62286d..40ac416 100644
+--- a/content/site.json
++++ b/content/site.json
+@@ -6,47 +6,114 @@
+   "email": "jerrell@ilovedigital.com.au",
+   "location": "Gold Coast, Queensland, Australia",
+   "socials": [
+-    { "label": "Facebook", "href": "#" },
+-    { "label": "LinkedIn", "href": "#" },
+-    { "label": "Instagram", "href": "#" },
+-    { "label": "TikTok", "href": "#" }
++    {
++      "label": "Facebook",
++      "href": "https://www.facebook.com/ilovedigitalau/"
++    },
++    {
++      "label": "LinkedIn",
++      "href": "https://www.linkedin.com/company/100530110"
++    },
++    {
++      "label": "Instagram",
++      "href": "https://www.instagram.com/thesquarespaceguy/"
++    },
++    {
++      "label": "TikTok",
++      "href": "https://www.tiktok.com/@thesquarespaceguy"
++    }
+   ],
+   "nav": [
+-    { "label": "Work", "href": "/work" },
+-    { "label": "About", "href": "/about" },
+-    { "label": "Insights", "href": "/insights" },
+-    { "label": "Contact", "href": "/contact" }
++    {
++      "label": "Work",
++      "href": "/work"
++    },
++    {
++      "label": "About",
++      "href": "/about"
++    },
++    {
++      "label": "Insights",
++      "href": "/insights"
++    },
++    {
++      "label": "Contact",
++      "href": "/contact"
++    }
+   ],
+   "services": [
+-    { "label": "Websites", "href": "/websites" },
+-    { "label": "Search", "href": "/search" },
+-    { "label": "Social", "href": "/social" },
+-    { "label": "AI", "href": "/ai" }
++    {
++      "label": "Websites",
++      "href": "/websites"
++    },
++    {
++      "label": "Search",
++      "href": "/search"
++    },
++    {
++      "label": "Social",
++      "href": "/social"
++    },
++    {
++      "label": "AI",
++      "href": "/ai"
++    }
+   ],
+   "footer": {
+     "usefulLinks": [
+-      { "label": "About", "href": "/about" },
+-      { "label": "Work", "href": "/work" },
+-      { "label": "Websites", "href": "/websites" },
+-      { "label": "Search", "href": "/search" },
+-      { "label": "Social", "href": "/social" },
+-      { "label": "AI", "href": "/ai" },
+-      { "label": "Contact", "href": "/contact" },
+-      { "label": "Client Portal", "href": "#" }
++      {
++        "label": "About",
++        "href": "/about"
++      },
++      {
++        "label": "Work",
++        "href": "/work"
++      },
++      {
++        "label": "Websites",
++        "href": "/websites"
++      },
++      {
++        "label": "Search",
++        "href": "/search"
++      },
++      {
++        "label": "Social",
++        "href": "/social"
++      },
++      {
++        "label": "AI",
++        "href": "/ai"
++      },
++      {
++        "label": "Contact",
++        "href": "/contact"
++      },
++      {
++        "label": "Client Portal",
++        "href": "https://portal.ilovedigital.com.au"
++      }
+     ],
+     "resources": [
+-      { "label": "Blog", "href": "/insights" },
+-      { "label": "Squarespace CSS Code Library", "href": "#" },
+-      { "label": "Free Google Business Profile Review", "href": "#" },
+-      { "label": "Free Website Copy Template Pack", "href": "#" },
+-      { "label": "Free SEO Checklist for Beginners", "href": "#" },
+-      { "label": "5 Tips For A Website That Converts", "href": "#" }
+-    ],
+-    "resourcesNote": "Lead-magnet links pending a migrate/refresh/sunset decision."
++      {
++        "label": "Blog",
++        "href": "/insights"
++      },
++      {
++        "label": "Free Website Audit",
++        "href": "/audit"
++      }
++    ]
+   },
+   "legal": [
+-    { "label": "Terms of Use", "href": "/terms" },
+-    { "label": "Privacy Policy", "href": "/privacy" }
++    {
++      "label": "Terms of Use",
++      "href": "/terms"
++    },
++    {
++      "label": "Privacy Policy",
++      "href": "/privacy"
++    }
+   ],
+   "cookieNotice": "By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively."
+ }
+diff --git a/next.config.mjs b/next.config.mjs
+index 1bac27f..1d1d6db 100644
+--- a/next.config.mjs
++++ b/next.config.mjs
+@@ -1,11 +1,46 @@
+-import { readFileSync } from 'node:fs';
++import { readFileSync, existsSync } from 'node:fs';
++import matter from 'gray-matter';
+ 
+-// 301 redirect map (old Squarespace URLs -> new). Populate redirects.json at cutover
+-// from the Content & Structure Audit URL table.
+-const redirects = JSON.parse(
++// 301 redirect map (old Squarespace URLs -> new), built from the live Squarespace
++// sitemap at cutover. See the Content & Structure Audit URL table in Notion.
++const raw = JSON.parse(
+   readFileSync(new URL('./redirects.json', import.meta.url), 'utf-8')
+ );
+ 
++// A 301 that lands on a page we have not published yet is worse than no redirect
++// at all: the old URL's ranking is passed straight into a 404. Detail-page targets
++// are resolved against the MDX on disk using the same rule as src/lib/mdx.ts —
++// drafts are visible in dev and hidden in production — and anything unavailable
++// falls back to its hub. Nothing to remember at launch: set `published: true` and
++// the redirect starts pointing at the real page on the next build.
++const showDrafts = process.env.NODE_ENV !== 'production';
++
++const isAvailable = (destination) => {
++  const match = destination.match(/^\/(work|insights)\/(.+)$/);
++  if (!match) return true;
++  const [, collection, slug] = match;
++  const file = new URL(`./content/${collection}/${slug}.mdx`, import.meta.url);
++  if (!existsSync(file)) return false;
++  if (showDrafts) return true;
++  return matter(readFileSync(file, 'utf-8')).data.published === true;
++};
++
++const unavailable = [];
++const redirects = raw.map((redirect) => {
++  if (isAvailable(redirect.destination)) return redirect;
++  const hub = `/${redirect.destination.split('/')[1]}`;
++  unavailable.push(`${redirect.source} -> ${redirect.destination} (sending to ${hub})`);
++  return { ...redirect, destination: hub };
++});
++
++if (unavailable.length > 0) {
++  console.warn(
++    `\n[redirects] ${unavailable.length} redirect(s) target a page that is not published yet:\n` +
++      unavailable.map((line) => `  ${line}`).join('\n') +
++      '\n'
++  );
++}
++
+ /** @type {import('next').NextConfig} */
+ const nextConfig = {
+   reactStrictMode: true,
+diff --git a/redirects.json b/redirects.json
+index 4ae5c60..96584b9 100644
+--- a/redirects.json
++++ b/redirects.json
+@@ -1,11 +1,62 @@
+ [
++  { "source": "/home", "destination": "/", "permanent": true },
++  { "source": "/links", "destination": "/", "permanent": true },
++  { "source": "/404", "destination": "/", "permanent": true },
++  { "source": "/040391355937", "destination": "/", "permanent": true },
++
+   { "source": "/portfolio", "destination": "/work", "permanent": true },
+   { "source": "/blog", "destination": "/insights", "permanent": true },
++  { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
++  { "source": "/terms-of-use", "destination": "/terms", "permanent": true },
++
+   { "source": "/services", "destination": "/websites", "permanent": true },
+   { "source": "/web-design-services", "destination": "/websites", "permanent": true },
+   { "source": "/website-support", "destination": "/websites", "permanent": true },
++  { "source": "/gold-coast-wordpress-developers", "destination": "/websites", "permanent": true },
++  { "source": "/gold-coast-sports-club-website-design", "destination": "/websites", "permanent": true },
++  { "source": "/online-store-websites", "destination": "/websites", "permanent": true },
++  { "source": "/managed-wordpress-hosting", "destination": "/websites", "permanent": true },
++  { "source": "/health-medical-digital-solutions", "destination": "/websites", "permanent": true },
++  { "source": "/property-digital-solutions", "destination": "/websites", "permanent": true },
++  { "source": "/online-growth-services", "destination": "/websites", "permanent": true },
++
+   { "source": "/discover-our-seo-services", "destination": "/search", "permanent": true },
+   { "source": "/services/google-business-profile-setup", "destination": "/search", "permanent": true },
+-  { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+-  { "source": "/terms-of-use", "destination": "/terms", "permanent": true }
++  { "source": "/local-visibility-pack", "destination": "/search", "permanent": true },
++  { "source": "/content-strategy-for-growth", "destination": "/search", "permanent": true },
++
++  { "source": "/email-marketing-for-growth", "destination": "/social", "permanent": true },
++
++  { "source": "/blog/a-seo-checklist-for-beginners", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
++  { "source": "/blog/when-should-your-redesign-your-website", "destination": "/insights/when-to-redesign-your-website", "permanent": true },
++  { "source": "/blog/10-web-design-trends-in-2025", "destination": "/insights/web-design-trends-2026", "permanent": true },
++  { "source": "/blog/a-guide-to-writing-great-copy", "destination": "/insights/writing-great-website-copy", "permanent": true },
++  { "source": "/blog/6-types-of-logos-how-to-choose-the-perfect-one", "destination": "/insights/6-types-of-logos", "permanent": true },
++  { "source": "/blog/googles-february-2026-discover-core-update-what-australian-publishers-and-businesses-need-to-know", "destination": "/insights/google-february-2026-discover-core-update", "permanent": true },
++  { "source": "/blog/css-hack-1-shrink-the-logo-on-scroll-without-crying-into-your-coffee", "destination": "/insights/css-hack-shrink-logo-on-scroll", "permanent": true },
++  { "source": "/blog/introduction-getting-started-with-css-in-squarespace", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
++  { "source": "/blog/google-workspace-vs-microsoft-365-best-email-platform", "destination": "/insights/google-workspace-vs-microsoft-365", "permanent": true },
++  { "source": "/blog/a-guide-to-increasing-your-website-traffic", "destination": "/insights/increasing-website-traffic", "permanent": true },
++  { "source": "/blog/guide-to-a-winning-digital-marketing-strategy", "destination": "/insights/winning-digital-marketing-strategy", "permanent": true },
++  { "source": "/blog/a-better-way-to-product-development", "destination": "/insights", "permanent": true },
++  { "source": "/blog/d7bff3lok0ma8lbcv78vjg57rrunn8", "destination": "/insights", "permanent": true },
++
++  { "source": "/portfolio/gcconnectedhomes-website-design", "destination": "/work/gc-connected-homes", "permanent": true },
++  { "source": "/portfolio/trigahex-shopify-redesign", "destination": "/work/trigahex", "permanent": true },
++  { "source": "/portfolio/onyx-academy-website-refresh", "destination": "/work", "permanent": true },
++  { "source": "/portfolio/vipers-basketball-club", "destination": "/work", "permanent": true },
++
++  { "source": "/beginners-seo-checklist", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
++  { "source": "/squarespace-css-library", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
++  { "source": "/website-copy-template-pack", "destination": "/insights/writing-great-website-copy", "permanent": true },
++  { "source": "/5-tips-for-a-website-that-converts", "destination": "/websites", "permanent": true },
++
++  { "source": "/store", "destination": "/insights", "permanent": true },
++  { "source": "/store/for-businesses", "destination": "/insights", "permanent": true },
++  { "source": "/store/for-designers", "destination": "/insights", "permanent": true },
++  { "source": "/store/free-resources", "destination": "/insights", "permanent": true },
++  { "source": "/store/p/website-copy-template-pack", "destination": "/insights/writing-great-website-copy", "permanent": true },
++  { "source": "/store/p/beginners-seo-checklist", "destination": "/insights/complete-seo-checklist-2026", "permanent": true },
++  { "source": "/store/p/squarespace-css-library", "destination": "/insights/getting-started-css-squarespace", "permanent": true },
++  { "source": "/store/p/5-tips-for-a-website-that-converts", "destination": "/websites", "permanent": true }
+ ]
+diff --git a/src/app/api/subscribe/route.ts b/src/app/api/subscribe/route.ts
+index 457959b..9fd5b31 100644
+--- a/src/app/api/subscribe/route.ts
++++ b/src/app/api/subscribe/route.ts
+@@ -9,6 +9,13 @@ const GROUPS: Record<string, string | undefined> = {
+   contact: process.env.ML_GROUP_CONTACT,
+ };
+ 
++// Whatever comes back from here is read by a real visitor: the form renders the
++// error text verbatim. Never return a configuration detail or an upstream error
++// message — give the person a way to reach us instead, so an enquiry is redirected
++// rather than lost.
++const FALLBACK =
++  'Sorry, the form could not be sent just now. Please email jerrell@ilovedigital.com.au or call 1300 944 890 and we will come straight back to you.';
++
+ export async function POST(req: Request) {
+   try {
+     const body = await req.json();
+@@ -18,10 +25,11 @@ export async function POST(req: Request) {
+       return NextResponse.json({ error: 'A valid email is required.' }, { status: 400 });
+     }
+     if (!process.env.MAILERLITE_API_KEY) {
+-      return NextResponse.json(
+-        { error: 'MailerLite is not configured yet. Set MAILERLITE_API_KEY.' },
+-        { status: 501 }
+-      );
++      console.error('[subscribe] MAILERLITE_API_KEY is not set — submission not delivered:', {
++        type,
++        email,
++      });
++      return NextResponse.json({ error: FALLBACK }, { status: 503 });
+     }
+ 
+     const fields: Record<string, string> = {};
+@@ -35,6 +43,8 @@ export async function POST(req: Request) {
+ 
+     return NextResponse.json({ ok: true });
+   } catch (e) {
+-    return NextResponse.json({ error: (e as Error).message }, { status: 500 });
++    // Log the real reason for us; show the visitor something they can act on.
++    console.error('[subscribe] submission failed:', e);
++    return NextResponse.json({ error: FALLBACK }, { status: 500 });
+   }
+ }
+-- 
+2.43.0
+
