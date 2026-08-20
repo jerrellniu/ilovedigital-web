@@ -54,6 +54,9 @@ export function getServicePage(
           .map((t) => t.trim().toLowerCase())
           .includes(wanted)
       )
+      // Published first. An unpublished card renders unlinked, so filling the row
+      // with those would put three client names on the page with nothing to click.
+      .sort((a, b) => Number(Boolean(b.href)) - Number(Boolean(a.href)))
       // Three keeps the row to one line on desktop. The rest are on /work.
       .slice(0, 3);
   }
