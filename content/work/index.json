@@ -9,15 +9,6 @@
     "image": "/images/work/the-boxing-shop.jpg"
   },
   {
-    "client": "Homelessness Qld",
-    "tag": "Web",
-    "platform": "WordPress",
-    "headline": "Large website restructure and WordPress build for peak body",
-    "outcome": "A full restructure that makes it easier for people in crisis to find help, and easier for the team to keep updated.",
-    "href": "/work/homelessness-qld",
-    "image": "/images/work/homelessness-qld.jpg"
-  },
-  {
     "client": "Toni Gunn",
     "tag": "Web",
     "platform": "Squarespace",
@@ -27,31 +18,12 @@
     "image": "/images/work/toni-gunn.jpg"
   },
   {
-    "client": "Gold Coast solar installer",
+    "client": "GC Connected Homes",
     "tag": "Search",
-    "headline": "\"A long term strategy that has delivered more organic leads\"",
-    "outcome": "Holly C. \u2014 five-star Google review",
-    "href": "/work/solar-set",
-    "image": "/images/work/solar-set.jpg",
-    "imageAlt": "Gold Coast solar installer website"
-  },
-  {
-    "client": "Evolved Solar & Electrical",
-    "tag": "Web + Search",
-    "platform": "Squarespace",
-    "headline": "New website and search strategy for a premium residential solar installer",
-    "outcome": "A faster site paired with a search presence that brings in the right enquiries.",
-    "href": "/work/evolved-solar",
-    "image": "/images/work/evolved-solar.jpg"
-  },
-  {
-    "client": "Gold Coast smart home installer",
-    "tag": "Search",
-    "headline": "\"It's also performing better than ever\"",
-    "outcome": "Alex D. \u2014 five-star Google review",
+    "headline": "A website redesign and a search presence for a Gold Coast smart home installer",
+    "outcome": "A site that finally says what they do, and 175 per cent more visits from Google.",
     "href": "/work/gc-connected-homes",
-    "image": "/images/work/gc-connected-homes.jpg",
-    "imageAlt": "Gold Coast smart home installer website"
+    "image": "/images/work/gc-connected-homes.jpg"
   },
   {
     "client": "Small-batch sauce brand",
@@ -80,13 +52,5 @@
     "outcome": "A modern hub for programs, fixtures, and sign-ups \u2014 easy for families to find.",
     "href": "/work/varsity-vipers",
     "image": "/images/work/varsity-vipers.jpg"
-  },
-  {
-    "client": "Olga's Hair Beautique",
-    "tag": "Search",
-    "headline": "Local search visibility for a growing Nerang hair salon",
-    "outcome": "Stronger local visibility and a steady stream of new client enquiries.",
-    "href": "/work/olgas-hair-beautique",
-    "image": "/images/work/olgas-hair-beautique.jpg"
   }
 ]
