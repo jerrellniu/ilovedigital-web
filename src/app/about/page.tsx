@@ -4,6 +4,7 @@ import Button from '@/components/Button';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import LogoMarquee from '@/components/LogoMarquee';
 import { getAbout } from '@/lib/content';
 import { faqPageSchema } from '@/lib/schema';
 
@@ -80,18 +81,8 @@ export default function AboutPage() {
       <section className="bg-deep">
         <div className="container-wide section-y">
           <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">{about.tech.heading}</h2>
-          <p className="mt-3 max-w-[60ch] text-muted">{about.tech.sub}</p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {about.tech.groups.map((g: { label: string; items: string[] }) => (
-              <div key={g.label} className="rounded-2xl bg-surface p-6">
-                <div className="mb-3 text-[0.8rem] uppercase tracking-[0.1em] text-faint">{g.label}</div>
-                <div className="flex flex-wrap gap-x-4 gap-y-1 text-muted">
-                  {g.items.map((it) => (
-                    <span key={it}>{it}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
+          <div className="mt-10">
+            <LogoMarquee />
           </div>
         </div>
       </section>

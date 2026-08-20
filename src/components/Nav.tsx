@@ -7,7 +7,6 @@ import type { SiteContent } from '@/types/content';
 
 export default function Nav({ site }: { site: SiteContent }) {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-base/80 backdrop-blur">
@@ -27,33 +26,6 @@ export default function Nav({ site }: { site: SiteContent }) {
               {item.label}
             </Link>
           ))}
-          <div
-            className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button
-              type="button"
-              className="text-[15px] font-medium text-muted hover:text-ink"
-              onClick={() => setServicesOpen((v) => !v)}
-              aria-expanded={servicesOpen}
-            >
-              Services
-            </button>
-            {servicesOpen ? (
-              <div className="absolute left-0 top-full w-52 rounded-xl border border-white/10 bg-surface p-2 shadow-xl">
-                {site.services.map((s) => (
-                  <Link
-                    key={s.href}
-                    href={s.href}
-                    className="block rounded-lg px-3 py-2 text-[15px] text-muted hover:bg-white/5 hover:text-ink"
-                  >
-                    {s.label}
-                  </Link>
-                ))}
-              </div>
-            ) : null}
-          </div>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -86,11 +58,6 @@ export default function Nav({ site }: { site: SiteContent }) {
           {site.nav.map((item) => (
             <Link key={item.href} href={item.href} className="block py-3 text-muted">
               {item.label}
-            </Link>
-          ))}
-          {site.services.map((s) => (
-            <Link key={s.href} href={s.href} className="block py-3 pl-3 text-muted">
-              {s.label}
             </Link>
           ))}
           <a

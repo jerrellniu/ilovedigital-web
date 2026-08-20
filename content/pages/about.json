@@ -6,12 +6,12 @@
   "hero": {
     "eyebrow": "About",
     "heading": "Hi, I'm Jerrell.",
-    "sub": "I run I Love Digital from the Gold Coast \u2014 built on two decades across product management, technology, and business, not just a design portfolio. When you work with I Love Digital, you work with me.",
+    "sub": "I run I Love Digital from the Gold Coast \u2014 built on two decades across product management, technology, and business. When you work with I Love Digital, you work with me.",
     "image": "/images/founder/jerrell.webp",
     "imageAlt": "Jerrell Niu, founder of I Love Digital"
   },
   "story": {
-    "heading": "Two decades before \"I Love Digital.\"",
+    "heading": "Before I Love Digital.",
     "paragraphs": [
       "I Love Digital isn't my first career \u2014 it's the one that pulled everything else together. I spent seven years as Product Manager, then Executive Board Member, at Coding Labs, leading product vision across web and mobile applications, working directly with customers, stakeholders and engineers, and growing the engineering team by 500% in three years. In that time I helped build and launch a scouting app for an NRL team, a workflow tool for aviation engineers, and a booking app for caravan travellers \u2014 and partnered with universities to build a graduate engineering pipeline.",
       "Before that, I ran the recruitment side of the business \u2014 as General Manager and Executive Career Consultant at 99 Resumes, then in technical recruitment leadership roles at MCS Consulting and Vanarden Mining Oil & Gas. Earlier still, I spent six years in commercial finance. It's an unusual mix, but it means I've sat on both sides of the table \u2014 running teams, hiring them, financing them, and eventually building the products they use.",
@@ -19,14 +19,14 @@
     ]
   },
   "whatIBring": {
-    "heading": "Product thinking, not just a website build.",
+    "heading": "What I bring to a project.",
     "paragraphs": [
       "Most website builds start and end with design. Mine start with the same questions I used to ask as a product manager: who is this for, what are they trying to do, and what's actually stopping them? I design in Figma and Adobe XD, build hands-on in HTML, CSS, and JavaScript across Squarespace, Shopify, and WordPress, and use tools like Hotjar and Google Search Console to see how a site actually performs, not just how it looks.",
       "That product-management background also shapes how I run projects \u2014 clear scoping, honest timelines, and reporting you can actually understand, because I've been the person who had to explain outcomes to a board."
     ]
   },
   "beliefs": {
-    "heading": "How I work, in four lines.",
+    "heading": "How I work.",
     "items": [
       {
         "title": "Direct communication.",
@@ -34,7 +34,7 @@
       },
       {
         "title": "Transparent pricing.",
-        "body": "Clear quotes, scoped to your project, in Australian dollars. No surprises."
+        "body": "Clear quotes, scoped to your project, in Australian dollars."
       },
       {
         "title": "Australian businesses first.",
@@ -47,54 +47,7 @@
     ]
   },
   "tech": {
-    "heading": "The toolkit.",
-    "sub": "Built on two decades of product and technical experience \u2014 not a single-platform shortcut.",
-    "groups": [
-      {
-        "label": "Design",
-        "items": [
-          "Figma",
-          "Adobe XD",
-          "Affinity Photo"
-        ]
-      },
-      {
-        "label": "Build",
-        "items": [
-          "Squarespace",
-          "Shopify",
-          "WordPress",
-          "HTML",
-          "CSS",
-          "JavaScript"
-        ]
-      },
-      {
-        "label": "Operations",
-        "items": [
-          "Notion",
-          "Google Workspace",
-          "Loom",
-          "TablePlus",
-          "cPanel"
-        ]
-      },
-      {
-        "label": "Marketing & SEO",
-        "items": [
-          "SE Ranking",
-          "Google Search Console",
-          "MailerLite",
-          "Hotjar"
-        ]
-      },
-      {
-        "label": "Finance",
-        "items": [
-          "Xero"
-        ]
-      }
-    ]
+    "heading": "The toolkit."
   },
   "outsideWork": {
     "heading": "Off the clock.",
@@ -116,7 +69,7 @@
   ],
   "finalCta": {
     "heading": "Want to work together?",
-    "sub": "Start with a 15-minute call. No pressure, no pitch \u2014 just a real conversation about your business.",
+    "sub": "Start with a 15-minute call about your business and whether we can help.",
     "button": {
       "label": "Book a call with Jerrell",
       "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"

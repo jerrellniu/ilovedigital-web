@@ -43,3 +43,50 @@
     @apply mb-4 inline-block font-body text-[13px] font-semibold uppercase tracking-[0.14em] text-cyan;
   }
 }
+
+/* Logo marquee — two identical tracks scrolling as one. The wrapper is a flex row so
+   the second track sits beside the first; translating both by -100% of a single track
+   width lands the seam exactly on the duplicate, so the loop has no visible jump. */
+.marquee {
+  display: flex;
+  gap: 0;
+  /* Fade the strip into the background at both edges rather than cutting it off. */
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  animation: marquee-scroll 55s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    flex-wrap: wrap;
+    justify-content: center;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  /* One copy is enough when nothing is moving. */
+  .marquee-track[aria-hidden='true'] {
+    display: none;
+  }
+}

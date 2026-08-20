@@ -41,6 +41,22 @@
   ],
   "nav": [
     {
+      "label": "Websites",
+      "href": "/websites"
+    },
+    {
+      "label": "Search",
+      "href": "/search"
+    },
+    {
+      "label": "Socials",
+      "href": "/social"
+    },
+    {
+      "label": "Consulting",
+      "href": "/consulting"
+    },
+    {
       "label": "Work",
       "href": "/work"
     }
