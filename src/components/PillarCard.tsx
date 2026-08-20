@@ -23,7 +23,7 @@ const icons: Record<Pillar['key'], ReactNode> = {
     </>
   ),
   // Claude-style sunburst
-  ai: (
+  consulting: (
     <>
       <line x1="15.6" y1="12" x2="21.4" y2="12" />
       <line x1="15.1" y1="13.8" x2="20.1" y2="16.7" />

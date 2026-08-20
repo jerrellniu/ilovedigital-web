@@ -62,7 +62,7 @@ export interface Stat {
 }
 
 export interface Pillar {
-  key: 'websites' | 'search' | 'social' | 'ai';
+  key: 'websites' | 'search' | 'social' | 'consulting';
   name: string;
   heading: string;
   oneLiner: string;
