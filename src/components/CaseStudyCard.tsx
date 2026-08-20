@@ -63,10 +63,9 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
 
       <div className="p-6">
         <div className="font-heading text-lg font-bold">{data.service ?? data.client}</div>
-        <div className="mt-2 font-body text-[1.05rem] font-semibold">{data.headline}</div>
-        {data.outcome ? (
-          <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome}</div>
-        ) : null}
+        {/* One description line only. `headline` is the case study's H1 and is not
+            repeated on the card; it falls back in when there is no outcome line. */}
+        <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome ?? data.headline}</div>
         {data.href ? (
           <div className="mt-4 font-body font-semibold text-cyan">View case study →</div>
         ) : null}

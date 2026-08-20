@@ -6,7 +6,8 @@
     "headline": "Three websites turned into one that actually gets found",
     "outcome": "Organic clicks up 31 per cent, first place on Google for their own name, and one site instead of three.",
     "href": "/work/the-boxing-shop",
-    "image": "/images/work/the-boxing-shop.jpg"
+    "image": "/images/work/the-boxing-shop.jpg",
+    "service": "Custom Shopify design & search"
   },
   {
     "client": "Toni Gunn",
@@ -15,7 +16,8 @@
     "headline": "A website a therapist can trust to speak for her",
     "outcome": "Off WordPress, off the maintenance bill, and onto a site she does not have to think about.",
     "href": "/work/toni-gunn",
-    "image": "/images/work/toni-gunn.jpg"
+    "image": "/images/work/toni-gunn.jpg",
+    "service": "Custom website design"
   },
   {
     "client": "GC Connected Homes",
@@ -53,6 +55,7 @@
     "headline": "A basketball club's website rebuilt so parents can actually find what they need",
     "outcome": "Season dates, fees and fixtures readable by people and by Google, and registrations taken on the club\u2019s own site.",
     "href": "/work/varsity-vipers",
-    "image": "/images/work/varsity-vipers.jpg"
+    "image": "/images/work/varsity-vipers.jpg",
+    "service": "Custom website design & search"
   }
 ]
