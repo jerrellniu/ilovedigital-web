@@ -41,6 +41,11 @@ export default function Turnstile({ onToken }: { onToken: (token: string) => voi
       if (cancelled || !ref.current || !window.turnstile) return;
       widgetId = window.turnstile.render(ref.current, {
         sitekey: siteKey,
+        // The site is dark throughout; the widget's default light card reads as
+        // something bolted on. Pinned rather than left on 'auto', which follows
+        // the visitor's OS preference and would render a white card on the dark
+        // page for anyone browsing in light mode — the majority.
+        theme: 'dark',
         callback: (token: string) => onTokenRef.current(token),
         // A token is single-use and expires after a few minutes. Clearing it on
         // expiry means a form left open in a tab fails the server check rather
