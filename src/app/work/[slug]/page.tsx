@@ -72,7 +72,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             {fm.tag}
           </span>
           {fm.platform ? (
-            <span className="rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold text-muted">
+            <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-xs font-semibold text-cyan">
               {fm.platform}
             </span>
           ) : null}

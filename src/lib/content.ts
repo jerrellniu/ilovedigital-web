@@ -47,12 +47,15 @@ export function getServicePage(
     // A card tagged "Web + Search" belongs on both pillar pages, so match on the
     // parts rather than the whole string.
     const wanted = page.relatedWorkTag.toLowerCase();
-    page.relatedWork = getWorkIndex().filter((c) =>
-      c.tag
-        .split('+')
-        .map((t) => t.trim().toLowerCase())
-        .includes(wanted)
-    );
+    page.relatedWork = getWorkIndex()
+      .filter((c) =>
+        c.tag
+          .split('+')
+          .map((t) => t.trim().toLowerCase())
+          .includes(wanted)
+      )
+      // Three keeps the row to one line on desktop. The rest are on /work.
+      .slice(0, 3);
   }
   return page;
 }

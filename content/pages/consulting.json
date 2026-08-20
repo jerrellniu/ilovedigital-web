@@ -27,8 +27,7 @@
     ]
   },
   "howItWorks": "Consulting runs month-to-month or in short blocks, scoped to what you need.",
-  "relatedWork": null,
-  "relatedWorkNote": "The Consulting pillar has no published case study yet \u2014 add one before launch (known content gap).",
+  "relatedWorkNote": "No Consulting case study is published yet.",
   "faq": [
     {
       "question": "Do you offer CTO or tech consulting?",
@@ -45,5 +44,6 @@
       "label": "Get a free quote",
       "href": "/contact"
     }
-  }
+  },
+  "relatedWorkTag": "Consulting"
 }

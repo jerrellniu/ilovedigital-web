@@ -35,7 +35,7 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
               {data.tag}
             </span>
             {data.platform ? (
-              <span className="whitespace-nowrap rounded-full border border-white/20 px-2 py-0.5 text-[0.65rem] font-semibold text-muted">
+              <span className="whitespace-nowrap rounded-full border border-cyan/40 px-2 py-0.5 text-[0.65rem] font-semibold text-cyan">
                 {data.platform}
               </span>
             ) : null}
