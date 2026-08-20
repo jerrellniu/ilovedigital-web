@@ -67,7 +67,7 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
             repeated on the card; it falls back in when there is no outcome line. */}
         <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome ?? data.headline}</div>
         {data.href ? (
-          <div className="mt-4 font-body font-semibold text-cyan">View case study →</div>
+          <div className="mt-4 font-body text-[0.85rem] font-medium text-cyan">View case study →</div>
         ) : null}
       </div>
     </>
