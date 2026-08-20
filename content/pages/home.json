@@ -95,39 +95,38 @@
     "sub": "A snapshot of what we've shipped in the past 12 months.",
     "cards": [
       {
-        "client": "The Boxing Shop",
-        "tag": "Web",
-        "platform": "Shopify",
-        "headline": "3 websites consolidation and Shopify rebuild for Brisbane boxing gym",
-        "outcome": "One fast, unified Shopify store instead of three \u2014 easier to manage, easier to buy from.",
-        "href": "/work/the-boxing-shop",
-        "image": "/images/work/the-boxing-shop.jpg"
-      },
-      {
         "client": "Solar Set",
         "tag": "Search",
-        "headline": "More qualified solar leads through search, month after month",
-        "outcome": "Steady ranking gains and a growing pipeline of ready-to-quote enquiries.",
+        "headline": "Breaking into residential solar without losing their commercial rankings",
+        "outcome": "Number one for commercial solar on the Gold Coast, top three in the Google Map Pack, and a five-figure saving.",
         "href": "/work/solar-set",
         "image": "/images/work/solar-set.jpg"
       },
       {
+        "client": "Trigahex",
+        "tag": "Web",
+        "platform": "Shopify",
+        "headline": "Shopify store built to sell for a Queensland game manufacturer",
+        "outcome": "A six-month sales goal hit in a few weeks.",
+        "href": "/work/trigahex",
+        "image": "/images/work/trigahex.jpg"
+      },
+      {
+        "client": "GC Connected Homes",
+        "tag": "Search",
+        "headline": "A website redesign and a search presence for a Gold Coast smart home installer",
+        "outcome": "A site that finally says what they do, and 175 per cent more visits from Google.",
+        "href": "/work/gc-connected-homes",
+        "image": "/images/work/gc-connected-homes.jpg"
+      },
+      {
         "client": "Butchers Pride",
         "tag": "Social",
-        "headline": "Done-for-you social content that turns followers into buyers",
-        "outcome": "Consistent, on-brand content and local discovery driving product sales.",
+        "headline": "From no social presence to 1,482 followers in five months",
+        "outcome": "A brand-new audience, a content system Phil still uses, and a Google listing brought back from suspension.",
         "href": "/work/butchers-pride",
         "image": "/images/work/butchers-pride.jpg",
         "imageAlt": "Butchers Pride Instagram feed"
-      },
-      {
-        "client": "Varsity Vipers",
-        "tag": "Web + Search",
-        "platform": "Next.js",
-        "headline": "New website and search presence for Queensland's largest junior basketball club",
-        "outcome": "A modern hub for programs, fixtures, and sign-ups \u2014 easy for families to find.",
-        "href": "/work/varsity-vipers",
-        "image": "/images/work/varsity-vipers.jpg"
       }
     ],
     "footerCta": {
@@ -144,7 +143,7 @@
         "author": "Phil S \u2014 Bondi"
       },
       {
-        "quote": "I Love Digital has been a great experience for me. Their professionalism and outstanding service towards detail and support is unmatched. I highly recommend I Love Digital to anyone looking at generating new leads and promoting their business digitally.",
+        "quote": "i love digital has been a great experience for me with their professionalism and outstanding service towards detail and support. It has been an absolute pleasure working with Jerrell and his team. I highly recommend i love digital to anyone looking at generating new leads and promoting their business digitally.",
         "author": "Leon S \u2014 Robina"
       },
       {
