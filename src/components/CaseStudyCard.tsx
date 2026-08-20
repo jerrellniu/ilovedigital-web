@@ -62,7 +62,7 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
       </div>
 
       <div className="p-6">
-        <div className="font-heading text-lg font-bold">{data.client}</div>
+        <div className="font-heading text-lg font-bold">{data.service ?? data.client}</div>
         <div className="mt-2 font-body text-[1.05rem] font-semibold">{data.headline}</div>
         {data.outcome ? (
           <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome}</div>

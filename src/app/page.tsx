@@ -69,7 +69,7 @@ export default function HomePage() {
             heading={home.featuredWork.heading}
             sub={home.featuredWork.sub}
           />
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {home.featuredWork.cards.map((c, i) => (
               <CaseStudyCard key={`${c.href ?? c.client}-${i}`} data={c} />
             ))}

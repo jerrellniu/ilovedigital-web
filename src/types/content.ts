@@ -72,6 +72,12 @@ export interface Pillar {
 
 export interface CaseStudyCardData {
   client: string;
+  /**
+   * What the card leads with. The service, not the client — "Custom Shopify design"
+   * rather than "Trigahex". Falls back to `client` when absent. The client name still
+   * lives in `client` and is what the case study page, breadcrumb and metadata use.
+   */
+  service?: string;
   tag: string;
   headline: string;
   /** Supporting line under the headline. Omitted when the headline says it all. */
