@@ -27,7 +27,6 @@
     ]
   },
   "howItWorks": "Consulting runs month-to-month or in short blocks, scoped to what you need.",
-  "relatedWorkNote": "No Consulting case study is published yet.",
   "faq": [
     {
       "question": "Do you offer CTO or tech consulting?",
@@ -44,6 +43,5 @@
       "label": "Get a free quote",
       "href": "/contact"
     }
-  },
-  "relatedWorkTag": "Consulting"
+  }
 }
