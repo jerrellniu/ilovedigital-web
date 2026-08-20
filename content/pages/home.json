@@ -64,8 +64,8 @@
     },
     {
       "key": "social",
-      "name": "Social",
-      "heading": "Social that sounds like you.",
+      "name": "Socials",
+      "heading": "Socials that sound like you.",
       "oneLiner": "Done-for-you social media across Instagram, Facebook, and TikTok \u2014 written to match your brand, not a template.",
       "bullets": [
         "Strategy and content calendars",
@@ -115,7 +115,7 @@
       },
       {
         "client": "Butchers Pride",
-        "tag": "Social",
+        "tag": "Socials",
         "headline": "From no social presence to 1,482 followers in five months",
         "outcome": "A brand-new audience, a content system the client still uses, and a Google listing brought back from suspension.",
         "href": "/work/butchers-pride",

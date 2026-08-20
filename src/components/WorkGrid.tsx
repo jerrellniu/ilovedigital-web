@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CaseStudyCard from './CaseStudyCard';
 import type { CaseStudyCardData } from '@/types/content';
 
-const FILTERS = ['All', 'Web', 'Search', 'Social', 'AI'] as const;
+const FILTERS = ['All', 'Web', 'Search', 'Socials', 'Consulting'] as const;
 
 function matches(tag: string, filter: string) {
   if (filter === 'All') return true;

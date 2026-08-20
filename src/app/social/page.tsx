@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function SocialPage() {
   return (
     <>
-      <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Social', path: '/social' }]} />
+      <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Socials', path: '/social' }]} />
       <ServicePageView content={content} />
     </>
   );

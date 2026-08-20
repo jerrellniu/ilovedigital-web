@@ -8,7 +8,7 @@ const items = getWorkIndex();
 const site = getSite();
 
 export const metadata: Metadata = {
-  title: 'Our Work — Case Studies in Web, SEO, Social, and Brand',
+  title: 'Our Work — Case Studies in Web, Search, Socials, and Consulting',
   description:
     "Case studies from Queensland trades and service businesses we've helped with websites, SEO, social media, and brand identity.",
 };
