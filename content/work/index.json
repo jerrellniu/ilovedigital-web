@@ -1,13 +1,13 @@
 [
   {
     "client": "The Boxing Shop",
-    "tag": "Web",
+    "tag": "Consulting",
     "platform": "Shopify",
-    "headline": "Three websites turned into one that actually gets found",
-    "outcome": "Organic clicks up 31 per cent, first place on Google for their own name, and one site instead of three.",
+    "headline": "Uncomplicating a Pro Boxing Coach's Digital Presence",
+    "outcome": "Running costs down 60 per cent, traffic up 17 per cent month on month, and class bookings coming in online.",
     "href": "/work/the-boxing-shop",
     "image": "/images/work/the-boxing-shop.jpg",
-    "service": "Consolidate 3 websites into 1 for boxing gym"
+    "service": "Uncomplicating a pro boxing coach's digital presence"
   },
   {
     "client": "Toni Gunn",
@@ -53,7 +53,7 @@
     "tag": "Web + Search",
     "platform": "Next.js",
     "headline": "A basketball club's website rebuilt so parents can actually find what they need",
-    "outcome": "Season dates, fees and fixtures readable by people and by Google, and registrations taken on the club\u2019s own site.",
+    "outcome": "Season dates, fees and fixtures readable by people and by Google, and registrations taken on the club’s own site.",
     "href": "/work/varsity-vipers",
     "image": "/images/work/varsity-vipers.jpg",
     "service": "Custom website and search for a junior basketball club"
