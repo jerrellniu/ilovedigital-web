@@ -1,0 +1,77 @@
+---
+title: "CSS Hack #1: Shrink the Logo on Scroll (Without Crying Into Your Coffee)"
+category: "Web"
+excerpt: "A quick CSS snippet that shrinks your Squarespace logo as visitors scroll, so your content gets the space and your header stops hogging it."
+readTime: "3 min"
+author: "Jerrell Niu"
+date: "2025-04-16"
+updated: "2026-09-06"
+slug: "css-hack-shrink-logo-on-scroll"
+published: true
+---
+
+<!--
+  Recovered from the Wayback Machine (23 Nov 2025 capture) on 6 September 2026. Light edit only:
+  CSS library link now points at /contact pending the lead-magnet decision, the social handles
+  section was dropped (the template carries the author bio), and headings promoted to H2.
+-->
+
+Let’s face it: Squarespace headers can be a bit... *extra*. You spend hours perfecting your homepage only to have your oversized logo and chunky nav bar hog the spotlight like a stage mum in sequins.
+
+Enter: the scroll-triggered logo shrink hack.
+
+This quick CSS snippet is perfect for business website owners, DIYers, and designers who want a slick, modern feel — and who wouldn’t mind reclaiming a little vertical space without breaking anything (or crying). Best part? It’s easier than it sounds, and I’ll walk you through it step-by-step.
+
+## Why Shrink the Logo on Scroll?
+
+It’s all about UX. When your header is fixed (aka it stays at the top of the screen as users scroll), a full-height logo and nav bar can eat up precious real estate. This trick subtly reduces the logo size once the user starts scrolling, so your content can shine.
+
+Think of it as a tidy little animation that says, "Hey, I’m still here... but I’ll give you some space."
+
+## The CSS Snippet
+
+Here’s the code in all its glory:
+
+```css
+@media only screen and (min-width: 750px) {
+  #header .header-title-logo img {
+    transition: max-height 140ms ease-in-out;
+  }
+
+  #header.shrink {
+    .header-announcement-bar-wrapper {
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+    }
+    .header-title-logo img {
+      max-height: 75px;
+    }
+  }
+}
+```
+
+What this does:
+
+- Applies only to screens 750px and wider
+- Smoothly transitions the logo image size
+- Targets headers with the `.shrink` class that listens for scroll events
+
+## Step-by-Step Guide
+
+**1. Make sure your header is fixed** This hack only works if your site’s header is fixed. If it scrolls away with the page, well... there’s nothing to shrink!
+
+Go to your Squarespace editor > Design > Site Styles > Header Layout, and confirm the fixed position is turned on.
+
+**2. Paste the CSS** Head to **Design > Custom CSS** and paste in the snippet above.
+
+**3. Apply the** `.shrink` **class on scroll** You can use a plugin or Squarespace extension that allows for scroll-based class toggling. If you’re comfortable with a bit of JavaScript, you can also manually apply the class via developer mode or code block integrations.
+
+**4. Save and refresh** Scroll up and down like a maniac to watch your logo gently shrink. *Magic.*
+
+## Want More CSS Like This?
+
+If you love this kind of slick, subtle enhancement, I’ve got a full **CSS Code Library** with 200+ custom snippets ready to copy, paste, and make your Squarespace site behave like it knows what it’s doing. Hover effects, scroll animations, layout tweaks, and stylish fixes that turn "meh" into *chef’s kiss*. [Get in touch](/contact) if you’d like access.
+
+New to CSS? Start with [Getting Started with CSS in Squarespace](/insights/getting-started-css-squarespace).
+
+Got questions or stuck on a step? [Send me a message](/contact) — I’m here to help (and I promise not to reply in code only).

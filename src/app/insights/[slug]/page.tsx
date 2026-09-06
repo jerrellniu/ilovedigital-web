@@ -17,7 +17,17 @@ interface PostFm {
   excerpt: string;
   readTime: string;
   author?: string;
+  /** ISO date (YYYY-MM-DD). Displayed in en-AU long form; passed to Article schema as datePublished. */
   date?: string;
+  /** ISO date of the last substantive edit; Article schema dateModified. */
+  updated?: string;
+}
+
+function formatDate(iso?: string): string | undefined {
+  if (!iso) return undefined;
+  const d = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
 export function generateStaticParams() {
@@ -34,8 +44,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const entry = getEntry<PostFm>('insights', params.slug);
   if (!entry) notFound();
   const fm = entry.frontmatter;
+  // Only published siblings: an unpublished related card would link to a 404.
   const related = getInsightsIndex()
-    .filter((p) => p.slug !== params.slug && p.category === fm.category)
+    .filter((p) => p.href && p.slug !== params.slug && p.category === fm.category)
     .slice(0, 3);
 
   return (
@@ -45,6 +56,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           title: fm.title,
           description: fm.excerpt,
           datePublished: fm.date,
+          dateModified: fm.updated ?? fm.date,
           slug: params.slug,
           section: fm.category,
         })}
@@ -62,7 +74,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <h1 className="mt-3 max-w-[26ch] text-[clamp(2.2rem,4.5vw,3.4rem)]">{fm.title}</h1>
         <div className="mt-4 text-[0.9rem] text-faint">
           {fm.author ?? 'Jerrell Niu'}
-          {fm.date ? ` · ${fm.date}` : ''} · {fm.readTime} read
+          {fm.date ? ` · ${formatDate(fm.date)}` : ''}
+          {fm.updated && fm.updated !== fm.date ? ` · Updated ${formatDate(fm.updated)}` : ''} ·{' '}
+          {fm.readTime} read
         </div>
 
         <div className="mt-10">

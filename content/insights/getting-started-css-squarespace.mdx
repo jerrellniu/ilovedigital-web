@@ -1,0 +1,320 @@
+---
+title: "Getting Started with CSS in Squarespace: A Beginner's Guide"
+category: "Web"
+excerpt: "What CSS is, where the Custom CSS editor lives in Squarespace, five customisations you can make today, and the habits that keep your site tidy as you go."
+readTime: "12 min"
+author: "Jerrell Niu"
+date: "2025-01-10"
+updated: "2026-09-06"
+slug: "getting-started-css-squarespace"
+published: true
+---
+
+<!--
+  Recovered from the Wayback Machine (23 Nov 2025 capture) on 6 September 2026. Light edit only:
+  the Squarespace Guy persona intro replaced with a one-line author intro, CSS library links point
+  at /contact pending the lead-magnet decision, inline code converted to fenced blocks, one
+  mis-levelled heading fixed. Squarespace's menu path (Design > Custom CSS) is as written in 2025
+  and has not been re-verified against the current Squarespace UI.
+-->
+
+I’m Jerrell, founder of I Love Digital. I’ve spent years as a UX designer, web developer and product manager, working across WordPress, Shopify and Squarespace. This is the guide I wish DIY site owners had before they opened the CSS editor for the first time.
+
+Squarespace is a fantastic platform for creating professional websites without coding, especially for business owners just starting out. Its templates are beautifully designed and easy to use. But if you’ve ever wanted to tweak your website’s look—like customising fonts, hiding elements, or changing colours—you might have discovered the limitations of Squarespace’s built-in options.
+
+That’s where CSS for Squarespace comes in. CSS, or *Cascading Style Sheets*, is a tool that lets you control how your website looks. Think of it as a way to fine-tune your Squarespace template, making it truly your own. Whether you want to adjust button styles, create unique layouts, or align your site’s design with your brand, adding custom CSS to Squarespace opens up a world of possibilities.
+
+The best part? You don’t need to be a coding expert to start using CSS in Squarespace. In this guide, I’ll walk you through the basics of CSS, show you how to add it to your Squarespace website, and share beginner-friendly tips and examples. By the end, you’ll feel confident and excited to customise your Squarespace site with simple CSS tricks. Let’s dive in and unlock the full potential of your Squarespace website!
+
+## Understanding CSS
+
+If you’re new to coding, the term *CSS* might sound a bit technical, but don’t worry—it’s much simpler than it seems! CSS, or **Cascading Style Sheets**, is essentially the tool that allows you to control how your website looks. While Squarespace templates do a great job of giving you a polished design, CSS lets you customise those designs to better match your vision and brand.
+
+Think of your website like a house. The **HTML** (the code behind your Squarespace site) is the structure—the walls, doors, and windows. CSS is the decoration. It’s the paint, furniture, and lighting that make the house feel like your own. Without CSS, every site built in Squarespace would look the same as everyone else’s who used the same template!
+
+### How CSS Works in Squarespace
+
+When you use CSS in Squarespace, you’re adding instructions that tell the browser how to style specific parts of your website. For example:
+
+- **Selectors**: These identify the parts of your site you want to style (e.g., headings, buttons, or images).
+- **Properties**: These describe the style you want to change (e.g., colour, font size, or spacing).
+- **Values**: These define the specific look you want (e.g., make a heading blue or increase its size to 24px).
+
+Here’s a simple example:  
+If you want your website’s main headings to appear in red, you’d write a CSS snippet like this:
+
+```css
+h1 {
+  color: red;
+}
+```
+
+This code tells the browser: “Find all the headings labelled as `h1` on the site and change their colour to red.”
+
+### Why Use CSS in Squarespace?
+
+Squarespace’s templates are designed to look great out of the box, but they often have limitations. Using custom CSS allows you to:
+
+- **Customise Your Site**: Adjust colours, fonts, and layouts to match your brand perfectly.
+- **Create Unique Designs**: Stand out from other Squarespace users who might be using the same template.
+- **Fix Styling Issues**: Make tweaks that aren’t possible with Squarespace’s default settings.
+
+For example, maybe you want to hide the page title on a specific page, or add rounded corners to your buttons. These are small changes that can make a big difference, and CSS makes them easy to achieve.
+
+In the next section, we’ll explore how to access the **Custom CSS Editor** in Squarespace and start adding your own styles. By understanding how to use CSS in Squarespace, you’re taking the first step towards creating a website that truly feels like yours.
+
+## Getting Started with the CSS Editor in Squarespace
+
+Now that you understand what CSS is and how it can enhance your Squarespace site, it’s time to roll up your sleeves and dive in! The good news? Squarespace makes it easy to add custom CSS directly through its built-in **Custom CSS Editor**. You don’t need to install any extra tools or software—it’s all available right in your site’s dashboard.
+
+### How to Access the CSS Editor
+
+Follow these simple steps to find and open the Custom CSS Editor in Squarespace:
+
+1. **Log in to your Squarespace account**: Head to [squarespace.com](https://squarespace.com) and log in to your site.
+2. **Go to the Design section**: In the left-hand menu, click on **Design**.
+3. **Open the Custom CSS Editor**: Under the Design menu, select **Custom CSS**. A blank code editor will appear where you can start adding your CSS.
+
+Squarespace also gives you a live preview of your website while you’re adding CSS, so you can see your changes in real-time.
+
+### How to Add Your First CSS Snippet
+
+Let’s start with a simple example to get comfortable with the editor. Say you want to change the background colour of your entire site:
+
+1. In the Custom CSS Editor, enter the following code:
+
+   ```css
+body {
+  background-color: #f0f8ff;
+}
+   ```
+2. You’ll see the background of your site change to a light blue shade (the colour code `#f0f8ff` is light blue).
+3. Click **Save** in the top-left corner to keep your changes.
+
+Congratulations! You’ve just added your first piece of custom CSS to your Squarespace site.
+
+### Tips for Using the CSS Editor
+
+- **Start Small**: Begin with simple changes like colours and font sizes. As you gain confidence, you can move on to more advanced tweaks.
+- **Preview Responsively**: Check how your changes look on both desktop and mobile views using the device preview options in Squarespace.
+- **Use Comments**: Add comments to your CSS code to keep track of what each snippet does. For example:
+
+  ```css
+/* Change background colour to light blue */
+body {
+  background-color: #f0f8ff;
+}
+  ```
+- **Test Before Saving**: Make sure your changes look good and don’t interfere with other parts of your site before hitting save.
+
+### What If You Make a Mistake?
+
+Don’t worry—CSS changes in Squarespace aren’t permanent. If you make a mistake or don’t like how something looks:
+
+- Simply delete the code from the editor and your site will return to its previous state.
+- You can also use the **Undo** button in the CSS Editor to reverse recent changes.
+
+By using the Custom CSS Editor, you can take full control of your site’s style while keeping it user-friendly and manageable.
+
+In the next section, we’ll explore some **basic CSS customisations** you can try, like styling fonts, adjusting spacing, and tweaking buttons to fit your brand.
+
+## Basic CSS Customisations for Beginners
+
+Now that you’re familiar with the CSS Editor, let’s explore some simple yet powerful customisations you can apply to your Squarespace site. These small tweaks can make a big difference in creating a website that reflects your brand’s style and stands out from the crowd.
+
+### 1. Changing Font Colours
+
+Fonts are a key part of your website’s design, and changing their colour can instantly make your site feel more personalised.
+
+Here’s how to change the colour of your main headings:
+
+1. Open the Custom CSS Editor.
+2. Add this snippet:
+
+   ```css
+h1 {
+  color: #333333; /* Dark grey */
+}
+   ```
+3. Save your changes, and you’ll see all `h1` headings change to dark grey.
+
+**Tip:** Replace `#333333` with a different colour code or name (e.g., `red`, `blue`, or `#FF5733`) to match your brand.
+
+### 2. Customising Button Styles
+
+Squarespace buttons are functional, but you can make them pop with a bit of CSS. For example, let’s add rounded corners to all buttons:
+
+1. In the Custom CSS Editor, enter:
+
+   ```css
+.sqs-block-button-element {
+  border-radius: 15px;
+}
+   ```
+2. Save your changes, and your buttons will now have a smooth, rounded look.
+
+**Bonus:** Add a hover effect for your buttons:
+
+```css
+.sqs-block-button-element:hover {
+  background-color: #0077cc; /* Changes the background colour on hover */
+  color: white; /* Changes the text colour on hover */
+}
+```
+
+### 3. Adjusting Spacing with Margins and Padding
+
+If you want more control over spacing between elements, CSS makes it easy. For instance, to add extra space below your paragraphs:
+
+1. Add this snippet:
+
+   ```css
+p {
+  margin-bottom: 20px;
+}
+   ```
+2. Save your changes, and you’ll see more space between paragraphs.
+
+**Understanding Margins vs Padding:**
+
+- *Margins* control the space outside an element (e.g., between text blocks).
+- *Padding* adjusts the space inside an element (e.g., between text and its background).
+
+### 4. Hiding Elements You Don’t Need
+
+Sometimes, you may want to remove parts of your site that aren’t necessary, like a page title or footer credit. Here’s how to hide a page title:
+
+1. Identify the page title’s selector (often `.page-title`).
+2. Add this CSS:
+
+   ```css
+.page-title {
+  display: none;
+}
+   ```
+3. Save your changes, and the page title will disappear.
+
+**Tip:** Use the browser’s *Inspect* tool (right-click > Inspect) to find selectors for other elements you want to hide.
+
+### 5. Customising Background Colours
+
+Changing the background colour of your site is another simple way to personalise your design:
+
+1. Add this CSS snippet to change the background of the entire site:
+
+   ```css
+body {
+  background-color: #f9f9f9;
+  /* Light grey */
+}
+   ```
+2. Save your changes, and your site will have a new background colour.
+
+### Testing Your Customisations
+
+After making changes, always preview your site on both desktop and mobile views. This ensures your customisations look great and don’t disrupt the overall design.
+
+### What’s Next?
+
+These beginner-friendly CSS tweaks are just the beginning of what’s possible in Squarespace. In the next section, we’ll cover some best practices to help you organise and manage your custom CSS effectively as you continue to explore new customisations.
+
+## Best Practices for Beginners Using CSS
+
+When you’re new to CSS, it’s important to establish good habits right from the start. These best practices will help you stay organised, avoid common mistakes, and make the most of your customisations as you grow more confident in using CSS for your Squarespace site.
+
+### 1. Start Small and Test Frequently
+
+- Begin with simple changes, like adjusting font colours or button styles, before diving into more complex customisations.
+- After adding each snippet, preview your site to ensure it looks the way you intended. Squarespace’s live preview feature makes this easy.
+
+### 2. Use Comments to Stay Organised
+
+As you start adding more CSS, keeping track of your changes can save you time and frustration later. Use comments in your code to label what each section does:
+
+```css
+/* Changes button styles */
+.sqs-block-button-element {
+  border-radius: 10px;
+  background-color: #0077cc;
+}
+
+/* Adjusts spacing for paragraphs */
+p {
+  margin-bottom: 15px;
+}
+```
+
+Comments won’t affect your site—they’re just there to help you stay organised.
+
+### 3. Test Across Devices
+
+Your customisations may look great on a desktop, but it’s crucial to check how they appear on mobile and tablet devices. Use Squarespace’s device preview options to ensure your changes are responsive.
+
+### 4. Keep a Backup of Your CSS
+
+Accidentally deleting your CSS or overwriting it with new changes can happen, especially when you’re experimenting. To avoid losing your work:
+
+- Copy your CSS into a text editor or cloud-based document regularly.
+- Save versions of your code as you make major updates.
+
+### 5. Avoid Overwriting Existing Styles Unintentionally
+
+When writing CSS, be specific about the elements you want to target. For example, instead of:
+
+```css
+h1 {
+  color: red;
+}
+```
+
+Be more precise:
+
+```css
+.page-title h1 {
+  color: red;
+}
+```
+
+This approach prevents your changes from affecting areas of your site you didn’t intend to modify.
+
+### 6. Use Squarespace’s Built-In Tools
+
+Squarespace provides several tools to make your CSS customisation journey easier:
+
+- **Inspect Tool**: Right-click on an element in your browser and select *Inspect*. This reveals the element’s code and CSS selectors, making it easier to target the right elements.
+- **Undo Button**: Use the Undo option in the CSS Editor if a change doesn’t work out as planned.
+
+### 7. Build on What You’ve Learned
+
+Once you’re comfortable with basic CSS, start exploring more advanced techniques, like animations or responsive design. Each new snippet you try will help you build your skills and confidence.
+
+### 8. Don’t Be Afraid to Experiment
+
+CSS is a forgiving language—if something doesn’t work, you can simply delete the code or try a different approach. Experimentation is part of the learning process, so have fun with it!
+
+### Looking Ahead
+
+By following these best practices, you’ll create a strong foundation for using CSS on your Squarespace site. As you grow more familiar with customising Squarespace templates, you’ll be able to tackle more advanced projects with ease.
+
+In the final section, we’ll recap everything covered in this guide and discuss how you can take your CSS skills to the next level.
+
+## Taking Your First Steps with CSS in Squarespace
+
+Congratulations! You’ve just taken your first steps into the world of CSS for Squarespace. By learning how to use CSS, you’ve unlocked the ability to customise your website in ways that make it truly unique. Whether it’s changing font colours, adjusting button styles, or hiding unwanted elements, even small tweaks can have a big impact on your site’s look and feel.
+
+Here’s a quick recap of what we’ve covered:
+
+1. **What CSS Is and Why It Matters**: CSS is the tool that allows you to style your Squarespace site, giving you control over its appearance.
+2. **Accessing the CSS Editor**: Squarespace makes it easy to add custom CSS with its built-in editor and live preview features.
+3. **Beginner-Friendly Customisations**: Simple changes like adjusting spacing, customising buttons, and changing background colours can give your site a polished, professional look.
+4. **Best Practices**: Staying organised, testing across devices, and backing up your CSS will save you time and ensure your site stays responsive and user-friendly.
+
+Customising Squarespace templates with CSS might feel intimidating at first, but as you’ve seen, it’s much easier than it seems. With just a few snippets of code, you can make your site stand out from the rest and better reflect your brand’s identity.
+
+### What’s Next?
+
+Now that you’ve mastered the basics, you’re ready to explore even more possibilities. For example, you can learn how to use **media queries** for responsive design, create **hover animations**, or even style specific pages differently. These advanced techniques will allow you to take your site’s design to the next level.
+
+If you want more, I’ve built a library of over 200 Squarespace CSS snippets with step-by-step guides. [Get in touch](/contact) if you’d like access. For a quick win, try [CSS Hack #1: shrink the logo on scroll](/insights/css-hack-shrink-logo-on-scroll).
+
+Remember, every great website starts with a single change. So, open up that CSS Editor and start experimenting! You’ll be amazed at what you can create.

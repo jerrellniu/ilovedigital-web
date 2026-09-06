@@ -38,6 +38,7 @@ export function articleSchema(a: {
   title: string;
   description?: string;
   datePublished?: string;
+  dateModified?: string;
   slug: string;
   section?: string;
 }) {
@@ -47,6 +48,7 @@ export function articleSchema(a: {
     headline: a.title,
     description: a.description,
     datePublished: a.datePublished,
+    dateModified: a.dateModified,
     articleSection: a.section,
     author: { '@type': 'Person', name: 'Jerrell Niu' },
     publisher: { '@type': 'Organization', name: 'I Love Digital' },

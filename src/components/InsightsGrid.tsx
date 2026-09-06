@@ -1,19 +1,54 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
+import type { InsightCardData } from '@/lib/content';
 
-interface Post {
-  title: string;
-  category: string;
-  excerpt: string;
-  readTime: string;
-  slug: string;
+// Same four labels as the /work filters and the pillar pages: one taxonomy across the site.
+const FILTERS = ['All', 'Web', 'Search', 'Socials', 'Consulting'] as const;
+
+const SHELL = 'group block overflow-hidden rounded-2xl border border-transparent bg-surface';
+const INTERACTIVE = 'transition hover:-translate-y-1 hover:border-cyan/40';
+const TINT =
+  'bg-[linear-gradient(135deg,rgba(28,191,212,0.18),rgba(192,132,252,0.18)),#20222c]';
+
+function Card({ post }: { post: InsightCardData }) {
+  const body = (
+    <>
+      <div className={`relative aspect-[16/10] overflow-hidden ${TINT}`}>
+        {post.image ? (
+          <Image
+            src={post.image}
+            alt=""
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : null}
+      </div>
+      <div className="p-6">
+        <span className="text-xs font-semibold uppercase tracking-wide text-cyan">{post.category}</span>
+        <h3 className="mt-2 font-heading text-[1.15rem] font-bold leading-snug">{post.title}</h3>
+        <p className="mt-2 text-[0.92rem] text-muted">{post.excerpt}</p>
+        <div className="mt-3 text-[0.8rem] text-faint">
+          {post.href ? `${post.readTime} read` : 'Coming soon'}
+        </div>
+      </div>
+    </>
+  );
+
+  // An unpublished post renders as a card with nothing to click, never as a link to a 404.
+  return post.href ? (
+    <Link href={post.href} className={`${SHELL} ${INTERACTIVE}`}>
+      {body}
+    </Link>
+  ) : (
+    <div className={`${SHELL} opacity-80`}>{body}</div>
+  );
 }
 
-const FILTERS = ['All', 'Web', 'SEO', 'Brand', 'Tools'] as const;
-
-export default function InsightsGrid({ posts }: { posts: Post[] }) {
+export default function InsightsGrid({ posts }: { posts: InsightCardData[] }) {
   const [filter, setFilter] = useState<string>('All');
   const visible = posts.filter((p) => filter === 'All' || p.category === filter);
 
@@ -37,21 +72,7 @@ export default function InsightsGrid({ posts }: { posts: Post[] }) {
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {visible.map((p) => (
-          <Link
-            key={p.slug}
-            href={`/insights/${p.slug}`}
-            className="group block overflow-hidden rounded-2xl border border-transparent bg-surface transition hover:-translate-y-1 hover:border-cyan/40"
-          >
-            <div className="aspect-[16/10] bg-[linear-gradient(135deg,rgba(28,191,212,0.18),rgba(192,132,252,0.18)),#20222c]" />
-            <div className="p-6">
-              <span className="text-xs font-semibold uppercase tracking-wide text-cyan">
-                {p.category}
-              </span>
-              <h3 className="mt-2 font-heading text-[1.15rem] font-bold leading-snug">{p.title}</h3>
-              <p className="mt-2 text-[0.92rem] text-muted">{p.excerpt}</p>
-              <div className="mt-3 text-[0.8rem] text-faint">{p.readTime} read</div>
-            </div>
-          </Link>
+          <Card key={p.slug} post={p} />
         ))}
       </div>
     </>

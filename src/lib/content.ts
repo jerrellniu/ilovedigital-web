@@ -77,8 +77,29 @@ export function getWorkIndex(): CaseStudyCardData[] {
   return linkOnlyPublished(readJson<CaseStudyCardData[]>('work/index.json'));
 }
 
-export function getInsightsIndex(): any[] {
-  return readJson('insights/index.json');
+export interface InsightCardData {
+  title: string;
+  category: string;
+  excerpt: string;
+  readTime: string;
+  slug: string;
+  /** Set only when the MDX file is published; an unpublished post renders as an unlinked card. */
+  href?: string;
+  /** Resolved by convention from public/images/insights/<slug>.jpg — drop the file in and the slot switches on. */
+  image?: string;
+}
+
+export function getInsightsIndex(): InsightCardData[] {
+  const published = new Set(getCollectionSlugs('insights'));
+  const posts = readJson<InsightCardData[]>('insights/index.json');
+  return posts.map((post) => {
+    const thumb = path.join(process.cwd(), 'public', 'images', 'insights', `${post.slug}.jpg`);
+    return {
+      ...post,
+      href: published.has(post.slug) ? `/insights/${post.slug}` : undefined,
+      image: fs.existsSync(thumb) ? `/images/insights/${post.slug}.jpg` : undefined,
+    };
+  });
 }
 
 export function getLegal(slug: 'terms' | 'privacy'): string {
