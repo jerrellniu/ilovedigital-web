@@ -5,6 +5,7 @@ import type {
   HomeContent,
   ServicePageContent,
   CaseStudyCardData,
+  AuthorPageContent,
 } from '@/types/content';
 import { getCollectionSlugs } from './mdx';
 
@@ -67,6 +68,10 @@ export function getServicePage(
 // Insights). Tighten these into typed shapes as each page is built out.
 export function getAbout(): any {
   return readJson('pages/about.json');
+}
+
+export function getAuthor(): AuthorPageContent {
+  return readJson<AuthorPageContent>('pages/author.json');
 }
 
 export function getContact(): any {

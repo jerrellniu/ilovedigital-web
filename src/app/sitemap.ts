@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/consulting',
     '/work',
     '/about',
+    '/about/jerrell-niu',
     '/insights',
     '/contact',
     '/audit',

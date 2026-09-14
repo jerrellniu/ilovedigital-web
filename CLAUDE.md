@@ -53,8 +53,9 @@ redirects.json      301 map (old Squarespace → new), loaded by next.config.mjs
 
 ## Routes (sitemap)
 
-Built: `/`, `/websites`, `/search`, `/social`, `/ai`, `/work`, `/about`,
-`/insights`, `/contact`, `/audit`, `/terms`, `/privacy`, custom 404.
+Built: `/`, `/websites`, `/search`, `/social`, `/consulting`, `/work`, `/about`,
+`/about/jerrell-niu` (author page), `/insights`, `/contact`, `/audit`, `/terms`,
+`/privacy`, custom 404.
 
 Four **standalone pillar pages** (`/websites`, `/search`, `/social`, `/ai`) replace the
 old single `/services` page — confirmed architecture change. Update the Notion Sitemap
@@ -62,8 +63,19 @@ doc to match if not already done.
 
 ## GEO / AI-citation (non-negotiable, per the GEO strategy)
 
-- FAQPage JSON-LD on every page with an FAQ (helper: `src/lib/schema.ts`). Already wired
-  on Home and the four pillar pages via `<JsonLd data={faqPageSchema(...)} />`.
+- FAQPage JSON-LD on every page with an FAQ (helper: `src/lib/schema.ts`). Wired on Home,
+  the four pillar pages and About via `<JsonLd data={faqPageSchema(...)} />`.
+- **Articles carry their FAQs in the Markdown body, not in frontmatter.** Write them under a
+  `## FAQs` heading as `**Question?**` on its own line followed by the answer paragraph.
+  `src/lib/faq.ts` reads them back out and `/insights/[slug]` emits FAQPage from the same text
+  the reader sees — one source of truth, no duplicated copy to drift. An article with no FAQ
+  section emits no FAQPage. Adding FAQs to an article is a content edit only, never a code change.
+- **Author entity.** `/about/jerrell-niu` emits the Person node (`@id` ends `#person`) plus
+  ProfilePage; every Article references that `@id` instead of a bare name string. Constants and
+  builders live in `src/lib/schema.ts` (`AUTHOR_ID`, `AUTHOR_URL`, `personSchema`,
+  `profilePageSchema`); copy lives in `content/pages/author.json`, typed by `AuthorPageContent`.
+  `sameAs` on that file is empty until Jerrell's own profile URLs are confirmed — only add
+  profiles that belong to the person, not the business.
 - LocalBusiness schema on Home. Add page-type schema (Article, BreadcrumbList) as pages
   are built out.
 - `public/robots.txt` allows AI crawlers; `public/llms.txt` present.

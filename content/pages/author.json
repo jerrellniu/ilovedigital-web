@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "title": "Jerrell Niu — Author and Founder, I Love Digital",
+    "description": "Jerrell Niu writes the guides on ilovedigital.com.au. Twenty years across product, technology and business, now building websites and search for Queensland businesses."
+  },
+  "slug": "jerrell-niu",
+  "name": "Jerrell Niu",
+  "jobTitle": "Founder and Digital Consultant, I Love Digital",
+  "image": "/images/founder/jerrell.webp",
+  "imageAlt": "Jerrell Niu, founder of I Love Digital",
+  "hero": {
+    "eyebrow": "Author",
+    "heading": "Jerrell Niu",
+    "sub": "I write every guide on this site, and I do the work I write about. I Love Digital is a one-person studio on the Gold Coast, so the person answering your questions is the person building the site."
+  },
+  "bio": {
+    "heading": "Why I am worth reading on this.",
+    "paragraphs": [
+      "Everything here comes out of client work, not research. I build the websites, run the search and reporting, and sit in the meetings where the results get explained, so each guide describes what actually moved the numbers on a real Australian business rather than what should work in theory.",
+      "The background behind that is twenty years across product, technology and business. I spent seven years at Coding Labs as Product Manager and then Executive Board Member, leading product across web and mobile and growing the engineering team by 500 per cent in three years. Before that I ran recruitment as General Manager at 99 Resumes and in technical recruitment leadership at MCS Consulting and Vanarden Mining Oil and Gas, and earlier still I spent six years in commercial finance. That mix means I have run teams, hired them, financed them and built the products they use, which is why the advice here is commercial before it is technical.",
+      "I started I Love Digital in 2024 to bring all of it together. Every article is written from the same standard I hold client work to: plain English, a clear answer in the first line, and no claim without something behind it."
+    ]
+  },
+  "expertise": {
+    "heading": "What I write about.",
+    "items": [
+      {
+        "title": "Websites",
+        "body": "Design and hands-on build across Next.js, Shopify, WordPress, Squarespace and Wix, with Figma for design. I write the code, so the guides cover what breaks as well as what works."
+      },
+      {
+        "title": "Search",
+        "body": "Technical SEO, on-page work, Google Business Profile and AI search. Everything is measured in Google Search Console on live client accounts, which is where the figures in these guides come from."
+      },
+      {
+        "title": "Socials",
+        "body": "Content calendars, captions and scripts for Instagram, Facebook and TikTok, written for small teams who have to run them alongside the actual job."
+      },
+      {
+        "title": "Consulting",
+        "body": "Fractional CTO work, AI automation and systems that take admin off a business owner's desk. This is where the tooling and workflow guides come from."
+      }
+    ]
+  },
+  "experience": {
+    "heading": "Track record.",
+    "items": [
+      {
+        "role": "Founder, I Love Digital",
+        "detail": "Since 2024. Websites, search, social and consulting for Queensland trades, retailers and service businesses."
+      },
+      {
+        "role": "Executive Board Member and Product Manager, Coding Labs",
+        "detail": "Seven years leading product across web and mobile, including a scouting app for an NRL team, a workflow tool for aviation engineers and a booking app for caravan travellers."
+      },
+      {
+        "role": "General Manager, 99 Resumes",
+        "detail": "Ran the recruitment business as General Manager and Executive Career Consultant, after technical recruitment leadership at MCS Consulting and Vanarden Mining Oil and Gas."
+      },
+      {
+        "role": "Head Coach, Varsity Vipers Basketball Club",
+        "detail": "Coaching on the Gold Coast since 2017 and an Association Coach with Gold Coast Basketball, named GC Basketball Team of the Year in 2023."
+      }
+    ]
+  },
+  "articles": {
+    "heading": "Articles by Jerrell.",
+    "sub": "Every guide on this site is written and published by me."
+  },
+  "sameAs": [],
+  "finalCta": {
+    "heading": "Want this handled for you?",
+    "button": { "label": "Get a free website audit", "href": "/audit" }
+  }
+}

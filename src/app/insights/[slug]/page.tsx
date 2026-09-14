@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Button from '@/components/Button';
@@ -6,10 +7,12 @@ import Markdown from '@/components/Markdown';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getCollectionSlugs, getEntry } from '@/lib/mdx';
-import { getInsightsIndex, getSite } from '@/lib/content';
+import { getAuthor, getInsightsIndex, getSite } from '@/lib/content';
+import { extractFaqs } from '@/lib/faq';
+import { articleSchema, faqPageSchema, AUTHOR_PATH } from '@/lib/schema';
 
 const site = getSite();
-import { articleSchema } from '@/lib/schema';
+const author = getAuthor();
 
 interface PostFm {
   title: string;
@@ -44,6 +47,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const entry = getEntry<PostFm>('insights', params.slug);
   if (!entry) notFound();
   const fm = entry.frontmatter;
+  // FAQs are read back out of the article body, so the schema and the page always
+  // carry the same questions. An article with no FAQ section emits no FAQPage.
+  const faqs = extractFaqs(entry.content);
   // Only published siblings: an unpublished related card would link to a 404.
   const related = getInsightsIndex()
     .filter((p) => p.href && p.slug !== params.slug && p.category === fm.category)
@@ -61,6 +67,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           section: fm.category,
         })}
       />
+      {faqs.length ? <JsonLd data={faqPageSchema(faqs)} /> : null}
       <Breadcrumbs
         trail={[
           { name: 'Home', path: '/' },
@@ -73,7 +80,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <span className="text-xs font-semibold uppercase tracking-wide text-cyan">{fm.category}</span>
         <h1 className="mt-3 max-w-[26ch] text-[clamp(2.2rem,4.5vw,3.4rem)]">{fm.title}</h1>
         <div className="mt-4 text-[0.9rem] text-faint">
-          {fm.author ?? 'Jerrell Niu'}
+          <Link href={AUTHOR_PATH} className="text-muted hover:text-cyan">
+            {fm.author ?? author.name}
+          </Link>
           {fm.date ? ` · ${formatDate(fm.date)}` : ''}
           {fm.updated && fm.updated !== fm.date ? ` · Updated ${formatDate(fm.updated)}` : ''} ·{' '}
           {fm.readTime} read
@@ -85,12 +94,26 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
         {/* Author bio */}
         <div className="mt-14 flex max-w-[70ch] items-center gap-4 rounded-2xl bg-surface p-6">
-          <div className="h-14 w-14 shrink-0 rounded-full bg-[linear-gradient(160deg,#2C2F3A,#20222c)]" />
+          {author.image ? (
+            <Image
+              src={author.image}
+              alt={author.imageAlt ?? author.name}
+              width={112}
+              height={112}
+              className="h-14 w-14 shrink-0 rounded-full object-cover"
+            />
+          ) : (
+            <div className="h-14 w-14 shrink-0 rounded-full bg-[linear-gradient(160deg,#2C2F3A,#20222c)]" />
+          )}
           <div>
-            <div className="font-heading font-bold">Jerrell Niu</div>
+            <div className="font-heading font-bold">
+              <Link href={AUTHOR_PATH} className="hover:text-cyan">
+                {author.name}
+              </Link>
+            </div>
             <p className="text-[0.9rem] text-muted">
-              Founder of I Love Digital.{' '}
-              <Link href="/about" className="text-cyan">
+              {author.jobTitle}.{' '}
+              <Link href={AUTHOR_PATH} className="text-cyan">
                 More about me →
               </Link>
             </p>

@@ -151,3 +151,21 @@ export interface ServicePageContent {
   faq: Faq[];
   ctaBand: { heading: string; button: CtaLink };
 }
+
+/** Author page copy (/about/jerrell-niu). The Person schema is built from these same fields. */
+export interface AuthorPageContent {
+  meta: { title: string; description: string };
+  slug: string;
+  name: string;
+  jobTitle: string;
+  image?: string;
+  imageAlt?: string;
+  hero: { eyebrow: string; heading: string; sub: string };
+  bio: { heading: string; paragraphs: string[] };
+  expertise: { heading: string; items: { title: string; body: string }[] };
+  experience: { heading: string; items: { role: string; detail: string }[] };
+  articles: { heading: string; sub: string };
+  /** Profiles that belong to the person, not the business. Emitted as Person sameAs. */
+  sameAs: string[];
+  finalCta: { heading: string; button: CtaLink };
+}
