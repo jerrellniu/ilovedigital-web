@@ -80,84 +80,8 @@
   "experienceMap": {
     "nodes": [
       {
-        "id": "d1",
-        "label": "Doorman & Club Manager",
-        "x": 1001.3,
-        "y": 532.2,
-        "size": 180,
-        "side": "left",
-        "rows": [
-          {
-            "label": "Nightlife & Hospitality",
-            "years": "9 years"
-          }
-        ],
-        "path": "M861.3 534.3 Q928.1 571 1000.1 596.4",
-        "len": 153,
-        "delay": 500,
-        "fromX": -179.5,
-        "fromY": -83.7
-      },
-      {
-        "id": "d2",
-        "label": "Cardiac Care Specialist",
-        "x": 363.2,
-        "y": 555,
-        "size": 190,
-        "side": "right",
-        "rows": [
-          {
-            "label": "Health Services",
-            "years": "10 years"
-          }
-        ],
-        "path": "M649.2 516.1 Q583.1 548.6 522.9 591.3",
-        "len": 148,
-        "delay": 780,
-        "fromX": 171.5,
-        "fromY": -99
-      },
-      {
-        "id": "d3",
-        "label": "Commercial Manager",
-        "x": 701.2,
-        "y": 701.9,
-        "size": 134,
-        "side": "left",
-        "rows": [
-          {
-            "label": "Commercial Finance",
-            "years": "5 years"
-          }
-        ],
-        "path": "M753.7 589.8 Q755.9 647.5 768.5 704.3",
-        "len": 116,
-        "delay": 640,
-        "fromX": -14.4,
-        "fromY": -164.4
-      },
-      {
-        "id": "d4",
-        "label": "Branch Manager",
-        "x": 363.2,
-        "y": 223,
-        "size": 134,
-        "side": "right",
-        "rows": [
-          {
-            "label": "Recruitment",
-            "years": "5 years"
-          }
-        ],
-        "path": "M664.7 397.1 Q591.8 348.4 510.8 314",
-        "len": 176,
-        "delay": 920,
-        "fromX": 171.5,
-        "fromY": 99
-      },
-      {
         "id": "d5",
-        "label": "Business Owner",
+        "primary": "Business Owner",
         "x": 701.1,
         "y": 86.1,
         "size": 170,
@@ -180,14 +104,14 @@
       },
       {
         "id": "d6",
-        "label": "Product Manager",
+        "primary": "Software Development",
+        "secondary": "Product Manager",
         "x": 986.8,
         "y": 210.5,
         "size": 159,
         "side": "left",
         "rows": [
           {
-            "label": "Software Development",
             "years": "7 years"
           }
         ],
@@ -196,6 +120,82 @@
         "delay": 1200,
         "fromX": -171.5,
         "fromY": 99
+      },
+      {
+        "id": "d4",
+        "primary": "Recruitment",
+        "secondary": "Branch Manager",
+        "x": 363.2,
+        "y": 223,
+        "size": 134,
+        "side": "right",
+        "rows": [
+          {
+            "years": "5 years"
+          }
+        ],
+        "path": "M664.7 397.1 Q591.8 348.4 510.8 314",
+        "len": 176,
+        "delay": 920,
+        "fromX": 171.5,
+        "fromY": 99
+      },
+      {
+        "id": "d3",
+        "primary": "Commercial Finance",
+        "secondary": "Commercial Manager",
+        "x": 701.2,
+        "y": 701.9,
+        "size": 134,
+        "side": "left",
+        "rows": [
+          {
+            "years": "5 years"
+          }
+        ],
+        "path": "M753.7 589.8 Q755.9 647.5 768.5 704.3",
+        "len": 116,
+        "delay": 640,
+        "fromX": -14.4,
+        "fromY": -164.4
+      },
+      {
+        "id": "d2",
+        "primary": "Health Services",
+        "secondary": "Cardiac Care Specialist",
+        "x": 363.2,
+        "y": 555,
+        "size": 190,
+        "side": "right",
+        "rows": [
+          {
+            "years": "10 years"
+          }
+        ],
+        "path": "M649.2 516.1 Q583.1 548.6 522.9 591.3",
+        "len": 148,
+        "delay": 780,
+        "fromX": 171.5,
+        "fromY": -99
+      },
+      {
+        "id": "d1",
+        "primary": "Nightlife & Hospitality",
+        "secondary": "Doorman & Club Manager",
+        "x": 1001.3,
+        "y": 532.2,
+        "size": 180,
+        "side": "left",
+        "rows": [
+          {
+            "years": "9 years"
+          }
+        ],
+        "path": "M861.3 534.3 Q928.1 571 1000.1 596.4",
+        "len": 153,
+        "delay": 500,
+        "fromX": -179.5,
+        "fromY": -83.7
       }
     ]
   }

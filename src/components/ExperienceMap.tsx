@@ -9,15 +9,27 @@ import type { ExperienceMapData, ExperienceMapNode } from '@/types/content';
  * canvas: a 1440x900 composition scaled to its container, with the branch lines
  * drawn once on entry and a slow cyan pulse travelling them afterwards.
  *
- * Every node is a real <button> carrying its own aria-label, and the same role
- * data is rendered again as a plain list below the map. That list is what a
- * crawler, a screen reader and a narrow phone all read, so the evidence on this
- * page never depends on the graphic rendering.
+ * Every node is a real <button> carrying its own aria-label, so the map is
+ * reachable by keyboard and readable by a screen reader rather than being a
+ * picture. Below the md breakpoint the branch lines and absolute positioning are
+ * dropped and the same nodes stack, so the roles are in the server-rendered HTML
+ * at every width.
  */
 
 const W = 1440;
 const H = 900;
 const EASE = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+
+/** The design's mobile frame scales every circle by 40/60 of its desktop diameter. */
+function mobileSize(size: number) {
+  return Math.round((size * 2) / 3);
+}
+
+/** Role, industry and duration, so the node reads the same aloud as its card does on screen. */
+function ariaLabel(n: ExperienceMapNode) {
+  const spans = n.rows.map((r) => (r.label ? `${r.label} ${r.years}` : r.years)).join(' and ');
+  return n.secondary ? `${n.primary}, ${n.secondary}, ${spans}` : `${n.primary}, ${spans}`;
+}
 
 function pulseDelay(drawDelay: number) {
   return 3000 + ((drawDelay - 500) / 140) * 220;
@@ -60,7 +72,7 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
       <style>{css(data.nodes)}</style>
 
       {/* Graphic. Hidden from assistive tech: the list below carries the same facts. */}
-      <div className="em-scale hidden md:block" aria-hidden="true">
+      <div className="em-scale hidden md:block">
         <div className="em-canvas">
           <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="em-svg">
             <g fill="none" stroke="rgba(28, 191, 212, 0.35)" strokeWidth={1}>
@@ -119,6 +131,7 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
             >
               <button
                 type="button"
+                aria-label={ariaLabel(n)}
                 className="em-dot"
                 style={{
                   width: `${n.size}px`,
@@ -130,9 +143,8 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
                 onFocus={() => setActive(n.id)}
                 onBlur={() => setActive((a) => (a === n.id ? null : a))}
                 onClick={() => setActive((a) => (a === n.id ? null : n.id))}
-                tabIndex={-1}
               >
-                <span className="em-dot-label">{n.label}</span>
+                <span className="em-dot-label">{n.primary}</span>
               </button>
 
               {active === n.id ? (
@@ -143,11 +155,12 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
                     [n.side === 'right' ? 'right' : 'left']: `calc(50% + ${n.size / 2 + 16}px)`,
                   }}
                 >
-                  <div className="em-card-title">{n.label}</div>
+                  <div className="em-card-title">{n.primary}</div>
+                  {n.secondary ? <div className="em-card-sub">{n.secondary}</div> : null}
                   <div className="em-card-rows">
                     {n.rows.map((r) => (
-                      <div key={r.label} className="em-card-row">
-                        <span>{r.label}</span>
+                      <div key={r.label ?? r.years} className="em-card-row">
+                        <span>{r.label ?? ''}</span>
                         <strong>{r.years}</strong>
                       </div>
                     ))}
@@ -159,22 +172,28 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
         </div>
       </div>
 
-      {/* The same roles as text. Always rendered, and the only version on phones. */}
-      <ul className="mt-10 grid gap-4 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
+      {/* Phones get the same nodes stacked, without the branches. */}
+      <div className="mt-2 grid gap-8 sm:grid-cols-2 md:hidden">
         {data.nodes.map((n) => (
-          <li key={n.id} className="rounded-2xl bg-surface p-5">
-            <div className="font-heading font-bold">{n.label}</div>
-            <div className="mt-2 space-y-1">
-              {n.rows.map((r) => (
-                <div key={r.label} className="flex justify-between gap-4 text-[0.95rem]">
-                  <span className="text-muted">{r.label}</span>
-                  <span className="font-semibold text-cyan">{r.years}</span>
-                </div>
-              ))}
+          <div key={n.id} className="flex flex-col items-center gap-4 text-center">
+            <div className="em-dot em-dot-static" style={{ width: `${mobileSize(n.size)}px`, height: `${mobileSize(n.size)}px` }}>
+              <span className="em-dot-label">{n.primary}</span>
             </div>
-          </li>
+            <div className="w-full max-w-[16rem]">
+              {n.secondary ? <div className="text-[0.95rem] text-faint">{n.secondary}</div> : null}
+              <div className="mt-1 space-y-1">
+                {n.rows.map((r) => (
+                  <div key={r.label ?? r.years} className="flex justify-between gap-4 text-[0.95rem]">
+                    <span className="text-muted">{r.label ?? ''}</span>
+                    <span className="font-semibold text-cyan">{r.years}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
+
     </div>
   );
 }
@@ -236,6 +255,7 @@ function css(nodes: ExperienceMapNode[]) {
   font-size: 16px; line-height: 1.15; letter-spacing: -0.02em; padding: 0 16px;
   text-align: center; text-wrap: pretty;
 }
+.em-dot-static { cursor: default; }
 .em-card {
   position: absolute; transform: translateY(-50%); width: 230px; background: #2C2F3A;
   border-radius: 16px; padding: 16px; text-align: left; pointer-events: none; z-index: 2;
@@ -244,6 +264,7 @@ function css(nodes: ExperienceMapNode[]) {
   color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
   font-size: 16px; line-height: 1.25; letter-spacing: -0.01em;
 }
+.em-card-sub { margin-top: 4px; color: #8E9099; font-size: 13px; line-height: 1.4; }
 .em-card-rows { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
 .em-card-row { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 1.4; }
 .em-card-row span { color: #BBBBBB; }

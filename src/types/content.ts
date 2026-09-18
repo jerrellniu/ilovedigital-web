@@ -155,7 +155,10 @@ export interface ServicePageContent {
 /** One node on the author page career mindmap. Geometry comes from the approved design canvas. */
 export interface ExperienceMapNode {
   id: string;
-  label: string;
+  /** What the circle shows and the card leads with. The industry, except on the one node that covers two. */
+  primary: string;
+  /** The role title, set below the industry in a lighter weight. Omitted where the primary is already the role. */
+  secondary?: string;
   /** Position of the node wrapper on the 1440x900 canvas, in px. */
   x: number;
   y: number;
@@ -163,7 +166,8 @@ export interface ExperienceMapNode {
   size: number;
   /** Which side of the node its detail card opens on. */
   side: 'left' | 'right';
-  rows: { label: string; years: string }[];
+  /** One row per industry covered. `label` is omitted when the primary already names it. */
+  rows: { label?: string; years: string }[];
   /** SVG path for the branch line from the centre node. */
   path: string;
   /** Length of that path, used for the draw and pulse dash animations. */
