@@ -49,12 +49,21 @@ function pulseDelay(drawDelay: number) {
   return 3000 + ((drawDelay - 500) / 140) * 220;
 }
 
-export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTitle }: {
+export default function ExperienceMap({
+  data,
+  portrait,
+  portraitAlt,
+  name,
+  jobTitle,
+  showCentreLabel = true,
+}: {
   data: ExperienceMapData;
   portrait?: string;
   portraitAlt?: string;
   name: string;
   jobTitle: string;
+  /** Off in the hero, where the H1 and the role line already carry both. */
+  showCentreLabel?: boolean;
 }) {
   const [play, setPlay] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -129,8 +138,12 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
                 <Image src={portrait} alt={portraitAlt ?? name} width={480} height={480} />
               ) : null}
             </div>
-            <div className="em-name">{name}</div>
-            <div className="em-role">{jobTitle}</div>
+            {showCentreLabel ? (
+              <>
+                <div className="em-name">{name}</div>
+                <div className="em-role">{jobTitle}</div>
+              </>
+            ) : null}
           </div>
 
           {data.nodes.map((n) => (

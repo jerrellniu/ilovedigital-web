@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import JsonLd from '@/components/JsonLd';
@@ -41,13 +40,13 @@ export default function AuthorPage() {
         ]}
       />
 
-      {/* Hero */}
-      <section className="container-wide section-y grid items-center gap-14 md:grid-cols-[1.2fr_0.8fr]">
-        <div>
+      {/* Hero. The experience map carries the portrait at its centre, so there is no separate image. */}
+      <section className="container-wide section-y">
+        <div className="max-w-[46ch]">
           <span className="eyebrow">{author.hero.eyebrow}</span>
           <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{author.hero.heading}</h1>
           <p className="mt-3 font-heading text-[1.05rem] font-bold text-cyan">{author.jobTitle}</p>
-          <p className="mt-6 max-w-[46ch] text-[1.15rem] text-muted">{author.hero.sub}</p>
+          <p className="mt-6 text-[1.15rem] text-muted">{author.hero.sub}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact">Get in touch</Button>
             <Button href="/about" variant="outline">
@@ -55,43 +54,18 @@ export default function AuthorPage() {
             </Button>
           </div>
         </div>
-        {author.image ? (
-          <Image
-            src={author.image}
-            alt={author.imageAlt ?? author.name}
-            width={800}
-            height={800}
-            priority
-            className="portrait-fade w-full max-w-sm md:justify-self-end"
-          />
-        ) : (
-          <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint md:justify-self-end">
-            Photo of {author.name}
+        {author.experienceMap ? (
+          <div className="mt-12 md:mt-4">
+            <ExperienceMap
+              data={author.experienceMap}
+              portrait={author.image}
+              portraitAlt={author.imageAlt}
+              name={author.name}
+              jobTitle={author.jobTitle}
+              showCentreLabel={false}
+            />
           </div>
-        )}
-      </section>
-
-      {/* Bio */}
-      <section className="bg-deep">
-        <div className="container-wide section-y">
-          <h2 className="max-w-[24ch] text-[clamp(1.7rem,3vw,2.4rem)]">{author.bio.heading}</h2>
-          <div className="mt-6 max-w-[70ch] space-y-5 text-[1.05rem] text-muted">
-            {author.bio.paragraphs.map((p) => (
-              <p key={p.slice(0, 40)}>{p}</p>
-            ))}
-          </div>
-          {author.experienceMap ? (
-            <div className="mt-12">
-              <ExperienceMap
-                data={author.experienceMap}
-                portrait={author.image}
-                portraitAlt={author.imageAlt}
-                name={author.name}
-                jobTitle={author.jobTitle}
-              />
-            </div>
-          ) : null}
-        </div>
+        ) : null}
       </section>
 
       {/* Expertise */}
