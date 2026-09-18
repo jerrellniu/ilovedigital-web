@@ -31,6 +31,20 @@ function ariaLabel(n: ExperienceMapNode) {
   return n.secondary ? `${n.primary}, ${n.secondary}, ${spans}` : `${n.primary}, ${spans}`;
 }
 
+/**
+ * The nodes were laid out by eye on the design canvas, so their bounding box does not
+ * sit dead centre of the 1440 frame. Measure it and shift the whole composition, lines
+ * included, so the map is centred in the page rather than drifting right.
+ */
+function centreOffset(nodes: ExperienceMapNode[]) {
+  const WRAP = 170; // every node wrapper is this wide; the circle is centred in it
+  const lefts = nodes.map((n) => n.x + (WRAP - n.size) / 2);
+  const rights = nodes.map((n) => n.x + (WRAP + n.size) / 2);
+  const min = Math.min(620, ...lefts); // 620 is the centre node's own left edge
+  const max = Math.max(900, ...rights);
+  return Math.round((W / 2 - (min + max) / 2) * 10) / 10;
+}
+
 function pulseDelay(drawDelay: number) {
   return 3000 + ((drawDelay - 500) / 140) * 220;
 }
@@ -74,7 +88,8 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
       {/* Graphic. Hidden from assistive tech: the list below carries the same facts. */}
       <div className="em-scale hidden md:block">
         <div className="em-canvas">
-          <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} className="em-svg">
+          <div className="em-stage" style={{ transform: `translateX(calc(${centreOffset(data.nodes)} * var(--u)))` }}>
+          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="em-svg">
             <g fill="none" stroke="rgba(28, 191, 212, 0.35)" strokeWidth={1}>
               {data.nodes.map((n) => (
                 <path
@@ -123,8 +138,8 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
               key={n.id}
               className="em-node"
               style={{
-                left: `${n.x}px`,
-                top: `${n.y}px`,
+                left: `calc(${n.x} * var(--u))`,
+                top: `calc(${n.y} * var(--u))`,
                 animation: `em-in-${n.id} 900ms ${EASE} ${n.delay + 500}ms both`,
                 animationPlayState: state,
               }}
@@ -134,8 +149,8 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
                 aria-label={ariaLabel(n)}
                 className="em-dot"
                 style={{
-                  width: `${n.size}px`,
-                  height: `${n.size}px`,
+                  width: `calc(${n.size} * var(--u))`,
+                  height: `calc(${n.size} * var(--u))`,
                   opacity: active && active !== n.id ? 0.45 : 1,
                 }}
                 onMouseEnter={() => setActive(n.id)}
@@ -151,8 +166,8 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
                 <div
                   className="em-card"
                   style={{
-                    top: `${n.size / 2}px`,
-                    [n.side === 'right' ? 'right' : 'left']: `calc(50% + ${n.size / 2 + 16}px)`,
+                    top: `calc(${n.size / 2} * var(--u))`,
+                    [n.side === 'right' ? 'right' : 'left']: `calc(50% + ${n.size / 2 + 16} * var(--u))`,
                   }}
                 >
                   <div className="em-card-title">{n.primary}</div>
@@ -169,11 +184,12 @@ export default function ExperienceMap({ data, portrait, portraitAlt, name, jobTi
               ) : null}
             </div>
           ))}
+          </div>
         </div>
       </div>
 
       {/* Phones get the same nodes stacked, without the branches. */}
-      <div className="mt-2 grid gap-8 sm:grid-cols-2 md:hidden">
+      <div className="em-mob mt-2 grid gap-8 sm:grid-cols-2 md:hidden">
         {data.nodes.map((n) => (
           <div key={n.id} className="flex flex-col items-center gap-4 text-center">
             <div className="em-dot em-dot-static" style={{ width: `${mobileSize(n.size)}px`, height: `${mobileSize(n.size)}px` }}>
@@ -205,39 +221,42 @@ function css(nodes: ExperienceMapNode[]) {
 @keyframes em-draw-${n.id} { from { stroke-dashoffset: ${n.len}; } to { stroke-dashoffset: 0; } }
 @keyframes em-pulse-${n.id} { from { stroke-dashoffset: 24; } to { stroke-dashoffset: -${n.len}; } }
 @keyframes em-in-${n.id} {
-  from { opacity: 0; transform: translate(${n.fromX}px, ${n.fromY}px) scale(0.6); }
+  from { opacity: 0; transform: translate(calc(${n.fromX} * var(--u)), calc(${n.fromY} * var(--u))) scale(0.6); }
   to { opacity: 1; transform: translate(0, 0) scale(1); }
 }`,
     )
     .join('\n');
 
   return `
-.em-scale { container-type: inline-size; width: 100%; }
-.em-canvas {
-  position: relative; width: ${W}px; height: ${H}px;
-  transform: scale(calc(100cqw / ${W})); transform-origin: top left;
-}
-.em-scale { height: calc(100cqw * ${H / W}); }
-.em-svg { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 0; }
+/*
+ * Every length below is a multiple of --u, one design pixel of the 1440-wide
+ * canvas expressed in real pixels. That keeps the composition fluid without a
+ * scale() transform, which cannot take a length.
+ */
+.em-scale { container-type: inline-size; width: 100%; --u: calc(100cqw / 1440); }
+.em-canvas { position: relative; width: 100%; height: calc(900 * var(--u)); }
+.em-stage { position: absolute; inset: 0; }
+.em-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
 .em-centre {
-  position: absolute; left: 620px; top: 350px; width: 280px; opacity: 0;
+  position: absolute; left: calc(620 * var(--u)); top: calc(350 * var(--u));
+  width: calc(280 * var(--u)); opacity: 0;
   display: flex; flex-direction: column; align-items: center; z-index: 1;
 }
 .em-portrait {
-  width: 240px; height: 240px; border-radius: 50%; overflow: hidden;
-  background: #2C2F3A; box-shadow: 0 0 0 1px rgba(28, 191, 212, 0.45);
+  width: calc(240 * var(--u)); height: calc(240 * var(--u)); border-radius: 50%;
+  overflow: hidden; background: #2C2F3A; box-shadow: 0 0 0 1px rgba(28, 191, 212, 0.45);
 }
-.em-portrait img { width: 240px; height: 240px; object-fit: cover; }
+.em-portrait img { width: 100%; height: 100%; object-fit: cover; }
 .em-name {
-  margin-top: 18px; color: #FFFFFF; font-family: var(--font-heading), sans-serif;
-  font-weight: 700; font-size: 24px; letter-spacing: -0.02em;
+  margin-top: calc(18 * var(--u)); color: #FFFFFF; font-family: var(--font-heading), sans-serif;
+  font-weight: 700; font-size: calc(24 * var(--u)); letter-spacing: -0.02em; white-space: nowrap;
 }
-.em-role { margin-top: 5px; color: #BBBBBB; font-size: 14px; }
+.em-role { margin-top: calc(5 * var(--u)); color: #BBBBBB; font-size: calc(14 * var(--u)); white-space: nowrap; }
 
 .em-node {
-  position: absolute; width: 170px; opacity: 0; z-index: 1;
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  position: absolute; width: calc(170 * var(--u)); opacity: 0; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
 }
 .em-dot {
   padding: 0; border-radius: 50%; cursor: pointer;
@@ -250,25 +269,29 @@ function css(nodes: ExperienceMapNode[]) {
   background: rgba(28, 191, 212, 0.20); border-color: #1CBFD4; transform: translateY(-4px);
   outline: none; box-shadow: 0 0 0 3px rgba(28, 191, 212, 0.55);
 }
+.em-dot-static { cursor: default; }
 .em-dot-label {
   color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
-  font-size: 16px; line-height: 1.15; letter-spacing: -0.02em; padding: 0 16px;
-  text-align: center; text-wrap: pretty;
+  font-size: calc(16 * var(--u)); line-height: 1.15; letter-spacing: -0.02em;
+  padding: 0 calc(16 * var(--u)); text-align: center; text-wrap: pretty;
 }
-.em-dot-static { cursor: default; }
 .em-card {
-  position: absolute; transform: translateY(-50%); width: 230px; background: #2C2F3A;
-  border-radius: 16px; padding: 16px; text-align: left; pointer-events: none; z-index: 2;
+  position: absolute; transform: translateY(-50%); width: calc(230 * var(--u));
+  background: #2C2F3A; border-radius: calc(16 * var(--u)); padding: calc(16 * var(--u));
+  text-align: left; pointer-events: none; z-index: 2;
 }
 .em-card-title {
   color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
-  font-size: 16px; line-height: 1.25; letter-spacing: -0.01em;
+  font-size: calc(16 * var(--u)); line-height: 1.25; letter-spacing: -0.01em;
 }
-.em-card-sub { margin-top: 4px; color: #8E9099; font-size: 13px; line-height: 1.4; }
-.em-card-rows { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
-.em-card-row { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 1.4; }
+.em-card-sub { margin-top: calc(4 * var(--u)); color: #8E9099; font-size: calc(13 * var(--u)); line-height: 1.4; }
+.em-card-rows { margin-top: calc(10 * var(--u)); display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+.em-card-row { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); font-size: calc(13 * var(--u)); line-height: 1.4; }
 .em-card-row span { color: #BBBBBB; }
 .em-card-row strong { color: #1CBFD4; font-weight: 600; }
+
+/* Phone layout: no canvas, so the circles get their own fixed sizes. */
+.em-mob .em-dot-label { font-size: 15px; padding: 0 14px; }
 
 @keyframes em-centre { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 ${frames}
@@ -276,5 +299,6 @@ ${frames}
 @media (prefers-reduced-motion: reduce) {
   .em-canvas *, .em-canvas { transition-duration: 1ms !important; animation-duration: 1ms !important; animation-iteration-count: 1 !important; }
 }
+
 `;
 }
