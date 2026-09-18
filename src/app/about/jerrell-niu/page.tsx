@@ -27,6 +27,8 @@ export default function AuthorPage() {
           jobTitle: author.jobTitle,
           description: author.meta.description,
           image: author.image,
+          // The four pillars no longer render as a section, but they remain the
+          // Person's knowsAbout, which is what ties this entity to its subjects.
           knowsAbout: author.expertise.items.map((i) => i.title),
           sameAs: author.sameAs,
         })}
@@ -64,19 +66,6 @@ export default function AuthorPage() {
             showCentreLabel={false}
           />
         ) : null}
-      </section>
-
-      {/* Expertise */}
-      <section className="container-wide section-y">
-        <h2 className="mb-10 text-[clamp(1.7rem,3vw,2.4rem)]">{author.expertise.heading}</h2>
-        <div className="grid gap-x-12 gap-y-8 md:grid-cols-2">
-          {author.expertise.items.map((item) => (
-            <div key={item.title} className="border-l-2 border-cyan pl-5">
-              <div className="font-heading font-bold">{item.title}</div>
-              <p className="mt-1 text-muted">{item.body}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Experience */}
