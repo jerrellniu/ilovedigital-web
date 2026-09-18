@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Button from '@/components/Button';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import ExperienceMap from '@/components/ExperienceMap';
 import { getAuthor, getInsightsIndex } from '@/lib/content';
 import { personSchema, profilePageSchema } from '@/lib/schema';
 
@@ -79,6 +80,17 @@ export default function AuthorPage() {
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
           </div>
+          {author.experienceMap ? (
+            <div className="mt-12">
+              <ExperienceMap
+                data={author.experienceMap}
+                portrait={author.image}
+                portraitAlt={author.imageAlt}
+                name={author.name}
+                jobTitle={author.jobTitle}
+              />
+            </div>
+          ) : null}
         </div>
       </section>
 

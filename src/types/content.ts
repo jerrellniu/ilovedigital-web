@@ -152,6 +152,32 @@ export interface ServicePageContent {
   ctaBand: { heading: string; button: CtaLink };
 }
 
+/** One node on the author page career mindmap. Geometry comes from the approved design canvas. */
+export interface ExperienceMapNode {
+  id: string;
+  label: string;
+  /** Position of the node wrapper on the 1440x900 canvas, in px. */
+  x: number;
+  y: number;
+  /** Circle diameter in px. Area is proportional to years: diameter = 60 * sqrt(years). */
+  size: number;
+  /** Which side of the node its detail card opens on. */
+  side: 'left' | 'right';
+  rows: { label: string; years: string }[];
+  /** SVG path for the branch line from the centre node. */
+  path: string;
+  /** Length of that path, used for the draw and pulse dash animations. */
+  len: number;
+  /** Draw delay in ms. The node itself enters 500ms later. */
+  delay: number;
+  fromX: number;
+  fromY: number;
+}
+
+export interface ExperienceMapData {
+  nodes: ExperienceMapNode[];
+}
+
 /** Author page copy (/about/jerrell-niu). The Person schema is built from these same fields. */
 export interface AuthorPageContent {
   meta: { title: string; description: string };
@@ -162,6 +188,8 @@ export interface AuthorPageContent {
   imageAlt?: string;
   hero: { eyebrow: string; heading: string; sub: string };
   bio: { heading: string; paragraphs: string[] };
+  /** The career mindmap. Omit it and the page renders the bio without a map. */
+  experienceMap?: ExperienceMapData;
   expertise: { heading: string; items: { title: string; body: string }[] };
   experience: { heading: string; items: { role: string; detail: string }[] };
   articles: { heading: string; sub: string };

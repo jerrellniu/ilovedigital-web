@@ -14,12 +14,9 @@
     "sub": "I write every guide on this site, and I do the work I write about. I draw on a thirty-year career across health, finance, recruitment and software development. I have owned businesses and worked inside enterprises, and I have managed departments and high-performance teams. That range means each guide comes from someone who has made the call and lived with the result."
   },
   "bio": {
-    "heading": "Why I am worth reading on this.",
+    "heading": "Experience.",
     "paragraphs": [
-      "Everything here comes out of client work. I build the websites, run the search and the reporting, and sit in the meetings where the results get explained. Each guide describes what actually moved the numbers on a real Australian business.",
-      "My career started a long way from websites. I have worked as a doorman and a club manager in Sydney's nightlife, as a Cardiac Care Specialist in a leading private hospital, and in finance at ANZ Bank. I started a security business and ran it for six years. I have also worked in commercial finance, recruitment and software development. I have seen how a business runs from the floor, the back office and the boardroom, and these guides are written for the person who has to cover all three.",
-      "I spent seven years at Coding Labs as Product Manager and then Executive Board Member, leading product across web and mobile and growing the engineering team by 500 per cent in three years. Before that I ran recruitment as General Manager at 99 Resumes, after technical recruitment leadership at MCS Consulting and Vanarden Mining Oil and Gas. Earlier still I spent six years in commercial finance. I have run teams, hired them, financed them and built the products they use, so the advice here is commercial before it is technical.",
-      "I started I Love Digital in 2024. Every article is written to the same standard I hold client work to: plain English, a clear answer in the first line, and no claim without something behind it."
+      "Everything here comes out of client work. I build the websites, run the search and the reporting, and sit in the meetings where the results get explained. Each guide describes what actually moved the numbers on a real Australian business."
     ]
   },
   "expertise": {
@@ -79,5 +76,127 @@
       "label": "Get a free website audit",
       "href": "/audit"
     }
+  },
+  "experienceMap": {
+    "nodes": [
+      {
+        "id": "d1",
+        "label": "Doorman & Club Manager",
+        "x": 1001.3,
+        "y": 532.2,
+        "size": 180,
+        "side": "left",
+        "rows": [
+          {
+            "label": "Nightlife & Hospitality",
+            "years": "9 years"
+          }
+        ],
+        "path": "M861.3 534.3 Q928.1 571 1000.1 596.4",
+        "len": 153,
+        "delay": 500,
+        "fromX": -179.5,
+        "fromY": -83.7
+      },
+      {
+        "id": "d2",
+        "label": "Cardiac Care Specialist",
+        "x": 363.2,
+        "y": 555,
+        "size": 190,
+        "side": "right",
+        "rows": [
+          {
+            "label": "Health Services",
+            "years": "10 years"
+          }
+        ],
+        "path": "M649.2 516.1 Q583.1 548.6 522.9 591.3",
+        "len": 148,
+        "delay": 780,
+        "fromX": 171.5,
+        "fromY": -99
+      },
+      {
+        "id": "d3",
+        "label": "Commercial Manager",
+        "x": 701.2,
+        "y": 701.9,
+        "size": 134,
+        "side": "left",
+        "rows": [
+          {
+            "label": "Commercial Finance",
+            "years": "5 years"
+          }
+        ],
+        "path": "M753.7 589.8 Q755.9 647.5 768.5 704.3",
+        "len": 116,
+        "delay": 640,
+        "fromX": -14.4,
+        "fromY": -164.4
+      },
+      {
+        "id": "d4",
+        "label": "Branch Manager",
+        "x": 363.2,
+        "y": 223,
+        "size": 134,
+        "side": "right",
+        "rows": [
+          {
+            "label": "Recruitment",
+            "years": "5 years"
+          }
+        ],
+        "path": "M664.7 397.1 Q591.8 348.4 510.8 314",
+        "len": 176,
+        "delay": 920,
+        "fromX": 171.5,
+        "fromY": 99
+      },
+      {
+        "id": "d5",
+        "label": "Business Owner",
+        "x": 701.1,
+        "y": 86.1,
+        "size": 170,
+        "side": "left",
+        "rows": [
+          {
+            "label": "Security",
+            "years": "6 years"
+          },
+          {
+            "label": "Websites",
+            "years": "2 years"
+          }
+        ],
+        "path": "M787.1 353.1 Q793.7 304.8 792.9 255.8",
+        "len": 98,
+        "delay": 1060,
+        "fromX": -14.4,
+        "fromY": 164.4
+      },
+      {
+        "id": "d6",
+        "label": "Product Manager",
+        "x": 986.8,
+        "y": 210.5,
+        "size": 159,
+        "side": "left",
+        "rows": [
+          {
+            "label": "Software Development",
+            "years": "7 years"
+          }
+        ],
+        "path": "M870.8 423.9 Q943.8 387.9 1009.7 339.6",
+        "len": 163,
+        "delay": 1200,
+        "fromX": -171.5,
+        "fromY": 99
+      }
+    ]
   }
 }
