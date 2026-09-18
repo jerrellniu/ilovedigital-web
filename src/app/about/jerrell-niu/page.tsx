@@ -41,8 +41,8 @@ export default function AuthorPage() {
       />
 
       {/* Hero. The experience map carries the portrait at its centre, so there is no separate image. */}
-      <section className="container-wide section-y">
-        <div className="max-w-[46ch]">
+      <section className="container-wide section-y grid items-center gap-12 lg:grid-cols-[1fr_2fr]">
+        <div>
           <span className="eyebrow">{author.hero.eyebrow}</span>
           <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{author.hero.heading}</h1>
           <p className="mt-3 font-heading text-[1.05rem] font-bold text-cyan">{author.jobTitle}</p>
@@ -55,16 +55,14 @@ export default function AuthorPage() {
           </div>
         </div>
         {author.experienceMap ? (
-          <div className="mt-12 md:mt-4">
-            <ExperienceMap
-              data={author.experienceMap}
-              portrait={author.image}
-              portraitAlt={author.imageAlt}
-              name={author.name}
-              jobTitle={author.jobTitle}
-              showCentreLabel={false}
-            />
-          </div>
+          <ExperienceMap
+            data={author.experienceMap}
+            portrait={author.image}
+            portraitAlt={author.imageAlt}
+            name={author.name}
+            jobTitle={author.jobTitle}
+            showCentreLabel={false}
+          />
         ) : null}
       </section>
 

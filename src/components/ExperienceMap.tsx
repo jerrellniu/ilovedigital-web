@@ -32,17 +32,20 @@ function ariaLabel(n: ExperienceMapNode) {
 }
 
 /**
- * The nodes were laid out by eye on the design canvas, so their bounding box does not
- * sit dead centre of the 1440 frame. Measure it and shift the whole composition, lines
- * included, so the map is centred in the page rather than drifting right.
+ * The nodes were placed by eye on the 1440x900 design frame, so the drawn composition
+ * sits off-centre inside it with wide empty margins. Measure the real bounding box and
+ * render only that, which both centres the map and buys back the scale those margins
+ * were wasting: at two thirds of a page it is the difference between 9px labels and
+ * readable ones.
  */
-function centreOffset(nodes: ExperienceMapNode[]) {
-  const WRAP = 170; // every node wrapper is this wide; the circle is centred in it
-  const lefts = nodes.map((n) => n.x + (WRAP - n.size) / 2);
-  const rights = nodes.map((n) => n.x + (WRAP + n.size) / 2);
-  const min = Math.min(620, ...lefts); // 620 is the centre node's own left edge
-  const max = Math.max(900, ...rights);
-  return Math.round((W / 2 - (min + max) / 2) * 10) / 10;
+function bounds(nodes: ExperienceMapNode[], withCentreLabel: boolean) {
+  const WRAP = 170; // every node wrapper is this wide; its circle is centred in it
+  const CENTRE = { left: 620, right: 900, top: 350, bottom: 350 + 240 + (withCentreLabel ? 72 : 0) };
+  const minX = Math.min(CENTRE.left, ...nodes.map((n) => n.x + (WRAP - n.size) / 2));
+  const maxX = Math.max(CENTRE.right, ...nodes.map((n) => n.x + (WRAP + n.size) / 2));
+  const minY = Math.min(CENTRE.top, ...nodes.map((n) => n.y));
+  const maxY = Math.max(CENTRE.bottom, ...nodes.map((n) => n.y + n.size));
+  return { minX, minY, width: maxX - minX, height: maxY - minY };
 }
 
 function pulseDelay(drawDelay: number) {
@@ -89,16 +92,20 @@ export default function ExperienceMap({
   }, []);
 
   const state = play ? 'running' : 'paused';
+  const box = bounds(data.nodes, showCentreLabel);
 
   return (
     <div ref={rootRef}>
-      <style>{css(data.nodes)}</style>
+      <style>{css(data.nodes, box)}</style>
 
       {/* Graphic. Hidden from assistive tech: the list below carries the same facts. */}
       <div className="em-scale hidden md:block">
         <div className="em-canvas">
-          <div className="em-stage" style={{ transform: `translateX(calc(${centreOffset(data.nodes)} * var(--u)))` }}>
-          <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" className="em-svg">
+          <svg
+            viewBox={`${box.minX} ${box.minY} ${box.width} ${box.height}`}
+            preserveAspectRatio="xMidYMid meet"
+            className="em-svg"
+          >
             <g fill="none" stroke="rgba(28, 191, 212, 0.35)" strokeWidth={1}>
               {data.nodes.map((n) => (
                 <path
@@ -151,8 +158,8 @@ export default function ExperienceMap({
               key={n.id}
               className="em-node"
               style={{
-                left: `calc(${n.x} * var(--u))`,
-                top: `calc(${n.y} * var(--u))`,
+                left: `calc(${n.x - box.minX} * var(--u))`,
+                top: `calc(${n.y - box.minY} * var(--u))`,
                 animation: `em-in-${n.id} 900ms ${EASE} ${n.delay + 500}ms both`,
                 animationPlayState: state,
               }}
@@ -197,7 +204,6 @@ export default function ExperienceMap({
               ) : null}
             </div>
           ))}
-          </div>
         </div>
       </div>
 
@@ -227,7 +233,7 @@ export default function ExperienceMap({
   );
 }
 
-function css(nodes: ExperienceMapNode[]) {
+function css(nodes: ExperienceMapNode[], box: ReturnType<typeof bounds>) {
   const frames = nodes
     .map(
       (n) => `
@@ -246,13 +252,13 @@ function css(nodes: ExperienceMapNode[]) {
  * canvas expressed in real pixels. That keeps the composition fluid without a
  * scale() transform, which cannot take a length.
  */
-.em-scale { container-type: inline-size; width: 100%; --u: calc(100cqw / 1440); }
-.em-canvas { position: relative; width: 100%; height: calc(900 * var(--u)); }
-.em-stage { position: absolute; inset: 0; }
-.em-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+.em-scale { container-type: inline-size; width: 100%; --u: calc(100cqw / ${box.width}); }
+.em-canvas { position: relative; width: 100%; height: calc(${box.height} * var(--u)); }
+
+.em-svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
 
 .em-centre {
-  position: absolute; left: calc(620 * var(--u)); top: calc(350 * var(--u));
+  position: absolute; left: calc(${620 - box.minX} * var(--u)); top: calc(${350 - box.minY} * var(--u));
   width: calc(280 * var(--u)); opacity: 0;
   display: flex; flex-direction: column; align-items: center; z-index: 1;
 }
@@ -285,7 +291,7 @@ function css(nodes: ExperienceMapNode[]) {
 .em-dot-static { cursor: default; }
 .em-dot-label {
   color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
-  font-size: calc(16 * var(--u)); line-height: 1.15; letter-spacing: -0.02em;
+  font-size: max(11px, calc(16 * var(--u))); line-height: 1.15; letter-spacing: -0.02em;
   padding: 0 calc(16 * var(--u)); text-align: center; text-wrap: pretty;
 }
 .em-card {
