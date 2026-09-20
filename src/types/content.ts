@@ -59,9 +59,26 @@ export interface SiteContent {
   partners?: Partner[];
 }
 
+/** One run of a hero heading. `accent` paints it with a brand colour. */
+export interface HeadingRun {
+  text: string;
+  /**
+   * Cyan is the primary accent; purple is reserved for a single highlighted word,
+   * per the design system.
+   */
+  accent?: 'cyan' | 'purple';
+}
+
 export interface HeroBlock {
   eyebrow?: string;
   heading: string;
+  /**
+   * The heading split into runs so its accent colours live in content, not in JSX.
+   * Joining the runs must reproduce `heading` exactly; the loader enforces that, so
+   * the flat string used by metadata and schema can never drift from what renders.
+   * Omit it and the heading renders flat.
+   */
+  headingParts?: HeadingRun[];
   sub: string;
   image?: string;
   imageAlt?: string;

@@ -14,7 +14,26 @@
     "secondaryCta": {
       "label": "Get a free website audit →",
       "href": "/audit"
-    }
+    },
+    "headingParts": [
+      {
+        "text": "We make "
+      },
+      {
+        "text": "websites",
+        "accent": "cyan"
+      },
+      {
+        "text": ", and "
+      },
+      {
+        "text": "Google",
+        "accent": "purple"
+      },
+      {
+        "text": " simple."
+      }
+    ]
   },
   "stats": [
     {
