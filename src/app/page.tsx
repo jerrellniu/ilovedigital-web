@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
+import HeroHeading from '@/components/HeroHeading';
 import StatsBar from '@/components/StatsBar';
+import PartnerMarquee from '@/components/PartnerMarquee';
 import SectionHeading from '@/components/SectionHeading';
 import PillarCard from '@/components/PillarCard';
 import CaseStudyCard from '@/components/CaseStudyCard';
@@ -10,10 +12,11 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/JsonLd';
 import AuditForm from '@/components/forms/AuditForm';
-import { getHome } from '@/lib/content';
+import { getHome, getSite } from '@/lib/content';
 import { faqPageSchema, localBusinessSchema } from '@/lib/schema';
 
 const home = getHome();
+const site = getSite();
 
 export const metadata: Metadata = {
   title: home.meta.title,
@@ -31,10 +34,10 @@ export default function HomePage() {
         <div className="pointer-events-none absolute -left-20 bottom-[-30%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(192,132,252,0.12),transparent_62%)] blur-2xl" />
         <div className="container-wide relative section-y">
           <span className="eyebrow">{home.hero.eyebrow}</span>
-          <h1 className="max-w-[16ch] text-[clamp(2.6rem,5.6vw,4.25rem)]">
-            We make <span className="text-cyan">websites</span>, and{' '}
-            <span className="text-purple">Google</span> simple.
-          </h1>
+          <HeroHeading
+            hero={home.hero}
+            className="max-w-[16ch] text-[clamp(2.6rem,5.6vw,4.25rem)]"
+          />
           <p className="mt-6 max-w-[56ch] text-[1.2rem] text-muted">{home.hero.sub}</p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
             <Button href={home.hero.primaryCta!.href}>{home.hero.primaryCta!.label}</Button>
@@ -46,6 +49,7 @@ export default function HomePage() {
       </section>
 
       <StatsBar stats={home.stats} />
+      <PartnerMarquee partners={site.partners} />
 
       {/* Pillars */}
       <section className="container-wide section-y">

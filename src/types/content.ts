@@ -23,6 +23,17 @@ export interface BookingSchedule {
   embedUrl: string;
 }
 
+/**
+ * A platform partnership or developer-program membership, shown in the marquee under
+ * the stats bar. `icon` names an entry in TOOL_LOGOS; it is omitted where the owner's
+ * trademark guidelines do not permit a third party to display the mark, so those
+ * render as a wordmark.
+ */
+export interface Partner {
+  name: string;
+  icon?: string;
+}
+
 export interface SiteContent {
   name: string;
   tagline: string;
@@ -44,11 +55,30 @@ export interface SiteContent {
   };
   legal: CtaLink[];
   cookieNotice: string;
+  /** Partnerships and memberships, in display order. */
+  partners?: Partner[];
+}
+
+/** One run of a hero heading. `accent` paints it with a brand colour. */
+export interface HeadingRun {
+  text: string;
+  /**
+   * Cyan is the primary accent; purple is reserved for a single highlighted word,
+   * per the design system.
+   */
+  accent?: 'cyan' | 'purple';
 }
 
 export interface HeroBlock {
   eyebrow?: string;
   heading: string;
+  /**
+   * The heading split into runs so its accent colours live in content, not in JSX.
+   * Joining the runs must reproduce `heading` exactly; the loader enforces that, so
+   * the flat string used by metadata and schema can never drift from what renders.
+   * Omit it and the heading renders flat.
+   */
+  headingParts?: HeadingRun[];
   sub: string;
   image?: string;
   imageAlt?: string;
@@ -58,7 +88,13 @@ export interface HeroBlock {
 
 export interface Stat {
   value: string;
+  /** The outcome the number describes, e.g. "more visits from Google". */
   label: string;
+  /**
+   * Who the number belongs to. An attributed figure is evidence; an unattributed one
+   * is a boast, so every client result carries its source.
+   */
+  source?: string;
 }
 
 export interface Pillar {
@@ -125,7 +161,7 @@ export interface HomeContent {
     paragraphs: string[];
     cta: CtaLink;
   };
-  process: { eyebrow: string; heading: string; sub: string; steps: ProcessStep[]; cta: CtaLink };
+  process: { eyebrow: string; heading: string; sub?: string; steps: ProcessStep[]; cta: CtaLink };
   audit: { heading: string; sub: string; button: string; belowLink: CtaLink };
   faq: { heading: string; items: Faq[] };
   finalCta: { heading: string; sub: string; button: CtaLink };
