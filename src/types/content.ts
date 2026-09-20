@@ -95,6 +95,12 @@ export interface Stat {
    * is a boast, so every client result carries its source.
    */
   source?: string;
+  /**
+   * Direction marker for a value that carries no unit of its own, drawn in the primary
+   * accent so every row in the bar reads the same way. Down is not bad news — costs and
+   * bounce rates fall — so the arrow states direction, never sentiment.
+   */
+  trend?: 'up' | 'down';
 }
 
 export interface Pillar {
