@@ -10,14 +10,14 @@ function TrendArrow({ direction }: { direction: NonNullable<Stat['trend']> }) {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="ml-1.5 inline-block h-[0.52em] w-[0.52em] text-cyan"
+      className="ml-1.5 inline-block h-[0.6em] w-[0.6em] text-cyan"
       aria-hidden="true"
     >
-      <line x1="12" y1={up ? 21 : 3} x2="12" y2={up ? 4 : 20} />
-      <polyline points={up ? '4 12 12 4 20 12' : '4 12 12 20 20 12'} />
+      <line x1="12" y1={up ? 20 : 4} x2="12" y2={up ? 7 : 17} />
+      <polyline points={up ? '5 13 12 6 19 13' : '5 11 12 18 19 11'} />
     </svg>
   );
 }
@@ -30,7 +30,9 @@ function TrendArrow({ direction }: { direction: NonNullable<Stat['trend']> }) {
  *
  * The unit on the end of a value — the per cent sign, the plus — is painted in the
  * primary accent so the eye lands on the digits first. A stat with no unit can carry a
- * trend arrow instead, in the same colour, so every row reads the same way.
+ * trend arrow instead, in the same colour, so every row reads the same way. The arrow
+ * is drawn at the weight of the plus glyph beside it — a hairline stroke next to an
+ * 800-weight numeral reads as an afterthought.
  */
 export default function StatsBar({ stats }: { stats: Stat[] }) {
   return (
