@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import StatsBar from '@/components/StatsBar';
+import PartnerMarquee from '@/components/PartnerMarquee';
 import SectionHeading from '@/components/SectionHeading';
 import PillarCard from '@/components/PillarCard';
 import CaseStudyCard from '@/components/CaseStudyCard';
@@ -10,10 +11,11 @@ import TestimonialCard from '@/components/TestimonialCard';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/JsonLd';
 import AuditForm from '@/components/forms/AuditForm';
-import { getHome } from '@/lib/content';
+import { getHome, getSite } from '@/lib/content';
 import { faqPageSchema, localBusinessSchema } from '@/lib/schema';
 
 const home = getHome();
+const site = getSite();
 
 export const metadata: Metadata = {
   title: home.meta.title,
@@ -46,6 +48,7 @@ export default function HomePage() {
       </section>
 
       <StatsBar stats={home.stats} />
+      <PartnerMarquee partners={site.partners} />
 
       {/* Pillars */}
       <section className="container-wide section-y">

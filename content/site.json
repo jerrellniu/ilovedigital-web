@@ -152,5 +152,21 @@
       "href": "/privacy"
     }
   ],
-  "cookieNotice": "By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively."
+  "cookieNotice": "By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively.",
+  "partners": [
+    {
+      "name": "Squarespace Circle Gold Partner",
+      "icon": "squarespace"
+    },
+    {
+      "name": "Shopify Partner",
+      "icon": "shopify"
+    },
+    {
+      "name": "Apple Developer Program"
+    },
+    {
+      "name": "Google Developer Program"
+    }
+  ]
 }

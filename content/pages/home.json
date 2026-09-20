@@ -4,43 +4,46 @@
     "description": "People-first Queensland digital studio. Modern websites, AI search and SEO, social, and consulting for trades and service businesses ready to grow. Direct, fast, simple."
   },
   "hero": {
-    "eyebrow": "A people-first digital studio on the Gold Coast",
+    "eyebrow": "DIGITAL MARKETING ON THE GOLD COAST",
     "heading": "We make websites, and Google simple.",
-    "sub": "Modern websites and AI search visibility for Queensland trades and service businesses ready to grow. We rebuild outdated sites to be found by AI, ranked on Google, and ready to turn visitors into bookings.",
+    "sub": "We are coders who work from your numbers. Tell us the goal, whether that is more calls, more bookings or more of one kind of job, and we will find what is stopping it in your website data and build the fix. You will understand every step, because we explain it in plain English.",
     "primaryCta": {
       "label": "Book a call with Jerrell",
       "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
     },
     "secondaryCta": {
-      "label": "Get a free website audit \u2192",
+      "label": "Get a free website audit →",
       "href": "/audit"
     }
   },
   "stats": [
     {
+      "value": "175%",
+      "label": "more visits from Google",
+      "source": "GC Connected Homes"
+    },
+    {
+      "value": "1,482",
+      "label": "new followers in two months",
+      "source": "Butchers Pride"
+    },
+    {
       "value": "50+",
-      "label": "Projects delivered"
-    },
-    {
-      "value": "100%",
-      "label": "Queensland-based"
-    },
-    {
-      "value": "24hr",
-      "label": "Response time"
+      "label": "projects delivered",
+      "source": "Queensland, since 2024"
     }
   ],
   "pillarsIntro": {
     "eyebrow": "What we do",
-    "heading": "Four services. Start with one.",
-    "sub": "Most clients start with a website and add search later."
+    "heading": "Our services",
+    "sub": "Everything digital made simple"
   },
   "pillars": [
     {
       "key": "websites",
       "name": "Websites",
-      "heading": "Fast, stunning websites that show off your business.",
-      "oneLiner": "Fast-loading websites with the brand identity to match \u2014 custom coded or on your platform of choice, Shopify, WordPress and more \u2014 built to be found by humans and AI.",
+      "heading": "Websites and branding",
+      "oneLiner": "Fast-loading websites with the brand identity to match — custom coded or on your platform of choice, Shopify, WordPress and more — built to be found by humans and AI.",
       "bullets": [
         "Custom design and brand identity (logos, brand systems)",
         "Fast loading, mobile-perfect",
@@ -52,8 +55,8 @@
     {
       "key": "search",
       "name": "Search",
-      "heading": "SEO and AI search that gets you found.",
-      "oneLiner": "Technical and local SEO plus Generative Engine Optimisation (GEO) \u2014 so you show up on Google and in answers from AI search engines.",
+      "heading": "SEO and AI search",
+      "oneLiner": "Technical and local SEO plus Generative Engine Optimisation (GEO) — so you show up on Google and in answers from AI search engines.",
       "bullets": [
         "Technical and on-page SEO",
         "GEO for AI search engines and Google AI Overviews",
@@ -65,8 +68,8 @@
     {
       "key": "social",
       "name": "Socials",
-      "heading": "Socials that sound like you.",
-      "oneLiner": "Done-for-you social media across Instagram, Facebook, and TikTok \u2014 written to match your brand, not a template.",
+      "heading": "Organic socials",
+      "oneLiner": "Done-for-you social media across Instagram, Facebook, and TikTok — written to match your brand, not a template.",
       "bullets": [
         "Strategy and content calendars",
         "Captions, scripts, and assets",
@@ -78,12 +81,13 @@
     {
       "key": "consulting",
       "name": "Consulting",
-      "heading": "Senior technical direction, without a full-time hire.",
-      "oneLiner": "Custom AI strategy, workflow automation, and senior technical direction \u2014 including fractional CTO support \u2014 for businesses that want expert thinking without a full-time hire.",
+      "heading": "Fractional CTO",
+      "oneLiner": "Custom AI strategy, workflow automation, and senior technical direction — including fractional CTO support — for businesses that want expert thinking without a full-time hire.",
       "bullets": [
         "AI strategy and workflow automation (Zapier, Make, custom GPTs)",
         "Agentic workflows and process optimisation",
         "Fractional CTO and technical direction",
+        "Mobile and web apps, from scoping to release",
         "Training so your team can run with it"
       ],
       "href": "/consulting"
@@ -91,7 +95,7 @@
   ],
   "featuredWork": {
     "eyebrow": "Recent work",
-    "heading": "Queensland businesses we've worked with.",
+    "heading": "Our projects",
     "sub": "A snapshot of what we've shipped in the past 12 months.",
     "cards": [
       {
@@ -116,7 +120,7 @@
       {
         "client": "Butchers Pride",
         "tag": "Socials",
-        "headline": "From no social presence to 1,482 followers in five months",
+        "headline": "From no social presence to 1,482 followers in two months",
         "outcome": "A brand-new audience, a content system the client still uses, and a Google listing brought back from suspension.",
         "href": "/work/butchers-pride",
         "image": "/images/work/butchers-pride.jpg",
@@ -125,7 +129,7 @@
       }
     ],
     "footerCta": {
-      "label": "See all case studies \u2192",
+      "label": "See all case studies →",
       "href": "/work"
     }
   },
@@ -135,36 +139,35 @@
     "items": [
       {
         "quote": "Jerrell has been providing organic socials to my business since December. His expertise, his ability to research and form conclusions, and the strategies have produced organic leads and engagement.",
-        "author": "Phil S \u2014 Bondi"
+        "author": "Phil S — Bondi"
       },
       {
         "quote": "i love digital has been a great experience for me with their professionalism and outstanding service towards detail and support. It has been an absolute pleasure working with Jerrell and his team. I highly recommend i love digital to anyone looking at generating new leads and promoting their business digitally.",
-        "author": "Leon S \u2014 Robina"
+        "author": "Leon S — Robina"
       },
       {
         "quote": "Jerrell and the team at I Love Digital are awesome. Extremely knowledgeable with great communication. Would highly recommend.",
-        "author": "Jay S \u2014 Burleigh"
+        "author": "Jay S — Burleigh"
       }
     ]
   },
   "founder": {
     "eyebrow": "About",
-    "heading": "Who you're actually working with.",
+    "heading": "Hi, I'm Jerrell",
     "image": "/images/founder/jerrell.webp",
     "imageAlt": "Jerrell Niu, founder of I Love Digital",
     "paragraphs": [
-      "I'm Jerrell. I run I Love Digital from the Gold Coast \u2014 solo. No big team, no account managers, no offshore handoff. You talk to the person doing the work.",
-      "Before this, I spent years as a product manager growing an engineering team and shipping web and mobile products, and before that in recruitment and finance. That background is why projects here get scoped properly, run on clear timelines, and reported on the way a board would expect \u2014 not just designed to look nice."
+      "I'm a coder, website designer and CTO with extensive experience in the software development, recruitment, commercial finance, hospitality and healthcare industries.",
+      "I've worked in enterprises, managed a large workforce, built high performance teams, owned and worked in small businesses. I know what businesses look for in their digital footprint and how they can achieve their goals."
     ],
     "cta": {
-      "label": "Learn more about my background \u2192",
+      "label": "Learn more about my background →",
       "href": "/about"
     }
   },
   "process": {
-    "eyebrow": "Process",
-    "heading": "Simple from the first call.",
-    "sub": "Four steps, from the first call to launch.",
+    "eyebrow": "HOW WE WORK",
+    "heading": "Our process",
     "steps": [
       {
         "title": "Discovery call",
@@ -184,16 +187,16 @@
       }
     ],
     "cta": {
-      "label": "Start with a discovery call \u2192",
+      "label": "Start with a discovery call →",
       "href": "/contact"
     }
   },
   "audit": {
     "heading": "Get a free website audit.",
-    "sub": "Not ready to commit to a project? Send us your URL and we'll review it \u2014 technical issues, urgent fixes, and what to do about them. No obligation. No catch.",
+    "sub": "Not ready to commit to a project? Send us your URL and we'll review it — technical issues, urgent fixes, and what to do about them. No obligation. No catch.",
     "button": "Request my audit",
     "belowLink": {
-      "label": "Or see the full audit details \u2192",
+      "label": "Or see the full audit details →",
       "href": "/audit"
     }
   },
@@ -202,7 +205,7 @@
     "items": [
       {
         "question": "What does I Love Digital do?",
-        "answer": "I Love Digital is a people-first Queensland digital studio that designs and builds websites and brand identities, runs AI search and SEO campaigns, manages social media, and offers tech consulting for Australian trades and service businesses."
+        "answer": "We make websites and Google, simple. Whether you need a new brand, a website, want your business to get found in search, post on Instagram, Tiktok, Facebook or LinkedIn, or need a fractional CTO, I Love Digital can help."
       },
       {
         "question": "Where is I Love Digital based?",
@@ -210,7 +213,7 @@
       },
       {
         "question": "Who do you work with?",
-        "answer": "We work primarily with Queensland trades and service businesses turning over $500,000 or more annually, with 3 to 50 employees \u2014 including solar installers, electricians, builders, retailers, and professional services."
+        "answer": "We work primarily with Queensland trades and service businesses turning over $500,000 or more annually, with 3 to 50 employees — including solar installers, electricians, builders, retailers, and professional services."
       },
       {
         "question": "What's different about working with I Love Digital?",
@@ -218,7 +221,7 @@
       },
       {
         "question": "How much does a new website cost?",
-        "answer": "Website pricing depends on platform, complexity, and ongoing requirements, so we don't publish a fixed price \u2014 get a free quote and we'll come back with clear, itemised pricing. Onboarding fees are always separate from any monthly retainer, and everything is quoted in Australian dollars."
+        "answer": "Website pricing depends on platform, complexity, and ongoing requirements, so we don't publish a fixed price — get a free quote and we'll come back with clear, itemised pricing. Onboarding fees are always separate from any monthly retainer, and everything is quoted in Australian dollars."
       },
       {
         "question": "What is AI Search (GEO)?",

@@ -23,6 +23,17 @@ export interface BookingSchedule {
   embedUrl: string;
 }
 
+/**
+ * A platform partnership or developer-program membership, shown in the marquee under
+ * the stats bar. `icon` names an entry in TOOL_LOGOS; it is omitted where the owner's
+ * trademark guidelines do not permit a third party to display the mark, so those
+ * render as a wordmark.
+ */
+export interface Partner {
+  name: string;
+  icon?: string;
+}
+
 export interface SiteContent {
   name: string;
   tagline: string;
@@ -44,6 +55,8 @@ export interface SiteContent {
   };
   legal: CtaLink[];
   cookieNotice: string;
+  /** Partnerships and memberships, in display order. */
+  partners?: Partner[];
 }
 
 export interface HeroBlock {
@@ -58,7 +71,13 @@ export interface HeroBlock {
 
 export interface Stat {
   value: string;
+  /** The outcome the number describes, e.g. "more visits from Google". */
   label: string;
+  /**
+   * Who the number belongs to. An attributed figure is evidence; an unattributed one
+   * is a boast, so every client result carries its source.
+   */
+  source?: string;
 }
 
 export interface Pillar {
@@ -125,7 +144,7 @@ export interface HomeContent {
     paragraphs: string[];
     cta: CtaLink;
   };
-  process: { eyebrow: string; heading: string; sub: string; steps: ProcessStep[]; cta: CtaLink };
+  process: { eyebrow: string; heading: string; sub?: string; steps: ProcessStep[]; cta: CtaLink };
   audit: { heading: string; sub: string; button: string; belowLink: CtaLink };
   faq: { heading: string; items: Faq[] };
   finalCta: { heading: string; sub: string; button: CtaLink };
