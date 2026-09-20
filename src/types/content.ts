@@ -199,5 +199,9 @@ export interface AuthorPageContent {
   articles: { heading: string; sub: string };
   /** Profiles that belong to the person, not the business. Emitted as Person sameAs. */
   sameAs: string[];
-  finalCta: { heading: string; button: CtaLink };
+  /**
+   * The button carries only its label. Its href is the booking link from
+   * site.json, so the URL is written down once for the whole site.
+   */
+  finalCta: { heading: string; button: { label: string } };
 }

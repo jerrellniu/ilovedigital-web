@@ -4,12 +4,15 @@ import Button from '@/components/Button';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import ExperienceMap from '@/components/ExperienceMap';
-import { getAuthor, getInsightsIndex } from '@/lib/content';
+import { getAuthor, getInsightsIndex, getSite } from '@/lib/content';
 import { personSchema, profilePageSchema } from '@/lib/schema';
 
 // The author entity behind every article byline. Article schema references this page's
 // Person @id, so the author resolves to a described entity rather than a bare name.
 const author = getAuthor();
+// The final CTA books a call. The URL lives in site.json with the nav's, so the
+// booking link is never written down twice and cannot go stale in one place only.
+const site = getSite();
 
 export const metadata: Metadata = {
   title: author.meta.title,
@@ -87,7 +90,6 @@ export default function AuthorPage() {
       {articles.length ? (
         <section className="container-wide section-y">
           <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">{author.articles.heading}</h2>
-          <p className="mt-4 max-w-[56ch] text-muted">{author.articles.sub}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((post) => (
               <Link
@@ -114,7 +116,7 @@ export default function AuthorPage() {
             {author.finalCta.heading}
           </h2>
           <div className="mt-8">
-            <Button href={author.finalCta.button.href}>{author.finalCta.button.label}</Button>
+            <Button href={site.booking.href}>{author.finalCta.button.label}</Button>
           </div>
         </div>
       </section>
