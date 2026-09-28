@@ -190,6 +190,11 @@ export interface ServicePageContent {
   relatedWork?: CaseStudyCardData[];
   /** Shown when the tag matches nothing, so the section is never silently empty. */
   relatedWorkNote?: string;
+  /**
+   * Resolved at load time: published insights whose category matches `relatedWorkTag`.
+   * The hub links down to every spoke. Never set this in the JSON.
+   */
+  guides?: { title: string; excerpt: string; href?: string; slug: string }[];
   faq: Faq[];
   ctaBand: { heading: string; button: CtaLink };
 }

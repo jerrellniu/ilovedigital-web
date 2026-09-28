@@ -24,6 +24,10 @@ interface PostFm {
   date?: string;
   /** ISO date of the last substantive edit; Article schema dateModified. */
   updated?: string;
+  /** Full <title>, used as-is (no site suffix) when set. Keep to 60 characters. */
+  seoTitle?: string;
+  /** Meta description when it should differ from the card excerpt. 150 to 160 characters. */
+  description?: string;
 }
 
 function formatDate(iso?: string): string | undefined {
@@ -40,7 +44,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const entry = getEntry<PostFm>('insights', params.slug);
   if (!entry) return {};
-  return { title: entry.frontmatter.title, description: entry.frontmatter.excerpt };
+  const fm = entry.frontmatter;
+  return {
+    title: fm.seoTitle ? { absolute: fm.seoTitle } : fm.title,
+    description: fm.description ?? fm.excerpt,
+  };
 }
 
 export default function BlogPostPage({ params }: { params: { slug: string } }) {
@@ -60,7 +68,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <JsonLd
         data={articleSchema({
           title: fm.title,
-          description: fm.excerpt,
+          description: fm.description ?? fm.excerpt,
           datePublished: fm.date,
           dateModified: fm.updated ?? fm.date,
           slug: params.slug,

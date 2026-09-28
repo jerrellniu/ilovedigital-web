@@ -79,6 +79,13 @@ export function getServicePage(
       .sort((a, b) => Number(Boolean(b.href)) - Number(Boolean(a.href)))
       // Three keeps the row to one line on desktop. The rest are on /work.
       .slice(0, 3);
+    // Hub-to-spoke links: every published article in this pillar, derived from the
+    // insights index so the list can never drift from what is actually live. The
+    // pillar tag and the article category share one taxonomy (Web, Search, Socials,
+    // Consulting).
+    page.guides = getInsightsIndex().filter(
+      (p) => p.href && p.category.toLowerCase() === wanted
+    );
   }
   return page;
 }

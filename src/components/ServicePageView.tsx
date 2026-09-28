@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Hero from './Hero';
 import Checklist from './Checklist';
 import CaseStudyCard from './CaseStudyCard';
@@ -54,6 +55,22 @@ export default function ServicePageView({ content }: { content: ServicePageConte
           <div className="container-wide section-y">
             <p className="text-faint">{content.relatedWorkNote}</p>
           </div>
+        </section>
+      ) : null}
+
+      {content.guides?.length ? (
+        <section className="container-wide section-y">
+          <h2 className="mb-8 text-[clamp(1.6rem,2.6vw,2.2rem)]">Guides</h2>
+          <ul className="grid gap-x-10 gap-y-6 md:grid-cols-2">
+            {content.guides.map((g) => (
+              <li key={g.slug}>
+                <Link href={g.href ?? `/insights/${g.slug}`} className="font-heading font-bold text-ink hover:text-cyan">
+                  {g.title}
+                </Link>
+                <p className="mt-1 text-[0.92rem] text-muted">{g.excerpt}</p>
+              </li>
+            ))}
+          </ul>
         </section>
       ) : null}
 
