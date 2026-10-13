@@ -56,6 +56,11 @@ export function getHome(): HomeContent {
   const home = readJson<HomeContent>('pages/home.json');
   assertHeadingPartsMatch(home.hero, 'content/pages/home.json');
   home.featuredWork.cards = linkOnlyPublished(home.featuredWork.cards);
+  // A product section's case study button shows only once that case study is published.
+  const published = new Set(getCollectionSlugs('work').map((slug) => `/work/${slug}`));
+  for (const product of [home.products.wallet, home.products.plugin]) {
+    if (product.secondaryCta && !published.has(product.secondaryCta.href)) product.secondaryCta = undefined;
+  }
   return home;
 }
 

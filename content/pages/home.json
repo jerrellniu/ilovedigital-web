@@ -113,6 +113,201 @@
       "href": "/consulting"
     }
   ],
+  "products": {
+    "wallet": {
+      "eyebrow": "Digital member cards",
+      "heading": "Put your member card in every member's phone.",
+      "sub": "We build membership cards for Apple Wallet and Google Wallet. Each card issues itself when a member pays, and updates itself when their details change.",
+      "chips": [
+        "Apple Wallet",
+        "Google Wallet",
+        "A card page for any other phone"
+      ],
+      "bookingLabel": "Book a call with Jerrell",
+      "secondaryCta": {
+        "label": "See the Vipers project",
+        "href": "/work/varsity-vipers"
+      },
+      "caption": "Varsity Vipers Basketball Club membership card on Apple Wallet and Google Wallet. Member details are samples.",
+      "card": {
+        "club": "Varsity Vipers Basketball Club",
+        "logo": "/images/products/vipers-wallet-logo.png",
+        "logoAlt": "Varsity Vipers Basketball",
+        "mark": "/images/products/vipers-wallet-mark.png",
+        "qr": "/images/products/sample-qr.svg",
+        "photo": "/images/products/vipers-huddle.jpg",
+        "photoAlt": "Varsity Vipers players in a game-day huddle",
+        "validFor": "2027",
+        "firstName": "Jordan",
+        "lastName": "Taylor",
+        "initials": "JT",
+        "yearOfBirth": "2013",
+        "jersey": "23",
+        "division": "U14"
+      },
+      "features": [
+        {
+          "icon": "card",
+          "title": "The card issues itself on payment.",
+          "body": "A paid registration creates the member's card within minutes of checkout. Your committee never has to remember to send one."
+        },
+        {
+          "icon": "refresh",
+          "title": "The card updates itself overnight.",
+          "body": "A nightly check compares every card with the member record and reissues only the cards that changed. A new age group or photo reaches the phone on its own."
+        },
+        {
+          "icon": "scan",
+          "title": "The door check takes seconds.",
+          "body": "Volunteers scan the QR code and see the member's current record. A cancelled card stops passing the check, so only current members get in."
+        },
+        {
+          "icon": "lock",
+          "title": "The card shows only what the check needs.",
+          "body": "Vipers cards show year of birth instead of date of birth, and every card link uses a random key. A screenshot of the card gives nothing away."
+        }
+      ],
+      "uses": {
+        "heading": "Where else can a wallet card work for you?",
+        "sub": "Anywhere people need to prove who they are, or what they have paid for. We set it up under your brand.",
+        "items": [
+          {
+            "title": "Gyms and studios",
+            "body": "Members check in with a scan at reception. The pass shows their plan, and it renews itself when they pay."
+          },
+          {
+            "title": "Cafés and retail loyalty",
+            "body": "A loyalty card sits beside the customer's bank cards. Points update after each visit, with no app to download."
+          },
+          {
+            "title": "Events and venues",
+            "body": "Tickets and entry passes live in the phone's wallet and scan at the gate. A time change reaches every ticket holder at once."
+          },
+          {
+            "title": "Schools and training providers",
+            "body": "A student pass proves enrolment on the spot. It expires when the course ends, so nobody has to chase old cards."
+          },
+          {
+            "title": "Clubs and associations",
+            "body": "Members show proof of membership for entry and partner discounts. The committee issues and cancels cards from one member list."
+          },
+          {
+            "title": "Staff and volunteer ID",
+            "body": "Staff carry a current ID that can be checked on site. Cancel a card and the next scan rejects it."
+          }
+        ]
+      }
+    },
+    "plugin": {
+      "eyebrow": "Custom WordPress plugins",
+      "heading": "Update your website by filling in a form.",
+      "sub": "We build WordPress plugins around the content you change most. Your team fills in a simple form, and the page lays it out in your design.",
+      "bookingLabel": "Book a call with Jerrell",
+      "secondaryCta": {
+        "label": "See the HQ project",
+        "href": "/work/homelessness-qld"
+      },
+      "caption": "Homelessness Queensland website and its custom plugin. Screens show sample text and blurred images.",
+      "showcase": {
+        "mainImage": "/images/products/plugin-course-catalogue.jpg",
+        "mainImageAlt": "Course catalogue built by the plugin, with a filter, course cards and enrol buttons. Text is sample text.",
+        "mainLabel": "Course catalogue",
+        "sideImage": "/images/products/plugin-resource-library.jpg",
+        "sideImageAlt": "Members-only resource library with topic, format and access filters. Text is sample text.",
+        "panel": {
+          "title": "Site Toolkit",
+          "badge": "Premium plugin",
+          "menu": [
+            "Staff Guides",
+            "Opportunities",
+            "Library",
+            "Modules",
+            "Licence"
+          ],
+          "active": "Modules",
+          "heading": "Modules",
+          "modules": [
+            {
+              "label": "Opportunities",
+              "on": true
+            },
+            {
+              "label": "News feed",
+              "on": true
+            },
+            {
+              "label": "Course catalogue",
+              "on": true
+            },
+            {
+              "label": "Resource library",
+              "on": true
+            },
+            {
+              "label": "Members-only files",
+              "on": true
+            },
+            {
+              "label": "Archive layouts",
+              "on": false
+            }
+          ]
+        }
+      },
+      "features": [
+        {
+          "icon": "form",
+          "title": "Staff add items without a page builder.",
+          "body": "Each course, role or news story is a record with its own fields. Staff fill them in and the item appears in the approved layout."
+        },
+        {
+          "icon": "toggle",
+          "title": "Each feature switches on or off.",
+          "body": "A Modules screen turns a feature off without deleting its content. You run only what you use, and nothing is lost if you want it back."
+        },
+        {
+          "icon": "lock",
+          "title": "Members-only files take one tick.",
+          "body": "Tick Members only on any file in the media library and it moves behind member login. Visitors who are not logged in go to the login page."
+        },
+        {
+          "icon": "shield",
+          "title": "Every release is tested before it goes live.",
+          "body": "Code is checked on three PHP versions and every version is tracked. Any change can be traced or rolled back."
+        }
+      ],
+      "uses": {
+        "heading": "What else could a custom plugin run for you?",
+        "sub": "Any content you add again and again. The same building blocks fit many kinds of business.",
+        "items": [
+          {
+            "title": "Careers and job boards",
+            "body": "Add a paid or volunteer role through a form. It appears with its own apply section and job details Google can read."
+          },
+          {
+            "title": "Course and event catalogues",
+            "body": "Courses sit in filterable tiles with online payment. Staff change dates and details in one place."
+          },
+          {
+            "title": "Member resource libraries",
+            "body": "Members filter resources by topic, format and access. Any file can be locked to members with one tick."
+          },
+          {
+            "title": "News and updates hubs",
+            "body": "Publish a post and it flows into a featured story and news cards. Categories keep updates easy to browse."
+          },
+          {
+            "title": "Project galleries for trades",
+            "body": "Add a finished job with photos, suburb and service. The gallery filters itself, so customers find work like theirs."
+          },
+          {
+            "title": "Store and location directories",
+            "body": "Each location gets its own page with hours and services. You update one store without touching the others."
+          }
+        ]
+      }
+    }
+  },
   "featuredWork": {
     "eyebrow": "Recent work",
     "heading": "Our projects",
