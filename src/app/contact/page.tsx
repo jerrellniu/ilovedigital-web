@@ -21,8 +21,8 @@ export default function ContactPage() {
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]} />
       <section className="container-wide section-y">
         <span className="eyebrow">{contact.hero.eyebrow}</span>
-        <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{contact.hero.heading}</h1>
-        <p className="mt-6 max-w-[52ch] text-[1.15rem] text-muted">{contact.hero.sub}</p>
+        <h1 className="text-36 md:text-48">{contact.hero.heading}</h1>
+        <p className="mt-6 max-w-[52ch] text-20 text-muted">{contact.hero.sub}</p>
       </section>
 
       {/* Booking gets its own full-width row. Google's embed collapses to a
@@ -30,7 +30,7 @@ export default function ContactPage() {
           buried the time slots when this shared a two-column grid. */}
       <section className="container-wide pb-10">
         <div className="rounded-2xl bg-surface p-8">
-          <h2 className="text-[1.4rem]">{contact.book.heading}</h2>
+          <h2 className="text-20">{contact.book.heading}</h2>
           <p className="mt-3 max-w-[60ch] text-muted">{contact.book.sub}</p>
           <BookingEmbed
             src={site.schedules.discovery15.embedUrl}
@@ -44,7 +44,7 @@ export default function ContactPage() {
           full container read as a data-entry screen, not a note to a person. */}
       <section className="container-wide pb-[60px] md:pb-[120px]">
         <div className="max-w-[720px] rounded-2xl bg-surface p-8">
-          <h2 className="text-[1.4rem]">{contact.message.heading}</h2>
+          <h2 className="text-20">{contact.message.heading}</h2>
           <p className="mt-3 text-muted">{contact.message.sub}</p>
           <ContactForm />
         </div>
@@ -53,7 +53,7 @@ export default function ContactPage() {
       {/* Direct details */}
       <section className="bg-deep">
         <div className="container-wide section-y">
-          <h2 className="text-[1.4rem]">Or reach out directly.</h2>
+          <h2 className="text-20">Or reach out directly.</h2>
           <div className="mt-6 grid gap-4 text-muted sm:grid-cols-2">
             <p>Email: <a className="text-cyan" href={`mailto:${site.email}`}>{site.email}</a></p>
             <p>Phone: {site.phone}</p>
@@ -68,7 +68,7 @@ export default function ContactPage() {
 
       {/* FAQ */}
       <section className="container-wide section-y">
-        <h2 className="mb-10 text-center text-[clamp(1.9rem,3.4vw,3rem)]">Frequently asked questions</h2>
+        <h2 className="mb-10 text-center text-28 md:text-36 lg:text-48">Frequently asked questions</h2>
         <FaqAccordion items={contact.faq} />
         <JsonLd data={faqPageSchema(contact.faq)} />
       </section>

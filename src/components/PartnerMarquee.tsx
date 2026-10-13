@@ -29,7 +29,7 @@ function Mark({ partner }: { partner: Partner }) {
           <path d={path} />
         </svg>
       ) : null}
-      <span className="whitespace-nowrap text-[15px] font-medium">{partner.name}</span>
+      <span className="whitespace-nowrap text-16 font-medium">{partner.name}</span>
     </li>
   );
 }

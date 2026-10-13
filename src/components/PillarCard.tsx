@@ -58,11 +58,11 @@ export default function PillarCard({ pillar }: { pillar: Pillar }) {
           {icons[pillar.key]}
         </svg>
       </div>
-      <h3 className="mb-3 text-2xl">{pillar.heading}</h3>
-      <p className="mb-5 text-[0.98rem] text-muted">{pillar.oneLiner}</p>
+      <h3 className="mb-3 text-20">{pillar.heading}</h3>
+      <p className="mb-5 text-16 text-muted">{pillar.oneLiner}</p>
       <ul className="mb-6 space-y-2">
         {pillar.bullets.map((b) => (
-          <li key={b} className="relative pl-6 text-[0.94rem] text-muted">
+          <li key={b} className="relative pl-6 text-16 text-muted">
             <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-cyan" />
             {b}
           </li>

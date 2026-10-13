@@ -215,10 +215,10 @@ export default function ExperienceMap({
               <span className="em-dot-label">{n.primary}</span>
             </div>
             <div className="w-full max-w-[16rem]">
-              {n.secondary ? <div className="text-[0.95rem] text-faint">{n.secondary}</div> : null}
+              {n.secondary ? <div className="text-16 text-faint">{n.secondary}</div> : null}
               <div className="mt-1 space-y-1">
                 {n.rows.map((r) => (
-                  <div key={r.label ?? r.years} className="flex justify-between gap-4 text-[0.95rem]">
+                  <div key={r.label ?? r.years} className="flex justify-between gap-4 text-16">
                     <span className="text-muted">{r.label ?? ''}</span>
                     <span className="font-semibold text-cyan">{r.years}</span>
                   </div>

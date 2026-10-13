@@ -49,9 +49,9 @@ export default function AuthorPage() {
       <section className="container-wide section-y grid items-center gap-12 lg:grid-cols-[1fr_2fr]">
         <div>
           <span className="eyebrow">{author.hero.eyebrow}</span>
-          <h1 className="text-[clamp(2.4rem,5vw,3.6rem)]">{author.hero.heading}</h1>
-          <p className="mt-3 font-heading text-[1.05rem] font-bold text-cyan">{author.jobTitle}</p>
-          <p className="mt-6 text-[1.15rem] text-muted">{author.hero.sub}</p>
+          <h1 className="text-36 md:text-48">{author.hero.heading}</h1>
+          <p className="mt-3 font-heading text-16 font-bold text-cyan">{author.jobTitle}</p>
+          <p className="mt-6 text-20 text-muted">{author.hero.sub}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button href="/contact">Get in touch</Button>
             <Button href="/about" variant="outline">
@@ -74,12 +74,12 @@ export default function AuthorPage() {
       {/* Experience */}
       <section className="bg-deep">
         <div className="container-wide section-y">
-          <h2 className="mb-10 text-[clamp(1.7rem,3vw,2.4rem)]">{author.experience.heading}</h2>
+          <h2 className="mb-10 text-28 md:text-36">{author.experience.heading}</h2>
           <div className="grid gap-6 md:grid-cols-2">
             {author.experience.items.map((item) => (
               <div key={item.role} className="rounded-2xl bg-surface p-6">
                 <div className="font-heading font-bold">{item.role}</div>
-                <p className="mt-2 text-[0.95rem] text-muted">{item.detail}</p>
+                <p className="mt-2 text-16 text-muted">{item.detail}</p>
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export default function AuthorPage() {
       {/* Articles */}
       {articles.length ? (
         <section className="container-wide section-y">
-          <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">{author.articles.heading}</h2>
+          <h2 className="text-28 md:text-36">{author.articles.heading}</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((post) => (
               <Link
@@ -97,13 +97,13 @@ export default function AuthorPage() {
                 href={post.href as string}
                 className="block rounded-2xl border border-transparent bg-surface p-6 transition hover:-translate-y-1 hover:border-cyan/40"
               >
-                <span className="text-xs font-semibold uppercase tracking-wide text-cyan">
+                <span className="text-12 font-semibold uppercase tracking-wide text-cyan">
                   {post.category}
                 </span>
-                <h3 className="mt-2 font-heading text-[1.05rem] font-bold leading-snug">
+                <h3 className="mt-2 font-heading text-16 font-bold leading-snug">
                   {post.title}
                 </h3>
-                <div className="mt-3 text-[0.8rem] text-faint">{post.readTime} read</div>
+                <div className="mt-3 text-12 text-faint">{post.readTime} read</div>
               </Link>
             ))}
           </div>
@@ -112,7 +112,7 @@ export default function AuthorPage() {
 
       <section className="bg-deep">
         <div className="container-wide section-y text-center">
-          <h2 className="mx-auto max-w-[24ch] text-[clamp(1.8rem,3.2vw,2.6rem)]">
+          <h2 className="mx-auto max-w-[24ch] text-28 md:text-36">
             {author.finalCta.heading}
           </h2>
           <div className="mt-8">

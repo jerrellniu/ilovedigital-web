@@ -14,7 +14,7 @@ function Mark({ logo }: { logo: ToolLogo }) {
           <path d={logo.path} />
         </svg>
       ) : (
-        <span className="whitespace-nowrap font-heading text-[0.95rem] font-bold tracking-tight">
+        <span className="whitespace-nowrap font-heading text-16 font-bold tracking-tight">
           {logo.name}
         </span>
       )}

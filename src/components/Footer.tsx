@@ -14,8 +14,8 @@ export default function Footer({ site }: { site: SiteContent }) {
             <Link href="/" aria-label="I Love Digital — home" className="inline-block">
               <Logo height={40} />
             </Link>
-            <p className="mt-4 max-w-[32ch] text-[0.92rem] text-muted">{site.tagline}</p>
-            <p className="mt-4 text-[0.92rem] text-muted">{site.phone}</p>
+            <p className="mt-4 max-w-[32ch] text-14 text-muted">{site.tagline}</p>
+            <p className="mt-4 text-14 text-muted">{site.phone}</p>
             <div className="mt-3 flex gap-3 text-faint">
               {site.socials.map((s) => (
                 <a key={s.label} href={s.href} className="hover:text-cyan" aria-label={s.label}>
@@ -23,8 +23,8 @@ export default function Footer({ site }: { site: SiteContent }) {
                 </a>
               ))}
             </div>
-            <p className="mt-4 text-[0.85rem] uppercase tracking-wide text-faint">Got a question?</p>
-            <Link href="/contact" className="text-[0.92rem] font-semibold text-cyan">
+            <p className="mt-4 text-14 uppercase tracking-wide text-faint">Got a question?</p>
+            <Link href="/contact" className="text-14 font-semibold text-cyan">
               Send us a message →
             </Link>
           </div>
@@ -32,14 +32,14 @@ export default function Footer({ site }: { site: SiteContent }) {
           {/* Link columns */}
           {site.footer.groups.map((group) => (
             <nav key={group.heading} aria-label={group.heading}>
-              <h5 className="mb-4 font-body text-[0.8rem] font-semibold uppercase tracking-[0.1em] text-faint">
+              <h5 className="mb-4 font-body text-12 font-semibold uppercase tracking-[0.1em] text-faint">
                 {group.heading}
               </h5>
               {group.links.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="block py-1.5 text-[0.94rem] text-muted hover:text-cyan"
+                  className="block py-1.5 text-16 text-muted hover:text-cyan"
                 >
                   {l.label}
                 </Link>
@@ -48,7 +48,7 @@ export default function Footer({ site }: { site: SiteContent }) {
           ))}
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6 text-[0.85rem] text-faint">
+        <div className="mt-12 border-t border-white/10 pt-6 text-14 text-faint">
           {site.name} · ABN {site.abn} · © {year} All rights reserved
         </div>
       </div>
