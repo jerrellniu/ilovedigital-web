@@ -200,9 +200,23 @@ export interface PluginShowcase {
   panel: { title: string; badge: string; menu: string[]; active: string; heading: string; modules: { label: string; on: boolean }[] };
 }
 
+/** One slide of the Home hero slider. Its visual comes from the matching product section. */
+export interface HeroSlide {
+  key: 'wallet' | 'plugin';
+  tab: string;
+  eyebrow: string;
+  heading: string;
+  sub: string;
+  /** Label only; the href is the booking link from site.json. */
+  bookingLabel: string;
+  moreCta: CtaLink;
+  caption: string;
+}
+
 export interface HomeContent {
   meta: { title: string; description: string };
   hero: HeroBlock;
+  heroSlider: { label: string; prevLabel: string; nextLabel: string; slides: HeroSlide[] };
   stats: Stat[];
   pillarsIntro: { eyebrow?: string; heading: string; sub?: string };
   pillars: Pillar[];
