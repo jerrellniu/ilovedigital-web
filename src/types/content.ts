@@ -305,3 +305,44 @@ export interface AuthorPageContent {
    */
   finalCta: { heading: string; button: { label: string } };
 }
+
+// ---------------------------------------------------------------------------
+// Tap business card: content/cards.json
+// A printed NFC card and a Wallet pass both open /t/[slug], which redirects to the
+// card's `destination` (its /card/[slug] profile page by default). Changing the
+// destination re-points every card already handed out, with no reprint or reissue.
+// ---------------------------------------------------------------------------
+
+export type CardContactKind = 'phone' | 'mobile' | 'email' | 'booking' | 'website';
+export type CardSocialKind = 'instagram' | 'tiktok' | 'facebook' | 'linkedin';
+
+export interface CardContact {
+  kind: CardContactKind;
+  label: string;
+  value: string;
+  href: string;
+}
+
+export interface CardSocial {
+  kind: CardSocialKind;
+  label: string;
+  handle: string;
+  href: string;
+}
+
+export interface BusinessCard {
+  slug: string;
+  /** Where /t/[slug] sends a tap or scan. A site path or a full URL. */
+  destination: string;
+  givenName: string;
+  familyName: string;
+  name: string;
+  title: string;
+  organisation: string;
+  tagline: string;
+  photo: { src: string; alt: string };
+  saveLabel: string;
+  contacts: CardContact[];
+  socials: CardSocial[];
+  footer: string;
+}

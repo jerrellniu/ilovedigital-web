@@ -4,6 +4,7 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import CookieNotice from '@/components/CookieNotice';
+import SiteChrome from '@/components/SiteChrome';
 import { Analytics } from '@vercel/analytics/next';
 import { getSite } from '@/lib/content';
 
@@ -31,9 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU" className={inter.variable}>
       <body>
-        <Nav site={site} />
+        <SiteChrome>
+          <Nav site={site} />
+        </SiteChrome>
         <main>{children}</main>
-        <Footer site={site} />
+        <SiteChrome>
+          <Footer site={site} />
+        </SiteChrome>
         <CookieNotice text={site.cookieNotice} />
         <Analytics />
       </body>
