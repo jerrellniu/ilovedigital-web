@@ -36,7 +36,7 @@ function TrendArrow({ direction }: { direction: NonNullable<Stat['trend']> }) {
  */
 export default function StatsBar({ stats }: { stats: Stat[] }) {
   return (
-    <div className="bg-deep py-12 md:py-16">
+    <div className="bg-base py-12 md:py-16">
       <div className="container-wide grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-0">
         {stats.map((s, i) => {
           const [, digits, unit] = s.value.match(VALUE) ?? [, s.value, ''];
