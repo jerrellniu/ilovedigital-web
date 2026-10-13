@@ -59,7 +59,7 @@ October 2026. Read it before building. Tokens live in `tailwind.config.ts` and
   (founder intro on Home, the About page, the author page). Tagline: "We make websites and
   Google, simple."
 
-`mockups/home.html` is the earlier dark-theme spec and is superseded by the design system.
+`mockups/archived/home-dark-2026-07.html` is the retired dark-theme spec, kept for reference only. Never build from it; the design system and the site canvas in Claude Design are the source.
 
 ## Content model
 
