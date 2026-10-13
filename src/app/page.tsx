@@ -11,7 +11,6 @@ import CaseStudyCard from '@/components/CaseStudyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FaqAccordion from '@/components/FaqAccordion';
 import CtaBand from '@/components/CtaBand';
-import { ArrowRight } from '@/components/Icons';
 import JsonLd from '@/components/JsonLd';
 import AuditForm from '@/components/forms/AuditForm';
 import { getHome, getSite } from '@/lib/content';
@@ -125,10 +124,9 @@ export default function HomePage() {
             ))}
             <Link
               href={home.founder.cta.href}
-              className="group mt-6 inline-flex items-center gap-2 font-body text-17 font-semibold text-accent"
+              className="mt-6 inline-flex items-center gap-2 font-body text-17 font-semibold text-accent hover:underline"
             >
               {home.founder.cta.label}
-              <ArrowRight />
             </Link>
           </div>
         </div>
