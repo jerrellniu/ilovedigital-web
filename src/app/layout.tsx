@@ -20,11 +20,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://ilovedigital.com.au'),
   title: {
-    default: 'I Love Digital — Websites and AI Search for Queensland Businesses',
+    default: 'Gold Coast Websites, SEO and Social Media | I Love Digital',
     template: '%s | I Love Digital',
   },
   description:
-    'People-first Queensland digital studio. Modern websites, AI search and SEO, social, and AI consulting for trades and service businesses.',
+    'Websites that turn visitors into calls, SEO and AI search that gets you found, and organic socials, for Gold Coast and Queensland small businesses.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
