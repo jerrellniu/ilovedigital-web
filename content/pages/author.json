@@ -68,7 +68,10 @@
   "articles": {
     "heading": "Articles by Jerrell."
   },
-  "sameAs": [],
+  "sameAs": [
+    "https://www.instagram.com/theaccidentaldeveloper.aus/",
+    "https://www.tiktok.com/@theaccidentaldeveloper"
+  ],
   "finalCta": {
     "heading": "Need some expert help?",
     "button": {
