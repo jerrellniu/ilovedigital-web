@@ -151,6 +151,55 @@ export interface ProcessStep {
   body: string;
 }
 
+/** Icon keys for product feature cards. Drawn in `src/components/Icons.tsx` (`FeatureIcon`). */
+export type FeatureIconName = 'card' | 'refresh' | 'scan' | 'lock' | 'form' | 'toggle' | 'shield';
+
+/** One product feature section on Home: wallet member cards, custom plugins. */
+export interface ProductFeature {
+  eyebrow: string;
+  heading: string;
+  sub: string;
+  chips?: string[];
+  /**
+   * The primary button carries only its label. Its href is the booking link from
+   * site.json, so the URL is written down once for the whole site.
+   */
+  bookingLabel: string;
+  /** Links to the case study. Dropped at load time while that case study is unpublished. */
+  secondaryCta?: CtaLink;
+  caption: string;
+  features: { icon: FeatureIconName; title: string; body: string }[];
+  uses: { heading: string; sub: string; items: { title: string; body: string }[] };
+}
+
+/** Sample member shown on the wallet card illustration. Never a real member. */
+export interface WalletSampleCard {
+  club: string;
+  logo: string;
+  logoAlt: string;
+  mark: string;
+  qr: string;
+  photo: string;
+  photoAlt: string;
+  validFor: string;
+  firstName: string;
+  lastName: string;
+  initials: string;
+  yearOfBirth: string;
+  jersey: string;
+  division: string;
+}
+
+/** The plugin illustration: screenshots with sample text, and a recreated Modules screen. */
+export interface PluginShowcase {
+  mainImage: string;
+  mainImageAlt: string;
+  mainLabel: string;
+  sideImage: string;
+  sideImageAlt: string;
+  panel: { title: string; badge: string; menu: string[]; active: string; heading: string; modules: { label: string; on: boolean }[] };
+}
+
 export interface HomeContent {
   meta: { title: string; description: string };
   hero: HeroBlock;
@@ -168,6 +217,10 @@ export interface HomeContent {
     cta: CtaLink;
   };
   process: { eyebrow: string; heading: string; sub?: string; steps: ProcessStep[]; cta: CtaLink };
+  products: {
+    wallet: ProductFeature & { card: WalletSampleCard };
+    plugin: ProductFeature & { showcase: PluginShowcase };
+  };
   audit: { heading: string; sub: string; button: string; belowLink: CtaLink };
   faq: { heading: string; items: Faq[] };
   finalCta: { heading: string; sub: string; button: CtaLink };
