@@ -211,7 +211,8 @@ export interface HeroSlide {
   bookingLabel: string;
   /** Optional second link, e.g. to a product page. Omitted while the products have no page of their own. */
   moreCta?: CtaLink;
-  caption: string;
+  /** Small line under the slide. Omit for none. */
+  caption?: string;
 }
 
 export interface HomeContent {
