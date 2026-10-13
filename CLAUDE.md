@@ -137,10 +137,15 @@ doc to match if not already done.
    yet placed. Note the embed URL must be the public
    `/calendar/appointments/schedules/...?gv=true` form — the `/u/0/` variant Google shows
    while signed in is account-scoped and will not load for a visitor.
-4. ~~Logo.~~ **Done** — `src/components/Logo.tsx` inlines the real supplied "i♡digital" vector;
-   text paths use `currentColor` (white on the dark theme), the heart keeps its brand gradient.
-   Original black vector at `public/logo.svg`. **Still TODO:** real imagery for case-study
-   thumbnails and the founder/portrait placeholder blocks.
+4. ~~Logo.~~ **Done, redesigned October 2026** — `src/components/Logo.tsx` inlines the new
+   "i [heart] digital" lockup: a solid geometric heart, letters in Inter Tight SemiBold
+   outlined. Letters use `currentColor` (white on the dark theme); the heart keeps its
+   dark-ground gradient (`#C084FC` to `#1CBFD4`). Master files and usage rules live in the
+   I Love Digital Design System (`assets/Logos/ild-*`); never redraw the logo here.
+   `public/logo.svg` is the light-ground lockup. Icons follow Next's file conventions:
+   `src/app/icon.svg`, `src/app/favicon.ico` (16/32/48) and `src/app/apple-icon.png` (180).
+   **Still TODO:** real imagery for case-study thumbnails and the founder/portrait
+   placeholder blocks.
 5. ~~Migrate Terms and Privacy copy.~~ **Done** — migrated verbatim from the live site into
    `content/legal/terms.md` and `privacy.md`, rendered at `/terms` and `/privacy`. **Review
    before publishing:** set the "Last updated" date, and confirm Australian Privacy Principles
