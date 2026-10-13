@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
@@ -7,17 +7,12 @@ import CookieNotice from '@/components/CookieNotice';
 import { Analytics } from '@vercel/analytics/next';
 import { getSite } from '@/lib/content';
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
-  variable: '--font-heading',
-  display: 'swap',
-});
-
+// Inter is the self-hosted fallback for SF Pro. Apple devices render SF Pro from the
+// system font stack in globals.css; everyone else gets Inter.
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
-  variable: '--font-body',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -34,7 +29,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const site = getSite();
   return (
-    <html lang="en-AU" className={`${jakarta.variable} ${inter.variable}`}>
+    <html lang="en-AU" className={inter.variable}>
       <body>
         <Nav site={site} />
         <main>{children}</main>

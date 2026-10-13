@@ -29,7 +29,7 @@ function Mark({ partner }: { partner: Partner }) {
           <path d={path} />
         </svg>
       ) : null}
-      <span className="whitespace-nowrap text-16 font-medium">{partner.name}</span>
+      <span className="whitespace-nowrap text-17">{partner.name}</span>
     </li>
   );
 }
@@ -40,7 +40,7 @@ export default function PartnerMarquee({ partners }: { partners?: Partner[] }) {
   // translate lands mid-gap and the loop visibly jumps.
   const run = [...partners, ...partners, ...partners];
   return (
-    <div className="border-b border-white/10 bg-base py-7">
+    <div className="bg-base py-8">
       <div className="marquee relative overflow-hidden">
         <ul className="marquee-track flex w-max items-center">
           {run.map((p, i) => (

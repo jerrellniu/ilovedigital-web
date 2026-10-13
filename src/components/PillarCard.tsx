@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from './Icons';
 import type { Pillar } from '@/types/content';
 import type { ReactNode } from 'react';
 
@@ -43,13 +44,13 @@ const icons: Record<Pillar['key'], ReactNode> = {
 
 export default function PillarCard({ pillar }: { pillar: Pillar }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-transparent bg-surface p-9 transition hover:-translate-y-1 hover:border-cyan/40">
-      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan">
+    <div className="group flex flex-col rounded-card bg-surface p-8 transition hover:shadow-card-hover">
+      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-cyan text-on-accent">
         <svg
           className="h-6 w-6"
           viewBox="0 0 24 24"
           fill="none"
-          stroke="#06222a"
+          stroke="currentColor"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -58,18 +59,23 @@ export default function PillarCard({ pillar }: { pillar: Pillar }) {
           {icons[pillar.key]}
         </svg>
       </div>
-      <h3 className="mb-3 text-20">{pillar.heading}</h3>
-      <p className="mb-5 text-16 text-muted">{pillar.oneLiner}</p>
-      <ul className="mb-6 space-y-2">
+      <h3 className="mb-2.5 text-21">{pillar.heading}</h3>
+      <p className="mb-5 text-17 text-muted">{pillar.oneLiner}</p>
+      <ul className="mb-6 space-y-2.5">
         {pillar.bullets.map((b) => (
-          <li key={b} className="relative pl-6 text-16 text-muted">
-            <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-cyan" />
-            {b}
+          <li key={b} className="flex items-start gap-3 text-17 text-muted">
+            <span className="mt-0.5 inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-accent-soft text-accent">
+              <svg className="h-[13px] w-[13px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </span>
+            <span>{b}</span>
           </li>
         ))}
       </ul>
-      <Link href={pillar.href} className="mt-auto font-body font-semibold text-cyan">
-        Explore {pillar.name} →
+      <Link href={pillar.href} className="mt-auto inline-flex items-center gap-2 font-body text-17 font-semibold text-accent">
+        Explore {pillar.name}
+        <ArrowRight />
       </Link>
     </div>
   );

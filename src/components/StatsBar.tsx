@@ -13,7 +13,7 @@ function TrendArrow({ direction }: { direction: NonNullable<Stat['trend']> }) {
       strokeWidth="5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="ml-1.5 inline-block h-[0.6em] w-[0.6em] text-cyan"
+      className="ml-1.5 inline-block h-[0.6em] w-[0.6em] text-accent"
       aria-hidden="true"
     >
       <line x1="12" y1={up ? 20 : 4} x2="12" y2={up ? 7 : 17} />
@@ -29,14 +29,14 @@ function TrendArrow({ direction }: { direction: NonNullable<Stat['trend']> }) {
  * centred, so the three read as a row of receipts.
  *
  * The unit on the end of a value — the per cent sign, the plus — is painted in the
- * primary accent so the eye lands on the digits first. A stat with no unit can carry a
+ * cyan text colour so the eye lands on the digits first. A stat with no unit can carry a
  * trend arrow instead, in the same colour, so every row reads the same way. The arrow
  * is drawn at the weight of the plus glyph beside it — a hairline stroke next to an
  * 800-weight numeral reads as an afterthought.
  */
 export default function StatsBar({ stats }: { stats: Stat[] }) {
   return (
-    <div className="border-y border-white/10 bg-deep py-11 md:py-[60px]">
+    <div className="bg-deep py-12 md:py-16">
       <div className="container-wide grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-0">
         {stats.map((s, i) => {
           const [, digits, unit] = s.value.match(VALUE) ?? [, s.value, ''];
@@ -44,17 +44,17 @@ export default function StatsBar({ stats }: { stats: Stat[] }) {
             <div
               key={s.label}
               className={[
-                i > 0 ? 'sm:border-l sm:border-white/10 sm:pl-12' : '',
+                i > 0 ? 'sm:border-l sm:border-line sm:pl-12' : '',
                 i < stats.length - 1 ? 'sm:pr-12' : '',
               ].join(' ')}
             >
-              <div className="font-heading text-36 lg:text-48 font-extrabold leading-[1.05]">
+              <div className="font-heading text-40 font-semibold lg:text-48">
                 {digits}
-                {unit ? <span className="text-cyan">{unit}</span> : null}
+                {unit ? <span className="text-accent">{unit}</span> : null}
                 {s.trend ? <TrendArrow direction={s.trend} /> : null}
               </div>
-              <div className="mt-2.5 text-16 leading-snug text-ink">{s.label}</div>
-              {s.source ? <div className="mt-1.5 text-14 text-faint">{s.source}</div> : null}
+              <div className="mt-2.5 text-17 text-ink">{s.label}</div>
+              {s.source ? <div className="mt-1.5 text-14 text-muted">{s.source}</div> : null}
             </div>
           );
         })}

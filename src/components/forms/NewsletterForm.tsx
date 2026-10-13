@@ -13,7 +13,7 @@ export default function NewsletterForm() {
 
   if (status === 'success') {
     return (
-      <p className="mt-6 text-cyan" role="status">
+      <p className="mt-6 text-accent" role="status">
         Thanks — you&apos;re subscribed.
       </p>
     );
@@ -41,7 +41,7 @@ export default function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email"
-        className="min-w-[200px] flex-1 rounded-[10px] border border-white/10 bg-base px-[18px] py-[14px] text-ink placeholder:text-faint focus:border-cyan focus:outline-none"
+        className="field min-w-[200px] flex-1"
       />
 
       <Turnstile onToken={setToken} />
@@ -49,7 +49,7 @@ export default function NewsletterForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="rounded-[10px] bg-cyan px-[22px] py-[14px] font-semibold text-[#06222a] hover:brightness-110 disabled:opacity-60"
+        className="rounded-full bg-cyan px-[22px] py-3 text-17 text-on-accent transition hover:bg-cyan-hover active:scale-[0.97] disabled:opacity-60"
       >
         {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
       </button>

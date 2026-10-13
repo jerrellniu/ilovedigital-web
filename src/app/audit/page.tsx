@@ -29,8 +29,8 @@ export default function AuditPage() {
     <>
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Free website audit', path: '/audit' }]} />
       <section className="container-wide section-y">
-        <h1 className="max-w-[16ch] text-36 md:text-48">Free website audit. No catch.</h1>
-        <p className="mt-6 max-w-[56ch] text-20 text-muted">
+        <h1 className="max-w-[16ch] text-40 md:text-48">Free website audit. No catch.</h1>
+        <p className="mt-6 max-w-[56ch] text-21 text-muted">
           Send us your URL. Within 3 business days you&apos;ll get back a 5-minute Loom walkthrough
           and a written PDF report covering technical issues, urgent fixes, and a 3-month action
           plan. No obligation.
@@ -38,13 +38,13 @@ export default function AuditPage() {
         <AuditForm full />
       </section>
 
-      <section className="bg-deep">
+      <section className="section-deep">
         <div className="container-wide section-y">
-          <h2 className="mb-10 text-center text-28 md:text-36">What you get</h2>
+          <h2 className="mb-10 text-center text-28 md:text-40">What you get</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {whatYouGet.map((c) => (
-              <div key={c.title} className="rounded-2xl bg-surface p-8">
-                <h3 className="font-heading text-20">{c.title}</h3>
+              <div key={c.title} className="rounded-card bg-surface p-8">
+                <h3 className="text-21">{c.title}</h3>
                 <p className="mt-3 text-muted">{c.body}</p>
               </div>
             ))}
@@ -53,24 +53,24 @@ export default function AuditPage() {
       </section>
 
       <section className="container-wide section-y">
-        <h2 className="mb-10 text-center text-28 md:text-36">How it works</h2>
-        <div className="grid gap-7 sm:grid-cols-3">
+        <h2 className="mb-10 text-center text-28 md:text-40">How it works</h2>
+        <div className="grid gap-6 sm:grid-cols-3">
           {steps.map((s) => (
-            <div key={s.n}>
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-cyan font-heading font-bold text-cyan">
-                {s.n}
+            <div key={s.n} className="rounded-card bg-surface p-8">
+              <div className="font-heading text-40 font-semibold leading-none text-line" aria-hidden="true">
+                {String(s.n).padStart(2, '0')}
               </div>
-              <h4 className="mb-2.5 font-heading text-20">{s.title}</h4>
-              <p className="text-16 text-muted">{s.body}</p>
+              <h3 className="mb-2.5 mt-5 text-21">{s.title}</h3>
+              <p className="text-17 text-muted">{s.body}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Booking. Second path for anyone who would rather talk than wait three days. */}
-      <section className="bg-deep">
+      <section className="section-deep">
         <div className="container-wide section-y">
-          <h2 className="text-28 md:text-36">Rather talk it through?</h2>
+          <h2 className="text-28 md:text-40">Rather talk it through?</h2>
           <p className="mt-4 max-w-[52ch] text-muted">
             Grab 15 minutes and we&apos;ll go over your site together. No pitch, no obligation.
           </p>

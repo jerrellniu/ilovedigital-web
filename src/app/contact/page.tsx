@@ -20,17 +20,17 @@ export default function ContactPage() {
     <>
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Contact', path: '/contact' }]} />
       <section className="container-wide section-y">
-        <span className="eyebrow">{contact.hero.eyebrow}</span>
-        <h1 className="text-36 md:text-48">{contact.hero.heading}</h1>
-        <p className="mt-6 max-w-[52ch] text-20 text-muted">{contact.hero.sub}</p>
+        <span className="eyebrow-pill">{contact.hero.eyebrow}</span>
+        <h1 className="text-40 md:text-48">{contact.hero.heading}</h1>
+        <p className="mt-6 max-w-[52ch] text-21 text-muted">{contact.hero.sub}</p>
       </section>
 
       {/* Booking gets its own full-width row. Google's embed collapses to a
           cramped single column with internal scrolling below ~700px, which
           buried the time slots when this shared a two-column grid. */}
       <section className="container-wide pb-10">
-        <div className="rounded-2xl bg-surface p-8">
-          <h2 className="text-20">{contact.book.heading}</h2>
+        <div className="rounded-card bg-surface p-8">
+          <h2 className="text-21">{contact.book.heading}</h2>
           <p className="mt-3 max-w-[60ch] text-muted">{contact.book.sub}</p>
           <BookingEmbed
             src={site.schedules.discovery15.embedUrl}
@@ -42,25 +42,25 @@ export default function ContactPage() {
 
       {/* Message form. Capped rather than full-bleed — inputs stretched to the
           full container read as a data-entry screen, not a note to a person. */}
-      <section className="container-wide pb-[60px] md:pb-[120px]">
-        <div className="max-w-[720px] rounded-2xl bg-surface p-8">
-          <h2 className="text-20">{contact.message.heading}</h2>
+      <section className="container-wide pb-16 md:pb-24">
+        <div className="max-w-[720px] rounded-card bg-surface p-8">
+          <h2 className="text-21">{contact.message.heading}</h2>
           <p className="mt-3 text-muted">{contact.message.sub}</p>
           <ContactForm />
         </div>
       </section>
 
       {/* Direct details */}
-      <section className="bg-deep">
+      <section className="section-deep">
         <div className="container-wide section-y">
-          <h2 className="text-20">Or reach out directly.</h2>
+          <h2 className="text-21">Or reach out directly.</h2>
           <div className="mt-6 grid gap-4 text-muted sm:grid-cols-2">
-            <p>Email: <a className="text-cyan" href={`mailto:${site.email}`}>{site.email}</a></p>
+            <p>Email: <a className="text-accent" href={`mailto:${site.email}`}>{site.email}</a></p>
             <p>Phone: {site.phone}</p>
             <p>Location: {site.location}</p>
             <p>Social: {site.socials.map((s: { label: string }) => s.label).join(', ')}</p>
           </div>
-          <div className="mt-8 rounded-2xl border border-cyan/30 bg-cyan/5 p-6 text-muted">
+          <div className="mt-8 rounded-card bg-accent-soft p-6 text-17 text-ink">
             {contact.responseCallout}
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function ContactPage() {
 
       {/* FAQ */}
       <section className="container-wide section-y">
-        <h2 className="mb-10 text-center text-28 md:text-36 lg:text-48">Frequently asked questions</h2>
+        <h2 className="mb-10 text-center text-28 md:text-40">Frequently asked questions</h2>
         <FaqAccordion items={contact.faq} />
         <JsonLd data={faqPageSchema(contact.faq)} />
       </section>

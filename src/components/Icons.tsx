@@ -16,7 +16,7 @@ export function StarRating({
   className?: string;
 }) {
   return (
-    <span className={`inline-flex gap-[3px] text-cyan ${className}`} role="img" aria-label={`${rating} out of 5 stars`}>
+    <span className={`inline-flex gap-[3px] text-accent ${className}`} role="img" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg
           key={i}
@@ -56,6 +56,27 @@ export function PlusMinusIcon({ open, size = 20, className = '' }: { open: boole
         className="origin-center transition-transform"
         style={{ transformBox: 'fill-box', transform: open ? 'scaleY(0)' : 'scaleY(1)' }}
       />
+    </svg>
+  );
+}
+
+/** Right arrow for link labels ("Learn more", "View case study"). Nudges 4px on hover
+ *  when its link has the `group` class. */
+export function ArrowRight({ size = 16, className = '' }: { size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={`shrink-0 transition-transform group-hover:translate-x-1 ${className}`}
+      aria-hidden="true"
+    >
+      <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   );
 }
