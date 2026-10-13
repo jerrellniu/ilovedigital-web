@@ -59,26 +59,9 @@ export interface SiteContent {
   partners?: Partner[];
 }
 
-/** One run of a hero heading. `accent` paints it with a brand colour. */
-export interface HeadingRun {
-  text: string;
-  /**
-   * Cyan is the primary accent; purple is reserved for a single highlighted word,
-   * per the design system.
-   */
-  accent?: 'cyan' | 'purple';
-}
-
 export interface HeroBlock {
   eyebrow?: string;
   heading: string;
-  /**
-   * The heading split into runs so its accent colours live in content, not in JSX.
-   * Joining the runs must reproduce `heading` exactly; the loader enforces that, so
-   * the flat string used by metadata and schema can never drift from what renders.
-   * Omit it and the heading renders flat.
-   */
-  headingParts?: HeadingRun[];
   sub: string;
   image?: string;
   imageAlt?: string;
@@ -200,9 +183,45 @@ export interface PluginShowcase {
   panel: { title: string; badge: string; menu: string[]; active: string; heading: string; modules: { label: string; on: boolean }[] };
 }
 
-/** One slide of the Home hero slider. Its visual comes from the matching product section. */
+/**
+ * A service slide's visual: real client evidence with one proof line on a card.
+ * Never a figure the client's records do not hold.
+ */
+interface SlideProof {
+  result: string;
+  source: string;
+}
+
+/** A client's real screenshot in a browser frame. */
+export interface ScreenshotShowcase extends SlideProof {
+  kind: 'screenshot';
+  image: string;
+  imageAlt: string;
+  /** Text in the frame's address bar. */
+  frameLabel: string;
+}
+
+/**
+ * A Search Console style results panel drawn from a client's real figures, with
+ * the client's name, URLs and queries left out.
+ */
+export interface MetricsShowcase extends SlideProof {
+  kind: 'metrics';
+  title: string;
+  period: string;
+  metrics: { label: string; value: string; change: string }[];
+  chart: { title: string; points: { label: string; value: number }[] };
+}
+
+export type SlideShowcase = ScreenshotShowcase | MetricsShowcase;
+
+/**
+ * One slide of the Home hero slider. The first slide's heading is the page H1.
+ * Service slides carry their own `showcase`; product slides take their visual from
+ * the matching product section.
+ */
 export interface HeroSlide {
-  key: 'wallet' | 'plugin';
+  key: 'websites' | 'search' | 'social' | 'wallet' | 'plugin';
   tab: string;
   eyebrow: string;
   heading: string;
@@ -213,11 +232,13 @@ export interface HeroSlide {
   moreCta?: CtaLink;
   /** Small line under the slide. Omit for none. */
   caption?: string;
+  showcase?: SlideShowcase;
 }
 
 export interface HomeContent {
   meta: { title: string; description: string };
-  hero: HeroBlock;
+  /** The page heading lives in the first hero slide; only the eyebrow pill sits above it. */
+  hero: { eyebrow: string };
   heroSlider: { label: string; prevLabel: string; nextLabel: string; slides: HeroSlide[] };
   stats: Stat[];
   pillarsIntro: { eyebrow?: string; heading: string; sub?: string };

@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
-import HeroHeading from '@/components/HeroHeading';
 import HeroSlider from '@/components/HeroSlider';
-import { WalletStage, PluginStage } from '@/components/products/HeroVisuals';
+import { WalletStage, PluginStage, ProofStage } from '@/components/products/HeroVisuals';
 import StatsBar from '@/components/StatsBar';
 import PartnerMarquee from '@/components/PartnerMarquee';
 import SectionHeading from '@/components/SectionHeading';
@@ -31,12 +30,10 @@ export default function HomePage() {
     <>
       <JsonLd data={localBusinessSchema()} />
 
-      {/* Hero: the page heading and product line, then one slide per product. */}
+      {/* Hero: the eyebrow, then one slide per service and product. Slide 1 holds the H1. */}
       <section>
         <div className="container-wide pb-16 pt-12 md:pb-24 md:pt-16">
           <span className="eyebrow-pill">{home.hero.eyebrow}</span>
-          <HeroHeading hero={home.hero} className="max-w-[24ch] text-28 md:text-40" />
-          <p className="mt-6 max-w-[56ch] text-21 text-muted">{home.hero.sub}</p>
           <div className="mt-6">
             <HeroSlider
               label={home.heroSlider.label}
@@ -45,6 +42,11 @@ export default function HomePage() {
               slides={home.heroSlider.slides}
               bookingHref={site.booking.href}
               visuals={{
+                ...Object.fromEntries(
+                  home.heroSlider.slides
+                    .filter((s) => s.showcase)
+                    .map((s) => [s.key, <ProofStage key={s.key} showcase={s.showcase!} />])
+                ),
                 wallet: <WalletStage card={home.products.wallet.card} />,
                 plugin: <PluginStage showcase={home.products.plugin.showcase} />,
               }}

@@ -8,10 +8,12 @@ import type { HeroSlide } from '@/types/content';
 const AUTOPLAY_MS = 8000;
 
 /**
- * The Home hero: one slide per product. Both slides are in the HTML for search
- * engines and screen readers; the inactive one is faded out and made inert.
- * Slides stack in one grid cell, so the section keeps the height of the taller
- * slide and nothing below it jumps when the slide changes.
+ * The Home hero: one slide per service or product. Every slide is in the HTML for
+ * search engines and screen readers; inactive ones are faded out and made inert.
+ * The first slide's heading is the page H1, the rest are H2s, so the page has one
+ * H1 whichever slide is showing. Slides stack in one grid cell, so the section
+ * keeps the height of the tallest slide and nothing below it jumps when the slide
+ * changes.
  *
  * It advances every 8 seconds, pauses while the pointer or keyboard focus is
  * inside it, and never moves on its own for visitors who ask for reduced motion.
@@ -28,7 +30,7 @@ export default function HeroSlider({
   prevLabel: string;
   nextLabel: string;
   slides: HeroSlide[];
-  visuals: Record<HeroSlide['key'], ReactNode>;
+  visuals: Partial<Record<HeroSlide['key'], ReactNode>>;
   bookingHref: string;
 }) {
   const [index, setIndex] = useState(0);
@@ -83,7 +85,7 @@ export default function HeroSlider({
       }}
     >
       <div className="mb-6 flex flex-wrap items-center gap-2 sm:justify-end">
-        <div role="tablist" aria-label={label} className="flex gap-2">
+        <div role="tablist" aria-label={label} className="flex flex-wrap gap-2">
           {slides.map((s, i) => (
             <button
               key={s.key}
@@ -127,6 +129,7 @@ export default function HeroSlider({
       <div className="grid">
         {slides.map((s, i) => {
           const active = i === index;
+          const Heading = i === 0 ? 'h1' : 'h2';
           return (
             <div
               key={s.key}
@@ -150,7 +153,7 @@ export default function HeroSlider({
               >
                 <div>
                   <span className="eyebrow">{s.eyebrow}</span>
-                  <h2 className="text-28 md:text-40 lg:text-48">{s.heading}</h2>
+                  <Heading className="text-28 md:text-40 lg:text-48">{s.heading}</Heading>
                   <p className="mt-5 text-21 text-muted">{s.sub}</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                     <Button href={bookingHref} size="lg">
