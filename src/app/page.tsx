@@ -31,11 +31,12 @@ export default function HomePage() {
     <>
       <JsonLd data={localBusinessSchema()} />
 
-      {/* Hero: the page heading, then one slide per product. */}
+      {/* Hero: the page heading and product line, then one slide per product. */}
       <section>
         <div className="container-wide pb-16 pt-12 md:pb-24 md:pt-16">
           <span className="eyebrow-pill">{home.hero.eyebrow}</span>
           <HeroHeading hero={home.hero} className="max-w-[24ch] text-28 md:text-40" />
+          <p className="mt-6 max-w-[56ch] text-21 text-muted">{home.hero.sub}</p>
           <div className="mt-6">
             <HeroSlider
               label={home.heroSlider.label}

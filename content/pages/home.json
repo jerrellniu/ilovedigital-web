@@ -5,8 +5,8 @@
   },
   "hero": {
     "eyebrow": "Digital marketing on the Gold Coast",
-    "heading": "We make websites and Google, simple.",
-    "sub": "We are coders who work from your numbers. Tell us the goal, whether that is more calls, more bookings or more of one kind of job, and we will find what is stopping it in your website data and build the fix. You will understand every step, because we explain it in plain English.",
+    "heading": "Digital products for your business.",
+    "sub": "Websites, loyalty cards, plugins, SEO and AI search, socials, domains and AI tools.",
     "primaryCta": {
       "label": "Book a call with Jerrell",
       "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
@@ -17,21 +17,21 @@
     },
     "headingParts": [
       {
-        "text": "We make "
+        "text": "Digital "
       },
       {
-        "text": "websites",
+        "text": "products",
         "accent": "cyan"
       },
       {
-        "text": " and "
+        "text": " for your "
       },
       {
-        "text": "Google",
+        "text": "business",
         "accent": "purple"
       },
       {
-        "text": ", simple."
+        "text": "."
       }
     ]
   },
