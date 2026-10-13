@@ -17,8 +17,8 @@ import { useState } from 'react';
  * the times visible immediately. Do not drop this into a half-width grid cell.
  *
  * The embed takes five to eight seconds to paint, so it renders behind a
- * skeleton rather than a blank white rectangle — an untreated blank box on a
- * dark page reads as broken, and a visitor who thinks the booking is broken
+ * skeleton rather than a blank white rectangle — an untreated blank box
+ * reads as broken, and a visitor who thinks the booking is broken
  * does not book.
  *
  * The fallback link is not decoration. The iframe is third-party and is blocked
@@ -43,7 +43,7 @@ export default function BookingEmbed({
   return (
     <div className="mt-6">
       <div
-        className="relative w-full overflow-hidden rounded-xl border border-white/10"
+        className="relative w-full overflow-hidden rounded-card border border-line"
         style={{ height }}
       >
         {!loaded ? (
@@ -51,8 +51,8 @@ export default function BookingEmbed({
             className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface"
             aria-hidden="true"
           >
-            <span className="h-6 w-6 rounded-full border-2 border-white/20 border-t-cyan motion-safe:animate-spin" />
-            <span className="text-14 text-faint">Loading available times…</span>
+            <span className="h-6 w-6 rounded-full border-2 border-line border-t-accent motion-safe:animate-spin" />
+            <span className="text-14 text-muted">Loading available times…</span>
           </div>
         ) : null}
 
@@ -67,13 +67,13 @@ export default function BookingEmbed({
         />
       </div>
 
-      <p className="mt-3 text-14 text-faint">
+      <p className="mt-3 text-14 text-muted">
         Calendar not loading?{' '}
         <a
           href={fallbackHref ?? src}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-cyan hover:underline"
+          className="text-accent hover:underline"
         >
           Open the booking page in a new tab
         </a>

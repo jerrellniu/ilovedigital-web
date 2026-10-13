@@ -8,10 +8,10 @@ import type { InsightCardData } from '@/lib/content';
 // Same four labels as the /work filters and the pillar pages: one taxonomy across the site.
 const FILTERS = ['All', 'Web', 'Search', 'Socials', 'Consulting'] as const;
 
-const SHELL = 'group block overflow-hidden rounded-2xl border border-transparent bg-surface';
-const INTERACTIVE = 'transition hover:-translate-y-1 hover:border-cyan/40';
-const TINT =
-  'bg-[linear-gradient(135deg,rgba(28,191,212,0.18),rgba(192,132,252,0.18)),#20222c]';
+// Design system card: flat surface, hover adds the soft card shadow.
+const SHELL = 'group flex h-full flex-col overflow-hidden rounded-card bg-surface';
+const INTERACTIVE = 'transition hover:shadow-card-hover';
+const TINT = 'bg-[linear-gradient(135deg,rgba(192,132,252,0.28),rgba(28,191,212,0.28))]';
 
 function Card({ post }: { post: InsightCardData }) {
   const body = (
@@ -23,15 +23,15 @@ function Card({ post }: { post: InsightCardData }) {
             alt=""
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-slow group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-slow group-hover:scale-[1.04]"
           />
         ) : null}
       </div>
-      <div className="p-6">
-        <span className="text-12 font-semibold uppercase tracking-wide text-cyan">{post.category}</span>
-        <h3 className="mt-2 font-heading text-20 font-bold leading-snug">{post.title}</h3>
-        <p className="mt-2 text-14 text-muted">{post.excerpt}</p>
-        <div className="mt-3 text-12 text-faint">
+      <div className="flex flex-1 flex-col p-6">
+        <span className="text-14 font-semibold text-accent">{post.category}</span>
+        <h3 className="mt-1.5 text-21">{post.title}</h3>
+        <p className="mt-2 text-17 text-muted">{post.excerpt}</p>
+        <div className="mt-auto pt-4 text-14 text-muted">
           {post.href ? `${post.readTime} read` : 'Coming soon'}
         </div>
       </div>
@@ -60,11 +60,8 @@ export default function InsightsGrid({ posts }: { posts: InsightCardData[] }) {
             key={f}
             type="button"
             onClick={() => setFilter(f)}
-            className={`rounded-full border px-4 py-2 text-14 font-medium transition ${
-              filter === f
-                ? 'border-cyan bg-cyan text-[#06222a]'
-                : 'border-white/15 text-muted hover:border-cyan hover:text-ink'
-            }`}
+            aria-pressed={filter === f}
+            className={`chip ${filter === f ? 'chip-active' : ''}`}
           >
             {f}
           </button>

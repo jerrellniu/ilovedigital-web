@@ -2,24 +2,34 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 type Variant = 'primary' | 'outline';
+type Size = 'md' | 'lg';
 
+// Design system buttons: every button is a pill. Primary is a cyan fill with dark teal
+// text (7.44:1); outline is cyan text and border. Press shrinks to 0.97.
 const styles: Record<Variant, string> = {
-  primary: 'bg-cyan text-[#06222a] hover:brightness-110',
-  outline: 'border border-cyan text-cyan hover:bg-cyan/10',
+  primary: 'bg-cyan text-on-accent hover:bg-cyan-hover active:bg-cyan-press',
+  outline: 'border border-accent text-accent hover:bg-accent-soft',
+};
+
+const sizes: Record<Size, string> = {
+  md: 'px-[22px] py-3',
+  lg: 'px-7 py-3.5',
 };
 
 export default function Button({
   href,
   children,
   variant = 'primary',
+  size = 'md',
   className = '',
 }: {
   href: string;
   children: ReactNode;
   variant?: Variant;
+  size?: Size;
   className?: string;
 }) {
-  const classes = `inline-flex items-center gap-2 rounded-[10px] px-[22px] py-[15px] font-body text-16 font-semibold transition ${styles[variant]} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-body text-17 transition active:scale-[0.97] ${sizes[size]} ${styles[variant]} ${className}`;
 
   // The booking CTA points at Google Calendar, off this domain. next/link is for
   // internal navigation — an external href needs a plain anchor, opened in a new

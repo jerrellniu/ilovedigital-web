@@ -14,8 +14,8 @@ export default function LegalPage({
   return (
     <section className="container-wide section-y">
       <div className="mx-auto max-w-[70ch]">
-        <h1 className="text-28 md:text-36 lg:text-48">{title}</h1>
-        <p className="mt-3 text-14 text-faint">Last updated: {lastUpdated}</p>
+        <h1 className="text-40 md:text-48">{title}</h1>
+        <p className="mt-3 text-14 text-muted">Last updated: {lastUpdated}</p>
         <div className="mt-10">{children}</div>
       </div>
     </section>

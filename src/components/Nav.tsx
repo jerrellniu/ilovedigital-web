@@ -5,48 +5,59 @@ import Link from 'next/link';
 import Logo from './Logo';
 import type { SiteContent } from '@/types/content';
 
+// Design system nav: sticky, 44px tall (48px on phones), translucent with a frosted
+// blur and no border or shadow. 12px links, small pill CTA on the right.
 export default function Nav({ site }: { site: SiteContent }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-base/80 backdrop-blur">
-      <div className="container-wide flex h-[72px] items-center justify-between">
-        <Link href="/" aria-label="I Love Digital — home">
-          <Logo height={34} />
+    <header
+      className="sticky top-0 z-50 [-webkit-backdrop-filter:saturate(180%)_blur(20px)] [backdrop-filter:saturate(180%)_blur(20px)]"
+      style={{ background: 'var(--nav-bg)' }}
+    >
+      <div className="container-wide flex h-12 items-center justify-between gap-6 md:h-nav">
+        <Link href="/" aria-label="I Love Digital — home" className="shrink-0">
+          <Logo height={20} />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 md:flex">
           {site.nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-16 font-medium text-muted hover:text-ink"
+              className="py-2 text-12 text-muted transition hover:text-ink"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <a
             href={site.booking.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-[10px] bg-cyan px-[18px] py-2.5 font-body text-16 font-semibold text-[#06222a] hover:brightness-110 md:inline-flex"
+            className="hidden rounded-full bg-cyan px-4 py-1.5 text-14 text-on-accent transition hover:bg-cyan-hover active:scale-[0.97] md:inline-flex"
           >
             {site.booking.label}
           </a>
           <button
             type="button"
-            className="md:hidden"
-            aria-label="Menu"
+            className="-mr-2 p-2 text-ink md:hidden"
+            aria-label={mobileOpen ? 'Close menu' : 'Menu'}
+            aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((v) => !v)}
           >
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="4" y1="7" x2="20" y2="7" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="17" x2="20" y2="17" />
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              {mobileOpen ? (
+                <path d="M6 6l12 12M18 6 6 18" />
+              ) : (
+                <>
+                  <line x1="4" y1="8" x2="20" y2="8" />
+                  <line x1="4" y1="16" x2="20" y2="16" />
+                </>
+              )}
             </svg>
           </button>
         </div>
@@ -54,9 +65,14 @@ export default function Nav({ site }: { site: SiteContent }) {
 
       {/* Mobile menu */}
       {mobileOpen ? (
-        <div className="border-t border-white/10 px-6 pb-6 pt-2 md:hidden">
+        <div className="border-t border-line px-5 pb-6 pt-2 md:hidden">
           {site.nav.map((item) => (
-            <Link key={item.href} href={item.href} className="block py-3 text-muted">
+            <Link
+              key={item.href}
+              href={item.href}
+              className="block py-3 text-21 font-semibold text-ink"
+              onClick={() => setMobileOpen(false)}
+            >
               {item.label}
             </Link>
           ))}
@@ -64,7 +80,7 @@ export default function Nav({ site }: { site: SiteContent }) {
             href={site.booking.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex w-full justify-center rounded-[10px] bg-cyan px-5 py-3 font-semibold text-[#06222a]"
+            className="mt-4 inline-flex w-full justify-center rounded-full bg-cyan px-5 py-3 text-17 text-on-accent"
           >
             {site.booking.label}
           </a>

@@ -1,7 +1,7 @@
 import type { HeroBlock } from '@/types/content';
 
 const ACCENT = {
-  cyan: 'text-cyan',
+  cyan: 'text-accent',
   purple: 'text-purple',
 } as const;
 

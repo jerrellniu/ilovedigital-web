@@ -6,7 +6,7 @@ import Honeypot from './Honeypot';
 import Turnstile from './Turnstile';
 
 const inputCls =
-  'min-w-[200px] flex-1 rounded-[10px] border border-white/10 bg-surface px-[18px] py-[15px] text-ink placeholder:text-faint focus:border-cyan focus:outline-none';
+  'field min-w-[200px] flex-1';
 
 // The compact and full variants both render on the same page in some layouts,
 // so field ids are namespaced by variant to keep them unique per document.
@@ -30,7 +30,7 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
 
   if (status === 'success') {
     return (
-      <p className="mt-8 text-cyan" role="status">
+      <p className="mt-8 text-accent" role="status">
         Thanks — your audit request is in. You&apos;ll hear back within 3 business days.
       </p>
     );
@@ -137,7 +137,7 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className={`rounded-[10px] bg-cyan px-[22px] py-[15px] font-semibold text-[#06222a] hover:brightness-110 disabled:opacity-60 ${full ? 'w-full' : ''}`}
+        className={`rounded-full bg-cyan px-[22px] py-3 text-17 text-on-accent transition hover:bg-cyan-hover active:scale-[0.97] disabled:opacity-60 ${full ? 'w-full' : ''}`}
       >
         {status === 'loading' ? 'Sending…' : 'Request my audit'}
       </button>

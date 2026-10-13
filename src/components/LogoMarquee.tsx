@@ -2,7 +2,7 @@ import { TOOL_LOGOS, type ToolLogo } from './toolLogos';
 
 function Mark({ logo }: { logo: ToolLogo }) {
   return (
-    <li className="flex shrink-0 items-center gap-2.5 px-7 text-faint transition-colors hover:text-ink">
+    <li className="flex shrink-0 items-center gap-2.5 px-7 text-muted transition-colors hover:text-ink">
       {logo.path ? (
         <svg
           className="h-7 w-7 shrink-0"
@@ -14,7 +14,7 @@ function Mark({ logo }: { logo: ToolLogo }) {
           <path d={logo.path} />
         </svg>
       ) : (
-        <span className="whitespace-nowrap font-heading text-16 font-bold tracking-tight">
+        <span className="whitespace-nowrap font-heading text-17 font-semibold">
           {logo.name}
         </span>
       )}

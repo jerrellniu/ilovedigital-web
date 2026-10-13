@@ -85,10 +85,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       />
 
       <article className="container-wide section-y">
-        <span className="text-12 font-semibold uppercase tracking-wide text-cyan">{fm.category}</span>
-        <h1 className="mt-3 max-w-[26ch] text-36 lg:text-48">{fm.title}</h1>
-        <div className="mt-4 text-14 text-faint">
-          <Link href={AUTHOR_PATH} className="text-muted hover:text-cyan">
+        <span className="text-14 font-semibold text-accent">{fm.category}</span>
+        <h1 className="mt-3 max-w-[26ch] text-40 md:text-48">{fm.title}</h1>
+        <div className="mt-4 text-14 text-muted">
+          <Link href={AUTHOR_PATH} className="text-muted hover:text-accent">
             {fm.author ?? author.name}
           </Link>
           {fm.date ? ` · ${formatDate(fm.date)}` : ''}
@@ -101,7 +101,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Author bio */}
-        <div className="mt-14 flex max-w-[70ch] items-center gap-4 rounded-2xl bg-surface p-6">
+        <div className="mt-14 flex max-w-[70ch] items-center gap-4 rounded-card bg-surface p-6">
           {author.image ? (
             <Image
               src={author.image}
@@ -111,17 +111,17 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               className="h-14 w-14 shrink-0 rounded-full object-cover"
             />
           ) : (
-            <div className="h-14 w-14 shrink-0 rounded-full bg-[linear-gradient(160deg,#2C2F3A,#20222c)]" />
+            <div className="h-14 w-14 shrink-0 rounded-full bg-surface" />
           )}
           <div>
-            <div className="font-heading font-bold">
-              <Link href={AUTHOR_PATH} className="hover:text-cyan">
+            <div className="font-heading text-21 font-semibold">
+              <Link href={AUTHOR_PATH} className="hover:text-accent">
                 {author.name}
               </Link>
             </div>
             <p className="text-14 text-muted">
               {author.jobTitle}.{' '}
-              <Link href={AUTHOR_PATH} className="text-cyan">
+              <Link href={AUTHOR_PATH} className="text-accent">
                 More about me →
               </Link>
             </p>
@@ -130,20 +130,20 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       </article>
 
       {related.length ? (
-        <section className="bg-deep">
+        <section className="section-deep">
           <div className="container-wide section-y">
-            <h2 className="mb-8 text-28 lg:text-36">Related reading</h2>
+            <h2 className="mb-8 text-28 md:text-40">Related reading</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {related.map((p) => (
                 <Link
                   key={p.slug}
                   href={`/insights/${p.slug}`}
-                  className="block rounded-2xl border border-transparent bg-surface p-6 transition hover:border-cyan/40"
+                  className="block h-full rounded-card bg-surface p-6 transition hover:shadow-card-hover"
                 >
-                  <span className="text-12 font-semibold uppercase tracking-wide text-cyan">
+                  <span className="text-14 font-semibold text-accent">
                     {p.category}
                   </span>
-                  <h3 className="mt-2 font-heading text-16 font-bold leading-snug">{p.title}</h3>
+                  <h3 className="mt-2 text-21">{p.title}</h3>
                 </Link>
               ))}
             </div>
@@ -152,7 +152,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       ) : null}
 
       <section className="container-wide section-y text-center">
-        <h2 className="text-28 md:text-36">Want this handled for you?</h2>
+        <h2 className="text-28 md:text-40">Want this handled for you?</h2>
         <div className="mt-8 flex justify-center gap-4">
           <Button href="/audit">Get a free website audit</Button>
           <Button href={site.booking.href} variant="outline">{site.booking.label}</Button>

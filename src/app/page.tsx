@@ -10,6 +10,8 @@ import PillarCard from '@/components/PillarCard';
 import CaseStudyCard from '@/components/CaseStudyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FaqAccordion from '@/components/FaqAccordion';
+import CtaBand from '@/components/CtaBand';
+import { ArrowRight } from '@/components/Icons';
 import JsonLd from '@/components/JsonLd';
 import AuditForm from '@/components/forms/AuditForm';
 import { getHome, getSite } from '@/lib/content';
@@ -29,21 +31,21 @@ export default function HomePage() {
       <JsonLd data={localBusinessSchema()} />
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute -right-24 -top-40 h-[620px] w-[620px] rounded-full bg-[radial-gradient(circle,rgba(28,191,212,0.16),transparent_62%)] blur-2xl" />
-        <div className="pointer-events-none absolute -left-20 bottom-[-30%] h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(192,132,252,0.12),transparent_62%)] blur-2xl" />
-        <div className="container-wide relative section-y">
-          <span className="eyebrow">{home.hero.eyebrow}</span>
+      <section>
+        <div className="container-wide section-y">
+          <span className="eyebrow-pill">{home.hero.eyebrow}</span>
           <HeroHeading
             hero={home.hero}
-            className="max-w-[16ch] text-36 sm:text-48 lg:text-64"
+            className="max-w-[16ch] text-40 sm:text-48 lg:text-64"
           />
-          <p className="mt-6 max-w-[56ch] text-20 text-muted">{home.hero.sub}</p>
-          <div className="mt-9 flex flex-wrap items-center gap-5">
-            <Button href={home.hero.primaryCta!.href}>{home.hero.primaryCta!.label}</Button>
-            <a href={home.hero.secondaryCta!.href} className="font-body font-semibold text-cyan">
+          <p className="mt-6 max-w-[56ch] text-21 text-muted">{home.hero.sub}</p>
+          <div className="mt-9 flex flex-wrap items-center gap-3.5">
+            <Button href={home.hero.primaryCta!.href} size="lg">
+              {home.hero.primaryCta!.label}
+            </Button>
+            <Button href={home.hero.secondaryCta!.href} size="lg" variant="outline">
               {home.hero.secondaryCta!.label}
-            </a>
+            </Button>
           </div>
         </div>
       </section>
@@ -58,7 +60,7 @@ export default function HomePage() {
           heading={home.pillarsIntro.heading}
           sub={home.pillarsIntro.sub}
         />
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
           {home.pillars.map((p) => (
             <PillarCard key={p.key} pillar={p} />
           ))}
@@ -66,7 +68,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured work */}
-      <section className="bg-deep">
+      <section className="section-deep">
         <div className="container-wide section-y">
           <SectionHeading
             eyebrow={home.featuredWork.eyebrow}
@@ -97,7 +99,7 @@ export default function HomePage() {
       </section>
 
       {/* Founder */}
-      <section className="bg-deep">
+      <section className="section-deep">
         <div className="container-wide section-y grid items-center gap-14 md:grid-cols-[0.8fr_1.2fr]">
           {home.founder.image ? (
             <Image
@@ -109,20 +111,24 @@ export default function HomePage() {
               className="portrait-fade w-full max-w-sm"
             />
           ) : (
-            <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-14 text-faint">
+            <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-card bg-surface text-14 text-muted">
               Founder portrait
             </div>
           )}
           <div>
             <span className="eyebrow">{home.founder.eyebrow}</span>
-            <h2 className="max-w-[20ch] text-28 md:text-36 lg:text-48">{home.founder.heading}</h2>
+            <h2 className="max-w-[20ch] text-28 md:text-40 lg:text-48">{home.founder.heading}</h2>
             {home.founder.paragraphs.map((p, i) => (
-              <p key={i} className="mt-5 text-16 text-muted">
+              <p key={i} className="mt-5 text-17 text-muted">
                 {p}
               </p>
             ))}
-            <Link href={home.founder.cta.href} className="mt-6 inline-block font-body font-semibold text-cyan">
+            <Link
+              href={home.founder.cta.href}
+              className="group mt-6 inline-flex items-center gap-2 font-body text-17 font-semibold text-accent"
+            >
               {home.founder.cta.label}
+              <ArrowRight />
             </Link>
           </div>
         </div>
@@ -135,29 +141,31 @@ export default function HomePage() {
           heading={home.process.heading}
           sub={home.process.sub}
         />
-        <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {home.process.steps.map((s, i) => (
-            <div key={s.title}>
-              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-cyan font-heading font-bold text-cyan">
-                {i + 1}
+            <div key={s.title} className="rounded-card bg-surface p-8">
+              <div className="font-heading text-40 font-semibold leading-none text-line" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
               </div>
-              <h4 className="mb-2.5 font-heading text-20">{s.title}</h4>
-              <p className="text-16 text-muted">{s.body}</p>
+              <h3 className="mb-2.5 mt-5 text-21">{s.title}</h3>
+              <p className="text-17 text-muted">{s.body}</p>
             </div>
           ))}
         </div>
         <div className="mt-14 text-center">
-          <Button href={home.process.cta.href}>{home.process.cta.label}</Button>
+          <Button href={home.process.cta.href} size="lg">
+            {home.process.cta.label}
+          </Button>
         </div>
       </section>
 
       {/* Audit CTA */}
-      <section id="audit" className="border-y border-white/10 bg-[linear-gradient(120deg,#181521,#1b1830)]">
+      <section id="audit" data-theme="dark" className="section-dark">
         <div className="container-wide section-y flex flex-col items-center text-center">
-          <h2 className="text-28 md:text-36 lg:text-48">{home.audit.heading}</h2>
-          <p className="mt-4 max-w-[60ch] text-muted">{home.audit.sub}</p>
+          <h2 className="max-w-[20ch] text-28 md:text-40 lg:text-48">{home.audit.heading}</h2>
+          <p className="mt-4 max-w-[60ch] text-21 text-muted">{home.audit.sub}</p>
           <AuditForm />
-          <Link href={home.audit.belowLink.href} className="mt-5 text-14 font-semibold text-cyan">
+          <Link href={home.audit.belowLink.href} className="mt-5 text-17 text-accent hover:underline">
             {home.audit.belowLink.label}
           </Link>
         </div>
@@ -165,21 +173,13 @@ export default function HomePage() {
 
       {/* FAQ */}
       <section className="container-wide section-y">
-        <h2 className="mb-10 text-center text-28 md:text-36 lg:text-48">{home.faq.heading}</h2>
+        <h2 className="mb-10 text-center text-28 md:text-40">{home.faq.heading}</h2>
         <FaqAccordion items={home.faq.items} />
         <JsonLd data={faqPageSchema(home.faq.items)} />
       </section>
 
       {/* Final CTA */}
-      <section className="bg-[radial-gradient(circle_at_50%_0%,rgba(28,191,212,0.12),transparent_60%)]">
-        <div className="container-wide section-y text-center">
-          <h2 className="text-28 md:text-36 lg:text-48">{home.finalCta.heading}</h2>
-          <p className="mx-auto mt-4 max-w-[48ch] text-20 text-muted">{home.finalCta.sub}</p>
-          <div className="mt-8">
-            <Button href={home.finalCta.button.href}>{home.finalCta.button.label}</Button>
-          </div>
-        </div>
-      </section>
+      <CtaBand heading={home.finalCta.heading} sub={home.finalCta.sub} button={home.finalCta.button} />
     </>
   );
 }

@@ -17,14 +17,14 @@ export default function ReviewQuote({ review }: { review: Review }) {
   const paragraphs = review.quote.trim().split(/\n{2,}/);
 
   return (
-    <figure className="rounded-2xl bg-surface p-8 md:p-10">
+    <figure className="rounded-card bg-surface p-8 md:p-10">
       {review.stars ? (
         <div className="mb-5">
           <StarRating rating={review.stars} size={20} />
         </div>
       ) : null}
 
-      <blockquote className="max-w-[62ch] space-y-4 text-16 leading-7 text-muted">
+      <blockquote className="max-w-[62ch] space-y-4 text-17 text-ink">
         {paragraphs.map((p, i) => (
           <p key={i}>{p}</p>
         ))}
@@ -34,7 +34,7 @@ export default function ReviewQuote({ review }: { review: Review }) {
         {review.author}
         {review.business ? `, ${review.business}` : ''}
         {review.source ? (
-          <span className="font-normal text-faint"> — {review.source}</span>
+          <span className="font-normal text-muted"> — {review.source}</span>
         ) : null}
       </figcaption>
     </figure>

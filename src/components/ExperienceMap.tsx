@@ -120,7 +120,7 @@ export default function ExperienceMap({
                 />
               ))}
             </g>
-            <g fill="none" stroke="#1CBFD4" strokeWidth={1.5} strokeLinecap="round" opacity={0.85}>
+            <g fill="none" style={{ stroke: 'rgb(var(--c-accent-text))' }} strokeWidth={1.5} strokeLinecap="round" opacity={0.85}>
               {data.nodes.map((n) => (
                 <path
                   key={`p-${n.id}`}
@@ -215,12 +215,12 @@ export default function ExperienceMap({
               <span className="em-dot-label">{n.primary}</span>
             </div>
             <div className="w-full max-w-[16rem]">
-              {n.secondary ? <div className="text-16 text-faint">{n.secondary}</div> : null}
+              {n.secondary ? <div className="text-17 text-muted">{n.secondary}</div> : null}
               <div className="mt-1 space-y-1">
                 {n.rows.map((r) => (
-                  <div key={r.label ?? r.years} className="flex justify-between gap-4 text-16">
+                  <div key={r.label ?? r.years} className="flex justify-between gap-4 text-17">
                     <span className="text-muted">{r.label ?? ''}</span>
-                    <span className="font-semibold text-cyan">{r.years}</span>
+                    <span className="font-semibold text-accent">{r.years}</span>
                   </div>
                 ))}
               </div>
@@ -264,14 +264,14 @@ function css(nodes: ExperienceMapNode[], box: ReturnType<typeof bounds>) {
 }
 .em-portrait {
   width: calc(240 * var(--u)); height: calc(240 * var(--u)); border-radius: 50%;
-  overflow: hidden; background: #2C2F3A; box-shadow: 0 0 0 1px rgba(28, 191, 212, 0.45);
+  overflow: hidden; background: rgb(var(--c-surface)); box-shadow: 0 0 0 1px rgba(28, 191, 212, 0.45);
 }
 .em-portrait img { width: 100%; height: 100%; object-fit: cover; }
 .em-name {
-  margin-top: calc(18 * var(--u)); color: #FFFFFF; font-family: var(--font-heading), sans-serif;
-  font-weight: 700; font-size: calc(24 * var(--u)); letter-spacing: -0.02em; white-space: nowrap;
+  margin-top: calc(18 * var(--u)); color: rgb(var(--c-ink)); font-family: var(--font-heading);
+  font-weight: 600; font-size: calc(24 * var(--u)); letter-spacing: -0.02em; white-space: nowrap;
 }
-.em-role { margin-top: calc(5 * var(--u)); color: #BBBBBB; font-size: calc(14 * var(--u)); white-space: nowrap; }
+.em-role { margin-top: calc(5 * var(--u)); color: rgb(var(--c-muted)); font-size: calc(14 * var(--u)); white-space: nowrap; }
 
 .em-node {
   position: absolute; width: calc(170 * var(--u)); opacity: 0; z-index: 1;
@@ -285,29 +285,29 @@ function css(nodes: ExperienceMapNode[], box: ReturnType<typeof bounds>) {
     transform 200ms ${EASE}, opacity 200ms ${EASE};
 }
 .em-dot:hover, .em-dot:focus-visible {
-  background: rgba(28, 191, 212, 0.20); border-color: #1CBFD4; transform: translateY(-4px);
+  background: rgba(28, 191, 212, 0.20); border-color: rgb(var(--c-accent-text)); transform: translateY(-4px);
   outline: none; box-shadow: 0 0 0 3px rgba(28, 191, 212, 0.55);
 }
 .em-dot-static { cursor: default; }
 .em-dot-label {
-  color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
+  color: rgb(var(--c-ink)); font-family: var(--font-heading); font-weight: 600;
   font-size: max(11px, calc(16 * var(--u))); line-height: 1.15; letter-spacing: -0.02em;
   padding: 0 calc(16 * var(--u)); text-align: center; text-wrap: pretty;
 }
 .em-card {
   position: absolute; transform: translateY(-50%); width: calc(230 * var(--u));
-  background: #2C2F3A; border-radius: calc(16 * var(--u)); padding: calc(16 * var(--u));
+  background: rgb(var(--c-surface)); box-shadow: var(--shadow-float); border-radius: calc(18 * var(--u)); padding: calc(16 * var(--u));
   text-align: left; pointer-events: none; z-index: 2;
 }
 .em-card-title {
-  color: #FFFFFF; font-family: var(--font-heading), sans-serif; font-weight: 700;
+  color: rgb(var(--c-ink)); font-family: var(--font-heading); font-weight: 600;
   font-size: calc(16 * var(--u)); line-height: 1.25; letter-spacing: -0.01em;
 }
-.em-card-sub { margin-top: calc(4 * var(--u)); color: #8E9099; font-size: calc(13 * var(--u)); line-height: 1.4; }
+.em-card-sub { margin-top: calc(4 * var(--u)); color: rgb(var(--c-muted)); font-size: calc(13 * var(--u)); line-height: 1.4; }
 .em-card-rows { margin-top: calc(10 * var(--u)); display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
 .em-card-row { display: flex; justify-content: space-between; gap: calc(12 * var(--u)); font-size: calc(13 * var(--u)); line-height: 1.4; }
-.em-card-row span { color: #BBBBBB; }
-.em-card-row strong { color: #1CBFD4; font-weight: 600; }
+.em-card-row span { color: rgb(var(--c-muted)); }
+.em-card-row strong { color: rgb(var(--c-accent-text)); font-weight: 600; }
 
 /* Phone layout: no canvas, so the circles get their own fixed sizes. */
 .em-mob .em-dot-label { font-size: 15px; padding: 0 14px; }

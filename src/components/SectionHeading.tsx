@@ -12,9 +12,9 @@ export default function SectionHeading({
   return (
     <div className={center ? 'flex flex-col items-center text-center' : ''}>
       {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
-      <h2 className="max-w-[20ch] text-28 md:text-36 lg:text-48">{heading}</h2>
+      <h2 className="max-w-[20ch] text-28 md:text-40 lg:text-48">{heading}</h2>
       {sub ? (
-        <p className={`mt-4 max-w-[52ch] text-16 text-muted ${center ? 'mx-auto' : ''}`}>
+        <p className={`mt-4 max-w-[52ch] text-21 text-muted ${center ? 'mx-auto' : ''}`}>
           {sub}
         </p>
       ) : null}

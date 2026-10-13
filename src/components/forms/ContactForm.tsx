@@ -6,7 +6,7 @@ import Honeypot from './Honeypot';
 import Turnstile from './Turnstile';
 
 const inputCls =
-  'w-full rounded-[10px] border border-white/10 bg-base px-4 py-3 text-ink placeholder:text-faint focus:border-cyan focus:outline-none';
+  'field w-full';
 
 export default function ContactForm() {
   const { status, message, submit } = useSubscribe();
@@ -19,7 +19,7 @@ export default function ContactForm() {
 
   if (status === 'success') {
     return (
-      <p className="mt-6 text-cyan" role="status">
+      <p className="mt-6 text-accent" role="status">
         Thanks — your message is on its way. I&apos;ll reply within one business day.
       </p>
     );
@@ -107,7 +107,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="rounded-[10px] bg-cyan px-[22px] py-[14px] font-semibold text-[#06222a] hover:brightness-110 disabled:opacity-60"
+        className="rounded-full bg-cyan px-[22px] py-3 text-17 text-on-accent transition hover:bg-cyan-hover active:scale-[0.97] disabled:opacity-60"
       >
         {status === 'loading' ? 'Sending…' : 'Send message'}
       </button>
