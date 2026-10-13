@@ -27,14 +27,17 @@ export default function AboutPage() {
           <p className="mt-6 max-w-[46ch] text-21 text-muted">{about.hero.sub}</p>
         </div>
         {about.hero.image ? (
-          <Image
-            src={about.hero.image}
-            alt={about.hero.imageAlt ?? ''}
-            width={800}
-            height={800}
-            priority
-            className="portrait-fade w-full max-w-sm md:justify-self-end"
-          />
+          <div className="relative aspect-[10/11] w-full max-w-sm overflow-hidden rounded-card bg-surface md:justify-self-end">
+            <Image
+              src={about.hero.image}
+              alt={about.hero.imageAlt ?? ''}
+              width={734}
+              height={684}
+              priority
+              sizes="(min-width: 768px) 384px, 100vw"
+              className="absolute inset-x-0 bottom-0 w-full"
+            />
+          </div>
         ) : (
           <div className="flex aspect-[4/5] max-w-sm items-center justify-center rounded-card bg-surface text-14 text-muted md:justify-self-end">
             Photo of Jerrell

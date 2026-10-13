@@ -101,14 +101,18 @@ export default function HomePage() {
       <section className="section-deep">
         <div className="container-wide section-y grid items-center gap-14 md:grid-cols-[0.8fr_1.2fr]">
           {home.founder.image ? (
-            <Image
-              src={home.founder.image}
-              alt={home.founder.imageAlt ?? ''}
-              width={800}
-              height={800}
-              priority={false}
-              className="portrait-fade w-full max-w-sm"
-            />
+            // Cut-out portrait anchored to the bottom of a rounded panel, so the
+            // shoulder crop meets the panel edge instead of fading out.
+            <div className="relative mx-auto aspect-[10/11] w-full max-w-sm overflow-hidden rounded-card bg-surface md:mx-0">
+              <Image
+                src={home.founder.image}
+                alt={home.founder.imageAlt ?? ''}
+                width={734}
+                height={684}
+                sizes="(min-width: 768px) 384px, 100vw"
+                className="absolute inset-x-0 bottom-0 w-full"
+              />
+            </div>
           ) : (
             <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-card bg-surface text-14 text-muted">
               Founder portrait
