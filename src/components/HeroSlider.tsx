@@ -169,7 +169,7 @@ export default function HeroSlider({
                 </div>
                 <div>{visuals[s.key]}</div>
               </div>
-              <p className="mt-3 text-14 text-muted">{s.caption}</p>
+              {s.caption && <p className="mt-3 text-14 text-muted">{s.caption}</p>}
             </div>
           );
         })}
