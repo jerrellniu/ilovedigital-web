@@ -204,9 +204,9 @@ export interface HomeContent {
   meta: { title: string; description: string };
   hero: HeroBlock;
   stats: Stat[];
-  pillarsIntro: { eyebrow: string; heading: string; sub: string };
+  pillarsIntro: { eyebrow?: string; heading: string; sub?: string };
   pillars: Pillar[];
-  featuredWork: { eyebrow: string; heading: string; sub: string; cards: CaseStudyCardData[]; footerCta: CtaLink };
+  featuredWork: { eyebrow?: string; heading: string; sub?: string; cards: CaseStudyCardData[]; footerCta: CtaLink };
   testimonials: { heading: string; sub: string; items: Testimonial[] };
   founder: {
     eyebrow: string;
