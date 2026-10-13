@@ -35,6 +35,39 @@
       }
     ]
   },
+  "heroSlider": {
+    "label": "Featured products",
+    "prevLabel": "Previous product",
+    "nextLabel": "Next product",
+    "slides": [
+      {
+        "key": "wallet",
+        "tab": "Member cards",
+        "eyebrow": "Digital member cards",
+        "heading": "Your member card, in Apple Wallet and Google Wallet.",
+        "sub": "Cards issue themselves when members pay and update themselves overnight. Volunteers check them at the door in seconds.",
+        "bookingLabel": "Book a call with Jerrell",
+        "moreCta": {
+          "label": "See how it works",
+          "href": "#member-cards"
+        },
+        "caption": "Varsity Vipers Basketball Club membership card. Member details are samples."
+      },
+      {
+        "key": "plugin",
+        "tab": "Premium plugins",
+        "eyebrow": "Premium WordPress plugins",
+        "heading": "A website your team updates by filling in a form.",
+        "sub": "Courses, roles, news and member files go in through simple forms. The page lays them out in your design, and each feature switches on or off.",
+        "bookingLabel": "Book a call with Jerrell",
+        "moreCta": {
+          "label": "See how it works",
+          "href": "#custom-plugins"
+        },
+        "caption": "Homelessness Queensland website and its plugin. Screens show sample text."
+      }
+    ]
+  },
   "stats": [
     {
       "value": "175%",

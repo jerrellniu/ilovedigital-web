@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import HeroHeading from '@/components/HeroHeading';
+import HeroSlider from '@/components/HeroSlider';
+import { WalletStage, PluginStage } from '@/components/products/HeroVisuals';
 import StatsBar from '@/components/StatsBar';
 import PartnerMarquee from '@/components/PartnerMarquee';
 import SectionHeading from '@/components/SectionHeading';
@@ -31,22 +33,23 @@ export default function HomePage() {
     <>
       <JsonLd data={localBusinessSchema()} />
 
-      {/* Hero */}
+      {/* Hero: the page heading, then one slide per product. */}
       <section>
-        <div className="container-wide section-y">
+        <div className="container-wide pb-16 pt-12 md:pb-24 md:pt-16">
           <span className="eyebrow-pill">{home.hero.eyebrow}</span>
-          <HeroHeading
-            hero={home.hero}
-            className="max-w-[16ch] text-40 sm:text-48 lg:text-64"
-          />
-          <p className="mt-6 max-w-[56ch] text-21 text-muted">{home.hero.sub}</p>
-          <div className="mt-9 flex flex-wrap items-center gap-3.5">
-            <Button href={home.hero.primaryCta!.href} size="lg">
-              {home.hero.primaryCta!.label}
-            </Button>
-            <Button href={home.hero.secondaryCta!.href} size="lg" variant="outline">
-              {home.hero.secondaryCta!.label}
-            </Button>
+          <HeroHeading hero={home.hero} className="max-w-[24ch] text-28 md:text-40" />
+          <div className="mt-6">
+            <HeroSlider
+              label={home.heroSlider.label}
+              prevLabel={home.heroSlider.prevLabel}
+              nextLabel={home.heroSlider.nextLabel}
+              slides={home.heroSlider.slides}
+              bookingHref={site.booking.href}
+              visuals={{
+                wallet: <WalletStage card={home.products.wallet.card} />,
+                plugin: <PluginStage showcase={home.products.plugin.showcase} />,
+              }}
+            />
           </div>
         </div>
       </section>

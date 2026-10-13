@@ -4,7 +4,7 @@ import ProductFeatures from '@/components/products/ProductFeatures';
 import type { PluginShowcase, ProductFeature } from '@/types/content';
 
 /** A light browser frame around a screenshot. */
-function BrowserFrame({ label, children }: { label?: string; children: React.ReactNode }) {
+export function BrowserFrame({ label, children }: { label?: string; children: React.ReactNode }) {
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-float">
       <div aria-hidden="true" className="flex h-9 items-center gap-1.5 border-b border-[#D2D2D7] bg-[#F5F5F7] px-3.5">
@@ -25,7 +25,7 @@ function BrowserFrame({ label, children }: { label?: string; children: React.Rea
  * header, the plugin menu and one switch per feature. Drawn as markup so it
  * shows sample settings, never a client's real dashboard.
  */
-function ModulesPanel({ panel }: { panel: PluginShowcase['panel'] }) {
+export function ModulesPanel({ panel }: { panel: PluginShowcase['panel'] }) {
   return (
     <div className="overflow-hidden rounded-xl border border-[#D2D2D7] bg-white text-[#1D1D1F] shadow-float">
       <div className="flex items-center gap-2.5 bg-[#1D1D1F] px-4 py-3 text-[#F5F5F7]">

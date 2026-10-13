@@ -9,7 +9,7 @@ import type { ProductFeature, WalletSampleCard } from '@/types/content';
 const CARD = 'bg-[#6E2C91] text-white';
 const LABEL = 'text-12 font-semibold tracking-[0.06em] text-[#CEB2E0]';
 
-function AppleCard({ card }: { card: WalletSampleCard }) {
+export function AppleCard({ card }: { card: WalletSampleCard }) {
   return (
     <div className={`${CARD} flex w-[300px] flex-col gap-4 rounded-[20px] p-5 shadow-float sm:w-[330px]`}>
       <div className="flex items-start justify-between gap-3">
@@ -56,7 +56,7 @@ function AppleCard({ card }: { card: WalletSampleCard }) {
   );
 }
 
-function GoogleCard({ card }: { card: WalletSampleCard }) {
+export function GoogleCard({ card }: { card: WalletSampleCard }) {
   return (
     <div className={`${CARD} flex w-[280px] flex-col gap-3.5 rounded-[22px] p-[18px] shadow-float`} aria-hidden="true">
       <div className="flex items-center gap-2.5">
