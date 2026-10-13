@@ -209,7 +209,8 @@ export interface HeroSlide {
   sub: string;
   /** Label only; the href is the booking link from site.json. */
   bookingLabel: string;
-  moreCta: CtaLink;
+  /** Optional second link, e.g. to a product page. Omitted while the products have no page of their own. */
+  moreCta?: CtaLink;
   caption: string;
 }
 

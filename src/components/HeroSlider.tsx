@@ -156,13 +156,15 @@ export default function HeroSlider({
                     <Button href={bookingHref} size="lg">
                       {s.bookingLabel}
                     </Button>
-                    <a
-                      href={s.moreCta.href}
-                      className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-7 py-3.5 text-17 text-accent transition hover:bg-accent-soft active:scale-[0.97]"
-                    >
-                      {s.moreCta.label}
-                      <ArrowRight />
-                    </a>
+                    {s.moreCta && (
+                      <a
+                        href={s.moreCta.href}
+                        className="group inline-flex items-center justify-center gap-2 rounded-full border border-accent px-7 py-3.5 text-17 text-accent transition hover:bg-accent-soft active:scale-[0.97]"
+                      >
+                        {s.moreCta.label}
+                        <ArrowRight />
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div>{visuals[s.key]}</div>

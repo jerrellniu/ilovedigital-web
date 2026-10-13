@@ -13,8 +13,6 @@ import CaseStudyCard from '@/components/CaseStudyCard';
 import TestimonialCard from '@/components/TestimonialCard';
 import FaqAccordion from '@/components/FaqAccordion';
 import CtaBand from '@/components/CtaBand';
-import WalletCardsSection from '@/components/products/WalletCardsSection';
-import PluginSection from '@/components/products/PluginSection';
 import JsonLd from '@/components/JsonLd';
 import AuditForm from '@/components/forms/AuditForm';
 import { getHome, getSite } from '@/lib/content';
@@ -70,10 +68,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* Products: wallet member cards and custom plugins. Both book a call with Jerrell. */}
-      <WalletCardsSection product={home.products.wallet} bookingHref={site.booking.href} />
-      <PluginSection product={home.products.plugin} bookingHref={site.booking.href} />
 
       {/* Featured work */}
       <section className="section-deep">
