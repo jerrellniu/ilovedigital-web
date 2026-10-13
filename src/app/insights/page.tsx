@@ -17,10 +17,10 @@ export default function InsightsPage() {
     <>
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Insights', path: '/insights' }]} />
       <section className="container-wide section-y">
-        <h1 className="max-w-[18ch] text-[clamp(2.4rem,5vw,3.6rem)]">
+        <h1 className="max-w-[18ch] text-36 md:text-48">
           Insights for Australian businesses.
         </h1>
-        <p className="mt-6 max-w-[56ch] text-[1.15rem] text-muted">
+        <p className="mt-6 max-w-[56ch] text-20 text-muted">
           Practical guides on websites, SEO, AI search, and digital marketing for Queensland
           trades and service businesses.
         </p>
@@ -32,7 +32,7 @@ export default function InsightsPage() {
 
       <section className="bg-deep">
         <div className="container-wide section-y text-center">
-          <h2 className="text-[clamp(1.6rem,2.8vw,2.2rem)]">Get new guides in your inbox.</h2>
+          <h2 className="text-28 lg:text-36">Get new guides in your inbox.</h2>
           <NewsletterForm />
         </div>
       </section>

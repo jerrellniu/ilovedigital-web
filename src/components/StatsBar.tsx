@@ -48,13 +48,13 @@ export default function StatsBar({ stats }: { stats: Stat[] }) {
                 i < stats.length - 1 ? 'sm:pr-12' : '',
               ].join(' ')}
             >
-              <div className="font-heading text-[clamp(2.4rem,3.6vw,3.125rem)] font-extrabold leading-[1.05]">
+              <div className="font-heading text-36 lg:text-48 font-extrabold leading-[1.05]">
                 {digits}
                 {unit ? <span className="text-cyan">{unit}</span> : null}
                 {s.trend ? <TrendArrow direction={s.trend} /> : null}
               </div>
-              <div className="mt-2.5 text-[1.0625rem] leading-snug text-ink">{s.label}</div>
-              {s.source ? <div className="mt-1.5 text-[13px] text-faint">{s.source}</div> : null}
+              <div className="mt-2.5 text-16 leading-snug text-ink">{s.label}</div>
+              {s.source ? <div className="mt-1.5 text-14 text-faint">{s.source}</div> : null}
             </div>
           );
         })}

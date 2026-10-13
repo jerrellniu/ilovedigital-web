@@ -25,7 +25,7 @@ export default function WorkGrid({ items }: { items: CaseStudyCardData[] }) {
             key={f}
             type="button"
             onClick={() => setFilter(f)}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+            className={`rounded-full border px-4 py-2 text-14 font-medium transition ${
               filter === f
                 ? 'border-cyan bg-cyan text-[#06222a]'
                 : 'border-white/15 text-muted hover:border-cyan hover:text-ink'

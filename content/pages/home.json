@@ -5,7 +5,7 @@
   },
   "hero": {
     "eyebrow": "DIGITAL MARKETING ON THE GOLD COAST",
-    "heading": "We make websites, and Google simple.",
+    "heading": "We make websites and Google, simple.",
     "sub": "We are coders who work from your numbers. Tell us the goal, whether that is more calls, more bookings or more of one kind of job, and we will find what is stopping it in your website data and build the fix. You will understand every step, because we explain it in plain English.",
     "primaryCta": {
       "label": "Book a call with Jerrell",
@@ -24,14 +24,14 @@
         "accent": "cyan"
       },
       {
-        "text": ", and "
+        "text": " and "
       },
       {
         "text": "Google",
         "accent": "purple"
       },
       {
-        "text": " simple."
+        "text": ", simple."
       }
     ]
   },
@@ -199,11 +199,11 @@
       },
       {
         "title": "Build and launch",
-        "body": "I build it, send you regular updates, and we launch when you're happy."
+        "body": "We build it, send you regular updates, and launch when you're happy."
       },
       {
         "title": "Ongoing support",
-        "body": "This is where most agencies disappear. I stick around to keep things working and improving."
+        "body": "This is where most agencies disappear. We stick around to keep things working and improving."
       }
     ],
     "cta": {

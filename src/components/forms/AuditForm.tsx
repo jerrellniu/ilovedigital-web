@@ -143,7 +143,7 @@ export default function AuditForm({ full = false }: { full?: boolean }) {
       </button>
 
       {status === 'error' ? (
-        <p className="w-full text-sm text-purple" role="alert">
+        <p className="w-full text-14 text-purple" role="alert">
           {message}
         </p>
       ) : null}

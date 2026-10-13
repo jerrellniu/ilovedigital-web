@@ -36,9 +36,9 @@ export default function HomePage() {
           <span className="eyebrow">{home.hero.eyebrow}</span>
           <HeroHeading
             hero={home.hero}
-            className="max-w-[16ch] text-[clamp(2.6rem,5.6vw,4.25rem)]"
+            className="max-w-[16ch] text-36 sm:text-48 lg:text-64"
           />
-          <p className="mt-6 max-w-[56ch] text-[1.2rem] text-muted">{home.hero.sub}</p>
+          <p className="mt-6 max-w-[56ch] text-20 text-muted">{home.hero.sub}</p>
           <div className="mt-9 flex flex-wrap items-center gap-5">
             <Button href={home.hero.primaryCta!.href}>{home.hero.primaryCta!.label}</Button>
             <a href={home.hero.secondaryCta!.href} className="font-body font-semibold text-cyan">
@@ -109,15 +109,15 @@ export default function HomePage() {
               className="portrait-fade w-full max-w-sm"
             />
           ) : (
-            <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-sm text-faint">
+            <div className="flex aspect-[4/5] max-w-xs items-center justify-center rounded-2xl border border-white/10 bg-[linear-gradient(160deg,#2C2F3A,#20222c)] text-14 text-faint">
               Founder portrait
             </div>
           )}
           <div>
             <span className="eyebrow">{home.founder.eyebrow}</span>
-            <h2 className="max-w-[20ch] text-[clamp(1.9rem,3.4vw,3rem)]">{home.founder.heading}</h2>
+            <h2 className="max-w-[20ch] text-28 md:text-36 lg:text-48">{home.founder.heading}</h2>
             {home.founder.paragraphs.map((p, i) => (
-              <p key={i} className="mt-5 text-[1.05rem] text-muted">
+              <p key={i} className="mt-5 text-16 text-muted">
                 {p}
               </p>
             ))}
@@ -141,8 +141,8 @@ export default function HomePage() {
               <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full border border-cyan font-heading font-bold text-cyan">
                 {i + 1}
               </div>
-              <h4 className="mb-2.5 font-heading text-[1.15rem]">{s.title}</h4>
-              <p className="text-[0.94rem] text-muted">{s.body}</p>
+              <h4 className="mb-2.5 font-heading text-20">{s.title}</h4>
+              <p className="text-16 text-muted">{s.body}</p>
             </div>
           ))}
         </div>
@@ -154,10 +154,10 @@ export default function HomePage() {
       {/* Audit CTA */}
       <section id="audit" className="border-y border-white/10 bg-[linear-gradient(120deg,#181521,#1b1830)]">
         <div className="container-wide section-y flex flex-col items-center text-center">
-          <h2 className="text-[clamp(1.9rem,3.4vw,3rem)]">{home.audit.heading}</h2>
+          <h2 className="text-28 md:text-36 lg:text-48">{home.audit.heading}</h2>
           <p className="mt-4 max-w-[60ch] text-muted">{home.audit.sub}</p>
           <AuditForm />
-          <Link href={home.audit.belowLink.href} className="mt-5 text-[0.9rem] font-semibold text-cyan">
+          <Link href={home.audit.belowLink.href} className="mt-5 text-14 font-semibold text-cyan">
             {home.audit.belowLink.label}
           </Link>
         </div>
@@ -165,7 +165,7 @@ export default function HomePage() {
 
       {/* FAQ */}
       <section className="container-wide section-y">
-        <h2 className="mb-10 text-center text-[clamp(1.9rem,3.4vw,3rem)]">{home.faq.heading}</h2>
+        <h2 className="mb-10 text-center text-28 md:text-36 lg:text-48">{home.faq.heading}</h2>
         <FaqAccordion items={home.faq.items} />
         <JsonLd data={faqPageSchema(home.faq.items)} />
       </section>
@@ -173,8 +173,8 @@ export default function HomePage() {
       {/* Final CTA */}
       <section className="bg-[radial-gradient(circle_at_50%_0%,rgba(28,191,212,0.12),transparent_60%)]">
         <div className="container-wide section-y text-center">
-          <h2 className="text-[clamp(2rem,4vw,3.2rem)]">{home.finalCta.heading}</h2>
-          <p className="mx-auto mt-4 max-w-[48ch] text-[1.1rem] text-muted">{home.finalCta.sub}</p>
+          <h2 className="text-28 md:text-36 lg:text-48">{home.finalCta.heading}</h2>
+          <p className="mx-auto mt-4 max-w-[48ch] text-20 text-muted">{home.finalCta.sub}</p>
           <div className="mt-8">
             <Button href={home.finalCta.button.href}>{home.finalCta.button.label}</Button>
           </div>

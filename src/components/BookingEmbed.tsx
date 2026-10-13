@@ -52,7 +52,7 @@ export default function BookingEmbed({
             aria-hidden="true"
           >
             <span className="h-6 w-6 rounded-full border-2 border-white/20 border-t-cyan motion-safe:animate-spin" />
-            <span className="text-sm text-faint">Loading available times…</span>
+            <span className="text-14 text-faint">Loading available times…</span>
           </div>
         ) : null}
 
@@ -61,13 +61,13 @@ export default function BookingEmbed({
           title={title}
           loading="lazy"
           onLoad={() => setLoaded(true)}
-          className={`h-full w-full bg-white transition-opacity duration-300 ${
+          className={`h-full w-full bg-white transition-opacity duration-slow ${
             loaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
       </div>
 
-      <p className="mt-3 text-[0.85rem] text-faint">
+      <p className="mt-3 text-14 text-faint">
         Calendar not loading?{' '}
         <a
           href={fallbackHref ?? src}

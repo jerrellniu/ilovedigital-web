@@ -22,7 +22,20 @@ Tokens live in `tailwind.config.ts` and mirror the canonical Design System doc
 - Accents: `cyan` #1CBFD4 (primary), `purple` #C084FC (one highlighted word only)
 - Text: `ink` #FFFFFF, `muted` #BBBBBB, `faint` #8E9099
 - Fonts: `font-heading` (Plus Jakarta Sans), `font-body` (Inter) — no serif anywhere
-- Buttons: primary filled cyan, 10px radius; secondary cyan outline; flat
+- Buttons: primary filled cyan, 10px radius; secondary cyan outline; flat. Text on cyan is
+  `#06222a` (7.44:1), never white (2.22:1, fails AA)
+- Type scale: eight sizes only — `text-12`, `14`, `16`, `20`, `28`, `36`, `48`, `64`.
+  Tailwind's default sizes and `text-[...]` values are removed from the theme. Fluid headings
+  step between two sizes at a breakpoint (`text-28 md:text-36 lg:text-48`), never `clamp()`.
+  Exception: `ExperienceMap` scales its own diagram units.
+- Headings: weight 700
+- Motion: `transition` defaults to `cubic-bezier(0.22, 0.61, 0.36, 1)` at 200ms; use
+  `duration-fast` (120ms) or `duration-slow` (360ms). Continuous loops (marquee) stay linear.
+- Icons: inline SVG only (`src/components/Icons.tsx` for stars and the FAQ marker). No unicode
+  glyphs (★, +) standing in for icons.
+- Voice: "we" for business copy. First person stays only where Jerrell speaks about himself
+  (founder intro on Home, the About page, the author page). Tagline: "We make websites and
+  Google, simple."
 
 The approved visual spec for Home is `mockups/home.html`. Build to match it.
 

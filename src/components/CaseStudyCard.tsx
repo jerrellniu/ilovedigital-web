@@ -31,11 +31,11 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
             <span className="h-1.5 w-1.5 rounded-full bg-white/20" />
           </div>
           <div className="flex items-center gap-1.5 overflow-hidden">
-            <span className="whitespace-nowrap rounded-full border border-cyan/40 px-2 py-0.5 text-[0.65rem] font-semibold text-cyan">
+            <span className="whitespace-nowrap rounded-full border border-cyan/40 px-2 py-0.5 text-12 font-semibold text-cyan">
               {data.tag}
             </span>
             {data.platform ? (
-              <span className="whitespace-nowrap rounded-full border border-cyan/40 px-2 py-0.5 text-[0.65rem] font-semibold text-cyan">
+              <span className="whitespace-nowrap rounded-full border border-cyan/40 px-2 py-0.5 text-12 font-semibold text-cyan">
                 {data.platform}
               </span>
             ) : null}
@@ -49,11 +49,11 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
               alt={data.imageAlt ?? `${data.client} website`}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-              className="object-cover object-top [filter:grayscale(15%)_saturate(0.85)_contrast(1.05)] transition-[filter,transform] duration-500 group-hover:scale-[1.03] group-hover:[filter:grayscale(0)_saturate(100%)_contrast(1.05)]"
+              className="object-cover object-top [filter:grayscale(15%)_saturate(0.85)_contrast(1.05)] transition-[filter,transform] duration-slow group-hover:scale-[1.03] group-hover:[filter:grayscale(0)_saturate(100%)_contrast(1.05)]"
             />
           ) : (
             <div className="flex h-full items-center justify-center">
-              <span className="font-heading text-3xl font-bold tracking-wider text-white/15">
+              <span className="font-heading text-28 font-bold tracking-wider text-white/15">
                 {initials(data.client)}
               </span>
             </div>
@@ -62,12 +62,12 @@ export default function CaseStudyCard({ data }: { data: CaseStudyCardData }) {
       </div>
 
       <div className="p-6">
-        <div className="font-heading text-lg font-bold">{data.service ?? data.client}</div>
+        <div className="font-heading text-20 font-bold">{data.service ?? data.client}</div>
         {/* One description line only. `headline` is the case study's H1 and is not
             repeated on the card; it falls back in when there is no outcome line. */}
-        <div className="mt-2.5 text-[0.92rem] text-faint">{data.outcome ?? data.headline}</div>
+        <div className="mt-2.5 text-14 text-faint">{data.outcome ?? data.headline}</div>
         {data.href ? (
-          <div className="mt-4 font-body text-[0.85rem] font-medium text-cyan">View case study →</div>
+          <div className="mt-4 font-body text-14 font-medium text-cyan">View case study →</div>
         ) : null}
       </div>
     </>

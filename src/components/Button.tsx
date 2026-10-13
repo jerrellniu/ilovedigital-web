@@ -19,7 +19,7 @@ export default function Button({
   variant?: Variant;
   className?: string;
 }) {
-  const classes = `inline-flex items-center gap-2 rounded-[10px] px-[22px] py-[15px] font-body text-base font-semibold transition ${styles[variant]} ${className}`;
+  const classes = `inline-flex items-center gap-2 rounded-[10px] px-[22px] py-[15px] font-body text-16 font-semibold transition ${styles[variant]} ${className}`;
 
   // The booking CTA points at Google Calendar, off this domain. next/link is for
   // internal navigation — an external href needs a plain anchor, opened in a new

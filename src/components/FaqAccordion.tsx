@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { Faq } from '@/types/content';
+import { PlusMinusIcon } from './Icons';
 
 export default function FaqAccordion({ items }: { items: Faq[] }) {
   const [open, setOpen] = useState<number | null>(0);
@@ -16,18 +17,13 @@ export default function FaqAccordion({ items }: { items: Faq[] }) {
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="flex w-full items-center justify-between gap-4 py-6 text-left font-heading text-[1.15rem] font-semibold"
+              className="flex w-full items-center justify-between gap-4 py-6 text-left font-heading text-20 font-semibold"
             >
               {item.question}
-              <span
-                className={`text-2xl text-cyan transition-transform ${isOpen ? 'rotate-45' : ''}`}
-                aria-hidden="true"
-              >
-                +
-              </span>
+              <PlusMinusIcon open={isOpen} className="shrink-0 text-cyan" />
             </button>
             <div
-              className="grid transition-all duration-300"
+              className="grid transition-all duration-slow"
               style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
             >
               <div className="overflow-hidden">

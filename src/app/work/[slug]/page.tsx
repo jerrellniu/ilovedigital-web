@@ -68,17 +68,17 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       />
       <section className="container-wide section-y">
         <div className="flex flex-wrap gap-2">
-          <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-xs font-semibold text-cyan">
+          <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-12 font-semibold text-cyan">
             {fm.tag}
           </span>
           {fm.platform ? (
-            <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-xs font-semibold text-cyan">
+            <span className="rounded-full border border-cyan/40 px-3 py-1.5 text-12 font-semibold text-cyan">
               {fm.platform}
             </span>
           ) : null}
         </div>
-        <h1 className="mt-5 max-w-[22ch] text-[clamp(2.2rem,4.5vw,3.4rem)]">{fm.headline}</h1>
-        <p className="mt-5 max-w-[52ch] text-[1.15rem] text-muted">{fm.outcome}</p>
+        <h1 className="mt-5 max-w-[22ch] text-36 lg:text-48">{fm.headline}</h1>
+        <p className="mt-5 max-w-[52ch] text-20 text-muted">{fm.outcome}</p>
       </section>
 
       {fm.image ? (
@@ -99,7 +99,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <div className="grid gap-6 rounded-2xl bg-surface p-8 sm:grid-cols-2 lg:grid-cols-4">
           {glance.map(([k, v]) => (
             <div key={k}>
-              <div className="text-[0.8rem] uppercase tracking-[0.1em] text-faint">{k}</div>
+              <div className="text-12 uppercase tracking-[0.1em] text-faint">{k}</div>
               <div className="mt-1 text-ink">{v}</div>
             </div>
           ))}
@@ -119,7 +119,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       {related.length ? (
         <section className="bg-deep">
           <div className="container-wide section-y">
-            <h2 className="mb-8 text-[clamp(1.6rem,2.6vw,2.2rem)]">Related work</h2>
+            <h2 className="mb-8 text-28 lg:text-36">Related work</h2>
             <div className="grid gap-6 md:grid-cols-2">
               {related.map((c, i) => (
                 <CaseStudyCard key={`${c.href}-${i}`} data={c} />
@@ -130,7 +130,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
       ) : null}
 
       <section className="container-wide section-y text-center">
-        <h2 className="text-[clamp(1.7rem,3vw,2.4rem)]">Want results like this?</h2>
+        <h2 className="text-28 md:text-36">Want results like this?</h2>
         <div className="mt-8">
           <Button href={site.booking.href}>{site.booking.label}</Button>
         </div>

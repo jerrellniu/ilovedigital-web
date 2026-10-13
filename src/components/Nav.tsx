@@ -21,7 +21,7 @@ export default function Nav({ site }: { site: SiteContent }) {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[15px] font-medium text-muted hover:text-ink"
+              className="text-16 font-medium text-muted hover:text-ink"
             >
               {item.label}
             </Link>
@@ -33,7 +33,7 @@ export default function Nav({ site }: { site: SiteContent }) {
             href={site.booking.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-[10px] bg-cyan px-[18px] py-2.5 font-body text-[15px] font-semibold text-[#06222a] hover:brightness-110 md:inline-flex"
+            className="hidden rounded-[10px] bg-cyan px-[18px] py-2.5 font-body text-16 font-semibold text-[#06222a] hover:brightness-110 md:inline-flex"
           >
             {site.booking.label}
           </a>

@@ -113,7 +113,7 @@ export default function ContactForm() {
       </button>
 
       {status === 'error' ? (
-        <p className="text-sm text-purple" role="alert">
+        <p className="text-14 text-purple" role="alert">
           {message}
         </p>
       ) : null}
