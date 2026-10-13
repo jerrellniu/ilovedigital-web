@@ -31,30 +31,12 @@ function linkOnlyPublished<T extends CaseStudyCardData>(cards: T[]): T[] {
   );
 }
 
-/**
- * A hero heading is written twice: once flat for metadata and schema, once split into
- * runs so its accent colours are content rather than markup. They have to say the same
- * thing, so fail the build loudly rather than ship a page whose H1 and its <title>
- * disagree.
- */
-function assertHeadingPartsMatch(hero: HeroBlock, where: string): void {
-  if (!hero.headingParts) return;
-  const joined = hero.headingParts.map((p) => p.text).join('');
-  if (joined !== hero.heading) {
-    throw new Error(
-      `${where}: hero.headingParts join to ${JSON.stringify(joined)}, ` +
-        `which is not hero.heading ${JSON.stringify(hero.heading)}`
-    );
-  }
-}
-
 export function getSite(): SiteContent {
   return readJson<SiteContent>('site.json');
 }
 
 export function getHome(): HomeContent {
   const home = readJson<HomeContent>('pages/home.json');
-  assertHeadingPartsMatch(home.hero, 'content/pages/home.json');
   home.featuredWork.cards = linkOnlyPublished(home.featuredWork.cards);
   // A product section's case study button shows only once that case study is published.
   const published = new Set(getCollectionSlugs('work').map((slug) => `/work/${slug}`));

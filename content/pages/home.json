@@ -4,42 +4,99 @@
     "description": "People-first Queensland digital studio. Modern websites, AI search and SEO, social, and consulting for trades and service businesses ready to grow. Direct, fast, simple."
   },
   "hero": {
-    "eyebrow": "Digital marketing on the Gold Coast",
-    "heading": "We make websites and Google, simple.",
-    "sub": "We are coders who work from your numbers. Tell us the goal, whether that is more calls, more bookings or more of one kind of job, and we will find what is stopping it in your website data and build the fix. You will understand every step, because we explain it in plain English.",
-    "primaryCta": {
-      "label": "Book a call with Jerrell",
-      "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
-    },
-    "secondaryCta": {
-      "label": "Get a free website audit →",
-      "href": "/audit"
-    },
-    "headingParts": [
-      {
-        "text": "We make "
-      },
-      {
-        "text": "websites",
-        "accent": "cyan"
-      },
-      {
-        "text": " and "
-      },
-      {
-        "text": "Google",
-        "accent": "purple"
-      },
-      {
-        "text": ", simple."
-      }
-    ]
+    "eyebrow": "Digital marketing on the Gold Coast"
   },
   "heroSlider": {
-    "label": "Featured products",
-    "prevLabel": "Previous product",
-    "nextLabel": "Next product",
+    "label": "Featured services and products",
+    "prevLabel": "Previous slide",
+    "nextLabel": "Next slide",
     "slides": [
+      {
+        "key": "websites",
+        "tab": "Websites",
+        "eyebrow": "High-performing websites",
+        "heading": "A website that turns visitors into calls and bookings.",
+        "sub": "Most small business websites are slow, hard to update and vague about what you do. We design and build fast websites on Shopify, WordPress or Next.js that show visitors what you offer and make it easy to call, book or buy.",
+        "bookingLabel": "Book a call with Jerrell",
+        "showcase": {
+          "kind": "screenshot",
+          "image": "/images/work/toni-gunn.jpg",
+          "imageAlt": "Toni Gunn counselling website homepage",
+          "frameLabel": "Toni Gunn",
+          "result": "Off WordPress and off the monthly maintenance bill.",
+          "source": "Toni Gunn, counselling website"
+        }
+      },
+      {
+        "key": "search",
+        "tab": "SEO and AI search",
+        "eyebrow": "SEO and AI search",
+        "heading": "Get found on Google and in AI answers when customers search for what you do.",
+        "sub": "Customers now ask Google and AI tools like ChatGPT who to call. We fix the technical issues, write the pages and manage your Google Business Profile, so your business is the answer they find.",
+        "bookingLabel": "Book a call with Jerrell",
+        "showcase": {
+          "kind": "metrics",
+          "title": "Search performance",
+          "period": "September 2026",
+          "metrics": [
+            {
+              "label": "Clicks",
+              "value": "987",
+              "change": "Up 31%"
+            },
+            {
+              "label": "Impressions",
+              "value": "29.7K",
+              "change": "Up 17%"
+            },
+            {
+              "label": "Average CTR",
+              "value": "3.3%",
+              "change": "From 3.0%"
+            },
+            {
+              "label": "Average position",
+              "value": "14.2",
+              "change": "From 14.8"
+            }
+          ],
+          "chart": {
+            "title": "Clicks from Google, per 28 days",
+            "points": [
+              {
+                "label": "Jul",
+                "value": 676
+              },
+              {
+                "label": "Aug",
+                "value": 751
+              },
+              {
+                "label": "Sep",
+                "value": 987
+              }
+            ]
+          },
+          "result": "Clicks from Google up 31% in one month.",
+          "source": "Queensland fashion boutique, SEO and AI search"
+        }
+      },
+      {
+        "key": "social",
+        "tab": "Organic socials",
+        "eyebrow": "Organic socials",
+        "heading": "Social media that grows your audience while you run the business.",
+        "sub": "Posting every week is hard when you are busy doing the work. We plan, write and post your Instagram, Facebook and TikTok content in your brand's voice, so your local audience grows without taking your time.",
+        "bookingLabel": "Book a call with Jerrell",
+        "showcase": {
+          "kind": "screenshot",
+          "image": "/images/work/butchers-pride.jpg",
+          "imageAlt": "Butchers Pride Instagram feed",
+          "frameLabel": "Butchers Pride on Instagram",
+          "result": "1,482 new followers in two months.",
+          "source": "Butchers Pride, organic socials"
+        }
+      },
       {
         "key": "wallet",
         "tab": "Wallet cards",
@@ -439,7 +496,7 @@
     "items": [
       {
         "question": "What does I Love Digital do?",
-        "answer": "We make websites and Google, simple. Whether you need a new brand, a website, want your business to get found in search, post on Instagram, Tiktok, Facebook or LinkedIn, or need a fractional CTO, I Love Digital can help."
+        "answer": "I Love Digital builds websites, gets businesses found on Google and in AI search, and runs organic social media on Instagram, Facebook and TikTok. We also make digital wallet cards and custom WordPress plugins, and offer fractional CTO support. We work with small businesses on the Gold Coast and across Queensland, and you deal directly with the person doing the work."
       },
       {
         "question": "Where is I Love Digital based?",
