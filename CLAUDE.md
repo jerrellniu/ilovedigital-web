@@ -56,8 +56,9 @@ October 2026. Read it before building. Tokens live in `tailwind.config.ts` and
 - Icons: inline SVG only (`src/components/Icons.tsx` for stars, the FAQ marker and the link
   arrow). No unicode glyphs (★, +, →) standing in for icons in components.
 - Voice: "we" for business copy. First person stays only where Jerrell speaks about himself
-  (founder intro on Home, the About page, the author page). Tagline: "We make websites and
-  Google, simple."
+  (founder intro on Home, the About page, the author page). The old tagline "We make
+  websites and Google, simple." is retired from the hero and the FAQ (14 October 2026); don't
+  reintroduce it there.
 
 `mockups/archived/home-dark-2026-07.html` is the retired dark-theme spec, kept for reference only. Never build from it; the design system and the site canvas in Claude Design are the source.
 
