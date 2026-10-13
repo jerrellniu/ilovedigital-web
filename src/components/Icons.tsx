@@ -114,3 +114,43 @@ export function FeatureIcon({ name, size = 24, className = '' }: { name: Feature
     </svg>
   );
 }
+
+/**
+ * Social platform marks for the footer, drawn as single-colour glyphs in
+ * `currentColor`. Keyed by the label in `content/site.json` socials, lower-cased.
+ * Instagram is an outline, like the platform's own glyph; the others are solid.
+ */
+export function SocialIcon({ label, size = 20 }: { label: string; size?: number }) {
+  const key = label.toLowerCase();
+  const common = { width: size, height: size, viewBox: '0 0 24 24', 'aria-hidden': true as const };
+  switch (key) {
+    case 'facebook':
+      return (
+        <svg {...common} fill="currentColor">
+          <path d="M13.5 21.9v-7.4h2.5l.4-3h-2.9V9.6c0-.9.3-1.5 1.5-1.5h1.5V5.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8.1v3h2.5v7.4a10 10 0 1 1 2.9 0z" />
+        </svg>
+      );
+    case 'linkedin':
+      return (
+        <svg {...common} fill="currentColor">
+          <path d="M5 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM3.3 9h3.4v11.5H3.3zM9.3 9h3.3v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3H17v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3z" />
+        </svg>
+      );
+    case 'instagram':
+      return (
+        <svg {...common} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M17.5 6.5h.01" />
+        </svg>
+      );
+    case 'tiktok':
+      return (
+        <svg {...common} fill="currentColor">
+          <path d="M16.6 3c.3 2.3 1.6 3.8 3.9 4v3.1a7 7 0 0 1-3.9-1.2v6.3a5.7 5.7 0 1 1-5.7-5.7l.9.1v3.2a2.6 2.6 0 1 0 1.7 2.4V3z" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
