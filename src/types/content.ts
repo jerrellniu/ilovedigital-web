@@ -244,8 +244,6 @@ export interface HeroSlide {
 
 export interface HomeContent {
   meta: { title: string; description: string };
-  /** The page heading lives in the first hero slide; only the eyebrow pill sits above it. */
-  hero: { eyebrow: string };
   heroSlider: { label: string; prevLabel: string; nextLabel: string; slides: HeroSlide[] };
   stats: Stat[];
   pillarsIntro: { eyebrow?: string; heading: string; sub?: string };
