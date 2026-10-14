@@ -132,7 +132,7 @@ export async function runAudit(opts: RunOptions): Promise<AuditReport> {
   emit('speed', 'Measuring speed with Google PageSpeed');
   const speed = await speedPromise;
   if (!opts.skipSpeed && speed.length === 0) {
-    notChecked.push('Page speed: Google PageSpeed did not respond in time, so speed scores are not included. Run it yourself at pagespeed.web.dev.');
+    notChecked.push('Page speed: Google PageSpeed was unavailable for this run, so speed scores are not included. You can test it yourself at pagespeed.web.dev.');
   } else if (opts.skipSpeed) {
     notChecked.push('Page speed was not measured on this run.');
   }

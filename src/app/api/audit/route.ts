@@ -18,10 +18,9 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 // PageSpeed alone can take a minute. Needs Fluid compute (on by default) or Pro.
 export const maxDuration = 120;
-// Run from Sydney. The response-time check measures from wherever this function
-// runs, and our prospects' sites are hosted for Australian visitors; from the US
-// default (iad1) every Australian site would read as slow.
-export const preferredRegion = 'syd1';
+// Functions run in Sydney (vercel.json "regions"). The response-time check measures
+// from wherever this function runs, and from the US default (iad1) every Australian
+// site would read as slow. A per-route preferredRegion was not honoured on this plan.
 
 const FALLBACK =
   'Sorry, the audit could not start just now. Please email hello@ilovedigital.com.au or call 1300 944 890 and we will run it for you.';
