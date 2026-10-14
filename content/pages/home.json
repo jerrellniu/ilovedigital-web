@@ -16,7 +16,8 @@
         "tab": "Websites",
         "eyebrow": "High-performing websites",
         "heading": "A website that turns visitors into calls and bookings.",
-        "sub": "Most small business websites are slow, hard to update and vague about what you do. We design and build fast websites on Shopify, WordPress or Next.js that show visitors what you offer and make it easy to call, book or buy.",
+        "sub": "Most small business websites are slow, hard to update and vague about what you do. We design and build fast websites on Shopify, WordPress or Next.js.",
+        "outcome": "Visitors see what you offer straight away and can call, book or buy in one step.",
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "screenshot",
@@ -32,7 +33,8 @@
         "tab": "SEO and AI search",
         "eyebrow": "SEO and AI search",
         "heading": "Get found on Google and in AI answers when customers search for what you do.",
-        "sub": "Customers now ask Google and AI tools like ChatGPT who to call. We fix the technical issues, write the pages and manage your Google Business Profile, so your business is the answer they find.",
+        "sub": "Customers now ask Google and AI tools like ChatGPT who to call. We fix the technical issues, write the pages and manage your Google Business Profile.",
+        "outcome": "Your business shows up as the answer when locals search for what you do.",
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "metrics",
@@ -86,7 +88,8 @@
         "tab": "Organic socials",
         "eyebrow": "Organic socials",
         "heading": "Social media that grows your audience while you run the business.",
-        "sub": "Posting every week is hard when you are busy doing the work. We plan, write and post your Instagram, Facebook and TikTok content in your brand's voice, so your local audience grows without taking your time.",
+        "sub": "Posting every week is hard when you are busy doing the work. We plan, write and post your Instagram, Facebook and TikTok content in your brand's voice.",
+        "outcome": "Your local audience grows without taking your time.",
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "screenshot",
@@ -102,7 +105,8 @@
         "tab": "Wallet cards",
         "eyebrow": "Digital wallet cards",
         "heading": "Put your card in every customer's phone.",
-        "sub": "Plastic cards get lost, stolen and go out of date. A card in Apple Wallet or Google Wallet sits on your customer's phone, updates itself when their details change, and stops working the moment you cancel it.",
+        "sub": "Plastic cards get lost, stolen and go out of date. We put your card in Apple Wallet and Google Wallet on your customer's phone.",
+        "outcome": "Every card stays current on its own and stops working the moment you cancel it.",
         "bookingLabel": "Book a call with Jerrell"
       },
       {
@@ -110,7 +114,8 @@
         "tab": "Premium plugins",
         "eyebrow": "Premium WordPress plugins",
         "heading": "Sell courses, share resources and fill roles from your WordPress site.",
-        "sub": "We add a course catalogue, a members-only resource library or a job board to the site you already have. Your team adds each course, file or role through a simple form, so the site stays current without paying a developer.",
+        "sub": "We add a course catalogue, a members-only resource library or a job board to the site you already have. Your team adds each course, file or role through a simple form.",
+        "outcome": "Your site stays current without paying a developer.",
         "bookingLabel": "Book a call with Jerrell"
       }
     ]

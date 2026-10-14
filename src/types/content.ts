@@ -226,6 +226,8 @@ export interface HeroSlide {
   eyebrow: string;
   heading: string;
   sub: string;
+  /** The result for the customer, shown as its own paragraph in the text colour. */
+  outcome?: string;
   /** Label only; the href is the booking link from site.json. */
   bookingLabel: string;
   /** Optional second link, e.g. to a product page. Omitted while the products have no page of their own. */
