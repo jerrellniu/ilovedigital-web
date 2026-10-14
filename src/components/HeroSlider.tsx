@@ -9,8 +9,8 @@ const AUTOPLAY_MS = 8000;
 
 /**
  * Splits a slide's paragraph after its first sentence. The first sentence (the
- * problem) stays muted and the rest (what we do about it) is set in the text
- * colour, so the answer stands out.
+ * problem) stays muted and the rest (the outcome) is set in semibold text colour,
+ * so the answer stands out.
  */
 function splitSub(sub: string): [string, string] {
   const i = sub.indexOf('. ');
@@ -180,7 +180,7 @@ export default function HeroSlider({
                     <Heading className="text-28 md:text-40 lg:text-48">{s.heading}</Heading>
                     <p className="mt-5 text-21 text-muted">
                       {splitSub(s.sub)[0]}
-                      {splitSub(s.sub)[1] && <span className="text-ink"> {splitSub(s.sub)[1]}</span>}
+                      {splitSub(s.sub)[1] && <span className="font-semibold text-ink"> {splitSub(s.sub)[1]}</span>}
                     </p>
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <Button href={bookingHref} size="lg">
