@@ -207,10 +207,12 @@ function technical(c: Collected): Finding[] {
     );
   }
 
-  // 401/403 are logins or firewalls, and 0 means no answer after a retry: neither
-  // proves the page is broken, so neither is reported as an error.
-  const errorPages = c.pages.filter((p) => p.status >= 400 && p.status !== 401 && p.status !== 403 && p.status !== 429);
-  if (errorPages.length) {
+  // 401/403 are logins or firewalls, and 0 means no answer after retries: neither
+  // proves the page is broken. 4xx is a missing page. 5xx after three tries is a
+  // server problem worth raising, but it can be temporary, so it is worded that way.
+  const missingPages = c.pages.filter((p) => p.status >= 400 && p.status < 500 && p.status !== 401 && p.status !== 403 && p.status !== 429);
+  const serverErrors = c.pages.filter((p) => p.status >= 500);
+  if (missingPages.length) {
     out.push(
       f(
         'tech.page-errors',
@@ -218,9 +220,23 @@ function technical(c: Collected): Finding[] {
         'fail',
         'high',
         'Pages returning errors',
-        `${plural(errorPages.length, 'page')} linked from your site returned an error when we loaded ${s1(errorPages.length, 'it', 'them')}.`,
+        `${plural(missingPages.length, 'page')} linked from your site returned "not found" when we loaded ${s1(missingPages.length, 'it', 'them')}.`,
         'Fix or redirect each page listed. Error pages lose visitors at the exact moment they were interested.',
-        errorPages.map((p) => `${p.url} (${p.status})`),
+        missingPages.map((p) => `${p.url} (${p.status})`),
+      ),
+    );
+  }
+  if (serverErrors.length) {
+    out.push(
+      f(
+        'tech.server-errors',
+        'technical',
+        'warn',
+        'medium',
+        'Server errors while loading',
+        `${plural(serverErrors.length, 'page')} returned a server error on three tries during our check.`,
+        'Ask your host to check the server logs for these pages. It can be temporary, but any visitor who hits it sees a broken page instead of your business.',
+        serverErrors.map((p) => `${p.url} (${p.status})`),
       ),
     );
   }

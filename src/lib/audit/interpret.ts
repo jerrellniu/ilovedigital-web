@@ -102,7 +102,7 @@ export function contentCheck(text: string): { ok: boolean; hit?: string } {
   return hit ? { ok: false, hit: hit.source } : { ok: true };
 }
 
-const MONTHS = ['Month 1: fix what is broken', 'Month 2: strengthen the foundations', 'Month 3: build visibility'];
+const MONTHS = ['Month 1: fixes and quick wins', 'Month 2: strengthen the foundations', 'Month 3: build visibility'];
 
 export function rulesInterpretation(findings: Finding[], overall: number | null, host: string): Interpretation {
   const problems = findings.filter((x) => x.status === 'fail' || x.status === 'warn');
@@ -169,7 +169,7 @@ ${args.concern ? `The owner's stated concern (address it if the findings relate 
 Measured audit results (JSON):
 ${facts}
 
-Write the summary, the top priorities (finding ids from fail or warn findings only) and a three-month plan. Month 1 fixes what is broken, month 2 strengthens the foundations, month 3 builds visibility.`;
+Write the summary, the top priorities (finding ids from fail or warn findings only) and a three-month plan. Month 1 is fixes and quick wins, month 2 strengthens the foundations, month 3 builds visibility.`;
 
   try {
     const client = new Anthropic({ apiKey, maxRetries: 1, timeout: 45000 });

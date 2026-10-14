@@ -11,7 +11,7 @@ export const MAX_EXTRA_PAGES = 10;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
- * One retry, after a pause, for answers that usually mean "slow down" rather than
+ * Two retries, after growing pauses, for answers that usually mean "slow down" rather than
  * "broken": a transport error, 429, or a 5xx. Small business hosts and their
  * firewalls throttle bursts, and a report must not flip between runs because of it.
  */
@@ -23,6 +23,14 @@ export async function fetchPolitely(url: string, options: Parameters<typeof safe
     if (e instanceof BlockedUrlError) throw e;
   }
   await sleep(1200);
+  try {
+    const r = await safeFetch(url, options);
+    if (r.status !== 429 && r.status < 500) return r;
+  } catch (e) {
+    if (e instanceof BlockedUrlError) throw e;
+  }
+  // Last try, after a longer pause. Whatever comes back now is reported as-is.
+  await sleep(3000);
   return safeFetch(url, options);
 }
 

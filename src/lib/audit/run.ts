@@ -94,7 +94,16 @@ export async function runAudit(opts: RunOptions): Promise<AuditReport> {
       return { ...emptyPage(u), status: 0 };
     }
   });
-  for (const p of crawled) if (p) pages.push(p);
+  // Two addresses can redirect to the same page (/home/ -> /). Keep the first, so
+  // one page is never counted twice or reported as its own duplicate.
+  const seenFinal = new Set([homePage.url.replace(/\/$/, '')]);
+  for (const p of crawled) {
+    if (!p) continue;
+    const key = p.url.replace(/\/$/, '');
+    if (seenFinal.has(key)) continue;
+    seenFinal.add(key);
+    pages.push(p);
+  }
 
   emit('technical', `Checking ${pages.length} pages and their links`);
   const crawledUrls = new Set(pages.map((p) => p.url.replace(/\/$/, '')));
