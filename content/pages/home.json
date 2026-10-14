@@ -140,8 +140,8 @@
         "tab": "Custom plugins",
         "eyebrow": "Custom WordPress plugins",
         "heading": "Sell courses, share resources and fill roles from your WordPress site.",
-        "sub": "Most WordPress sites need a developer every time the content changes. We build plugins around the content you change most, with a simple form for your team.",
-        "outcome": "Add {cycle} to your WordPress website and keep it current yourself.",
+        "sub": "New features usually mean rebuilding your WordPress site. We build a custom plugin that adds them to the site you already have, and look after it on Website Care.",
+        "outcome": "Add {cycle} to your WordPress website without paying for a rebuild.",
         "outcomeCycle": [
           "a course catalogue",
           "a members-only library",
