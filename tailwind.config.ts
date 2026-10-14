@@ -55,6 +55,11 @@ const config: Config = {
         },
         'on-accent': '#06222A',         // text and icons on a cyan fill (7.44:1)
         'accent-soft': 'var(--accent-soft)',
+        // Audit report status chips (fail / warn / pass / info), theme-aware.
+        'st-fail': { fg: v('st-fail-fg'), bg: v('st-fail-bg') },
+        'st-warn': { fg: v('st-warn-fg'), bg: v('st-warn-bg') },
+        'st-pass': { fg: v('st-pass-fg'), bg: v('st-pass-bg') },
+        'st-info': { fg: v('st-info-fg'), bg: v('st-info-bg') },
       },
       fontFamily: {
         heading: ['var(--font-heading)'],

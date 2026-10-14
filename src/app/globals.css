@@ -23,6 +23,15 @@
   --logo-grad-end: #0a9db2;
   --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.12);
+  /* Audit status chips. Not in the design system yet: each fg clears 4.5:1 on its bg. */
+  --c-st-fail-fg: 163 38 26;
+  --c-st-fail-bg: 253 236 234;
+  --c-st-warn-fg: 122 78 0;
+  --c-st-warn-bg: 255 244 219;
+  --c-st-pass-fg: 14 102 114;
+  --c-st-pass-bg: 227 246 248;
+  --c-st-info-fg: 74 74 79;
+  --c-st-info-bg: 237 237 240;
   color-scheme: light;
 }
 
@@ -43,6 +52,14 @@
   --logo-grad-end: #1cbfd4;
   --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.5);
   --shadow-float: 0 12px 32px rgba(0, 0, 0, 0.6);
+  --c-st-fail-fg: 255 154 140;
+  --c-st-fail-bg: 66 22 18;
+  --c-st-warn-fg: 255 200 102;
+  --c-st-warn-bg: 61 43 8;
+  --c-st-pass-fg: 28 191 212;
+  --c-st-pass-bg: 10 46 52;
+  --c-st-info-fg: 200 200 205;
+  --c-st-info-bg: 44 44 48;
   color-scheme: dark;
   color: rgb(var(--c-ink));
 }

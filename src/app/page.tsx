@@ -167,7 +167,7 @@ export default function HomePage() {
         <div className="container-wide section-y flex flex-col items-center text-center">
           <h2 className="max-w-[20ch] text-28 md:text-40 lg:text-48">{home.audit.heading}</h2>
           <p className="mt-4 max-w-[60ch] text-21 text-muted">{home.audit.sub}</p>
-          <AuditForm />
+          <AuditForm buttonLabel={home.audit.button} />
           <Link href={home.audit.belowLink.href} className="mt-5 text-17 text-accent hover:underline">
             {home.audit.belowLink.label}
           </Link>

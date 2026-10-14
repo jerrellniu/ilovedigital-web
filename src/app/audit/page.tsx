@@ -7,21 +7,21 @@ import { getSite } from '@/lib/content';
 const site = getSite();
 
 export const metadata: Metadata = {
-  title: 'Free Website Audit — Loom Walkthrough + PDF Report',
+  title: 'Free Website Audit — Instant Report and 3-Month Plan',
   description:
-    'Get a free technical website audit. A 5-minute Loom walkthrough and a PDF report with prioritised recommendations, urgent fixes, and a 3-month plan.',
+    'Get a free website audit in about a minute. See your technical SEO, on-page SEO, speed and AI search readiness, with the fixes in priority order and a 3-month plan.',
 };
 
 const whatYouGet = [
-  { title: '5-minute Loom', body: 'A recorded walkthrough of your site and the issues that matter most.' },
-  { title: 'Written PDF report', body: 'Technical findings, prioritised recommendations, and urgent fixes.' },
-  { title: '3-month action plan', body: 'A clear, staged plan you can act on — with or without us.' },
+  { title: 'Scores in four areas', body: 'See how your site rates for technical SEO, on-page SEO, speed and AI search readiness.' },
+  { title: 'Fixes in priority order', body: 'Every issue comes with a plain-English fix, and the most urgent sits at the top.' },
+  { title: '3-month action plan', body: 'A staged plan you can act on, with or without us.' },
 ];
 
 const steps = [
-  { n: 1, title: 'Submit your URL', body: 'Tell us your website and email. Takes 30 seconds.' },
-  { n: 2, title: 'We audit', body: 'We review your site against our full checklist.' },
-  { n: 3, title: 'You receive', body: 'Your Loom and PDF land within 3 business days.' },
+  { n: 1, title: 'Enter your URL', body: 'Add your website and email. It takes 30 seconds.' },
+  { n: 2, title: 'We audit', body: 'We check your key pages, your links, your speed and your AI search setup.' },
+  { n: 3, title: 'You receive', body: 'Your report appears on screen in about a minute, and a copy lands in your inbox.' },
 ];
 
 export default function AuditPage() {
@@ -31,9 +31,9 @@ export default function AuditPage() {
       <section className="container-wide section-y">
         <h1 className="max-w-[16ch] text-40 md:text-48">Free website audit. No catch.</h1>
         <p className="mt-6 max-w-[56ch] text-21 text-muted">
-          Send us your URL. Within 3 business days you&apos;ll get back a 5-minute Loom walkthrough
-          and a written PDF report covering technical issues, urgent fixes, and a 3-month action
-          plan. No obligation.
+          Enter your URL and get your report in about a minute. We check your technical SEO,
+          on-page SEO, speed and AI search readiness, then give you the fixes in order and a
+          3-month plan. A copy lands in your inbox too. No obligation.
         </p>
         <AuditForm full />
       </section>
@@ -67,7 +67,7 @@ export default function AuditPage() {
         </div>
       </section>
 
-      {/* Booking. Second path for anyone who would rather talk than wait three days. */}
+      {/* Booking. Second path for anyone who would rather talk it through with a person. */}
       <section className="section-deep">
         <div className="container-wide section-y">
           <h2 className="text-28 md:text-40">Rather talk it through?</h2>
