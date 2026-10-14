@@ -23,6 +23,21 @@ const site = getSite();
 export const metadata: Metadata = {
   title: home.meta.title,
   description: home.meta.description,
+  alternates: { canonical: '/' },
+  // The share image comes from src/app/opengraph-image.tsx.
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: site.name,
+    locale: 'en_AU',
+    title: home.meta.title,
+    description: home.meta.description,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: home.meta.title,
+    description: home.meta.description,
+  },
 };
 
 export default function HomePage() {

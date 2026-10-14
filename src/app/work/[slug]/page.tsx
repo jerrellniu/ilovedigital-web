@@ -39,6 +39,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: `${entry.frontmatter.client} — ${entry.frontmatter.tag} Case Study`,
     description: entry.frontmatter.outcome,
+    alternates: { canonical: `/work/${params.slug}` },
   };
 }
 

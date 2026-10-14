@@ -48,6 +48,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: fm.seoTitle ? { absolute: fm.seoTitle } : fm.title,
     description: fm.description ?? fm.excerpt,
+    alternates: { canonical: `/insights/${params.slug}` },
   };
 }
 

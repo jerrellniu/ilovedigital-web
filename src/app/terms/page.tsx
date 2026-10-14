@@ -7,6 +7,7 @@ import { getLegal } from '@/lib/content';
 export const metadata: Metadata = {
   title: 'Terms of Use',
   description: 'Terms of use for the I Love Digital website and services.',
+  alternates: { canonical: '/terms' },
 };
 
 const body = getLegal('terms');

@@ -8,6 +8,7 @@ const content = getServicePage('consulting');
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  alternates: { canonical: '/consulting' },
 };
 
 export default function ConsultingPage() {
