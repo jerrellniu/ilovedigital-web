@@ -30,29 +30,24 @@ export default function HomePage() {
     <>
       <JsonLd data={localBusinessSchema()} />
 
-      {/* Hero: the eyebrow, then one slide per service and product. Slide 1 holds the H1. */}
+      {/* Hero: full-width slides, one per service and product. Slide 1 holds the H1. */}
       <section>
-        <div className="container-wide pb-16 pt-12 md:pb-24 md:pt-16">
-          <span className="eyebrow-pill">{home.hero.eyebrow}</span>
-          <div className="mt-6">
-            <HeroSlider
-              label={home.heroSlider.label}
-              prevLabel={home.heroSlider.prevLabel}
-              nextLabel={home.heroSlider.nextLabel}
-              slides={home.heroSlider.slides}
-              bookingHref={site.booking.href}
-              visuals={{
-                ...Object.fromEntries(
-                  home.heroSlider.slides
-                    .filter((s) => s.showcase)
-                    .map((s) => [s.key, <ProofStage key={s.key} showcase={s.showcase!} />])
-                ),
-                wallet: <WalletStage card={home.products.wallet.card} />,
-                plugin: <PluginStage showcase={home.products.plugin.showcase} />,
-              }}
-            />
-          </div>
-        </div>
+        <HeroSlider
+          label={home.heroSlider.label}
+          prevLabel={home.heroSlider.prevLabel}
+          nextLabel={home.heroSlider.nextLabel}
+          slides={home.heroSlider.slides}
+          bookingHref={site.booking.href}
+          visuals={{
+            ...Object.fromEntries(
+              home.heroSlider.slides
+                .filter((s) => s.showcase)
+                .map((s) => [s.key, <ProofStage key={s.key} showcase={s.showcase!} />])
+            ),
+            wallet: <WalletStage card={home.products.wallet.card} />,
+            plugin: <PluginStage showcase={home.products.plugin.showcase} />,
+          }}
+        />
       </section>
 
       <StatsBar stats={home.stats} />

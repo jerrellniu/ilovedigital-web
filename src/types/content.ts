@@ -226,6 +226,13 @@ export interface HeroSlide {
   eyebrow: string;
   heading: string;
   sub: string;
+  /**
+   * The result for the customer, shown as its own paragraph in the text colour.
+   * A `{cycle}` marker is replaced by a highlighted word that cycles through
+   * `outcomeCycle`.
+   */
+  outcome?: string;
+  outcomeCycle?: string[];
   /** Label only; the href is the booking link from site.json. */
   bookingLabel: string;
   /** Optional second link, e.g. to a product page. Omitted while the products have no page of their own. */
@@ -237,8 +244,6 @@ export interface HeroSlide {
 
 export interface HomeContent {
   meta: { title: string; description: string };
-  /** The page heading lives in the first hero slide; only the eyebrow pill sits above it. */
-  hero: { eyebrow: string };
   heroSlider: { label: string; prevLabel: string; nextLabel: string; slides: HeroSlide[] };
   stats: Stat[];
   pillarsIntro: { eyebrow?: string; heading: string; sub?: string };
