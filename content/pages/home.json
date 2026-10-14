@@ -137,16 +137,17 @@
       },
       {
         "key": "plugin",
-        "tab": "Premium plugins",
-        "eyebrow": "Premium WordPress plugins",
+        "tab": "Custom plugins",
+        "eyebrow": "Custom WordPress plugins",
         "heading": "Sell courses, share resources and fill roles from your WordPress site.",
-        "sub": "We add a course catalogue, a members-only resource library or a job board to the site you already have. Your team adds each course, file or role through a simple form.",
-        "outcome": "Your {cycle} stays current without paying a developer.",
+        "sub": "Most WordPress sites need a developer every time the content changes. We build plugins around the content you change most, with a simple form for your team.",
+        "outcome": "Add {cycle} to your WordPress website and keep it current yourself.",
         "outcomeCycle": [
-          "course catalogue",
-          "resource library",
-          "job board",
-          "news hub"
+          "a course catalogue",
+          "a members-only library",
+          "a job board",
+          "a news hub",
+          "a project gallery"
         ],
         "bookingLabel": "Book a call with Jerrell"
       }
@@ -331,7 +332,7 @@
         "sideImageAlt": "Members-only resource library with topic, format and access filters. Text is sample text.",
         "panel": {
           "title": "Site Toolkit",
-          "badge": "Premium plugin",
+          "badge": "Custom plugin",
           "menu": [
             "Staff Guides",
             "Opportunities",
