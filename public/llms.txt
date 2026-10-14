@@ -1,12 +1,12 @@
 # I Love Digital
 
-> A people-first digital studio on the Gold Coast, Queensland. We make websites and Google, simple. Modern websites, SEO and AI search (GEO), social media, and AI consulting for Queensland trades and service businesses.
+> A people-first digital studio on the Gold Coast, Queensland. Digital products for your business: websites, SEO and AI search (GEO), organic social media, digital wallet cards, custom WordPress plugins and fractional CTO support for Gold Coast and Queensland small businesses.
 
 ## Services
 - [Websites](https://ilovedigital.com.au/websites): Custom, fast, modern websites with brand identity, built to be found by Google and AI.
 - [Search](https://ilovedigital.com.au/search): Technical, on-page, and local SEO plus Generative Engine Optimisation (GEO).
 - [Social](https://ilovedigital.com.au/social): Done-for-you social media across Instagram, Facebook, and TikTok.
-- [AI](https://ilovedigital.com.au/ai): AI strategy, workflow automation, and fractional CTO direction.
+- [Consulting](https://ilovedigital.com.au/consulting): Fractional CTO direction, AI strategy and workflow automation.
 
 ## Key pages
 - [Work](https://ilovedigital.com.au/work): Case studies from Queensland businesses.
