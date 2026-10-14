@@ -226,8 +226,13 @@ export interface HeroSlide {
   eyebrow: string;
   heading: string;
   sub: string;
-  /** The result for the customer, shown as its own paragraph in the text colour. */
+  /**
+   * The result for the customer, shown as its own paragraph in the text colour.
+   * A `{cycle}` marker is replaced by a highlighted word that cycles through
+   * `outcomeCycle`.
+   */
   outcome?: string;
+  outcomeCycle?: string[];
   /** Label only; the href is the booking link from site.json. */
   bookingLabel: string;
   /** Optional second link, e.g. to a product page. Omitted while the products have no page of their own. */

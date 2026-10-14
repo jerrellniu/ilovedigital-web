@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import Button from '@/components/Button';
+import CyclingWord from '@/components/CyclingWord';
 import { ArrowRight } from '@/components/Icons';
 import type { HeroSlide } from '@/types/content';
 
@@ -169,7 +170,19 @@ export default function HeroSlider({
                     <span className="eyebrow">{s.eyebrow}</span>
                     <Heading className="text-28 md:text-40 lg:text-48">{s.heading}</Heading>
                     <p className="mt-5 text-21 text-muted">{s.sub}</p>
-                    {s.outcome && <p className="mt-4 text-21 text-ink">{s.outcome}</p>}
+                    {s.outcome && (
+                      <p className="mt-4 text-21 text-ink">
+                        {s.outcomeCycle?.length && s.outcome.includes('{cycle}') ? (
+                          <>
+                            {s.outcome.split('{cycle}')[0]}
+                            <CyclingWord words={s.outcomeCycle} active={active} />
+                            {s.outcome.split('{cycle}')[1]}
+                          </>
+                        ) : (
+                          s.outcome
+                        )}
+                      </p>
+                    )}
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
                       <Button href={bookingHref} size="lg">
                         {s.bookingLabel}

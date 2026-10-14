@@ -17,7 +17,14 @@
         "eyebrow": "High-performing websites",
         "heading": "A website that turns visitors into calls and bookings.",
         "sub": "Most small business websites are slow, hard to update and vague about what you do. We design and build fast websites on Shopify, WordPress or Next.js.",
-        "outcome": "Visitors see what you offer straight away and can call, book or buy in one step.",
+        "outcome": "Visitors see what you offer straight away and can {cycle} in one step.",
+        "outcomeCycle": [
+          "call",
+          "book",
+          "buy",
+          "enquire",
+          "order"
+        ],
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "screenshot",
@@ -34,7 +41,14 @@
         "eyebrow": "SEO and AI search",
         "heading": "Get found on Google and in AI answers when customers search for what you do.",
         "sub": "Customers now ask Google and AI tools like ChatGPT who to call. We fix the technical issues, write the pages and manage your Google Business Profile.",
-        "outcome": "Your business shows up as the answer when locals search for what you do.",
+        "outcome": "Your business shows up when locals search for {cycle}.",
+        "outcomeCycle": [
+          "an electrician",
+          "a hair salon",
+          "a counsellor",
+          "a solar installer",
+          "a boutique"
+        ],
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "metrics",
@@ -89,7 +103,12 @@
         "eyebrow": "Organic socials",
         "heading": "Social media that grows your audience while you run the business.",
         "sub": "Posting every week is hard when you are busy doing the work. We plan, write and post your Instagram, Facebook and TikTok content in your brand's voice.",
-        "outcome": "Your local audience grows without taking your time.",
+        "outcome": "Your local audience grows on {cycle} without taking your time.",
+        "outcomeCycle": [
+          "Instagram",
+          "Facebook",
+          "TikTok"
+        ],
         "bookingLabel": "Book a call with Jerrell",
         "showcase": {
           "kind": "screenshot",
@@ -102,11 +121,18 @@
       },
       {
         "key": "wallet",
-        "tab": "Wallet cards",
-        "eyebrow": "Digital wallet cards",
+        "tab": "Digital cards",
+        "eyebrow": "Digital cards",
         "heading": "Put your card in every customer's phone.",
-        "sub": "Plastic cards get lost, stolen and go out of date. We put your card in Apple Wallet and Google Wallet on your customer's phone.",
-        "outcome": "Every card stays current on its own and stops working the moment you cancel it.",
+        "sub": "Plastic cards get lost, stolen and go out of date. Our cards live in Apple Wallet and Google Wallet, update themselves and stop working when you cancel them.",
+        "outcome": "We put your {cycle} card in your customer's phone.",
+        "outcomeCycle": [
+          "loyalty",
+          "membership",
+          "business",
+          "gift",
+          "staff ID"
+        ],
         "bookingLabel": "Book a call with Jerrell"
       },
       {
@@ -115,7 +141,13 @@
         "eyebrow": "Premium WordPress plugins",
         "heading": "Sell courses, share resources and fill roles from your WordPress site.",
         "sub": "We add a course catalogue, a members-only resource library or a job board to the site you already have. Your team adds each course, file or role through a simple form.",
-        "outcome": "Your site stays current without paying a developer.",
+        "outcome": "Your {cycle} stays current without paying a developer.",
+        "outcomeCycle": [
+          "course catalogue",
+          "resource library",
+          "job board",
+          "news hub"
+        ],
         "bookingLabel": "Book a call with Jerrell"
       }
     ]
