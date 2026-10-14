@@ -186,6 +186,21 @@ doc to match if not already done.
    adding their redirects.
 8. Resolve the AI pillar's missing case study before launch.
 
+## Instant website audit (`/audit`)
+
+`POST /api/audit` runs the audit agent in `src/lib/audit/` and streams progress to the
+form as NDJSON; the report renders on screen and is emailed to the visitor and to us.
+Spec and go-live keys: "Instant Website Audit — Agent Spec and Operating Guide" in Notion.
+
+- Every finding is measured. Claude only writes the summary and plan, and a figures
+  guard (`interpret.ts`) swaps in the rules version if it writes any number we did not
+  measure, or mentions prices or tooling. Keep it that way.
+- All fetching of visitor-supplied URLs goes through `safe-fetch.ts` (SSRF guard). Never
+  call `fetch()` on a submitted URL directly.
+- Functions run in `syd1` (`vercel.json`) so response times reflect Australian visitors.
+- Run one from the terminal: `npx tsx scripts/run-audit.ts example.com.au [--no-speed]`.
+  Tests: `npx tsx --test scripts/audit.test.ts`.
+
 ## Commands
 
 ```bash

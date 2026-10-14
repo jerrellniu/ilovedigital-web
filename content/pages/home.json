@@ -519,8 +519,8 @@
   },
   "audit": {
     "heading": "Get a free website audit.",
-    "sub": "Not ready to commit to a project? Send us your URL and we'll review it — technical issues, urgent fixes, and what to do about them. No obligation. No catch.",
-    "button": "Request my audit",
+    "sub": "Enter your URL and get your audit in about a minute. You will see your technical issues, speed and AI search readiness, with the fixes in order. No obligation. No catch.",
+    "button": "Audit my site",
     "belowLink": {
       "label": "Or see the full audit details →",
       "href": "/audit"
