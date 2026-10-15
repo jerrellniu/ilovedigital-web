@@ -8,6 +8,7 @@ const content = getServicePage('social');
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  alternates: { canonical: '/social' },
 };
 
 export default function SocialPage() {

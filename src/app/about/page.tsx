@@ -13,6 +13,7 @@ const about = getAbout();
 export const metadata: Metadata = {
   title: about.meta.title,
   description: about.meta.description,
+  alternates: { canonical: '/about' },
 };
 
 export default function AboutPage() {

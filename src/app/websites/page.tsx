@@ -8,6 +8,7 @@ const content = getServicePage('websites');
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  alternates: { canonical: '/websites' },
 };
 
 export default function WebsitesPage() {

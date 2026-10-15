@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'Insights — Web, SEO, and AI Search for Australian Businesses',
   description:
     'Practical guides on websites, SEO, AI search, and digital marketing for Queensland trades and service businesses.',
+  alternates: { canonical: '/insights' },
 };
 
 export default function InsightsPage() {

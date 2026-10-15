@@ -8,6 +8,7 @@ const content = getServicePage('search');
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  alternates: { canonical: '/search' },
 };
 
 export default function SearchPage() {

@@ -13,6 +13,7 @@ const site = getSite();
 export const metadata: Metadata = {
   title: contact.meta.title,
   description: contact.meta.description,
+  alternates: { canonical: '/contact' },
 };
 
 export default function ContactPage() {

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: 'Our Work — Case Studies in Web, Search, Socials, and Consulting',
   description:
     "Case studies from Queensland trades and service businesses we've helped with websites, SEO, social media, and brand identity.",
+  alternates: { canonical: '/work' },
 };
 
 export default function WorkPage() {

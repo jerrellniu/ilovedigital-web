@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: 'Free Website Audit — Instant Report and 3-Month Plan',
   description:
     'Get a free website audit in about a minute. See your technical SEO, on-page SEO, speed and AI search readiness, with the fixes in priority order and a 3-month plan.',
+  alternates: { canonical: '/audit' },
 };
 
 const whatYouGet = [
