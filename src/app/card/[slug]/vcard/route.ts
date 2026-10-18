@@ -11,8 +11,9 @@ export function generateStaticParams() {
   return getCards().map((card) => ({ slug: card.slug }));
 }
 
-export function GET(_request: Request, { params }: { params: { slug: string } }) {
-  const card = getCard(params.slug);
+export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const card = getCard(slug);
   if (!card) return new Response('Not found', { status: 404 });
 
   return new Response(buildVCard(card), {

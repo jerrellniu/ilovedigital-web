@@ -41,19 +41,21 @@ export function generateStaticParams() {
   return getCollectionSlugs('insights').map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const entry = getEntry<PostFm>('insights', params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = getEntry<PostFm>('insights', slug);
   if (!entry) return {};
   const fm = entry.frontmatter;
   return {
     title: fm.seoTitle ? { absolute: fm.seoTitle } : fm.title,
     description: fm.description ?? fm.excerpt,
-    alternates: { canonical: `/insights/${params.slug}` },
+    alternates: { canonical: `/insights/${slug}` },
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const entry = getEntry<PostFm>('insights', params.slug);
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = getEntry<PostFm>('insights', slug);
   if (!entry) notFound();
   const fm = entry.frontmatter;
   // FAQs are read back out of the article body, so the schema and the page always
@@ -61,7 +63,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const faqs = extractFaqs(entry.content);
   // Only published siblings: an unpublished related card would link to a 404.
   const related = getInsightsIndex()
-    .filter((p) => p.href && p.slug !== params.slug && p.category === fm.category)
+    .filter((p) => p.href && p.slug !== slug && p.category === fm.category)
     .slice(0, 3);
 
   return (
@@ -72,7 +74,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           description: fm.description ?? fm.excerpt,
           datePublished: fm.date,
           dateModified: fm.updated ?? fm.date,
-          slug: params.slug,
+          slug,
           section: fm.category,
         })}
       />
@@ -81,7 +83,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         trail={[
           { name: 'Home', path: '/' },
           { name: 'Insights', path: '/insights' },
-          { name: fm.title, path: `/insights/${params.slug}` },
+          { name: fm.title, path: `/insights/${slug}` },
         ]}
       />
 
