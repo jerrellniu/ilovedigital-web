@@ -16,8 +16,9 @@ export function generateStaticParams() {
   return getCards().map((card) => ({ slug: card.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const card = getCard(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const card = getCard(slug);
   if (!card) return {};
   return {
     title: { absolute: `${card.name}, ${card.organisation}` },
@@ -26,8 +27,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function CardPage({ params }: { params: { slug: string } }) {
-  const card = getCard(params.slug);
+export default async function CardPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const card = getCard(slug);
   if (!card) notFound();
 
   return (

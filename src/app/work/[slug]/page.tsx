@@ -33,22 +33,24 @@ export function generateStaticParams() {
   return getCollectionSlugs('work').map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const entry = getEntry<CaseFm>('work', params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const entry = getEntry<CaseFm>('work', slug);
   if (!entry) return {};
   return {
     title: `${entry.frontmatter.client} — ${entry.frontmatter.tag} Case Study`,
     description: entry.frontmatter.outcome,
-    alternates: { canonical: `/work/${params.slug}` },
+    alternates: { canonical: `/work/${slug}` },
   };
 }
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const entry = getEntry<CaseFm>('work', params.slug);
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const entry = getEntry<CaseFm>('work', slug);
   if (!entry) notFound();
   const fm = entry.frontmatter;
   const related = getWorkIndex()
-    .filter((c) => c.href !== `/work/${params.slug}`)
+    .filter((c) => c.href !== `/work/${slug}`)
     .slice(0, 2);
 
   const glance: [string, string][] = [
@@ -64,7 +66,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         trail={[
           { name: 'Home', path: '/' },
           { name: 'Work', path: '/work' },
-          { name: fm.client, path: `/work/${params.slug}` },
+          { name: fm.client, path: `/work/${slug}` },
         ]}
       />
       <section className="container-wide section-y">

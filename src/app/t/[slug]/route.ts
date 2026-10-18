@@ -13,8 +13,9 @@ export const dynamic = 'force-dynamic';
 
 const SOURCES = new Set(['wallet', 'wallet-back', 'nfc', 'qr']);
 
-export function GET(request: NextRequest, { params }: { params: { slug: string } }) {
-  const card = getCard(params.slug);
+export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const card = getCard(slug);
   const target = new URL(card ? card.destination : '/', request.nextUrl.origin);
 
   if (card) {
