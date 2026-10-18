@@ -124,7 +124,13 @@ export async function POST(req: Request) {
       close();
     }
 
-    // List building. A separate group (ML_GROUP_INSTANT_AUDIT) keeps these leads
+    if (report) {
+      const sent = await sendReportEmails(report, lead);
+      console.log('[audit] complete', { host: report.host, overall: report.overall, plan: report.interpretation.source, ...sent });
+    }
+
+    // List building, after the report email so a slow MailerLite call cannot cost the
+    // visitor their report. A separate group (ML_GROUP_INSTANT_AUDIT) keeps these leads
     // out of the old manual-audit automation, whose auto-reply promises a Loom in
     // three business days. Unset means added to MailerLite with no group.
     if (process.env.MAILERLITE_API_KEY) {
@@ -136,11 +142,6 @@ export async function POST(req: Request) {
       await subscribe({ email, fields, groups: group ? [group] : undefined }).catch((err) =>
         console.error('[audit] MailerLite subscribe failed:', err),
       );
-    }
-
-    if (report) {
-      const sent = await sendReportEmails(report, lead);
-      console.log('[audit] complete', { host: report.host, overall: report.overall, plan: report.interpretation.source, ...sent });
     }
   })();
 
