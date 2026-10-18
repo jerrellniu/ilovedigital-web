@@ -70,6 +70,25 @@ const V4_BLOCKS: [string, number][] = [
   ['240.0.0.0', 4],
 ];
 
+/** Expands an IPv6 literal to its eight 16-bit groups, or null if it cannot be parsed. */
+function expandIPv6(address: string): number[] | null {
+  let a = address;
+  const dotted = a.match(/(\d+)\.(\d+)\.(\d+)\.(\d+)$/);
+  if (dotted) {
+    const [, b1, b2, b3, b4] = dotted.map(Number);
+    a = a.slice(0, dotted.index) + ((b1 << 8) | b2).toString(16) + ':' + ((b3 << 8) | b4).toString(16);
+  }
+  const [head, tail, extra] = a.split('::');
+  if (extra !== undefined) return null;
+  const h = head ? head.split(':') : [];
+  const t = tail === undefined ? [] : tail ? tail.split(':') : [];
+  const fill = 8 - h.length - t.length;
+  if (tail === undefined ? h.length !== 8 : fill < 0) return null;
+  const all = tail === undefined ? h : [...h, ...Array(fill).fill('0'), ...t];
+  const nums = all.map((g) => parseInt(g, 16));
+  return nums.length === 8 && nums.every((n) => Number.isInteger(n) && n >= 0 && n <= 0xffff) ? nums : null;
+}
+
 export function isBlockedAddress(address: string): boolean {
   if (ALLOW_PRIVATE) return false;
   if (net.isIPv4(address)) {
@@ -81,9 +100,22 @@ export function isBlockedAddress(address: string): boolean {
   }
   if (net.isIPv6(address)) {
     const a = address.toLowerCase();
-    // IPv4-mapped and IPv4-compatible forms carry a v4 address: judge that instead.
-    const mapped = a.match(/^::(?:ffff:)?(\d+\.\d+\.\d+\.\d+)$/);
-    if (mapped) return isBlockedAddress(mapped[1]);
+    // IPv4-mapped (::ffff:a.b.c.d) and IPv4-compatible (::a.b.c.d) forms carry a v4
+    // address: judge that instead. The URL parser rewrites the dotted form to hex
+    // (::ffff:7f00:1), so the groups are compared, not the text.
+    const groups = expandIPv6(a);
+    if (groups) {
+      const leadingZero = groups.slice(0, 5).every((g) => g === 0);
+      const embedded = `${groups[6] >> 8}.${groups[6] & 255}.${groups[7] >> 8}.${groups[7] & 255}`;
+      if (leadingZero && (groups[5] === 0xffff || (groups[5] === 0 && (groups[6] || groups[7] > 1)))) {
+        return isBlockedAddress(embedded);
+      }
+      // 6to4 (2002::/16) embeds a v4 address in the next 32 bits; Teredo (2001::/32) is a tunnel.
+      if (groups[0] === 0x2002) {
+        return isBlockedAddress(`${groups[1] >> 8}.${groups[1] & 255}.${groups[2] >> 8}.${groups[2] & 255}`);
+      }
+      if (groups[0] === 0x2001 && groups[1] === 0) return true;
+    }
     if (a === '::' || a === '::1') return true;
     if (/^f[cd]/.test(a)) return true; // unique local fc00::/7
     if (/^fe[89ab]/.test(a)) return true; // link-local fe80::/10
