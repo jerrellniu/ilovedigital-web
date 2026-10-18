@@ -10,14 +10,14 @@ import { score } from '../src/lib/audit/checks';
 import type { Finding } from '../src/lib/audit/types';
 
 test('private and reserved addresses are blocked', () => {
-  for (const ip of ['127.0.0.1', '10.1.2.3', '172.16.5.5', '192.168.0.1', '169.254.169.254', '100.64.0.1', '0.0.0.0', '::1', 'fd00::1', 'fe80::1', '::ffff:127.0.0.1', '::ffff:10.0.0.1']) {
+  for (const ip of ['127.0.0.1', '10.1.2.3', '172.16.5.5', '192.168.0.1', '169.254.169.254', '100.64.0.1', '0.0.0.0', '::1', 'fd00::1', 'fe80::1', '::ffff:127.0.0.1', '::ffff:10.0.0.1', '::ffff:7f00:1', '::ffff:a9fe:a9fe', '::7f00:1', '0:0:0:0:0:ffff:a00:1', '2002:7f00:1::', '2001:0:1:2::']) {
     assert.equal(isBlockedAddress(ip), true, ip);
   }
-  for (const ip of ['1.1.1.1', '142.250.70.78', '2606:4700::1111']) assert.equal(isBlockedAddress(ip), false, ip);
+  for (const ip of ['1.1.1.1', '142.250.70.78', '2606:4700::1111', '::ffff:808:808', '2002:808:808::']) assert.equal(isBlockedAddress(ip), false, ip);
 });
 
 test('unsafe input URLs are refused before any request', () => {
-  for (const u of ['file:///etc/passwd', 'http://localhost/', 'http://127.0.0.1/', 'http://[::1]/', 'http://169.254.169.254/latest/meta-data/', 'http://example.com:8080/', 'http://user:pass@example.com/', 'intranet']) {
+  for (const u of ['file:///etc/passwd', 'http://localhost/', 'http://127.0.0.1/', 'http://[::1]/', 'http://[::ffff:127.0.0.1]/', 'http://[::ffff:169.254.169.254]/', 'http://[::127.0.0.1]/', 'http://169.254.169.254/latest/meta-data/', 'http://example.com:8080/', 'http://user:pass@example.com/', 'intranet']) {
     assert.throws(() => normaliseInputUrl(u), BlockedUrlError, u);
   }
   assert.equal(normaliseInputUrl('example.com.au').toString(), 'https://example.com.au/');
@@ -75,4 +75,11 @@ test('scores weight priority and the rules plan always has three months', () => 
   assert.ok(plan.plan.every((m) => m.items.length > 0));
   assert.equal(plan.topPriorities[0].findingId, 'a');
   assert.equal(contentCheck(plan.summary).ok, true);
+});
+
+test('content check blocks links and email addresses in model text', () => {
+  for (const t of ['Visit https://evil.example for the fix', 'See www.evil.example', 'Email help@evil.example today']) {
+    assert.equal(contentCheck(t).ok, false, t);
+  }
+  assert.equal(contentCheck('Add a clear call to action to your homepage.').ok, true);
 });
