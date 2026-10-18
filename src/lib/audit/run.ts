@@ -17,6 +17,10 @@ import type { AuditEvent, AuditReport, PageSnapshot, ProgressStep, SpeedResult }
 export class AuditInputError extends Error {}
 
 const MAX_LINK_CHECKS = 40;
+// The route allows 120s. Link checks are skipped past the soft limit, and PageSpeed is
+// abandoned (reported as not checked) at the hard limit so the report still lands.
+const SOFT_LIMIT_MS = 60_000;
+const HARD_LIMIT_MS = 100_000;
 const AU_PHONE = /(\+?61[\s-]?[2-478]|\(0[2-478]\)|0[2-478])[\s-]?\d{4}[\s-]?\d{4}|\b1[38]00[\s-]?\d{3}[\s-]?\d{3}\b|\b13[\s-]?\d{2}[\s-]?\d{2}\b|\b04\d{2}[\s-]?\d{3}[\s-]?\d{3}\b/;
 
 export interface RunOptions {
@@ -31,6 +35,7 @@ export interface RunOptions {
 export async function runAudit(opts: RunOptions): Promise<AuditReport> {
   const emit = (step: ProgressStep, label: string) => opts.onEvent?.({ type: 'progress', step, label });
   const notChecked: string[] = [];
+  const startedAt = Date.now();
 
   let input: URL;
   try {
@@ -109,7 +114,7 @@ export async function runAudit(opts: RunOptions): Promise<AuditReport> {
   const crawledUrls = new Set(pages.map((p) => p.url.replace(/\/$/, '')));
   const linkTargets = [...new Set(pages.flatMap((p) => p.internalLinks))]
     .filter((u) => !crawledUrls.has(u.replace(/\/$/, '')))
-    .slice(0, MAX_LINK_CHECKS);
+    .slice(0, Date.now() - startedAt > SOFT_LIMIT_MS ? 0 : MAX_LINK_CHECKS);
   const linkResults = await pool(linkTargets, 3, async (u) => {
     try {
       let r = await fetchPolitely(u, { method: 'HEAD', timeoutMs: 8000 });
@@ -139,7 +144,10 @@ export async function runAudit(opts: RunOptions): Promise<AuditReport> {
   const hasContactLink = linkPaths.some((p) => /contact/.test(p));
 
   emit('speed', 'Measuring speed with Google PageSpeed');
-  const speed = await speedPromise;
+  const speed = await Promise.race([
+    speedPromise,
+    new Promise<SpeedResult[]>((resolve) => setTimeout(() => resolve([]), Math.max(0, HARD_LIMIT_MS - (Date.now() - startedAt)))),
+  ]);
   if (!opts.skipSpeed && speed.length === 0) {
     notChecked.push('Page speed: Google PageSpeed was unavailable for this run, so speed scores are not included. You can test it yourself at pagespeed.web.dev.');
   } else if (opts.skipSpeed) {

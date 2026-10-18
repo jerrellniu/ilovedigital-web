@@ -147,19 +147,22 @@ export function assertFetchable(url: URL) {
   }
 }
 
-function decode(buf: Buffer, encoding: string | undefined): Buffer {
+// maxBytes caps what comes over the wire; this caps what it inflates to, so a small
+// gzip or brotli bomb cannot exhaust memory.
+function decode(buf: Buffer, encoding: string | undefined, maxOutputLength: number): Buffer {
+  const zopts = { maxOutputLength };
   switch ((encoding || '').toLowerCase()) {
     case 'gzip':
     case 'x-gzip':
-      return zlib.gunzipSync(buf);
+      return zlib.gunzipSync(buf, zopts);
     case 'deflate':
       try {
-        return zlib.inflateSync(buf);
+        return zlib.inflateSync(buf, zopts);
       } catch {
-        return zlib.inflateRawSync(buf);
+        return zlib.inflateRawSync(buf, zopts);
       }
     case 'br':
-      return zlib.brotliDecompressSync(buf);
+      return zlib.brotliDecompressSync(buf, zopts);
     default:
       return buf;
   }
@@ -206,11 +209,12 @@ function once(url: URL, opts: Required<Options>, deadline: number): Promise<Safe
           let body = '';
           if (opts.method === 'GET' && chunks.length) {
             try {
-              body = decode(Buffer.concat(chunks), headers['content-encoding']).toString('utf8');
+              body = decode(Buffer.concat(chunks), headers['content-encoding'], opts.maxBytes).toString('utf8');
             } catch {
               // A truncated compressed body cannot be inflated. Report it empty
               // rather than as garbage.
-              body = truncated ? '' : Buffer.concat(chunks).toString('utf8');
+              // Also the path for output over the cap: report empty, never the raw bytes.
+              body = truncated || headers['content-encoding'] ? '' : Buffer.concat(chunks).toString('utf8');
             }
           }
           resolve({
