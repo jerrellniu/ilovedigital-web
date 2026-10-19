@@ -8,6 +8,7 @@ import type {
   AuthorPageContent,
   HeroBlock,
   CopyTemplatePageContent,
+  Faq,
 } from '@/types/content';
 import { getCollectionSlugs } from './mdx';
 
@@ -92,6 +93,11 @@ export function getServicePage(
 // Insights). Tighten these into typed shapes as each page is built out.
 export function getAbout(): any {
   return readJson('pages/about.json');
+}
+
+/** FAQ for /audit. The rest of that page's copy still lives in the route. */
+export function getAuditFaq(): Faq[] {
+  return readJson<{ faq: Faq[] }>('pages/audit.json').faq;
 }
 
 export function getCopyTemplatePage(): CopyTemplatePageContent {
