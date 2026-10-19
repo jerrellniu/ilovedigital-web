@@ -17,7 +17,7 @@ export default function TermsPage() {
   return (
     <>
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Terms of Use', path: '/terms' }]} />
-      <LegalPage title="Terms of Use" lastUpdated="TBC — confirm before publishing">
+      <LegalPage title="Terms of Use" lastUpdated="15 September 2026">
         <Markdown>{body}</Markdown>
       </LegalPage>
     </>
