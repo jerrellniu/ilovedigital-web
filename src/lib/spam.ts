@@ -17,6 +17,12 @@
 // The content score is deliberately forgiving. A missed spam submission costs one
 // junk record; a rejected enquiry costs a client. Every threshold below was checked
 // against the real subscriber list and the 52 known-bot payloads.
+//
+// Retuned 19 October 2026 after it refused a real audit request ("Jerrell Niu",
+// "Website check"). The old word test refused about 80% of realistic short audit
+// requests. The bot payloads had been deleted from MailerLite by then, so the retune
+// was checked against campaign-shaped payloads rebuilt from their recorded signature.
+// Tests and both sets: scripts/spam.test.ts (`npx tsx --test scripts/spam.test.ts`).
 
 export type FormType = 'newsletter' | 'audit' | 'contact';
 
@@ -54,9 +60,23 @@ const URL_PATTERN = /(https?:\/\/|www\.)/i;
 const VOWEL = /[aeiouy]/i;
 
 /**
- * Does one word look machine-generated? Tuned on both sides: it catches "Pdlvygb"
- * and "Vpwpuawk", and leaves "Schmidt", "Nguyen", "Wright" and "Thornley" alone.
- * Words under four letters are never judged — initials and "LLC" are not evidence.
+ * Share of letters that are vowels, below which a word reads as random.
+ *
+ * Was 0.3 until 19 October 2026. At 0.3 a single vowel in a five-letter word
+ * ("check", "Smith", "Brown") or two in seven ("Jerrell") read as random, and a
+ * real audit request ("Website check" from "Jerrell Niu") was refused. Measured
+ * against common names and short enquiry words, 0.3 flagged 69 of 126 real
+ * words; 0.2 flags 14, while still catching 72% of uniformly random 6-11 letter
+ * strings (down from 78%). The other two tests below carry most of the weight.
+ */
+const MIN_VOWEL_SHARE = 0.2;
+
+/**
+ * Does one word look machine-generated? It catches "Pdlvygb" and "Vpwpuawk"
+ * (consonant runs) and leaves "Nguyen", "Thornley", "Jerrell" and "check" alone.
+ * "Schmidt" and "Wright" still trip it, which is why the name signal is worth
+ * one point only. Words under four letters are never judged — initials and "LLC"
+ * are not evidence.
  */
 function wordLooksRandom(word: string): boolean {
   const w = word.replace(/[^a-z]/gi, '');
@@ -64,14 +84,23 @@ function wordLooksRandom(word: string): boolean {
   if (!VOWEL.test(w)) return true;
   if (/[^aeiouy]{4,}/i.test(w)) return true;
   const vowels = (w.match(/[aeiouy]/gi) ?? []).length;
-  return vowels / w.length < 0.3;
+  return vowels / w.length < MIN_VOWEL_SHARE;
 }
 
-/** True when at least half the words in a value look machine-generated. */
-export function looksRandom(value: string): boolean {
+/**
+ * True when enough of the words in a value look machine-generated.
+ *
+ * `strict` requires more than half rather than at least half. Names use the
+ * lenient bar because a bot name is often two words with one random ("Pdlvygb
+ * Kqynkuewn") and the signal is worth one point. Messages use the strict bar
+ * because they are worth three: one odd word in a two-word note must not be
+ * enough on its own to push a real request most of the way to a refusal.
+ */
+export function looksRandom(value: string, strict = false): boolean {
   const words = value.trim().split(/\s+/).filter(Boolean);
   if (words.length === 0) return false;
-  return words.filter(wordLooksRandom).length / words.length >= 0.5;
+  const share = words.filter(wordLooksRandom).length / words.length;
+  return strict ? share > 0.5 : share >= 0.5;
 }
 
 export interface Verdict {
@@ -145,7 +174,9 @@ export function scoreContent(input: {
   if (business && /\bL\.?L\.?C\.?\b/i.test(business)) add(2, 'business is an LLC');
 
   if (message) {
-    if (looksRandom(message)) add(3, 'message looks machine-generated');
+    // One word is not enough to judge a message by: "thanks" has one vowel in six
+    // letters. A single unbroken token of junk is caught by the next check instead.
+    if (/\s/.test(message) && looksRandom(message, true)) add(3, 'message looks machine-generated');
     // A person writing to us uses spaces. Twelve unbroken characters is a token.
     if (!/\s/.test(message) && message.length >= 12) add(2, 'message is a single long token');
   }
