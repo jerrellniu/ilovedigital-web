@@ -290,6 +290,14 @@ export interface ServicePageContent {
    * The hub links down to every spoke. Never set this in the JSON.
    */
   guides?: { title: string; excerpt: string; href?: string; slug: string }[];
+  /**
+   * Hand-picked guide slugs, in display order. When set, these replace the
+   * category-wide list, so a narrow page (ecommerce, WordPress) shows only the
+   * guides that answer its own questions.
+   */
+  guideSlugs?: string[];
+  /** Links down to narrower service pages, e.g. /websites to /websites/ecommerce. */
+  services?: { heading: string; items: { title: string; body: string; href: string }[] };
   faq: Faq[];
   ctaBand: { heading: string; button: CtaLink };
 }

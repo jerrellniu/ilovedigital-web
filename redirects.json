@@ -76,7 +76,7 @@
   },
   {
     "source": "/gold-coast-wordpress-developers",
-    "destination": "/websites",
+    "destination": "/websites/wordpress",
     "permanent": true
   },
   {
@@ -86,12 +86,12 @@
   },
   {
     "source": "/online-store-websites",
-    "destination": "/websites",
+    "destination": "/websites/ecommerce",
     "permanent": true
   },
   {
     "source": "/managed-wordpress-hosting",
-    "destination": "/websites",
+    "destination": "/websites/wordpress",
     "permanent": true
   },
   {

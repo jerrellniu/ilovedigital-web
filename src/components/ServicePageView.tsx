@@ -39,6 +39,22 @@ export default function ServicePageView({ content }: { content: ServicePageConte
         ) : null}
       </section>
 
+      {content.services ? (
+        <section className="container-wide pb-[60px] md:pb-[120px]">
+          <h2 className="mb-8 text-28 md:text-40">{content.services.heading}</h2>
+          <ul className="grid gap-x-10 gap-y-6 md:grid-cols-3">
+            {content.services.items.map((s) => (
+              <li key={s.href}>
+                <Link href={s.href} className="font-heading text-21 font-semibold text-ink transition hover:text-accent">
+                  {s.title}
+                </Link>
+                <p className="mt-1 text-17 text-muted">{s.body}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {content.relatedWork?.length ? (
         <section className="section-deep">
           <div className="container-wide section-y">

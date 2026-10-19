@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Website Redesign Gold Coast",
+    "description": "Website redesigns for Gold Coast businesses that keep the Google rankings you have earned and turn more visitors into calls and bookings."
+  },
+  "hero": {
+    "eyebrow": "Website redesign",
+    "heading": "Website redesigns that keep your Google rankings.",
+    "sub": "We redesign websites for businesses on the Gold Coast and across Queensland. Before anything changes, we record which pages bring in visitors from Google and give each one a direct redirect to its new page. GC Connected Homes saw 175 per cent more visits from Google after we redesigned their site.",
+    "primaryCta": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Book a call with Jerrell \u2192",
+      "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
+    }
+  },
+  "included": {
+    "heading": "What's included in a redesign",
+    "items": [
+      "A review of your current site, its Search Console data and its enquiries",
+      "A new design built around the jobs you want more of",
+      "Rewritten copy that says clearly what you do and where you work",
+      "One-to-one redirects from every old page that ranks",
+      "Fast loading and mobile-friendly on every screen",
+      "A check after launch to confirm Google has picked up the new pages"
+    ]
+  },
+  "faq": [
+    {
+      "question": "How do I know my website needs a redesign?",
+      "answer": "Your website needs a redesign when it stops bringing in enquiries, looks dated on a phone or cannot be updated without help. Our guide to when to redesign lists seven red flags and a checklist to score your own site. If several apply, it is worth getting a quote before you spend more on fixes."
+    },
+    {
+      "question": "Will a redesign hurt my Google rankings?",
+      "answer": "No, as long as the old addresses are handled properly. Rankings drop when old pages vanish or redirect to a general page, so we map every page that ranks to its new equivalent before launch. That way the visibility you have earned carries across to the new site."
+    },
+    {
+      "question": "Can you redesign my site on the platform I already use?",
+      "answer": "Yes. We redesign on WordPress, Shopify, Wix and Squarespace, or rebuild as a custom-coded site when that serves you better. We recommend the platform that suits your business, not the one that is easiest for us to edit."
+    },
+    {
+      "question": "How much does a website redesign cost?",
+      "answer": "Redesign pricing depends on the size of your current site, how much copy needs rewriting and the platform. Send us your website address and we will come back with an itemised quote, free and with no obligation."
+    }
+  ],
+  "ctaBand": {
+    "heading": "Send us your current website and we will quote the redesign.",
+    "button": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    }
+  },
+  "relatedWorkTag": "Web",
+  "guideSlugs": [
+    "when-to-redesign-your-website",
+    "why-do-visitors-leave-my-website",
+    "web-design-trends-2026"
+  ]
+}
