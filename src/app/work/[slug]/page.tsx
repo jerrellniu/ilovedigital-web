@@ -37,9 +37,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const entry = getEntry<CaseFm>('work', slug);
   if (!entry) return {};
+  // Headline plus outcome reads as a full search snippet; fall back to the outcome alone
+  // when the pair runs past the 155 characters Google shows.
+  const { headline, outcome } = entry.frontmatter;
+  const combined = `${headline}. ${outcome}`;
   return {
     title: `${entry.frontmatter.client} — ${entry.frontmatter.tag} Case Study`,
-    description: entry.frontmatter.outcome,
+    description: combined.length <= 155 ? combined : outcome,
     alternates: { canonical: `/work/${slug}` },
   };
 }

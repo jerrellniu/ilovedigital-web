@@ -5,8 +5,9 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import { getLegal } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use',
-  description: 'Terms of use for the I Love Digital website and services.',
+  title: 'Website Terms of Use',
+  description:
+    'The terms that apply when you use the I Love Digital website and our website, SEO, social media and consulting services.',
   alternates: { canonical: '/terms' },
 };
 
