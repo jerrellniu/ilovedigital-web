@@ -28,6 +28,12 @@ export function faqPageSchema(items: Faq[]) {
   };
 }
 
+// Gold Coast first: it is the market the service pages and the Search Console queries target.
+const AREA_SERVED = [
+  { '@type': 'City', name: 'Gold Coast' },
+  { '@type': 'State', name: 'Queensland' },
+];
+
 export function localBusinessSchema() {
   return {
     '@context': 'https://schema.org',
@@ -36,12 +42,31 @@ export function localBusinessSchema() {
     url: 'https://ilovedigital.com.au',
     telephone: '1300 944 890',
     email: 'jerrell@ilovedigital.com.au',
-    areaServed: 'Queensland, Australia',
+    areaServed: AREA_SERVED,
     address: {
       '@type': 'PostalAddress',
       addressRegion: 'QLD',
       addressCountry: 'AU',
       addressLocality: 'Gold Coast',
+    },
+  };
+}
+
+// Service node for a pillar page, linked to the business as provider.
+export function serviceSchema(s: { name: string; description: string; path: string; serviceType: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: s.name,
+    serviceType: s.serviceType,
+    description: s.description,
+    url: `${SITE_URL}${s.path}`,
+    areaServed: AREA_SERVED,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'I Love Digital',
+      url: SITE_URL,
+      telephone: '1300 944 890',
     },
   };
 }

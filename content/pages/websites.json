@@ -1,12 +1,12 @@
 {
   "meta": {
-    "title": "Websites that get found and get bookings",
-    "description": "Custom, fast, modern websites with brand identity to match \u2014 built to be understood by Google and cited by AI. For Queensland trades and service businesses."
+    "title": "Web Design Gold Coast: Custom and Ecommerce Websites",
+    "description": "Web design on the Gold Coast. We build custom websites and Shopify stores that load fast, rank on Google and turn visitors into enquiries. Get a free quote."
   },
   "hero": {
     "eyebrow": "Websites",
-    "heading": "Fast, stunning websites that show off your business.",
-    "sub": "Your website is the first thing a customer judges you on, and increasingly the first thing an AI engine reads about you. We design and build fast, modern, custom websites \u2014 with the brand identity to match \u2014 structured to be understood by Google, cited by AI, and easy for your next customer to act on.",
+    "heading": "Fast, stunning websites for Gold Coast businesses.",
+    "sub": "We design and build custom websites and ecommerce stores for businesses on the Gold Coast and across Queensland. Every site loads fast, is structured to rank on Google and be cited by AI, and makes it easy for your next customer to call or book. Brand identity can be part of the build.",
     "primaryCta": {
       "label": "Get a free quote",
       "href": "/contact"
@@ -20,6 +20,7 @@
     "heading": "What's included",
     "items": [
       "Custom design \u2014 no off-the-shelf templates",
+      "Ecommerce stores on Shopify, with payments, stock and shipping set up for you",
       "Brand identity: logos, brand guidelines, business cards, and multi-brand systems",
       "Fast loading and mobile-perfect on every screen",
       "Core SEO and structured data built in from day one",
@@ -43,6 +44,22 @@
     {
       "question": "How much does a new website cost?",
       "answer": "Website pricing depends on the size of the site, the platform, and what's included \u2014 so we don't publish a fixed price list. Tell us a bit about your project and we'll come back with a clear, itemised quote. It's free, with no obligation."
+    },
+    {
+      "question": "What is the difference between a custom website and a template?",
+      "answer": "A custom website is designed around your business, while a template is designed around someone else's. We plan each page around the jobs you want more of and the questions your customers ask before they call. The result is a site that fits your brand, loads fast and tells Google clearly what you do and where you work."
+    },
+    {
+      "question": "Do you build ecommerce websites on the Gold Coast?",
+      "answer": "Yes, we build ecommerce websites for Gold Coast and Queensland businesses, usually on Shopify. Shopify keeps payments, stock and shipping in one place, and we set it up so you can add products and run the store yourself after launch. If you only need to take deposits or sell a few items, we will tell you when a simple website does the job for less."
+    },
+    {
+      "question": "Do you build affordable websites for small businesses?",
+      "answer": "Yes. We size every website to what the business needs now, so a small business does not pay for pages it will never use. Your quote is itemised, so you can see what each part costs and add more later as the business grows."
+    },
+    {
+      "question": "Do you only work with Gold Coast businesses?",
+      "answer": "No. We work with businesses on the Gold Coast and across Queensland, and we talk by phone or video call when a visit is not practical. Every site we build tells Google which areas you serve, so you get found by customers in your own area."
     },
     {
       "question": "Do you do branding and logos?",
