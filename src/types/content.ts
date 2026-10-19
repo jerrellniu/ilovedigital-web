@@ -388,3 +388,25 @@ export interface BusinessCard {
   socials: CardSocial[];
   footer: string;
 }
+
+/** Landing page for the website copy template lead magnet (/website-copy-template). */
+export interface CopyTemplatePageContent {
+  meta: { title: string; description: string };
+  hero: HeroBlock;
+  included: { heading: string; items: string[] };
+  form: {
+    heading: string;
+    body: string;
+    nameLabel: string;
+    emailLabel: string;
+    button: string;
+    loading: string;
+    successHeading: string;
+    successBody: string;
+    download: string;
+    /** Public path of the PDF, served from /public. */
+    file: string;
+  };
+  faq: Faq[];
+  ctaBand: { heading: string; button: CtaLink };
+}

@@ -231,7 +231,7 @@
   },
   {
     "source": "/website-copy-template-pack",
-    "destination": "/insights/writing-great-website-copy",
+    "destination": "/website-copy-template",
     "permanent": true
   },
   {
@@ -261,7 +261,7 @@
   },
   {
     "source": "/store/p/website-copy-template-pack",
-    "destination": "/insights/writing-great-website-copy",
+    "destination": "/website-copy-template",
     "permanent": true
   },
   {

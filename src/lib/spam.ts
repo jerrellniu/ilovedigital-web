@@ -24,13 +24,14 @@
 // was checked against campaign-shaped payloads rebuilt from their recorded signature.
 // Tests and both sets: scripts/spam.test.ts (`npx tsx --test scripts/spam.test.ts`).
 
-export type FormType = 'newsletter' | 'audit' | 'contact';
+export type FormType = 'newsletter' | 'audit' | 'contact' | 'template';
 
 /** Fields each form component actually sends, beyond `email`, `type` and `hp`. */
 const ALLOWED: Record<FormType, readonly string[]> = {
   newsletter: [],
   audit: ['website', 'name', 'business', 'message'],
   contact: ['name', 'business', 'message'],
+  template: ['name'],
 };
 
 /** Fields the form marks `required`, so a real submission always carries them. */
@@ -38,6 +39,7 @@ const REQUIRED: Record<FormType, readonly string[]> = {
   newsletter: [],
   audit: ['website'],
   contact: ['name', 'business', 'message'],
+  template: [],
 };
 
 /** Upper bounds. Generous for a person, closed to anyone pasting a payload. */
@@ -50,7 +52,7 @@ const MAX_LENGTH: Record<string, number> = {
 };
 
 export function isFormType(value: unknown): value is FormType {
-  return value === 'newsletter' || value === 'audit' || value === 'contact';
+  return value === 'newsletter' || value === 'audit' || value === 'contact' || value === 'template';
 }
 
 const URL_PATTERN = /(https?:\/\/|www\.)/i;

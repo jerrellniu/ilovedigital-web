@@ -47,6 +47,16 @@ const nextConfig = {
   async redirects() {
     return redirects;
   },
+  // Lead magnet files are reached through their signup page, so keep the files
+  // themselves out of search results.
+  async headers() {
+    return [
+      {
+        source: '/downloads/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

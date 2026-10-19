@@ -7,6 +7,7 @@ import type {
   CaseStudyCardData,
   AuthorPageContent,
   HeroBlock,
+  CopyTemplatePageContent,
 } from '@/types/content';
 import { getCollectionSlugs } from './mdx';
 
@@ -81,6 +82,10 @@ export function getServicePage(
 // Insights). Tighten these into typed shapes as each page is built out.
 export function getAbout(): any {
   return readJson('pages/about.json');
+}
+
+export function getCopyTemplatePage(): CopyTemplatePageContent {
+  return readJson<CopyTemplatePageContent>('pages/copy-template.json');
 }
 
 export function getAuthor(): AuthorPageContent {

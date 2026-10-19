@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Free Website Copy Template (PDF)",
+    "description": "A free, fill-in-the-blanks website copy template for small businesses, with home, about, service and contact pages, worked examples and a checklist."
+  },
+  "hero": {
+    "eyebrow": "Free template",
+    "heading": "A website copy template you can fill in this afternoon.",
+    "sub": "Write your home, about, service and contact pages from one fill-in-the-blanks template. Each section tells you what to write, shows a worked example and leaves space for your own words."
+  },
+  "included": {
+    "heading": "What's inside the template",
+    "items": [
+      "Six questions to answer before you write a word",
+      "Fill-in templates for your home, about, service and contact pages",
+      "A worked example for every section, using a made-up plumbing business",
+      "A checklist to run on every page before you publish",
+      "A free 10-page PDF you can print and write on"
+    ]
+  },
+  "form": {
+    "heading": "Get the free template",
+    "body": "Enter your name and email, and the download link appears straight away. We will also send you our monthly email with practical tips for your website, and you can unsubscribe at any time.",
+    "nameLabel": "First name",
+    "emailLabel": "Your email",
+    "button": "Get the template",
+    "loading": "Sending\u2026",
+    "successHeading": "Your template is ready.",
+    "successBody": "Download the PDF now and save it somewhere you will find it again.",
+    "download": "Download the PDF",
+    "file": "/downloads/website-copy-template.pdf"
+  },
+  "faq": [
+    {
+      "question": "Is the website copy template free?",
+      "answer": "Yes. The template is free to download and use on your own website. All we ask for is your name and email, and you can unsubscribe from our emails at any time."
+    },
+    {
+      "question": "Who is the template for?",
+      "answer": "The template is for small business owners writing their own website, or briefing someone else to write it. It suits service businesses and trades best, because the prompts and examples are built around winning enquiries."
+    },
+    {
+      "question": "Can you write the copy for me?",
+      "answer": "Yes. Copy is part of every website we build, and we can also rewrite the pages on your existing site. Get a free quote and we will send an itemised price for the pages you need."
+    }
+  ],
+  "ctaBand": {
+    "heading": "Want us to write your website copy?",
+    "button": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    }
+  }
+}

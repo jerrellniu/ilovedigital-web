@@ -15,6 +15,9 @@ const GROUPS: Record<string, string | undefined> = {
   newsletter: process.env.ML_GROUP_NEWSLETTER,
   audit: process.env.ML_GROUP_AUDIT,
   contact: process.env.ML_GROUP_CONTACT,
+  // Website copy template lead magnet. Falls back to the newsletter group until its
+  // own group exists, so a download never goes unrecorded.
+  template: process.env.ML_GROUP_TEMPLATE || process.env.ML_GROUP_NEWSLETTER,
 };
 
 // Whatever comes back from here is read by a real visitor: the form renders the

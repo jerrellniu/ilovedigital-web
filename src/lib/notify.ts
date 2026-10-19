@@ -22,6 +22,7 @@ const LABELS: Record<string, string> = {
   newsletter: 'Newsletter signup',
   audit: 'Free website audit request',
   contact: 'Contact enquiry',
+  template: 'Website copy template download',
 };
 
 export interface NotifyParams {
