@@ -1,0 +1,24 @@
+{
+  "faq": [
+    {
+      "question": "Is the website audit really free?",
+      "answer": "Yes. The audit is free and there is no obligation to buy anything. You get the full report on screen and a copy by email, so you can act on it yourself or pass it to whoever looks after your site."
+    },
+    {
+      "question": "What does the audit check?",
+      "answer": "The audit checks your technical SEO, on-page SEO, speed and AI search readiness. It reads your home page and up to 10 more pages, tests up to 40 of your internal links, runs Google's speed test on mobile and desktop, and checks whether AI search tools can reach your site. Every finding comes from something we measured, so the report reflects your site as it is today."
+    },
+    {
+      "question": "How long does the audit take?",
+      "answer": "Most reports appear on screen in about a minute. Larger or slower sites can take up to two minutes, because the audit waits for Google's speed test to finish. A copy is emailed to you as soon as the report is ready."
+    },
+    {
+      "question": "Will the audit slow down or change my website?",
+      "answer": "No. The audit only reads your public pages, the same way a visitor or a search engine does. Nothing is installed, changed or logged in to, so there is no risk to your site."
+    },
+    {
+      "question": "What should I do with the results?",
+      "answer": "Start with the fixes at the top of the report, because they are listed in priority order. The three-month plan then spreads the rest of the work across fixes, foundations and visibility. If you would rather hand it over, book a 15-minute call and we will go through the report with you."
+    }
+  ]
+}

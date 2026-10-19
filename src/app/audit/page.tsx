@@ -2,9 +2,13 @@ import type { Metadata } from 'next';
 import AuditForm from '@/components/forms/AuditForm';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import BookingEmbed from '@/components/BookingEmbed';
-import { getSite } from '@/lib/content';
+import FaqAccordion from '@/components/FaqAccordion';
+import JsonLd from '@/components/JsonLd';
+import { getAuditFaq, getSite } from '@/lib/content';
+import { faqPageSchema } from '@/lib/schema';
 
 const site = getSite();
+const faq = getAuditFaq();
 
 export const metadata: Metadata = {
   title: 'Free Website Audit and 3-Month Plan',
@@ -66,6 +70,12 @@ export default function AuditPage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="container-wide pb-[60px] md:pb-[120px]">
+        <h2 className="mb-10 text-center text-28 md:text-40">Frequently asked questions</h2>
+        <FaqAccordion items={faq} />
+        <JsonLd data={faqPageSchema(faq)} />
       </section>
 
       {/* Booking. Second path for anyone who would rather talk it through with a person. */}
