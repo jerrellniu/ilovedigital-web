@@ -30,6 +30,21 @@
     "permanent": true
   },
   {
+    "source": "/blog/category/:category*",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/blog/tag/:tag*",
+    "destination": "/insights",
+    "permanent": true
+  },
+  {
+    "source": "/insights/google-february-2026-discover-core-update",
+    "destination": "/search",
+    "permanent": true
+  },
+  {
     "source": "/ai",
     "destination": "/consulting",
     "permanent": true
