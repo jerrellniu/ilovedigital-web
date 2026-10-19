@@ -47,7 +47,14 @@ export function getHome(): HomeContent {
 }
 
 export function getServicePage(
-  slug: 'websites' | 'search' | 'social' | 'consulting'
+  slug:
+    | 'websites'
+    | 'websites-ecommerce'
+    | 'websites-wordpress'
+    | 'websites-redesign'
+    | 'search'
+    | 'social'
+    | 'consulting'
 ): ServicePageContent {
   const page = readJson<ServicePageContent>(`pages/${slug}.json`);
   if (page.relatedWorkTag) {
@@ -70,9 +77,12 @@ export function getServicePage(
     // insights index so the list can never drift from what is actually live. The
     // pillar tag and the article category share one taxonomy (Web, Search, Socials,
     // Consulting).
-    page.guides = getInsightsIndex().filter(
-      (p) => p.href && p.category.toLowerCase() === wanted
-    );
+    const published = getInsightsIndex().filter((p) => p.href);
+    page.guides = page.guideSlugs
+      ? page.guideSlugs
+          .map((slug) => published.find((p) => p.slug === slug))
+          .filter((p): p is (typeof published)[number] => Boolean(p))
+      : published.filter((p) => p.category.toLowerCase() === wanted);
   }
   return page;
 }

@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "title": "Shopify Ecommerce Websites, Gold Coast",
+    "description": "Shopify ecommerce websites for Gold Coast and Queensland businesses, set up with payments, products, shipping and GST, ready for you to run."
+  },
+  "hero": {
+    "eyebrow": "Ecommerce websites",
+    "heading": "Shopify stores for Gold Coast businesses that want to sell online.",
+    "sub": "We design and build ecommerce websites on Shopify for businesses on the Gold Coast and across Queensland. We set up your products, payments, shipping and GST, then show you how to run the store yourself. Trigahex hit a six-month sales goal within weeks of launching the Shopify store we built for them.",
+    "primaryCta": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Book a call with Jerrell \u2192",
+      "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
+    }
+  },
+  "included": {
+    "heading": "What's included in an ecommerce build",
+    "items": [
+      "A custom Shopify design built around your products and your brand",
+      "Products, collections and variants loaded and organised",
+      "Payments, shipping rates and GST set up before launch",
+      "Product pages written and structured to rank on Google",
+      "Fast loading and an easy checkout on every phone",
+      "Training so you can add products and manage orders yourself",
+      "Ongoing support through a Website Care package"
+    ]
+  },
+  "note": "Shopify hosts the store, so you pay for your Shopify plan directly and we quote the build separately.",
+  "faq": [
+    {
+      "question": "Why do you build online stores on Shopify?",
+      "answer": "Shopify keeps products, payments, stock and shipping in one system that you can run without a developer. It hosts the store, applies security updates and processes card payments, so there is no server or plugin to maintain. That leaves your time for selling rather than fixing the site."
+    },
+    {
+      "question": "Do I need an online store, or just a website?",
+      "answer": "Most service businesses need a website that wins enquiries rather than a full online store. A store pays off when you sell products, gift cards or fixed-price packages that customers can buy without talking to you first. Our guide to choosing between a simple website and ecommerce walks through the three options, so you can pick the one that fits how you sell."
+    },
+    {
+      "question": "Can you move my existing store to Shopify?",
+      "answer": "Yes. We move your products and, where your current platform allows it, your customers and order history. Every old product address gets a direct redirect to its new page, so you keep the Google rankings your store has already earned."
+    },
+    {
+      "question": "Do you build WooCommerce stores?",
+      "answer": "For a new store we recommend Shopify, because it needs far less maintenance than WooCommerce. If you already sell on WooCommerce, we can look after the existing store or plan a move to Shopify when it suits you."
+    },
+    {
+      "question": "How much does an ecommerce website cost?",
+      "answer": "Ecommerce pricing depends on the number of products, the design and the integrations you need, so we quote each store individually. Tell us about your range and we will send an itemised quote, free and with no obligation."
+    }
+  ],
+  "ctaBand": {
+    "heading": "Tell us what you sell and we will quote the store.",
+    "button": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    }
+  },
+  "relatedWorkTag": "Web",
+  "guideSlugs": [
+    "ecommerce-website-design-gold-coast",
+    "ecommerce-website-design-gold-coast-cost"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "title": "WordPress Web Design and Care, Gold Coast",
+    "description": "WordPress websites for Gold Coast businesses: new builds, care for existing Divi and Elementor sites, and managed hosting in every Care package."
+  },
+  "hero": {
+    "eyebrow": "WordPress websites",
+    "heading": "WordPress websites for Gold Coast businesses, built and looked after.",
+    "sub": "We build new WordPress websites and take care of existing ones for businesses on the Gold Coast and across Queensland. New sites use a fast, lightweight builder that you can edit yourself. Existing Divi and Elementor sites stay on the builder you know, and we keep them updated, secure and backed up.",
+    "primaryCta": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    },
+    "secondaryCta": {
+      "label": "Book a call with Jerrell \u2192",
+      "href": "https://calendar.app.google/KgyLmXvRxRdPAXWUA"
+    }
+  },
+  "included": {
+    "heading": "What's included in a WordPress build",
+    "items": [
+      "A custom design, with no off-the-shelf theme to fight against",
+      "A fast, lightweight page builder you can edit without code",
+      "Core SEO, structured data and redirects set up from day one",
+      "Managed WordPress hosting included in every Website Care package",
+      "Plugin, theme and core updates handled for you",
+      "Training so you can update pages and posts yourself"
+    ]
+  },
+  "note": "Already on Divi or Elementor? We keep your site on the builder you know and take over the updates, fixes and hosting.",
+  "faq": [
+    {
+      "question": "Should my new website be on WordPress?",
+      "answer": "WordPress suits a business that wants to own its site and edit plenty of pages or posts itself. For a simpler site that needs to be very fast and low-maintenance, we often recommend a custom-coded build, and for an online store we recommend Shopify. We will tell you which fits after a short call, so you do not pay for a platform you do not need."
+    },
+    {
+      "question": "Can you fix or take over my existing WordPress site?",
+      "answer": "Yes. We take over existing WordPress sites, including Divi and Elementor builds, and start with a check of plugins, speed and security. You get a list of what needs fixing in priority order, so the urgent problems are solved first."
+    },
+    {
+      "question": "Is hosting included?",
+      "answer": "Yes. Managed WordPress hosting is included in every Website Care package, with one package per site. Care also covers updates and support, so one monthly plan looks after the whole site."
+    },
+    {
+      "question": "How much does a WordPress website cost?",
+      "answer": "WordPress pricing depends on the number of pages, the features you need and whether we are building new or improving an existing site. Tell us about your project and we will send an itemised quote, free and with no obligation."
+    }
+  ],
+  "ctaBand": {
+    "heading": "Tell us about your WordPress site and we will quote the work.",
+    "button": {
+      "label": "Get a free quote",
+      "href": "/contact"
+    }
+  },
+  "relatedWorkTag": "Web",
+  "guideSlugs": [
+    "is-my-website-mobile-friendly-gold-coast",
+    "why-do-visitors-leave-my-website",
+    "when-to-redesign-your-website"
+  ]
+}

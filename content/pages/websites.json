@@ -29,6 +29,26 @@
       "Managed hosting and ongoing support available"
     ]
   },
+  "services": {
+    "heading": "Website services",
+    "items": [
+      {
+        "title": "Ecommerce websites on Shopify",
+        "body": "We build online stores with products, payments, shipping and GST set up, ready for you to run.",
+        "href": "/websites/ecommerce"
+      },
+      {
+        "title": "WordPress websites",
+        "body": "We build new WordPress sites and look after existing Divi and Elementor sites, with hosting included.",
+        "href": "/websites/wordpress"
+      },
+      {
+        "title": "Website redesigns",
+        "body": "We redesign your site and keep the Google rankings it has already earned.",
+        "href": "/websites/redesign"
+      }
+    ]
+  },
   "platforms": {
     "label": "Custom coded, or on your platform of choice",
     "items": [
