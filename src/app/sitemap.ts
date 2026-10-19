@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/insights',
     '/contact',
     '/audit',
+    '/website-copy-template',
     '/terms',
     '/privacy',
   ];
