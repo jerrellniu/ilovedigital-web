@@ -7,7 +7,7 @@ import { getInsightsIndex } from '@/lib/content';
 const posts = getInsightsIndex();
 
 export const metadata: Metadata = {
-  title: 'Insights — Web, SEO, and AI Search for Australian Businesses',
+  title: 'Guides on Websites, SEO and AI Search',
   description:
     'Practical guides on websites, SEO, AI search, and digital marketing for Queensland trades and service businesses.',
   alternates: { canonical: '/insights' },

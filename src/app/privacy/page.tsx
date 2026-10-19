@@ -6,7 +6,8 @@ import { getLegal } from '@/lib/content';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Privacy policy for the I Love Digital website and services.',
+  description:
+    'How I Love Digital collects, uses, stores and protects the personal information you share through this website and our services.',
   alternates: { canonical: '/privacy' },
 };
 
