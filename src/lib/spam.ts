@@ -26,13 +26,22 @@
 
 export type FormType = 'newsletter' | 'audit' | 'contact' | 'template';
 
-/** Fields each form component actually sends, beyond `email`, `type` and `hp`. */
+/**
+ * Fields each form component actually sends, beyond the base set in BASE_FIELDS.
+ */
 const ALLOWED: Record<FormType, readonly string[]> = {
   newsletter: [],
   audit: ['website', 'name', 'business', 'message'],
   contact: ['name', 'business', 'message'],
   template: ['name'],
 };
+
+/**
+ * Sent by every form. `eventId`, `fbp`, `fbc` and `sourceUrl` carry the Meta Pixel
+ * match data (src/lib/meta.ts) so the server event deduplicates against the browser
+ * one. Without them here, checkShape would drop every real lead with a 200.
+ */
+const BASE_FIELDS = ['email', 'type', 'hp', 'token', 'eventId', 'fbp', 'fbc', 'sourceUrl'] as const;
 
 /** Fields the form marks `required`, so a real submission always carries them. */
 const REQUIRED: Record<FormType, readonly string[]> = {
@@ -49,6 +58,10 @@ const MAX_LENGTH: Record<string, number> = {
   business: 120,
   website: 500,
   message: 5000,
+  eventId: 64,
+  fbp: 200,
+  fbc: 500,
+  sourceUrl: 500,
 };
 
 export function isFormType(value: unknown): value is FormType {
@@ -118,7 +131,7 @@ const PASS: Verdict = { ok: true };
  * An unexpected key is a hard reject: it means the payload was hand-built.
  */
 export function checkShape(type: FormType, body: Record<string, unknown>): Verdict {
-  const allowed = new Set<string>([...ALLOWED[type], 'email', 'type', 'hp', 'token']);
+  const allowed = new Set<string>([...ALLOWED[type], ...BASE_FIELDS]);
 
   for (const [key, value] of Object.entries(body)) {
     if (!allowed.has(key)) {

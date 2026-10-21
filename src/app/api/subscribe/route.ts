@@ -4,6 +4,7 @@ import { notify } from '@/lib/notify';
 import { checkOrigin, checkShape, isFormType, scoreContent } from '@/lib/spam';
 import { clientKey, rateLimit } from '@/lib/ratelimit';
 import { verifyTurnstile } from '@/lib/turnstile';
+import { sendMetaEvent, type MetaServerEvent } from '@/lib/meta-capi';
 
 // nodemailer needs Node built-ins, so this route must not be pushed to Edge.
 export const runtime = 'nodejs';
@@ -24,6 +25,14 @@ const GROUPS: Record<string, string | undefined> = {
 // error text verbatim. Never return a configuration detail or an upstream error
 // message — give the person a way to reach us instead, so an enquiry is redirected
 // rather than lost.
+// Meta event for each form. Leads are enquiries; the rest are signups.
+const META_EVENT: Record<string, MetaServerEvent> = {
+  contact: 'Lead',
+  audit: 'Lead',
+  template: 'CompleteRegistration',
+  newsletter: 'CompleteRegistration',
+};
+
 const FALLBACK =
   'Sorry, the form could not be sent just now. Please email hello@ilovedigital.com.au or call 1300 944 890 and we will come straight back to you.';
 
@@ -125,6 +134,10 @@ export async function POST(req: Request) {
     // the mail is handed off. notify() never throws, so a notification failure
     // cannot turn a captured lead into an error for the visitor.
     await notify({ type, email, fields });
+
+    // Last, so a Meta outage can never cost a lead. Never throws, times out at 3s.
+    const { eventId, fbp, fbc, sourceUrl } = body as Record<string, unknown>;
+    await sendMetaEvent({ eventName: META_EVENT[type], email, req, eventId, fbp, fbc, sourceUrl });
 
     return NextResponse.json({ ok: true });
   } catch (e) {

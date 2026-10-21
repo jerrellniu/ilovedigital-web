@@ -3,6 +3,7 @@ import { subscribe } from '@/lib/mailerlite';
 import { checkOrigin, checkShape, scoreContent } from '@/lib/spam';
 import { clientKey, rateLimit } from '@/lib/ratelimit';
 import { verifyTurnstile } from '@/lib/turnstile';
+import { sendMetaEvent } from '@/lib/meta-capi';
 import { runAudit, AuditInputError } from '@/lib/audit/run';
 import { sendReportEmails } from '@/lib/audit/email';
 import type { AuditEvent, AuditReport } from '@/lib/audit/types';
@@ -74,6 +75,10 @@ export async function POST(req: Request) {
     console.warn('[audit] refused:', turnstile.reason);
     return json({ error: FALLBACK }, 400);
   }
+
+  // The lead is captured the moment the audit is accepted, not when the report
+  // finishes. waitUntil keeps it off the audit's critical path; it never throws.
+  waitUntil(sendMetaEvent({ eventName: 'Lead', email, req, eventId: body.eventId, fbp: body.fbp, fbc: body.fbc, sourceUrl: body.sourceUrl }));
 
   const lead = { email, name: name?.trim() || null, business: business?.trim() || null, concern: message?.trim() || null };
   const encoder = new TextEncoder();

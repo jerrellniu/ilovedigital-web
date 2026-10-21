@@ -201,6 +201,28 @@ Spec and go-live keys: "Instant Website Audit — Agent Spec and Operating Guide
 - Run one from the terminal: `npx tsx scripts/run-audit.ts example.com.au [--no-speed]`.
   Tests: `npx tsx --test scripts/audit.test.ts`.
 
+## Meta Pixel and Conversions API
+
+Spec: "Build Brief — Meta Pixel and Conversions API (October 2026)" in Notion.
+
+- `src/components/MetaPixel.tsx` (in the root layout) loads the Pixel, fires PageView on
+  every route change and Contact on `tel:` and booking link clicks. Renders nothing
+  without `NEXT_PUBLIC_META_PIXEL_ID`.
+- Lead (contact, audit, instant audit) and CompleteRegistration (template, newsletter)
+  fire twice with one event ID: in the browser via `track()` in `src/lib/meta.ts`, and
+  from the server via `sendMetaEvent()` in `src/lib/meta-capi.ts`, so Meta deduplicates.
+  The server call runs after MailerLite and the notification and never throws.
+- Only a hashed email, IP, user agent, `fbp` and `fbc` go to Meta. Never phone, name,
+  business, message or a value. The privacy policy section "Meta Advertising Tools" says
+  exactly this; change both together.
+- Never put an email address in a URL: the Pixel reports page URLs. The Home audit band
+  hands the email to `/audit` through sessionStorage.
+- Every form sends `eventId`, `fbp`, `fbc` and `sourceUrl`; they are in the base
+  allowlist in `src/lib/spam.ts`. A new form field must be added there too, or
+  `checkShape()` drops the lead with a 200.
+- Env: `NEXT_PUBLIC_META_PIXEL_ID`, `META_CAPI_ACCESS_TOKEN`, and `META_TEST_EVENT_CODE`
+  for Preview only.
+
 ## Commands
 
 ```bash

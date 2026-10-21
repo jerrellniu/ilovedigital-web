@@ -5,6 +5,7 @@ import Honeypot from './Honeypot';
 import Turnstile from './Turnstile';
 import AuditReportView from '@/components/audit/AuditReportView';
 import type { AuditEvent, AuditReport, ProgressStep } from '@/lib/audit/types';
+import { AUDIT_EMAIL_KEY, metaPayload, newEventId, track } from '@/lib/meta';
 
 const inputCls = 'field min-w-[200px] flex-1';
 
@@ -38,7 +39,9 @@ function Spinner() {
 
 /**
  * Compact variant (Home audit band): website and email only. It hands off to /audit,
- * which prefills and runs the audit there, so the report has room to breathe.
+ * which prefills and runs the audit there, so the report has room to breathe. Only
+ * the website travels in the query string; the email goes through sessionStorage,
+ * because the Meta Pixel reports page URLs and must never see an email address.
  *
  * Full variant (/audit): runs the instant audit and renders the report in place.
  */
@@ -57,13 +60,25 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  // Prefill from the Home band hand-off (/audit?website=...&email=...).
+  // Prefill from the Home band hand-off (/audit?website=..., email in sessionStorage).
+  // A legacy ?email= link is read once and stripped from the URL. MetaPixel's base
+  // code strips it too, into sessionStorage, if it happens to run first.
   useEffect(() => {
     if (!full) return;
-    const q = new URLSearchParams(window.location.search);
-    const website = q.get('website') || '';
-    const email = q.get('email') || '';
-    if (website || email) setForm((f) => ({ ...f, website, email }));
+    const url = new URL(window.location.href);
+    const website = url.searchParams.get('website') || '';
+    let email = url.searchParams.get('email') || '';
+    if (url.searchParams.has('email')) {
+      url.searchParams.delete('email');
+      window.history.replaceState(window.history.state, '', url.pathname + url.search + url.hash);
+    }
+    try {
+      email = email || sessionStorage.getItem(AUDIT_EMAIL_KEY) || '';
+      sessionStorage.removeItem(AUDIT_EMAIL_KEY);
+    } catch {
+      // Storage blocked: the visitor types the email again.
+    }
+    if (website || email) setForm((f) => ({ ...f, website: website || f.website, email: email || f.email }));
   }, [full]);
 
   useEffect(() => {
@@ -75,12 +90,21 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
       <form
         action="/audit"
         method="get"
+        onSubmit={(e) => {
+          const email = (e.currentTarget.elements.namedItem('audit-email') as HTMLInputElement | null)?.value ?? '';
+          try {
+            sessionStorage.setItem(AUDIT_EMAIL_KEY, email);
+          } catch {
+            // Storage blocked: /audit asks for the email again.
+          }
+        }}
         className="relative mt-8 flex w-full max-w-[640px] flex-wrap gap-3"
       >
         <label htmlFor={`${ns}-website`} className="sr-only">Your website URL</label>
         <input id={`${ns}-website`} name="website" type="text" inputMode="url" required autoComplete="url" placeholder="Your website URL" className={inputCls} />
         <label htmlFor={`${ns}-email`} className="sr-only">Your email</label>
-        <input id={`${ns}-email`} name="email" type="email" required autoComplete="email" placeholder="Your email" className={inputCls} />
+        {/* No `name`, so the GET hand-off never puts the email in the URL. */}
+        <input id={`${ns}-email`} type="email" required autoComplete="email" placeholder="Your email" className={inputCls} />
         <button
           type="submit"
           className="rounded-full bg-cyan px-[22px] py-3 text-17 text-on-accent transition hover:bg-cyan-hover active:scale-[0.97]"
@@ -96,6 +120,7 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
     setStep('fetch');
     setError('');
     setReport(null);
+    const eventId = newEventId();
     try {
       const res = await fetch('/api/audit', {
         method: 'POST',
@@ -109,6 +134,7 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
           message: form.concern,
           hp: form.hp,
           token,
+          ...metaPayload(eventId),
         }),
       });
       const isStream = (res.headers.get('content-type') || '').includes('ndjson');
@@ -116,6 +142,8 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
+      // The stream means the audit was accepted: that is when the lead is captured.
+      track('Lead', eventId);
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let buffer = '';
