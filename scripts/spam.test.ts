@@ -9,7 +9,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { scoreContent, looksRandom, type FormType } from '../src/lib/spam';
+import { checkShape, scoreContent, looksRandom, type FormType } from '../src/lib/spam';
 
 type Payload = { email: string; name?: string; business?: string; website?: string; message?: string; type: FormType };
 
@@ -85,4 +85,37 @@ test('the documented bot strings still read as random', () => {
   assert.equal(looksRandom('Pdlvygb Kqynkuewn'), true);
   assert.equal(looksRandom('Vpwpuawk'), true);
   assert.equal(looksRandom('xqzvbk pdlvyg', true), true);
+});
+
+// The Meta Pixel fields ride on every form (src/lib/meta.ts). checkShape answers a
+// drop with 200, so if these were not allowed every real lead would vanish silently.
+const META = {
+  eventId: '0b8e7c1e-4a8f-4f2e-9a57-6c1d2e3f4a5b',
+  fbp: 'fb.1.1729468800000.1234567890',
+  fbc: 'fb.1.1729468800000.IwAR0abcDEF',
+  sourceUrl: 'https://ilovedigital.com.au/contact',
+};
+
+test('real payloads carrying the Meta fields pass the shape check', () => {
+  const payloads: [FormType, Record<string, unknown>][] = [
+    ['contact', { type: 'contact', email: 'a@b.com.au', name: 'Brett Smith', business: 'Smith Trades', message: 'Quote please', hp: '', token: '', ...META }],
+    ['audit', { type: 'audit', email: 'a@b.com.au', website: 'example.com.au', name: 'Brett Smith', business: 'Smith Trades', message: '', hp: '', token: '', ...META }],
+    ['newsletter', { type: 'newsletter', email: 'a@b.com.au', hp: '', token: '', ...META }],
+    ['template', { type: 'template', email: 'a@b.com.au', name: 'Brett', hp: '', token: '', ...META, fbp: '', fbc: '' }],
+  ];
+  for (const [type, body] of payloads) {
+    const v = checkShape(type, body);
+    assert.equal(v.ok, true, `${type}: ${v.reason}`);
+  }
+});
+
+test('an unknown field still drops alongside the Meta fields', () => {
+  const v = checkShape('newsletter', { type: 'newsletter', email: 'a@b.com.au', ...META, phone: '0400000000' });
+  assert.equal(v.ok, false);
+  assert.match(v.reason!, /unexpected field "phone"/);
+});
+
+test('the Meta fields have length limits', () => {
+  assert.equal(checkShape('newsletter', { type: 'newsletter', email: 'a@b.com.au', eventId: 'x'.repeat(65) }).ok, false);
+  assert.equal(checkShape('newsletter', { type: 'newsletter', email: 'a@b.com.au', sourceUrl: 'x'.repeat(501) }).ok, false);
 });

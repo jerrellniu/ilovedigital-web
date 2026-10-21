@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import CookieNotice from '@/components/CookieNotice';
 import SiteChrome from '@/components/SiteChrome';
 import { Analytics } from '@vercel/analytics/next';
+import MetaPixel from '@/components/MetaPixel';
 import { getSite } from '@/lib/content';
 
 // Inter is the self-hosted fallback for SF Pro. Apple devices render SF Pro from the
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </SiteChrome>
         <CookieNotice text={site.cookieNotice} />
         <Analytics />
+        <MetaPixel />
       </body>
     </html>
   );
