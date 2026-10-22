@@ -7,6 +7,8 @@ export interface SubscribeParams {
   email: string;
   fields?: Record<string, string>;
   groups?: string[];
+  /** Abort after this long. Unset waits as long as fetch does. */
+  timeoutMs?: number;
 }
 
 export async function subscribe(params: SubscribeParams) {
@@ -25,6 +27,7 @@ export async function subscribe(params: SubscribeParams) {
       fields: params.fields,
       groups: params.groups,
     }),
+    signal: params.timeoutMs ? AbortSignal.timeout(params.timeoutMs) : undefined,
   });
 
   if (!res.ok) {

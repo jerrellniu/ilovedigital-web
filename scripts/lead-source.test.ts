@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import { createHmac } from 'node:crypto';
+import { createRequire } from 'node:module';
 import { detectSource } from '../src/lib/attribution';
 import { leadSourceFields } from '../src/lib/lead-fields';
 import { checkShape } from '../src/lib/spam';
@@ -74,7 +75,7 @@ test('detail is capped at 100 characters', () => {
 test('leadSourceFields builds notification lines and MailerLite fields', () => {
   const f = leadSourceFields({ source: 'Facebook', sourceDetail: 'oct-audit', landingPage: '/audit', heardAbout: 'A friend or referral' });
   assert.deepEqual(f.notify, { source: 'Facebook', 'source detail': 'oct-audit', 'landing page': '/audit', 'heard about us': 'A friend or referral' });
-  assert.deepEqual(f.mailerlite, { source: 'Facebook', source_detail: 'oct-audit', heard_about: 'A friend or referral' });
+  assert.deepEqual(f.mailerlite, { lead_source: 'Facebook', source_detail: 'oct-audit', heard_about: 'A friend or referral' });
   // No record at all: the line still says so, MailerLite gets nothing.
   const none = leadSourceFields({});
   assert.deepEqual(none.notify, { source: 'Unknown' });
@@ -229,4 +230,192 @@ test('route: 503 without a secret, 401 for a bad signature, 200 for webhook.test
   delete process.env.MAILERLITE_API_KEY;
   const lead = JSON.stringify(leadBody({ email: 'a@b.com.au', full_name: 'Ann Lee' }));
   assert.equal((await post(lead, sign(lead))).status, 500);
+});
+
+// ---------- Review follow-ups ----------
+
+test('AI tools that tag utm_source count as AI search', () => {
+  for (const v of ['chatgpt.com', 'chatgpt', 'perplexity', 'perplexity.ai', 'gemini', 'copilot', 'claude.ai']) {
+    assert.equal(src(`?utm_source=${v}`).source, 'AI search', v);
+  }
+  assert.equal(src('', 'https://www.chatgpt.com/').source, 'AI search');
+});
+
+// A fake browser for recordFirstTouch/readFirstTouch.
+function fakeBrowser(opts: { search?: string; referrer?: string; path?: string; store?: Map<string, string>; throws?: boolean }) {
+  const store = opts.store ?? new Map<string, string>();
+  const storage = {
+    getItem: (k: string) => {
+      if (opts.throws) throw new Error('blocked');
+      return store.get(k) ?? null;
+    },
+    setItem: (k: string, v: string) => {
+      if (opts.throws) throw new Error('blocked');
+      store.set(k, v);
+    },
+  };
+  Object.assign(globalThis, {
+    window: { location: { search: opts.search ?? '', hostname: 'ilovedigital.com.au', pathname: opts.path ?? '/' }, localStorage: storage },
+    document: { referrer: opts.referrer ?? '' },
+  });
+  return store;
+}
+
+test('first touch is recorded once and never overwritten inside 90 days', async () => {
+  const { recordFirstTouch, readFirstTouch, attributionPayload, FIRST_TOUCH_KEY } = await import('../src/lib/attribution');
+  const store = fakeBrowser({ search: '?utm_source=facebook&utm_campaign=oct&email=a@b.com', path: '/audit' });
+  recordFirstTouch();
+  const rec = JSON.parse(store.get(FIRST_TOUCH_KEY)!);
+  assert.equal(rec.source, 'Facebook');
+  assert.equal(rec.landing, '/audit');
+  assert.ok(!store.get(FIRST_TOUCH_KEY)!.includes('a@b.com'), 'no query string stored');
+
+  // A later Google visit does not overwrite it.
+  fakeBrowser({ referrer: 'https://www.google.com/', store });
+  recordFirstTouch();
+  assert.equal(readFirstTouch()!.source, 'Facebook');
+  assert.deepEqual(attributionPayload(), { source: 'Facebook', sourceDetail: 'oct', landingPage: '/audit' });
+
+  // After 90 days the next visit starts afresh.
+  store.set(FIRST_TOUCH_KEY, JSON.stringify({ ...rec, at: '2020-01-01' }));
+  assert.equal(readFirstTouch(), null);
+  recordFirstTouch();
+  assert.equal(readFirstTouch()!.source, 'Google');
+});
+
+test('blocked storage means no record and no error', async () => {
+  const { recordFirstTouch, readFirstTouch, attributionPayload } = await import('../src/lib/attribution');
+  fakeBrowser({ throws: true, search: '?utm_source=facebook' });
+  assert.doesNotThrow(() => recordFirstTouch());
+  assert.equal(readFirstTouch(), null);
+  assert.deepEqual(attributionPayload(), {});
+});
+
+// Route success paths, with Gmail and MailerLite stubbed.
+type Sent = { subject: string; text: string; replyTo?: string };
+async function withStubs(
+  mlGet: () => Promise<Response>,
+  mlPost: (body: Record<string, unknown>) => Promise<Response>,
+  run: (ctx: { sent: Sent[]; posts: Record<string, unknown>[] }) => Promise<void>,
+) {
+  // The CommonJS module object, which is what notify.ts's default import resolves to.
+  const nodemailer = createRequire(import.meta.url)('nodemailer') as typeof import('nodemailer');
+  const sent: Sent[] = [];
+  const posts: Record<string, unknown>[] = [];
+  const realCreate = nodemailer.createTransport;
+  const realFetch = globalThis.fetch;
+  (nodemailer as unknown as { createTransport: unknown }).createTransport = () => ({
+    sendMail: async (m: Sent) => {
+      sent.push(m);
+      return {};
+    },
+  });
+  globalThis.fetch = (async (url: string | URL, init?: RequestInit) => {
+    const u = String(url);
+    if (u.includes('connect.mailerlite.com/api/subscribers/')) return mlGet();
+    if (u.endsWith('connect.mailerlite.com/api/subscribers')) {
+      const body = JSON.parse(String(init?.body));
+      posts.push(body);
+      return mlPost(body);
+    }
+    throw new Error(`unexpected fetch ${u}`);
+  }) as typeof fetch;
+  Object.assign(process.env, { ZERNIO_WEBHOOK_SECRET: SECRET, SMTP_USER: 'bot@ilovedigital.com.au', SMTP_PASSWORD: 'x', MAILERLITE_API_KEY: 'k', ML_GROUP_FACEBOOK_LEADS: 'grp1' });
+  try {
+    await run({ sent, posts });
+  } finally {
+    (nodemailer as unknown as { createTransport: unknown }).createTransport = realCreate;
+    globalThis.fetch = realFetch;
+  }
+}
+
+const ok = (body: unknown = { data: {} }, status = 200) => Promise.resolve(new Response(JSON.stringify(body), { status }));
+let evt = 100;
+async function postLead(fields: Record<string, unknown>, leadgenId = 'lg_9') {
+  const { POST } = await import('../src/app/api/zernio/lead/route');
+  const raw = JSON.stringify({ ...leadBody(fields, { leadgenId }), id: `evt_${++evt}` });
+  return POST(new Request('https://ilovedigital.com.au/api/zernio/lead', { method: 'POST', body: raw, headers: { 'x-zernio-signature': sign(raw) } }));
+}
+
+test('route: a new lead is notified, then subscribed with the source fields', async () => {
+  await withStubs(
+    () => ok({}, 404),
+    () => ok(),
+    async ({ sent, posts }) => {
+      const res = await postLead({ email: 'Ann@Example.com.au', full_name: 'Ann Lee', phone_number: '0400 000 000' }, 'lg_new');
+      assert.equal(res.status, 200);
+      assert.equal(sent.length, 1);
+      assert.match(sent[0].subject, /^Facebook lead form/);
+      assert.equal(sent[0].replyTo, 'ann@example.com.au');
+      assert.match(sent[0].text, /Source: Facebook/);
+      assert.match(sent[0].text, /Source detail: campaign cmp_1, test lead \(no ad\)/);
+      assert.equal(posts.length, 1);
+      const fields = posts[0].fields as Record<string, string>;
+      assert.equal(fields.lead_source, 'Facebook');
+      assert.equal(fields.leadgen_id, 'lg_new');
+      assert.equal(fields.phone, '0400 000 000');
+      assert.deepEqual(posts[0].groups, ['grp1']);
+    },
+  );
+});
+
+test('route: a lead already in MailerLite with the same leadgen_id is skipped', async () => {
+  await withStubs(
+    () => ok({ data: { email: 'ann@example.com.au', fields: { leadgen_id: 'lg_dup' } } }),
+    () => ok(),
+    async ({ sent, posts }) => {
+      const res = await postLead({ email: 'ann@example.com.au', full_name: 'Ann Lee' }, 'lg_dup');
+      assert.equal(res.status, 200);
+      assert.equal(sent.length, 0);
+      assert.equal(posts.length, 0);
+    },
+  );
+});
+
+test('route: a MailerLite failure after the notification returns 500 for a retry', async () => {
+  await withStubs(
+    () => ok({}, 404),
+    () => ok({ message: 'down' }, 500),
+    async ({ sent }) => {
+      const res = await postLead({ email: 'ann@example.com.au', full_name: 'Ann Lee' }, 'lg_mlfail');
+      assert.equal(res.status, 500);
+      assert.equal(sent.length, 1);
+    },
+  );
+});
+
+test('route: a failed duplicate check still delivers, but holds the automatic audit', async () => {
+  delete process.env.FB_LEAD_AUTO_AUDIT;
+  await withStubs(
+    () => Promise.reject(new Error('timeout')),
+    () => ok(),
+    async ({ sent, posts }) => {
+      // An unmapped form, so the website comes through as a raw answer only and
+      // the audit could not run anyway; use a mapped form to exercise the hold.
+      LEAD_FORMS.push({ formId: '123', name: 'Test', keys: { website: 'site' }, options: {} });
+      try {
+        const res = await postLead({ email: 'ann@example.com.au', full_name: 'Ann Lee', site: 'example.com.au' }, 'lg_lookupfail');
+        assert.equal(res.status, 200);
+        assert.equal(sent.length, 1);
+        assert.match(sent[0].text, /Audit: Not sent automatically/);
+        assert.equal(posts.length, 1);
+      } finally {
+        LEAD_FORMS.pop();
+      }
+    },
+  );
+});
+
+test('route: a lead with no email is still notified and not subscribed', async () => {
+  await withStubs(
+    () => ok({}, 404),
+    () => ok(),
+    async ({ sent, posts }) => {
+      const res = await postLead({ full_name: 'No Email' }, 'lg_noemail');
+      assert.equal(res.status, 200);
+      assert.equal(sent.length, 1);
+      assert.match(sent[0].text, /Warning: No valid email/);
+      assert.equal(posts.length, 0);
+    },
+  );
 });

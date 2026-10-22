@@ -49,6 +49,19 @@ const UTM_SOURCES: Record<string, LeadSource> = {
   tiktok: 'TikTok',
   linkedin: 'LinkedIn',
   google: 'Google',
+  // AI tools tag their outbound links (ChatGPT adds utm_source=chatgpt.com), and
+  // utm_source is checked first, so these must map here as well as by referrer.
+  'chatgpt.com': 'AI search',
+  chatgpt: 'AI search',
+  openai: 'AI search',
+  'perplexity.ai': 'AI search',
+  perplexity: 'AI search',
+  gemini: 'AI search',
+  'gemini.google.com': 'AI search',
+  copilot: 'AI search',
+  'copilot.microsoft.com': 'AI search',
+  claude: 'AI search',
+  'claude.ai': 'AI search',
 };
 
 const CLICK_IDS: [string, LeadSource][] = [
@@ -60,12 +73,14 @@ const CLICK_IDS: [string, LeadSource][] = [
 
 const AI_HOSTS = new Set([
   'chatgpt.com',
+  'www.chatgpt.com',
   'chat.openai.com',
   'perplexity.ai',
   'www.perplexity.ai',
   'gemini.google.com',
   'copilot.microsoft.com',
   'claude.ai',
+  'www.claude.ai',
 ]);
 
 /** Referrer host to channel. Checked in order: AI hosts first, because gemini.google.com is a Google host. */

@@ -74,6 +74,11 @@ export async function notify({ type, email, fields, footer }: NotifyParams): Pro
       port: PORT,
       secure: true,
       auth: { user, pass },
+      // Bounded, so a stuck Gmail connection fails fast instead of holding a
+      // request (and the Zernio webhook's 5-second window) for a minute.
+      connectionTimeout: 3000,
+      greetingTimeout: 3000,
+      socketTimeout: 5000,
     });
 
     await transport.sendMail({

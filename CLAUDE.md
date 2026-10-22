@@ -238,7 +238,8 @@ in Notion.
   `spam.ts`); contact and the full audit form also send the optional `heardAbout`.
   `src/lib/lead-fields.ts` turns them into `Source`, `Source detail`, `Landing page` and
   `Heard about us` lines on the internal email, which the nightly sweep reads, and into
-  the MailerLite fields `source`, `source_detail` and `heard_about`.
+  the MailerLite fields `lead_source`, `source_detail` and `heard_about` (MailerLite
+  reserves `source`).
 - **Mid-article audit card.** `src/lib/article-split.ts` splits an article at its `## `
   headings before the FAQs; with four or more sections, `ArticleAuditCard` goes after the
   first half. Copy: `content/site.json` `articleAuditCta`.

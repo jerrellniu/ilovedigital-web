@@ -27,7 +27,8 @@ import { sendReportEmails } from '@/lib/audit/email';
 //
 // After the response, the instant audit runs on the lead's website and the report
 // is emailed, exactly as /api/audit does. FB_LEAD_AUTO_AUDIT=off turns that off
-// without a deploy.
+// without a deploy. It is also skipped when the duplicate check could not run, so
+// a retried delivery never sends the prospect a second report.
 //
 // No Meta Conversions API event is sent: Meta already counts its own form leads.
 
@@ -84,7 +85,12 @@ export async function POST(req: Request) {
   if (!lead.known) console.warn('[zernio] lead from an unmapped form', { formId: event.formId });
   const hasEmail = EMAIL.test(lead.email);
 
-  // 1. Duplicate check. A failed lookup does not block: a duplicate is better than a loss.
+  const autoAudit = Boolean(hasEmail && lead.website && !/^(off|false|0|no)$/i.test(process.env.FB_LEAD_AUTO_AUDIT?.trim() ?? ''));
+
+  // 1. Duplicate check. A failed lookup does not block: a duplicate notification is
+  // better than a lost lead. It does stop the automatic audit, though, because this
+  // may be a retry of a delivery that already sent the prospect their report.
+  let lookupFailed = false;
   if (hasEmail && event.leadgenId && process.env.MAILERLITE_API_KEY) {
     try {
       const existing = await getSubscriber(lead.email, 1500);
@@ -93,7 +99,8 @@ export async function POST(req: Request) {
         return json({ ok: true, duplicate: true });
       }
     } catch (e) {
-      console.warn('[zernio] duplicate check failed, carrying on:', e);
+      lookupFailed = true;
+      console.warn('[zernio] duplicate check failed, carrying on without the automatic audit:', e);
     }
   }
 
@@ -117,6 +124,7 @@ export async function POST(req: Request) {
     for (const [k, v] of Object.entries(event.fields)) lines[`answer ${k}`] = v;
   }
   if (!hasEmail) lines['warning'] = 'No valid email in the lead. It is not in MailerLite; follow up from Leads Centre.';
+  if (autoAudit && lookupFailed) lines['audit'] = 'Not sent automatically (could not rule out a repeat delivery). Run it at /audit.';
 
   const notified = await notify({
     type: 'facebook_lead',
@@ -133,7 +141,7 @@ export async function POST(req: Request) {
 
   // 3. MailerLite.
   if (hasEmail && process.env.MAILERLITE_API_KEY) {
-    const fields: Record<string, string> = { source: 'Facebook', source_detail: sourceDetail.slice(0, 100) };
+    const fields: Record<string, string> = { lead_source: 'Facebook', source_detail: sourceDetail.slice(0, 100) };
     if (lead.name) fields.name = lead.name;
     if (lead.phone) fields.phone = lead.phone;
     if (lead.business) fields.company = lead.business;
@@ -142,7 +150,7 @@ export async function POST(req: Request) {
     if (event.leadgenId) fields.leadgen_id = event.leadgenId;
     const group = process.env.ML_GROUP_FACEBOOK_LEADS;
     try {
-      await subscribe({ email: lead.email, fields, groups: group ? [group] : undefined });
+      await subscribe({ email: lead.email, fields, groups: group ? [group] : undefined, timeoutMs: 2500 });
     } catch (e) {
       console.error('[zernio] MailerLite subscribe failed — asking Zernio to retry:', e);
       return json({ error: 'mailerlite failed' }, 500);
@@ -155,7 +163,7 @@ export async function POST(req: Request) {
 
   // After the response: the instant audit, which keeps the form's "within one
   // business day" promise in about a minute. A bad URL ends quietly with a log line.
-  if (hasEmail && lead.website && process.env.FB_LEAD_AUTO_AUDIT !== 'off') {
+  if (autoAudit && !lookupFailed) {
     waitUntil(
       (async () => {
         try {

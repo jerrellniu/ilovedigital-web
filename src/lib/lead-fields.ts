@@ -3,8 +3,8 @@
 // Turns the attribution fields a form sends into two things:
 //   - lines on the internal notification email, which the nightly email sweep
 //     reads to fill Lead Source, Referral Source and Notes in the Leads database;
-//   - MailerLite fields `source`, `source_detail` and `heard_about` (text fields,
-//     created in MailerLite before this shipped).
+//   - MailerLite fields `lead_source`, `source_detail` and `heard_about` (text
+//     fields, created 22 October 2026; MailerLite reserves the key `source`).
 //
 // Values were length-capped by checkShape() before they reach here.
 
@@ -33,7 +33,7 @@ export function leadSourceFields(body: Record<string, unknown>): LeadSourceField
   if (landing) notify['landing page'] = landing;
   if (heard) notify['heard about us'] = heard;
 
-  if (source) mailerlite.source = source;
+  if (source) mailerlite.lead_source = source;
   if (detail) mailerlite.source_detail = detail;
   if (heard) mailerlite.heard_about = heard;
 
