@@ -1,0 +1,128 @@
+---
+title: "PHP2Shell: What Australian WordPress Owners Need to Do Today"
+seoTitle: "PHP2Shell: What WordPress Owners Need to Do Today"
+description: "PHP2Shell is a critical PHP flaw found with OpenAI's models. Here is how to check your WordPress site, what to ask your host and when to take it offline."
+category: "Web"
+excerpt: "PHP2Shell lets attackers take over a PHP server without a password. Here is how to check your WordPress site, what to ask your host and when to go offline."
+readTime: "8 min"
+author: "Jerrell Niu"
+date: "2026-10-22"
+updated: "2026-10-22"
+slug: "php2shell-wordpress"
+published: true
+---
+
+<!-- Written by hand on 2026-10-22, not by blog-autopilot-agent. Canonical copy, sources and review notes: https://app.notion.com/p/4011585a06a68132b91df6f5729b13e9 -->
+PHP released emergency security fixes on 21 October 2026 for two critical flaws known as PHP2Shell. If your website runs on WordPress, it runs on PHP, and the server behind it needs the fix today. Updating WordPress, your theme or your plugins will not install it. The fix belongs on the server, which for most websites means your hosting company.
+
+This guide explains what PHP2Shell is, how to check whether your website is safe, what to ask your host, and when to take your website offline.
+
+## Key Points
+
+- PHP2Shell is two flaws in PHP, CVE-2026-109618 and CVE-2026-109619, each rated 9.2 out of 10 for severity.
+- The fixed versions are PHP 8.2.35, 8.3.36, 8.4.27 and 8.5.12, and the fix has to be installed on the server, not in WordPress.
+- OpenAI says its AI models found PHP2Shell, and Wiz found both flaws independently.
+- Shopify, Wix, Squarespace and Next.js websites on Vercel do not give you PHP to manage, so there is nothing for you to patch.
+- If your host cannot confirm the fix is installed, take your website offline and show a 503 holding page served from outside PHP.
+
+## What is PHP2Shell?
+
+PHP2Shell is the name for two flaws in PHP that let an attacker run their own code on a web server without logging in. The flaws are tracked as CVE-2026-109618 and CVE-2026-109619, and each is rated 9.2 out of 10 for severity. PHP says every installation that serves web pages is at risk, including PHP-FPM, Apache with mod_php, php-cgi, FrankenPHP and LiteSpeed, as [Help Net Security reports](https://www.helpnetsecurity.com/2026/10/21/php2shell-php-vulnerabilities-patched-cve-2026-109618-cve-2026-109619/). An attacker who gets in can change what your website shows visitors and read data passing through the server, so this is a fix to confirm today rather than this week.
+
+## Who found PHP2Shell?
+
+OpenAI says its AI models found PHP2Shell, and that it led a two-month effort with PHP's maintainers to fix the flaws before the details went public. Security firm Calif found a version of the bug in August using OpenAI's GPT-5.6 Sol model, as part of OpenAI's Patch the Planet program, according to [Decrypt](https://decrypt.co/381567/who-found-php-bug-governments-unplug-websites-chatgpt). OpenAI's own team found a fuller version in September. Wiz, Google's cloud security team, found both flaws independently, and [PHP's advisory credits Calif, Wiz and OpenAI together](https://thenextweb.com/news/php2shell-php-rce-ai-openai-wiz).
+
+The way it was found matters to every website owner. AI is making serious flaws faster to find, for defenders and attackers alike, and the time between a fix being released and attacks starting is shrinking. Details of PHP2Shell [leaked online on 20 October](https://www.huntress.com/blog/php2shell-leaked-critical-php-vulnerabilities), a day before the fix was ready. Your website is now only as safe as the speed at which someone patches its server.
+
+## Is my website affected?
+
+Your website is affected if it runs on PHP, which includes WordPress, WooCommerce, Joomla, Drupal and Magento. Researchers at [Wiz](https://www.wiz.io/blog/php2shell-php-rce) say every PHP version released in the last decade is affected by at least one of the two flaws, going back to version 5.4.
+
+Shopify, Wix and Squarespace run their own servers and do not give you PHP to manage, so there is nothing for you to patch. A Next.js website hosted on Vercel does not use PHP at all. If you are not sure what your website runs on, ask your developer or [contact us](/contact) and we will check it for you.
+
+## Why won't a security plugin protect me?
+
+A security plugin cannot be relied on, because PHP reads each request before WordPress or any plugin runs. On servers that run PHP inside Apache (mod_php), PHP says an attacker can trigger the flaw before any of the website's own code loads. A firewall plugin never gets the chance to block that request. The only real protection is the fixed PHP version on the server.
+
+## Which PHP versions fix PHP2Shell?
+
+Your server needs PHP 8.2.35, 8.3.36, 8.4.27 or 8.5.12, or a newer release in the same branch.
+
+| PHP branch on your server | Version you need |
+| --- | --- |
+| PHP 8.5 | 8.5.12 or newer |
+| PHP 8.4 | 8.4.27 or newer |
+| PHP 8.3 | 8.3.36 or newer |
+| PHP 8.2 | 8.2.35 or newer |
+| PHP 8.1 or older | An upgrade to PHP 8.3 or newer |
+
+PHP 8.1 and older no longer receive official releases. PHP published small source patches for 7.4, 8.0 and 8.1, and some hosting platforms have used them to patch older versions for their customers. Ask for PHP 8.3 or newer regardless, because [PHP stops releasing security fixes for 8.2 after 31 December 2026](https://www.php.net/supported-versions.php). Moving now saves you a second upgrade in ten weeks.
+
+## How do I check my WordPress site's PHP version?
+
+You can check your PHP version from the WordPress dashboard in under a minute.
+
+1. Log in to your WordPress admin.
+2. Open Tools, then Site Health.
+3. Click the Info tab and expand the Server section.
+4. Compare the PHP version shown with the table above.
+
+A number that matches or beats the table means PHP is up to date. Some hosts and Linux distributions apply the fix without changing the version number you see, so an older-looking number is not proof of a problem. If your host says you are patched but the number looks old, ask them to confirm it in writing.
+
+## What should I ask my hosting company?
+
+Send your host one specific question today, because a vague question gets a vague answer. You can copy this message:
+
+> Can you confirm that the server running our website has a PHP version that fixes CVE-2026-109618 and CVE-2026-109619 (PHP 8.2.35, 8.3.36, 8.4.27, 8.5.12 or newer)? If we are on PHP 8.1 or older, what are our options to upgrade?
+
+Several hosts switched on temporary protections before the fix was released. PHP says measures like these block only some of the ways in, so ask your host to confirm the fixed PHP version is installed, not just that protections are in place. A written yes from your host is the answer you need before you stop worrying.
+
+## Should I take my website offline?
+
+Take your website offline if your host cannot confirm the fix is installed. The UK's National Cyber Security Centre advises organisations to consider taking systems offline until they can be fully protected. A day offline costs far less than a website that has been taken over, cleaned up and flagged by Google as unsafe.
+
+A WordPress maintenance-mode plugin is not enough, because PHP has already handled the request before the plugin runs. Ask your host or developer to show a holding page from outside PHP, for example through Cloudflare or a separate server. The page should return a 503 status, which tells Google the outage is temporary. Google's John Mueller recommended this approach for websites taken down over PHP2Shell, so your search rankings are protected while you wait.
+
+If your website already sits behind Cloudflare, it has added firewall rules for the known attacks on every plan, including the free one. Those rules help while you wait, but they only see traffic that passes through Cloudflare and do not replace the update.
+
+## Could my website already have been hacked?
+
+Your website could already have been attacked if it was online and unpatched after attacks began. Cloudflare's chief technology officer reported attacks on customer websites about six hours before PHP released the fix, as [TJ Robertson's PHP2Shell guide](https://tjrobertson.com/php-security-update-wordpress/) records.
+
+Ask your host or developer to check the server logs for three warning signs:
+
+- Unusual upload requests followed by memory-limit errors or repeated server errors (HTTP 500).
+- Session cookies that are much larger than normal.
+- PHP restarting for no clear reason.
+
+Once the fix is installed, change your WordPress admin passwords and any API keys the website uses. Wiz reports that the flaws can expose data from other visitors' requests, including passwords and keys. If the log check finds signs of an attack, take the website offline, keep the logs, and report it to the Australian Cyber Security Centre through ReportCyber at [cyber.gov.au](https://www.cyber.gov.au). Acting quickly limits the damage to your customers and stops your website becoming a launch point for scams.
+
+## What does PHP2Shell mean for how you host your website?
+
+PHP2Shell shows that every WordPress website needs someone keeping its server current for as long as the website exists. Websites on our [managed WordPress hosting](/websites/wordpress) were patched immediately, so those clients did not need to do anything.
+
+With AI speeding up how quickly flaws are found, the gap between disclosure and attack will keep shrinking. Hosting that patches on the same day is now a basic requirement for a WordPress website, not an extra. For new builds, a [Next.js website](/websites) has no PHP for an attack like this to reach, which removes a whole category of server patching from your to-do list.
+
+## Frequently Asked Questions
+
+**Does updating WordPress fix PHP2Shell?**
+No. PHP2Shell is a flaw in PHP, the software on the server that runs WordPress. Your host or developer has to update PHP on the server itself.
+
+**Is my Shopify, Wix or Squarespace website at risk?**
+No action is needed from you. These platforms run and patch their own servers, and they do not give you PHP to manage.
+
+**Is PHP 8.2 safe?**
+PHP 8.2.35 contains the fix, so it is safe for now. PHP stops security fixes for 8.2 after 31 December 2026, so plan a move to PHP 8.3 or newer.
+
+**Will taking my website offline hurt my Google rankings?**
+A short outage shown as a 503 holding page tells Google the website is temporarily unavailable, which is the approach Google's John Mueller recommended. A hacked website flagged as unsafe does far more damage to rankings than a day offline.
+
+**Who found PHP2Shell?**
+OpenAI says its models found PHP2Shell. Security firm Calif found the first version using OpenAI's GPT-5.6 Sol model, and Wiz found both flaws independently.
+
+## Is Your Website Ready for the Next Flaw? Get a Free Audit
+
+Run our free website audit and see in about a minute where your website stands. The audit checks your speed, mobile layout and Google issues, and puts the fixes in order so you know what to do first. If you are not sure who hosts your website or which PHP version it runs, call us on 1300 944 890 or [send us a message](/contact) and we will check that for you too.
+
+**[Get my free audit](/audit)**
