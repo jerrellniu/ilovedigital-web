@@ -47,7 +47,7 @@ export default function ContactPage() {
         <div className="max-w-[720px] rounded-card bg-surface p-8">
           <h2 className="text-21">{contact.message.heading}</h2>
           <p className="mt-3 text-muted">{contact.message.sub}</p>
-          <ContactForm />
+          <ContactForm heardAbout={site.forms.heardAbout} />
         </div>
       </section>
 

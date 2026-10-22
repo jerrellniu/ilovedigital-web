@@ -17,7 +17,7 @@ export default function PrivacyPage() {
   return (
     <>
       <Breadcrumbs trail={[{ name: 'Home', path: '/' }, { name: 'Privacy Policy', path: '/privacy' }]} />
-      <LegalPage title="Privacy Policy" lastUpdated="21 October 2026">
+      <LegalPage title="Privacy Policy" lastUpdated="22 October 2026">
         <Markdown>{body}</Markdown>
       </LegalPage>
     </>

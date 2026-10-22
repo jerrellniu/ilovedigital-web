@@ -3,9 +3,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Honeypot from './Honeypot';
 import Turnstile from './Turnstile';
+import HeardAboutSelect from './HeardAboutSelect';
+import type { HeardAboutCopy } from '@/types/content';
 import AuditReportView from '@/components/audit/AuditReportView';
 import type { AuditEvent, AuditReport, ProgressStep } from '@/lib/audit/types';
 import { AUDIT_EMAIL_KEY, metaPayload, newEventId, track } from '@/lib/meta';
+import { attributionPayload } from '@/lib/attribution';
 
 const inputCls = 'field min-w-[200px] flex-1';
 
@@ -45,8 +48,17 @@ function Spinner() {
  *
  * Full variant (/audit): runs the instant audit and renders the report in place.
  */
-export default function AuditForm({ full = false, buttonLabel = 'Audit my site' }: { full?: boolean; buttonLabel?: string }) {
-  const [form, setForm] = useState({ website: '', email: '', name: '', business: '', concern: '', hp: '' });
+export default function AuditForm({
+  full = false,
+  buttonLabel = 'Audit my site',
+  heardAbout,
+}: {
+  full?: boolean;
+  buttonLabel?: string;
+  /** Full variant only: the optional "How did you hear about us?" select. */
+  heardAbout?: HeardAboutCopy;
+}) {
+  const [form, setForm] = useState({ website: '', email: '', name: '', business: '', concern: '', heardAbout: '', hp: '' });
   const [token, setToken] = useState('');
   const [phase, setPhase] = useState<Phase>('idle');
   const [step, setStep] = useState<ProgressStep | null>(null);
@@ -57,7 +69,7 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
   const resultRef = useRef<HTMLDivElement>(null);
 
   const ns = full ? 'audit-full' : 'audit';
-  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   // Prefill from the Home band hand-off (/audit?website=..., email in sessionStorage).
@@ -132,9 +144,11 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
           name: form.name,
           business: form.business,
           message: form.concern,
+          ...(form.heardAbout ? { heardAbout: form.heardAbout } : {}),
           hp: form.hp,
           token,
           ...metaPayload(eventId),
+          ...attributionPayload(),
         }),
       });
       const isStream = (res.headers.get('content-type') || '').includes('ndjson');
@@ -212,6 +226,10 @@ export default function AuditForm({ full = false, buttonLabel = 'Audit my site' 
 
         <label htmlFor={`${ns}-concern`} className="sr-only">Your biggest concern about your website (optional)</label>
         <textarea id={`${ns}-concern`} name="concern" value={form.concern} onChange={set('concern')} placeholder="Your biggest concern about your website (optional)" rows={3} className={`${inputCls} w-full`} />
+
+        {heardAbout ? (
+          <HeardAboutSelect id={`${ns}-heard-about`} copy={heardAbout} value={form.heardAbout} onChange={set('heardAbout')} className={`${inputCls} w-full`} />
+        ) : null}
 
         <Turnstile key={runKey} onToken={setToken} />
 

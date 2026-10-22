@@ -148,7 +148,13 @@ export interface Lead {
   name: string | null;
   business: string | null;
   concern: string | null;
+  /** Headline on the internal copy. Defaults to "New instant audit lead". */
+  label?: string;
+  /** Extra lines on the internal copy, keyed as they should read (e.g. Source, Phone). */
+  extra?: Record<string, string>;
 }
+
+const lineKey = (k: string) => `${k[0].toUpperCase()}${k.slice(1)}`;
 
 /** Send the report to the prospect and a copy to us. Never throws; returns what was sent. */
 export async function sendReportEmails(report: AuditReport, lead: Lead): Promise<{ prospect: boolean; internal: boolean }> {
@@ -175,12 +181,13 @@ export async function sendReportEmails(report: AuditReport, lead: Lead): Promise
   }
 
   const banner = [
-    `<strong>New instant audit lead.</strong> ${result.prospect ? 'The report below was emailed to them.' : '<strong>The report did NOT reach them</strong> (send failed) — follow up by hand.'}`,
+    `<strong>${esc(lead.label || 'New instant audit lead')}.</strong> ${result.prospect ? 'The report below was emailed to them.' : '<strong>The report did NOT reach them</strong> (send failed) — follow up by hand.'}`,
     `Name: ${esc(lead.name || '-')}`,
     `Business: ${esc(lead.business || '-')}`,
     `Email: ${esc(lead.email)}`,
     `Website: ${esc(report.finalUrl)}`,
     lead.concern ? `Their concern: ${esc(lead.concern)}` : '',
+    ...Object.entries(lead.extra ?? {}).map(([k, v]) => `${esc(lineKey(k))}: ${esc(v)}`),
     `Plan written by: ${report.interpretation.source === 'model' ? 'Claude (passed the figures check)' : 'rules (Claude unavailable or failed a guard)'}`,
   ]
     .filter(Boolean)
@@ -193,7 +200,15 @@ export async function sendReportEmails(report: AuditReport, lead: Lead): Promise
       replyTo: lead.email,
       subject: `Instant audit: ${report.host} scored ${report.overall ?? '-'} — ${lead.email}`,
       html: renderReportHtml(report, lead.name, { internal: banner }),
-      text: `New instant audit lead\nName: ${lead.name || '-'}\nBusiness: ${lead.business || '-'}\nEmail: ${lead.email}\n\n${renderReportText(report, lead.name)}`,
+      text: [
+        lead.label || 'New instant audit lead',
+        `Name: ${lead.name || '-'}`,
+        `Business: ${lead.business || '-'}`,
+        `Email: ${lead.email}`,
+        ...Object.entries(lead.extra ?? {}).map(([k, v]) => `${lineKey(k)}: ${v}`),
+        '',
+        renderReportText(report, lead.name),
+      ].join('\n'),
     });
     result.internal = true;
   } catch (e) {
