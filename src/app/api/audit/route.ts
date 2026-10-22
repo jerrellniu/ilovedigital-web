@@ -4,6 +4,7 @@ import { checkOrigin, checkShape, scoreContent } from '@/lib/spam';
 import { clientKey, rateLimit } from '@/lib/ratelimit';
 import { verifyTurnstile } from '@/lib/turnstile';
 import { sendMetaEvent } from '@/lib/meta-capi';
+import { leadSourceFields } from '@/lib/lead-fields';
 import { runAudit, AuditInputError } from '@/lib/audit/run';
 import { sendReportEmails } from '@/lib/audit/email';
 import type { AuditEvent, AuditReport } from '@/lib/audit/types';
@@ -80,7 +81,16 @@ export async function POST(req: Request) {
   // finishes. waitUntil keeps it off the audit's critical path; it never throws.
   waitUntil(sendMetaEvent({ eventName: 'Lead', email, req, eventId: body.eventId, fbp: body.fbp, fbc: body.fbc, sourceUrl: body.sourceUrl }));
 
-  const lead = { email, name: name?.trim() || null, business: business?.trim() || null, concern: message?.trim() || null };
+  // First-touch lead source and the optional "How did you hear about us?" answer:
+  // lines on the internal copy of the report, and MailerLite fields.
+  const attribution = leadSourceFields(body);
+  const lead = {
+    email,
+    name: name?.trim() || null,
+    business: business?.trim() || null,
+    concern: message?.trim() || null,
+    extra: attribution.notify,
+  };
   const encoder = new TextEncoder();
   let controller: ReadableStreamDefaultController<Uint8Array> | null = null;
   let open = true;
@@ -143,6 +153,7 @@ export async function POST(req: Request) {
       if (lead.name) fields.name = lead.name;
       if (lead.business) fields.company = lead.business;
       if (lead.concern) fields.message = lead.concern;
+      Object.assign(fields, attribution.mailerlite);
       const group = process.env.ML_GROUP_INSTANT_AUDIT;
       await subscribe({ email, fields, groups: group ? [group] : undefined }).catch((err) =>
         console.error('[audit] MailerLite subscribe failed:', err),

@@ -23,20 +23,24 @@ const LABELS: Record<string, string> = {
   audit: 'Free website audit request',
   contact: 'Contact enquiry',
   template: 'Website copy template download',
+  facebook_lead: 'Facebook lead form',
 };
 
 export interface NotifyParams {
   type: string;
   email: string;
   fields: Record<string, string>;
+  /** Last line of the email. Defaults to the website form wording. */
+  footer?: string;
 }
 
 /**
  * Fire an internal notification. Never throws — a notification failure must not
  * turn a captured lead into an error for the visitor. Failures are logged so
- * they show up in the Vercel runtime logs.
+ * they show up in the Vercel runtime logs. Resolves true when the email was
+ * handed to Gmail, so a caller that can retry (the Zernio webhook) can.
  */
-export async function notify({ type, email, fields }: NotifyParams): Promise<void> {
+export async function notify({ type, email, fields, footer }: NotifyParams): Promise<boolean> {
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASSWORD;
 
@@ -45,7 +49,7 @@ export async function notify({ type, email, fields }: NotifyParams): Promise<voi
       type,
       email,
     });
-    return;
+    return false;
   }
 
   const to = process.env.NOTIFY_TO || user;
@@ -57,7 +61,7 @@ export async function notify({ type, email, fields }: NotifyParams): Promise<voi
     `Email: ${email}`,
     ...Object.entries(fields).map(([k, v]) => `${k[0].toUpperCase()}${k.slice(1)}: ${v}`),
     '',
-    'The subscriber is in MailerLite and the auto-reply has been sent.',
+    footer ?? 'The subscriber is in MailerLite and the auto-reply has been sent.',
   ];
 
   try {
@@ -70,6 +74,11 @@ export async function notify({ type, email, fields }: NotifyParams): Promise<voi
       port: PORT,
       secure: true,
       auth: { user, pass },
+      // Bounded, so a stuck Gmail connection fails fast instead of holding a
+      // request (and the Zernio webhook's 5-second window) for a minute.
+      connectionTimeout: 3000,
+      greetingTimeout: 3000,
+      socketTimeout: 5000,
     });
 
     await transport.sendMail({
@@ -79,7 +88,9 @@ export async function notify({ type, email, fields }: NotifyParams): Promise<voi
       subject: `${label} — ${email}`,
       text: lines.join('\n'),
     });
+    return true;
   } catch (e) {
     console.error('[notify] internal notification failed:', e);
+    return false;
   }
 }

@@ -57,6 +57,26 @@ export interface SiteContent {
   cookieNotice: string;
   /** Partnerships and memberships, in display order. */
   partners?: Partner[];
+  /** Shared form copy. */
+  forms: {
+    /** Optional "How did you hear about us?" select on the contact and full audit forms. */
+    heardAbout: HeardAboutCopy;
+  };
+  /** Audit card placed halfway through every article with four or more sections. */
+  articleAuditCta: ArticleAuditCta;
+}
+
+export interface HeardAboutCopy {
+  label: string;
+  /** Sent as `heardAbout`, verbatim. The nightly sweep maps these to Lead Source. */
+  options: string[];
+}
+
+export interface ArticleAuditCta {
+  heading: string;
+  body: string;
+  button: string;
+  href: string;
 }
 
 export interface HeroBlock {

@@ -8,6 +8,10 @@ We collect personal information from you when you sign up for our services, use 
 - Payment information, such as your credit card or bank account information
 - Information about your business or organisation, such as the name and location
 
+### How you found us
+
+When you first visit our website, it records how you arrived, such as a Google search or one of our ads, in your browser's local storage. If you send us a form, that source is sent with it so we know which channels work. It contains no personal information.
+
 ## 2. Use of Information
 
 We may use the information we collect from you for a variety of purposes, including:
@@ -29,6 +33,8 @@ We may share your information with third parties in certain circumstances, inclu
 ## 4. Meta Advertising Tools
 
 We use the Meta Pixel and the Meta Conversions API to measure how our Facebook and Instagram ads perform and to show our ads to people likely to find them useful. When you visit our site, the Pixel records the pages you view and sets cookies in your browser. When you send us a form, our server sends Meta a hashed version of the contact details you entered, such as your email address, along with your IP address, your browser type and those cookie IDs. A hash is a one-way code, so Meta can match it to an account but cannot read it back. We never send Meta your phone number or the content of your message. Meta handles this data under its own privacy policy. You can control the ads you see in your Facebook and Instagram ad preferences, and you can block or delete cookies in your browser settings.
+
+When you send us a lead form on Facebook or Instagram, Meta passes us the name, email address, phone number and business details you entered. We use them to send what you asked for and to follow up with you, and we store them in our email platform and our client records.
 
 ## 5. Security
 

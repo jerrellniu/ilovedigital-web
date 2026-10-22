@@ -40,7 +40,7 @@ export default function AuditPage() {
           on-page SEO, speed and AI search readiness, then give you the fixes in order and a
           3-month plan. A copy lands in your inbox too. No obligation.
         </p>
-        <AuditForm full />
+        <AuditForm full heardAbout={site.forms.heardAbout} />
       </section>
 
       <section className="section-deep">

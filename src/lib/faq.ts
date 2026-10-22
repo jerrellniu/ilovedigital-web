@@ -12,7 +12,7 @@ import type { Faq } from '@/types/content';
 //
 // Any article without an FAQ section returns an empty array and emits no schema.
 
-const FAQ_HEADING = /^#{2,3}\s*(FAQs?|Frequently asked questions)\s*$/i;
+export const FAQ_HEADING = /^#{2,3}\s*(FAQs?|Frequently asked questions)\s*$/i;
 const QUESTION_LINE = /^\*\*(.+?)\*\*:?\s*$/;
 
 /** Strip Markdown decoration so the schema carries plain text, as Google expects. */

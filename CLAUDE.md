@@ -223,6 +223,37 @@ Spec: "Build Brief — Meta Pixel and Conversions API (October 2026)" in Notion.
 - Env: `NEXT_PUBLIC_META_PIXEL_ID`, `META_CAPI_ACCESS_TOKEN`, and `META_TEST_EVENT_CODE`
   for Preview only.
 
+## Lead source and Meta form leads
+
+Spec: "Build Brief — Lead Source, Article Audit CTA and Meta Form Leads (October 2026)"
+in Notion.
+
+- **First-touch source.** `MetaPixel.tsx` calls `recordFirstTouch()` from
+  `src/lib/attribution.ts` on every load (with or without a Pixel ID). The first visit
+  stores `ild-first-touch` in localStorage for 90 days: the channel (utm_source, then
+  click IDs, then referrer host, then Direct), the campaign or referrer host, and the
+  landing path only, never the query string. Values match the Leads database Lead Source
+  options.
+- Every form sends `source`, `sourceDetail` and `landingPage` (base allowlist in
+  `spam.ts`); contact and the full audit form also send the optional `heardAbout`.
+  `src/lib/lead-fields.ts` turns them into `Source`, `Source detail`, `Landing page` and
+  `Heard about us` lines on the internal email, which the nightly sweep reads, and into
+  the MailerLite fields `lead_source`, `source_detail` and `heard_about` (MailerLite
+  reserves `source`).
+- **Mid-article audit card.** `src/lib/article-split.ts` splits an article at its `## `
+  headings before the FAQs; with four or more sections, `ArticleAuditCard` goes after the
+  first half. Copy: `content/site.json` `articleAuditCta`.
+- **Instant Form leads.** Zernio posts `lead.received` to `POST /api/zernio/lead`. The
+  route checks `X-Zernio-Signature` (hex HMAC-SHA256 of the raw body) before parsing,
+  skips a lead whose `leadgen_id` is already on the MailerLite subscriber, notifies us,
+  then subscribes to `ML_GROUP_FACEBOOK_LEADS`; a failure in either returns 500 so Zernio
+  retries. The instant audit then runs under `waitUntil` unless `FB_LEAD_AUTO_AUDIT=off`.
+- Question keys and option keys per form live in `src/lib/lead-forms.ts`, filled from a
+  real test lead (`GET /v1/ads/leads?formId=...` in Zernio), never guessed. An unmapped
+  form still notifies, with every raw answer.
+- Env: `ZERNIO_WEBHOOK_SECRET` (Production only), `ML_GROUP_FACEBOOK_LEADS`,
+  `FB_LEAD_AUTO_AUDIT`. Tests: `npx tsx --test scripts/lead-source.test.ts`.
+
 ## Commands
 
 ```bash

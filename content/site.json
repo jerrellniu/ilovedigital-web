@@ -168,5 +168,25 @@
     {
       "name": "Google Developer Program"
     }
-  ]
+  ],
+  "forms": {
+    "heardAbout": {
+      "label": "How did you hear about us? (optional)",
+      "options": [
+        "Google search",
+        "An AI tool like ChatGPT",
+        "Facebook or Instagram",
+        "TikTok",
+        "LinkedIn",
+        "A friend or referral",
+        "Other"
+      ]
+    }
+  },
+  "articleAuditCta": {
+    "heading": "Is your website costing you enquiries?",
+    "body": "Run a free audit of your website. You'll see your speed, mobile and Google issues, with the fixes in order, in about a minute.",
+    "button": "Get my free audit",
+    "href": "/audit"
+  }
 }

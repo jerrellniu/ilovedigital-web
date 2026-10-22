@@ -4,17 +4,19 @@ import { useState } from 'react';
 import { useSubscribe } from './useSubscribe';
 import Honeypot from './Honeypot';
 import Turnstile from './Turnstile';
+import HeardAboutSelect from './HeardAboutSelect';
+import type { HeardAboutCopy } from '@/types/content';
 
 const inputCls =
   'field w-full';
 
-export default function ContactForm() {
+export default function ContactForm({ heardAbout }: { heardAbout: HeardAboutCopy }) {
   const { status, message, submit } = useSubscribe();
-  const [form, setForm] = useState({ name: '', email: '', business: '', message: '', hp: '' });
+  const [form, setForm] = useState({ name: '', email: '', business: '', message: '', heardAbout: '', hp: '' });
   // Kept out of `form` so the Turnstile callback cannot race a keystroke.
   const [token, setToken] = useState('');
 
-  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
   if (status === 'success') {
@@ -101,6 +103,8 @@ export default function ContactForm() {
           className={inputCls}
         />
       </div>
+
+      <HeardAboutSelect id="contact-heard-about" copy={heardAbout} value={form.heardAbout} onChange={set('heardAbout')} className={inputCls} />
 
       <Turnstile onToken={setToken} />
 

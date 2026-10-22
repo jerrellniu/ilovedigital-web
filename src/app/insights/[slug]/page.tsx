@@ -4,11 +4,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Button from '@/components/Button';
 import Markdown from '@/components/Markdown';
+import ArticleAuditCard from '@/components/ArticleAuditCard';
 import JsonLd from '@/components/JsonLd';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { getCollectionSlugs, getEntry } from '@/lib/mdx';
 import { getAuthor, getInsightsIndex, getSite } from '@/lib/content';
 import { extractFaqs } from '@/lib/faq';
+import { splitForAuditCard } from '@/lib/article-split';
 import { articleSchema, faqPageSchema, AUTHOR_PATH } from '@/lib/schema';
 
 const site = getSite();
@@ -61,6 +63,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   // FAQs are read back out of the article body, so the schema and the page always
   // carry the same questions. An article with no FAQ section emits no FAQPage.
   const faqs = extractFaqs(entry.content);
+  // Free audit card halfway through, when the article has four or more sections
+  // before its FAQs. FAQs above still read the full body.
+  const split = splitForAuditCard(entry.content);
   // Only published siblings: an unpublished related card would link to a 404.
   const related = getInsightsIndex()
     .filter((p) => p.href && p.slug !== slug && p.category === fm.category)
@@ -100,7 +105,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
 
         <div className="mt-10">
-          <Markdown>{entry.content}</Markdown>
+          {split ? (
+            <>
+              <Markdown>{split.before}</Markdown>
+              <ArticleAuditCard copy={site.articleAuditCta} />
+              <Markdown>{split.after}</Markdown>
+            </>
+          ) : (
+            <Markdown>{entry.content}</Markdown>
+          )}
         </div>
 
         {/* Author bio */}

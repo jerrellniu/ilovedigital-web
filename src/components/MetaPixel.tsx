@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef } from 'react';
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { AUDIT_EMAIL_KEY, newEventId, track } from '@/lib/meta';
+import { recordFirstTouch } from '@/lib/attribution';
 
 // Digits only: the ID is written into an inline script.
 const RAW_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
@@ -71,6 +72,12 @@ function RouteChangePageView() {
  * confirm one, and a click is the honest signal.
  */
 export default function MetaPixel() {
+  // First-touch lead source (src/lib/attribution.ts). Runs with or without a Pixel
+  // ID, because forms need the source either way.
+  useEffect(() => {
+    recordFirstTouch();
+  }, []);
+
   useEffect(() => {
     if (!PIXEL_ID) return;
     const onClick = (e: MouseEvent) => {

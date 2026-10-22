@@ -5,6 +5,7 @@ import { checkOrigin, checkShape, isFormType, scoreContent } from '@/lib/spam';
 import { clientKey, rateLimit } from '@/lib/ratelimit';
 import { verifyTurnstile } from '@/lib/turnstile';
 import { sendMetaEvent, type MetaServerEvent } from '@/lib/meta-capi';
+import { leadSourceFields } from '@/lib/lead-fields';
 
 // nodemailer needs Node built-ins, so this route must not be pushed to Edge.
 export const runtime = 'nodejs';
@@ -126,14 +127,17 @@ export async function POST(req: Request) {
     if (website) fields.website = website;
     if (message) fields.message = message;
 
+    // First-touch lead source and the optional "How did you hear about us?" answer.
+    const attribution = leadSourceFields(body as Record<string, unknown>);
+
     const groupId = GROUPS[type];
-    await subscribe({ email, fields, groups: groupId ? [groupId] : undefined });
+    await subscribe({ email, fields: { ...fields, ...attribution.mailerlite }, groups: groupId ? [groupId] : undefined });
 
     // Awaited deliberately. Serverless functions can be frozen the moment the
     // response is returned, so a floating promise here would be killed before
     // the mail is handed off. notify() never throws, so a notification failure
     // cannot turn a captured lead into an error for the visitor.
-    await notify({ type, email, fields });
+    await notify({ type, email, fields: { ...fields, ...attribution.notify } });
 
     // Last, so a Meta outage can never cost a lead. Never throws, times out at 3s.
     const { eventId, fbp, fbc, sourceUrl } = body as Record<string, unknown>;

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { metaPayload, newEventId, track, type MetaEventName } from '@/lib/meta';
+import { attributionPayload } from '@/lib/attribution';
 
 // Must match META_EVENT in src/app/api/subscribe/route.ts.
 const META_EVENT: Record<string, MetaEventName> = {
@@ -25,7 +26,7 @@ export function useSubscribe() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...payload, ...metaPayload(eventId) }),
+        body: JSON.stringify({ ...payload, ...metaPayload(eventId), ...attributionPayload() }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');

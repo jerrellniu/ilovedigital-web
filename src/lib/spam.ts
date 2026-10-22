@@ -31,17 +31,19 @@ export type FormType = 'newsletter' | 'audit' | 'contact' | 'template';
  */
 const ALLOWED: Record<FormType, readonly string[]> = {
   newsletter: [],
-  audit: ['website', 'name', 'business', 'message'],
-  contact: ['name', 'business', 'message'],
+  audit: ['website', 'name', 'business', 'message', 'heardAbout'],
+  contact: ['name', 'business', 'message', 'heardAbout'],
   template: ['name'],
 };
 
 /**
  * Sent by every form. `eventId`, `fbp`, `fbc` and `sourceUrl` carry the Meta Pixel
  * match data (src/lib/meta.ts) so the server event deduplicates against the browser
- * one. Without them here, checkShape would drop every real lead with a 200.
+ * one. `source`, `sourceDetail` and `landingPage` carry the first-touch lead source
+ * (src/lib/attribution.ts). Without them here, checkShape would drop every real lead
+ * with a 200.
  */
-const BASE_FIELDS = ['email', 'type', 'hp', 'token', 'eventId', 'fbp', 'fbc', 'sourceUrl'] as const;
+const BASE_FIELDS = ['email', 'type', 'hp', 'token', 'eventId', 'fbp', 'fbc', 'sourceUrl', 'source', 'sourceDetail', 'landingPage'] as const;
 
 /** Fields the form marks `required`, so a real submission always carries them. */
 const REQUIRED: Record<FormType, readonly string[]> = {
@@ -62,6 +64,10 @@ const MAX_LENGTH: Record<string, number> = {
   fbp: 200,
   fbc: 500,
   sourceUrl: 500,
+  source: 40,
+  sourceDetail: 100,
+  landingPage: 200,
+  heardAbout: 60,
 };
 
 export function isFormType(value: unknown): value is FormType {
