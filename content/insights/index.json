@@ -1,5 +1,13 @@
 [
   {
+    "title": "PHP2Shell: What Australian WordPress Owners Need to Do Today",
+    "category": "Web",
+    "excerpt": "PHP2Shell lets attackers take over a PHP server without a password. Here is how to check your WordPress site, what to ask your host and when to go offline.",
+    "readTime": "8 min",
+    "slug": "php2shell-wordpress",
+    "stage": "Launch"
+  },
+  {
     "title": "You Don't Own Your Followers: Do You Need a Website If You Have Facebook?",
     "category": "Socials",
     "excerpt": "Facebook followers are rented from Meta. Here is what Gold Coast tradies own versus rent online, a ten-customer test, and when Facebook alone is genuinely fine.",
