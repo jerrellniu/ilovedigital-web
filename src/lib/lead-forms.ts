@@ -33,11 +33,19 @@ export interface LeadFormMap {
 
 export const LEAD_FORMS: LeadFormMap[] = [
   {
-    // TODO after the first test lead: set formId, the business, website and
-    // interest keys, and the interest option keys.
-    formId: '',
+    // Keys confirmed from the Lead Ads Testing Tool lead of 22 October 2026
+    // (leadgen 2202777253638605). Name, email and phone use Meta's standard keys.
+    formId: '1992044085093369',
     name: 'ILD — Free Website Audit (Oct 2026)',
-    keys: {},
+    keys: {
+      business: 'business_name',
+      website: 'website_address',
+      interest: 'what_are_you_most_interested_in?',
+    },
+    // TODO: the option keys for "What are you most interested in?". The test lead
+    // carried dummy text, so they are not confirmed yet. Until they are, an answer
+    // that arrives as its label still maps to Service Interest, and one that arrives
+    // as a key shows the raw key in the notification.
     options: {},
   },
 ];

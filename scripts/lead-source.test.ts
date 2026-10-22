@@ -419,3 +419,20 @@ test('route: a lead with no email is still notified and not subscribed', async (
     },
   );
 });
+
+test('the live audit form is mapped by its real keys', () => {
+  const l = normaliseLead('1992044085093369', {
+    email: 'owner@smithtrades.com.au',
+    full_name: 'Brett Smith',
+    phone_number: '+61400000000',
+    business_name: 'Smith Trades',
+    website_address: 'smithtrades.com.au',
+    'what_are_you_most_interested_in?': 'A new website',
+  });
+  assert.equal(l.known, true);
+  assert.equal(l.formName, 'ILD — Free Website Audit (Oct 2026)');
+  assert.equal(l.business, 'Smith Trades');
+  assert.equal(l.website, 'smithtrades.com.au');
+  assert.equal(l.interest, 'A new website');
+  assert.equal(l.service, 'Website');
+});
